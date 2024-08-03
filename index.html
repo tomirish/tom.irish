@@ -136,7 +136,6 @@
         -webkit-text-stroke: 0;
         background-color: rgba(32,32,32,0.75);
         text-shadow: none;
-        text-stroke: 0;
         color: transparent;
         cursor: pointer;
         transition: color 0.1s ease-in-out;
@@ -588,8 +587,8 @@
         position: relative;
     }
     .image .frame {
-        -webkit-backface-visibility: hidden;
-        -webkit-transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        transform: translate3d(0, 0, 0);
         display: inline-block;
         max-width: 100%;
         overflow: hidden;
