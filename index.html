@@ -2133,7 +2133,7 @@
                             return false;
                         } else {
                             locked = true;
-                            if (location.hash == '#home') history.replaceState(null, null, '#');
+                            if (location.hash == '#home') history.replaceState(null, null, '');
                             name = (section ? section.id.replace(/-section$/, '') : null);
                             hideHeader = name ? ((name in sections) && ('hideHeader' in sections[name]) && sections[name].hideHeader) : false;
                             hideFooter = name ? ((name in sections) && ('hideFooter' in sections[name]) && sections[name].hideFooter) : false;
