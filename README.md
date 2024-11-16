@@ -1,4 +1,4 @@
-# Repository for [Tom.Irish](https://tom.irish) 
+## Repository for [Tom.Irish](https://tom.irish) 
 
 ### About
 - a simple one-page design that simulate multiple pages using section breaks.
