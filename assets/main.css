@@ -1,4 +1,4 @@
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}body{-webkit-text-size-adjust:none}mark{background-color:transparent;color:inherit}input::-moz-focus-inner{border:0;padding:0}input[type="text"],input[type="email"],select,textarea{-moz-appearance:none;-webkit-appearance:none;-ms-appearance:none;appearance:none}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}body{-webkit-text-size-adjust:none}mark{background-color:transparent;color:inherit}input::-moz-focus-inner{border:0;padding:0}input[type="text"],input[type="email"],select,textarea{-moz-appearance:none;-webkit-appearance:none;-ms-appearance:none;appearance:none}@media (prefers-reduced-motion) { *, *:before, *:after { transform: none !important; } }
 
 *, *:before, *:after {
 	box-sizing: border-box;
@@ -285,21 +285,21 @@ body.is-instant:after {
 	white-space: nowrap;
 }
 
-#buttons01 {
+#header-navigation {
 	gap: 0.75rem;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 
-#buttons01:not(:first-child) {
+#header-navigation:not(:first-child) {
 	margin-top: 1.375rem !important;
 }
 
-#buttons01:not(:last-child) {
+#header-navigation:not(:last-child) {
 	margin-bottom: 1.375rem !important;
 }
 
-#buttons01 li a {
+#header-navigation li a {
 	display: inline-block;
 	width: 6.5rem;
 	height: 2.25rem;
@@ -319,31 +319,31 @@ body.is-instant:after {
 	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
-#buttons01 .button {
+#header-navigation .button {
 	color: #474747;
 	border: solid 1px #CCCCCC;
 }
 
-#buttons01 .button:hover {
-	border-color: #008200 !important;
-	color: #008200 !important;
+#header-navigation .button:hover {
+	border-color: #355D7E !important;
+	color: #355D7E !important;
 }
 
-#buttons02 {
+#resume-download {
 	gap: 0.75rem;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
 
-#buttons02:not(:first-child) {
+#resume-download:not(:first-child) {
 	margin-top: 1.375rem !important;
 }
 
-#buttons02:not(:last-child) {
+#resume-download:not(:last-child) {
 	margin-bottom: 1.375rem !important;
 }
 
-#buttons02 li a {
+#resume-download li a {
 	display: inline-flex;
 	width: 8.625rem;
 	height: 2.25rem;
@@ -360,7 +360,7 @@ body.is-instant:after {
 	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
-#buttons02 li a svg {
+#resume-download li a svg {
 	display: block;
 	fill: #474747;
 	flex-grow: 0;
@@ -373,179 +373,23 @@ body.is-instant:after {
 	transition: fill 0.25s ease;
 }
 
-#buttons02 li a .label {
+#resume-download li a .label {
 	direction: var(--site-language-direction);
 	overflow: hidden;
 }
 
-#buttons02 .button {
+#resume-download .button {
 	color: #474747;
 	border: solid 1px #CCCCCC;
 }
 
-#buttons02 .button:hover {
-	border-color: #008200 !important;
-	color: #008200 !important;
+#resume-download .button:hover {
+	border-color: #355D7E !important;
+	color: #355D7E !important;
 }
 
-#buttons02 .button:hover svg {
-	fill: #008200 !important;
-}
-
-#buttons04 {
-	gap: 0.25rem;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-
-#buttons04:not(:first-child) {
-	margin-top: 0.125rem !important;
-}
-
-#buttons04:not(:last-child) {
-	margin-bottom: 0.125rem !important;
-}
-
-#buttons04 li a {
-	display: inline-flex;
-	width: 100vw;
-	height: 2.25rem;
-	line-height: 2.25rem;
-	padding: 0 1.125rem;
-	vertical-align: middle;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 1em;
-	font-weight: 200;
-	border-radius: 0rem;
-	flex-direction: row-reverse;
-	justify-content: flex-end;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#buttons04 li a svg {
-	display: block;
-	fill: #474747;
-	flex-grow: 0;
-	flex-shrink: 0;
-	height: 100%;
-	min-width: 16px;
-	width: 0.5em;
-	margin-left: 0.5em;
-	margin-right: calc(-0.125em + 0rem);
-	transition: fill 0.25s ease;
-}
-
-#buttons04 li a .label {
-	direction: var(--site-language-direction);
-	overflow: hidden;
-	flex-grow: 1;
-	flex-shrink: 1;
-	text-align: left;
-	width: 100%;
-}
-
-#buttons04 .button {
-	background-color: #FFFFFF;
-	color: #474747;
-}
-
-#buttons04 .n01 svg {
-	fill: #FFFFFF;
-}
-
-#buttons04 .n02 svg {
-	fill: #FFFFFF;
-}
-
-#buttons04 .n03 svg {
-	fill: #FFFFFF;
-}
-
-#buttons04 .n04 svg {
-	fill: #FFFFFF;
-}
-
-#buttons04 .n05 svg {
-	fill: #FFFFFF;
-}
-
-#buttons04 .n06 svg {
-	fill: #FFFFFF;
-}
-
-#buttons04 .n07 svg {
-	fill: #FFFFFF;
-}
-
-#buttons03 {
-	gap: 0.75rem;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-
-#buttons03:not(:first-child) {
-	margin-top: 0.375rem !important;
-}
-
-#buttons03:not(:last-child) {
-	margin-bottom: 0.375rem !important;
-}
-
-#buttons03 li a {
-	display: inline-block;
-	width: 100vw;
-	height: 1.75rem;
-	line-height: 1.75rem;
-	padding: 0 0.875rem;
-	vertical-align: middle;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 1em;
-	font-weight: 200;
-	border-radius: 0.25rem;
-	direction: var(--site-language-direction);
-	overflow: hidden;
-	text-overflow: ellipsis;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#buttons03 .button {
-	background-color: #FFFFFF;
-	color: #474747;
-}
-
-#buttons03 .n01 {
-	background-color: #008200;
-	color: #FFFFFF;
-}
-
-#buttons03 .n02 {
-	background-color: #008200;
-	color: #FFFFFF;
-}
-
-#buttons03 .n03 {
-	background-color: #008200;
-	color: #FFFFFF;
-}
-
-#buttons03 .n04 {
-	background-color: #008200;
-	color: #FFFFFF;
-}
-
-#buttons03 .n05 {
-	background-color: #008200;
-	color: #FFFFFF;
-}
-
-#buttons03 .n06 {
-	background-color: #008200;
-	color: #FFFFFF;
-}
-
-#buttons03 .n07 {
-	background-color: #008200;
-	color: #FFFFFF;
+#resume-download .button:hover svg {
+	fill: #355D7E !important;
 }
 
 hr {
@@ -563,32 +407,32 @@ hr:before {
 	content: '';
 }
 
-#divider01:not(:first-child) {
+#header-divider:not(:first-child) {
 	margin-top: 0.5rem !important;
 }
 
-#divider01:not(:last-child) {
+#header-divider:not(:last-child) {
 	margin-bottom: 0.5rem !important;
 }
 
-#divider01:before {
+#header-divider:before {
 	width: 32rem;
-	background-color: #008200;
+	background-color: #355D7E;
 	height: 1px;
 	border-radius: 0px;
 }
 
-#divider03:not(:first-child) {
+#footer-divider:not(:first-child) {
 	margin-top: 0.5rem !important;
 }
 
-#divider03:not(:last-child) {
+#footer-divider:not(:last-child) {
 	margin-bottom: 0.5rem !important;
 }
 
-#divider03:before {
+#footer-divider:before {
 	width: 32rem;
-	background-color: #008200;
+	background-color: #355D7E;
 	height: 1px;
 	border-radius: 0px;
 }
@@ -631,21 +475,21 @@ hr:before {
 	border-bottom-right-radius: inherit;
 }
 
-#image01:not(:first-child) {
+#Tom-Irish:not(:first-child) {
 	margin-top: 0rem !important;
 }
 
-#image01:not(:last-child) {
+#Tom-Irish:not(:last-child) {
 	margin-bottom: 0rem !important;
 }
 
-#image01 .frame {
+#Tom-Irish .frame {
 	width: 12rem;
 	border-radius: 100%;
 	transition: none;
 }
 
-#image01 .frame img {
+#Tom-Irish .frame img {
 	transition: none;
 }
 
@@ -663,9 +507,9 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	-webkit-text-fill-color: currentcolor;
 }
 
-#text03 {
+#home-name {
 	text-transform: uppercase;
-	color: #008200;
+	color: #355D7E;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.4rem;
 	width: calc(100% + 0.4rem);
@@ -674,19 +518,19 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 400;
 }
 
-#text03 a {
+#home-name a {
 	text-decoration: underline;
 }
 
-#text03 a:hover {
+#home-name a:hover {
 	text-decoration: none;
 }
 
-#text03 span.p:nth-child(n + 2) {
+#home-name span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text04 {
+#home-title {
 	text-transform: uppercase;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -697,45 +541,45 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 400;
 }
 
-#text04 a {
+#home-title a {
 	text-decoration: underline;
 }
 
-#text04 a:hover {
+#home-title a:hover {
 	text-decoration: none;
 }
 
-#text04 span.p:nth-child(n + 2) {
+#home-title span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text05 {
+#resume-title {
 	text-transform: uppercase;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.4rem;
 	width: calc(100% + 0.4rem);
-	font-size: 1em;
+	font-size: 1.25em;
 	line-height: 1.5;
 	font-weight: 400;
 }
 
-#text05 a {
+#resume-title a {
 	text-decoration: underline;
 }
 
-#text05 a:hover {
+#resume-title a:hover {
 	text-decoration: none;
 }
 
-#text05 span.p:nth-child(n + 2) {
+#resume-title span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text14 {
+#resume-work {
 	text-align: left;
 	text-transform: uppercase;
-	color: #008200;
+	color: #355D7E;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.025rem;
 	width: calc(100% + 0.025rem);
@@ -744,19 +588,19 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 300;
 }
 
-#text14 a:hover {
+#resume-work a:hover {
 	color: #309EDB;
 }
 
-#text14 a {
+#resume-work a {
 	text-decoration: underline;
 }
 
-#text14 span.p:nth-child(n + 2) {
+#resume-work span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text09 {
+#resume-work-dev-mgr {
 	text-align: left;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -767,19 +611,19 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 200;
 }
 
-#text09 a:hover {
+#resume-work-dev-mgr a:hover {
 	color: #309EDB;
 }
 
-#text09 a {
+#resume-work-dev-mgr a {
 	text-decoration: underline;
 }
 
-#text09 span.p:nth-child(n + 2) {
+#resume-work-dev-mgr span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text10 {
+#resume-work-dev-sup {
 	text-align: left;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -790,22 +634,22 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 200;
 }
 
-#text10 a:hover {
+#resume-work-dev-sup a:hover {
 	color: #309EDB;
 }
 
-#text10 a {
+#resume-work-dev-sup a {
 	text-decoration: underline;
 }
 
-#text10 span.p:nth-child(n + 2) {
+#resume-work-dev-sup span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text11 {
+#resume-skills {
 	text-align: left;
 	text-transform: uppercase;
-	color: #008200;
+	color: #355D7E;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.025rem;
 	width: calc(100% + 0.025rem);
@@ -814,22 +658,247 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 200;
 }
 
-#text11 a:hover {
+#resume-skills a:hover {
 	color: #309EDB;
 }
 
-#text11 a {
+#resume-skills a {
 	text-decoration: underline;
 }
 
-#text11 span.p:nth-child(n + 2) {
+#resume-skills span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text12 {
+#resume-skills-ledership {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-ledership a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-ledership a {
+	text-decoration: underline;
+}
+
+#resume-skills-ledership span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-intergrity {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-intergrity a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-intergrity a {
+	text-decoration: underline;
+}
+
+#resume-skills-intergrity span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-customer-service {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-customer-service a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-customer-service a {
+	text-decoration: underline;
+}
+
+#resume-skills-customer-service span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-emotional-intelligence {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-emotional-intelligence a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-emotional-intelligence a {
+	text-decoration: underline;
+}
+
+#resume-skills-emotional-intelligence span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-data-analytics {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-data-analytics a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-data-analytics a {
+	text-decoration: underline;
+}
+
+#resume-skills-data-analytics span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-agile-devlopment {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-agile-devlopment a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-agile-devlopment a {
+	text-decoration: underline;
+}
+
+#resume-skills-agile-devlopment span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-project-managemnt {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-project-managemnt a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-project-managemnt a {
+	text-decoration: underline;
+}
+
+#resume-skills-project-managemnt span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-development {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-development a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-development a {
+	text-decoration: underline;
+}
+
+#resume-skills-development span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-skills-edi-standards {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	padding-left: 1.5rem;
+	padding-right: 0;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 2;
+	font-weight: 200;
+}
+
+#resume-skills-edi-standards a:hover {
+	color: #309EDB;
+}
+
+#resume-skills-edi-standards a {
+	text-decoration: underline;
+}
+
+#resume-skills-edi-standards span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#resume-education {
 	text-align: left;
 	text-transform: uppercase;
-	color: #008200;
+	color: #355D7E;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.025rem;
 	width: calc(100% + 0.025rem);
@@ -838,19 +907,19 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 300;
 }
 
-#text12 a:hover {
+#resume-education a:hover {
 	color: #309EDB;
 }
 
-#text12 a {
+#resume-education a {
 	text-decoration: underline;
 }
 
-#text12 span.p:nth-child(n + 2) {
+#resume-education span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text06 {
+#resume-education-wsu {
 	text-align: left;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -861,43 +930,20 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 200;
 }
 
-#text06 a:hover {
+#resume-education-wsu a:hover {
 	color: #309EDB;
 }
 
-#text06 a {
+#resume-education-wsu a {
 	text-decoration: underline;
 }
 
-#text06 span.p:nth-child(n + 2) {
+#resume-education-wsu span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text01 {
-	text-transform: uppercase;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.4rem;
-	width: calc(100% + 0.4rem);
-	font-size: 1em;
-	line-height: 1.5;
-	font-weight: 400;
-}
-
-#text01 a {
-	text-decoration: underline;
-}
-
-#text01 a:hover {
-	text-decoration: none;
-}
-
-#text01 span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#text07 {
-	text-align: center;
+#resume-education-cert {
+	text-align: left;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.025rem;
@@ -907,43 +953,88 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 200;
 }
 
-#text07 a:hover {
+#resume-education-cert a:hover {
 	color: #309EDB;
 }
 
-#text07 a {
+#resume-education-cert a {
 	text-decoration: underline;
 }
 
-#text07 span.p:nth-child(n + 2) {
+#resume-education-cert span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text08 {
-	text-align: center;
+#about-title {
 	text-transform: uppercase;
-	color: #008200;
+	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.4rem;
 	width: calc(100% + 0.4rem);
-	font-size: 1.375em;
+	font-size: 1.25em;
+	line-height: 1.5;
+	font-weight: 400;
+}
+
+#about-title a {
+	text-decoration: underline;
+}
+
+#about-title a:hover {
+	text-decoration: none;
+}
+
+#about-title span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#about-text {
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
+	font-size: 1em;
+	line-height: 1.875;
+	font-weight: 200;
+}
+
+#about-text a:hover {
+	color: #309EDB;
+}
+
+#about-text a {
+	text-decoration: underline;
+}
+
+#about-text span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+#about-name {
+	text-align: center;
+	text-transform: uppercase;
+	color: #355D7E;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.4rem;
+	width: calc(100% + 0.4rem);
+	font-size: 1.5em;
 	line-height: 1;
 	font-weight: 400;
 }
 
-#text08 a {
+#about-name a {
 	text-decoration: underline;
 }
 
-#text08 a:hover {
+#about-name a:hover {
 	text-decoration: none;
 }
 
-#text08 span.p:nth-child(n + 2) {
+#about-name span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#text02 {
+#about-contact {
 	text-align: center;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
@@ -954,16 +1045,224 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	font-weight: 200;
 }
 
-#text02 a:hover {
-	color: #008200;
+#about-contact a:hover {
+	color: #355D7E;
 }
 
-#text02 a {
+#about-contact a {
 	text-decoration: none;
 }
 
-#text02 span.p:nth-child(n + 2) {
+#about-contact span.p:nth-child(n + 2) {
 	margin-top: 1rem;
+}
+
+.list {
+	display: block;
+}
+
+.list ul, .list ol {
+	display: inline-block;
+	max-width: 100%;
+	text-align: var(--site-language-alignment);
+	vertical-align: middle;
+}
+
+.list ul li, .list ol li {
+	direction: var(--site-language-direction);
+	display: flex;
+	position: relative;
+}
+
+.list ul li:before, .list ol li:before {
+	background-repeat: no-repeat;
+	content: '';
+	display: block;
+	flex-grow: 0;
+	flex-shrink: 0;
+	font-variant: normal !important;
+	letter-spacing: 0 !important;
+	order: 1;
+	position: relative;
+}
+
+.list ul li:after, .list ol li:after {
+	content: '';
+	display: block;
+	flex-grow: 0;
+	flex-shrink: 0;
+	order: 2;
+	pointer-events: none;
+}
+
+.list ul li p, .list ol li p {
+	flex-grow: 1;
+	flex-shrink: 1;
+	order: 3;
+}
+
+.list ul li:first-child, .list ol li:first-child {
+	margin-top: 0 !important;
+}
+
+#resume-work-dev-mgr-list {
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.025rem;
+	font-size: 1em;
+	line-height: 1.875;
+	font-weight: 200;
+}
+
+#resume-work-dev-mgr-list a:hover {
+	color: #309EDB;
+}
+
+#resume-work-dev-mgr-list a {
+	text-decoration: underline;
+}
+
+#resume-work-dev-mgr-list ul {
+	width: 100%;
+}
+
+#resume-work-dev-mgr-list ul li {
+	margin-top: 0.5rem;
+}
+
+#resume-work-dev-mgr-list ul li:after {
+	width: 0.625rem;
+}
+
+#resume-work-dev-mgr-list ul li:before {
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
+	border-radius: 0.25rem;
+	background-position: left 60%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 1.875rem;
+	line-height: 1.875rem;
+	min-width: 0.87890625rem;
+}
+
+#resume-work-dev-sup-list {
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.025rem;
+	font-size: 1em;
+	line-height: 1.875;
+	font-weight: 200;
+}
+
+#resume-work-dev-sup-list a:hover {
+	color: #309EDB;
+}
+
+#resume-work-dev-sup-list a {
+	text-decoration: underline;
+}
+
+#resume-work-dev-sup-list ul {
+	width: 100%;
+}
+
+#resume-work-dev-sup-list ul li {
+	margin-top: 0.5rem;
+}
+
+#resume-work-dev-sup-list ul li:after {
+	width: 0.625rem;
+}
+
+#resume-work-dev-sup-list ul li:before {
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
+	border-radius: 0.25rem;
+	background-position: left 60%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 1.875rem;
+	line-height: 1.875rem;
+	min-width: 0.87890625rem;
+}
+
+#resume-education-wsu-mis {
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.025rem;
+	font-size: 1em;
+	line-height: 1.875;
+	font-weight: 200;
+}
+
+#resume-education-wsu-mis a:hover {
+	color: #309EDB;
+}
+
+#resume-education-wsu-mis a {
+	text-decoration: underline;
+}
+
+#resume-education-wsu-mis ul {
+	width: 100%;
+}
+
+#resume-education-wsu-mis ul li {
+	margin-top: 0.5rem;
+}
+
+#resume-education-wsu-mis ul li:after {
+	width: 0.625rem;
+}
+
+#resume-education-wsu-mis ul li:before {
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
+	border-radius: 0.25rem;
+	background-position: left 60%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 1.875rem;
+	line-height: 1.875rem;
+	min-width: 0.87890625rem;
+}
+
+#resume-education-cert-list {
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.025rem;
+	font-size: 1em;
+	line-height: 1.875;
+	font-weight: 200;
+}
+
+#resume-education-cert-list a:hover {
+	color: #309EDB;
+}
+
+#resume-education-cert-list a {
+	text-decoration: underline;
+}
+
+#resume-education-cert-list ul {
+	width: 100%;
+}
+
+#resume-education-cert-list ul li {
+	margin-top: 0.5rem;
+}
+
+#resume-education-cert-list ul li:after {
+	width: 0.625rem;
+}
+
+#resume-education-cert-list ul li:before {
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
+	border-radius: 0.25rem;
+	background-position: left 60%;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 1.875rem;
+	line-height: 1.875rem;
+	min-width: 0.87890625rem;
 }
 
 .container {
@@ -1158,10 +1457,22 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 
 #container01 > .wrapper > .inner > :nth-child(1) {
 	width: 50%;
+	--alignment: left;
+	--flex-alignment: flex-start;
+	--indent-left: 1;
+	--indent-right: 0;
+	--margin-left: 0;
+	--margin-right: auto;
 }
 
 #container01 > .wrapper > .inner > :nth-child(2) {
 	width: 50%;
+	--alignment: left;
+	--flex-alignment: flex-start;
+	--indent-left: 1;
+	--indent-right: 0;
+	--margin-left: 0;
+	--margin-right: auto;
 }
 
 .icons {
@@ -1203,49 +1514,328 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	display: none;
 }
 
-#icons01 {
+#resume-skills-ledership-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-ledership-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-ledership-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-ledership-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-ledership-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-ledership-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-intergrity-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-intergrity-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-intergrity-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-intergrity-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-intergrity-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-intergrity-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-customer-service-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-customer-service-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-customer-service-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-customer-service-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-customer-service-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-customer-service-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-emotional-intelligence-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-emotional-intelligence-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-emotional-intelligence-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-emotional-intelligence-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-emotional-intelligence-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-emotional-intelligence-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-data-analytics-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-data-analytics-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-data-analytics-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-data-analytics-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-data-analytics-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-data-analytics-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-agile-devlopment-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-agile-devlopment-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-agile-devlopment-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-agile-devlopment-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-agile-devlopment-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-agile-devlopment-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-project-managemnt-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-project-managemnt-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-project-managemnt-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-project-managemnt-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-project-managemnt-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-project-managemnt-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-development-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-development-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-development-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-development-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-development-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-development-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#resume-skills-edi-standards-stars {
+	justify-content: flex-start;
+	font-size: 1em;
+	gap: 0rem;
+}
+
+#resume-skills-edi-standards-stars li a {
+	height: 2em;
+	width: 2em;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+#resume-skills-edi-standards-stars li a svg {
+	height: 45%;
+	width: 45%;
+	top: 5.5%;
+	transition: fill 0.25s ease;
+}
+
+#resume-skills-edi-standards-stars a + svg {
+	fill: #FFFFFF;
+}
+
+#resume-skills-edi-standards-stars a svg {
+	fill: #355D7E;
+}
+
+#resume-skills-edi-standards-stars li a + svg {
+	transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+#footer-contact {
 	font-size: 1em;
 	gap: 0.75rem;
 }
 
-#icons01:not(:first-child) {
+#footer-contact:not(:first-child) {
 	margin-top: 1.375rem !important;
 }
 
-#icons01:not(:last-child) {
+#footer-contact:not(:last-child) {
 	margin-bottom: 1.375rem !important;
 }
 
-#icons01 li a {
+#footer-contact li a {
 	border-radius: 100%;
 	height: 2em;
 	width: 2em;
 	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
-#icons01 li a svg {
+#footer-contact li a svg {
 	height: 60%;
 	width: 60%;
 	transition: fill 0.25s ease;
 }
 
-#icons01 a svg {
+#footer-contact a svg {
 	fill: #CCCCCC;
 }
 
-#icons01 a {
+#footer-contact a {
 	border: solid 1px #CCCCCC;
 }
 
-#icons01 a:hover {
-	border-color: #008200 !important;
+#footer-contact a:hover {
+	border-color: #355D7E !important;
 }
 
-#icons01 a:hover svg {
-	fill: #008200 !important;
+#footer-contact a:hover svg {
+	fill: #355D7E !important;
 }
 
-#icons01 li a + svg {
+#footer-contact li a + svg {
 	transition: fill 0.25s ease, stroke 0.25s ease;
 }
 
@@ -1306,209 +1896,323 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		margin-bottom: -3rem !important;
 	}
 	
-	#buttons01 {
+	#header-navigation {
 		gap: 0.75rem;
 	}
 	
-	#buttons01:not(:first-child) {
+	#header-navigation:not(:first-child) {
 		margin-top: 1.03125rem !important;
 	}
 	
-	#buttons01:not(:last-child) {
+	#header-navigation:not(:last-child) {
 		margin-bottom: 1.03125rem !important;
 	}
 	
-	#buttons01 li a {
+	#header-navigation li a {
 		letter-spacing: 0.225rem;
 		padding-left: calc(0.225rem + 0.5rem);
 		font-size: 0.625em;
 	}
 	
-	#buttons02 {
+	#resume-download {
 		gap: 0.75rem;
 	}
 	
-	#buttons02:not(:first-child) {
+	#resume-download:not(:first-child) {
 		margin-top: 1.03125rem !important;
 	}
 	
-	#buttons02:not(:last-child) {
+	#resume-download:not(:last-child) {
 		margin-bottom: 1.03125rem !important;
 	}
 	
-	#buttons02 li a {
+	#resume-download li a {
 		letter-spacing: 0.225rem;
 		padding-left: calc(0.225rem + 0.5rem);
 		font-size: 0.625em;
 	}
 	
-	#buttons02 li a svg {
+	#resume-download li a svg {
 		width: 1.25em;
 	}
 	
-	#buttons04 {
-		gap: 0.25rem;
-	}
-	
-	#buttons04:not(:first-child) {
-		margin-top: 0.09375rem !important;
-	}
-	
-	#buttons04:not(:last-child) {
-		margin-bottom: 0.09375rem !important;
-	}
-	
-	#buttons04 li a {
-		letter-spacing: 0rem;
-		font-size: 1em;
-	}
-	
-	#buttons04 li a svg {
-		width: 0.5em;
-	}
-	
-	#buttons03 {
-		gap: 0.75rem;
-	}
-	
-	#buttons03:not(:first-child) {
-		margin-top: 0.28125rem !important;
-	}
-	
-	#buttons03:not(:last-child) {
-		margin-bottom: 0.28125rem !important;
-	}
-	
-	#buttons03 li a {
-		letter-spacing: 0rem;
-		font-size: 1em;
-	}
-	
-	#divider01:not(:first-child) {
+	#header-divider:not(:first-child) {
 		margin-top: 0.5rem !important;
 	}
 	
-	#divider01:not(:last-child) {
+	#header-divider:not(:last-child) {
 		margin-bottom: 0.5rem !important;
 	}
 	
-	#divider01:before {
+	#header-divider:before {
 		width: 32rem;
 	}
 	
-	#divider03:not(:first-child) {
+	#footer-divider:not(:first-child) {
 		margin-top: 0.5rem !important;
 	}
 	
-	#divider03:not(:last-child) {
+	#footer-divider:not(:last-child) {
 		margin-bottom: 0.5rem !important;
 	}
 	
-	#divider03:before {
+	#footer-divider:before {
 		width: 32rem;
 	}
 	
-	#image01:not(:first-child) {
+	#Tom-Irish:not(:first-child) {
 		margin-top: 0rem !important;
 	}
 	
-	#image01:not(:last-child) {
+	#Tom-Irish:not(:last-child) {
 		margin-bottom: 0rem !important;
 	}
 	
-	#image01 .frame {
+	#Tom-Irish .frame {
 		width: 12rem;
 	}
 	
-	#text03 {
+	#home-name {
 		letter-spacing: 0.35rem;
 		width: calc(100% + 0.35rem);
 		font-size: 2em;
 		line-height: 1.25;
 	}
 	
-	#text04 {
+	#home-title {
 		letter-spacing: 0.196875rem;
 		width: calc(100% + 0.196875rem);
 		font-size: 0.875em;
 		line-height: 1.5;
 	}
 	
-	#text05 {
+	#resume-title {
 		letter-spacing: 0.35rem;
 		width: calc(100% + 0.35rem);
-		font-size: 1em;
+		font-size: 1.25em;
 		line-height: 1.5;
 	}
 	
-	#text14 {
+	#resume-work {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.5;
 	}
 	
-	#text09 {
+	#resume-work-dev-mgr {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.875;
 	}
 	
-	#text10 {
+	#resume-work-dev-sup {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.875;
 	}
 	
-	#text11 {
+	#resume-skills {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.5;
 	}
 	
-	#text12 {
+	#resume-skills-ledership {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-intergrity {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-customer-service {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-emotional-intelligence {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-data-analytics {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-agile-devlopment {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-project-managemnt {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-development {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-skills-edi-standards {
+		padding-left: 1.125rem;
+		padding-right: 0;
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 2;
+	}
+	
+	#resume-education {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.5;
 	}
 	
-	#text06 {
+	#resume-education-wsu {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.875;
 	}
 	
-	#text01 {
+	#resume-education-cert {
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
+		font-size: 1em;
+		line-height: 1.875;
+	}
+	
+	#about-title {
 		letter-spacing: 0.35rem;
 		width: calc(100% + 0.35rem);
-		font-size: 1em;
+		font-size: 1.25em;
 		line-height: 1.5;
 	}
 	
-	#text07 {
+	#about-text {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.875;
 	}
 	
-	#text08 {
+	#about-name {
 		letter-spacing: 0.35rem;
 		width: calc(100% + 0.35rem);
-		font-size: 1.375em;
+		font-size: 1.5em;
 		line-height: 1;
 	}
 	
-	#text02 {
+	#about-contact {
 		letter-spacing: 0.021875rem;
 		width: calc(100% + 0.021875rem);
 		font-size: 1em;
 		line-height: 1.875;
+	}
+	
+	#resume-work-dev-mgr-list {
+		letter-spacing: 0.021875rem;
+		font-size: 1em;
+		line-height: 1.875;
+	}
+	
+	#resume-work-dev-mgr-list ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-work-dev-mgr-list ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
+	}
+	
+	#resume-work-dev-sup-list {
+		letter-spacing: 0.021875rem;
+		font-size: 1em;
+		line-height: 1.875;
+	}
+	
+	#resume-work-dev-sup-list ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-work-dev-sup-list ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
+	}
+	
+	#resume-education-wsu-mis {
+		letter-spacing: 0.021875rem;
+		font-size: 1em;
+		line-height: 1.875;
+	}
+	
+	#resume-education-wsu-mis ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-education-wsu-mis ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
+	}
+	
+	#resume-education-cert-list {
+		letter-spacing: 0.021875rem;
+		font-size: 1em;
+		line-height: 1.875;
+	}
+	
+	#resume-education-cert-list ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-education-cert-list ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
 	}
 	
 	#container01 {
@@ -1558,16 +2262,61 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		--margin-right: auto;
 	}
 	
-	#icons01 {
+	#resume-skills-ledership-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-intergrity-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-customer-service-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-emotional-intelligence-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-data-analytics-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-agile-devlopment-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-project-managemnt-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-development-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#resume-skills-edi-standards-stars {
+		font-size: 1em;
+		gap: 0rem;
+	}
+	
+	#footer-contact {
 		font-size: 1em;
 		gap: 0.75rem;
 	}
 	
-	#icons01:not(:first-child) {
+	#footer-contact:not(:first-child) {
 		margin-top: 1.03125rem !important;
 	}
 	
-	#icons01:not(:last-child) {
+	#footer-contact:not(:last-child) {
 		margin-bottom: 1.03125rem !important;
 	}
 }
@@ -1577,20 +2326,12 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		--spacing: 0.875rem;
 	}
 	
-	#buttons01 li a {
+	#header-navigation li a {
 		width: 6.5rem;
 	}
 	
-	#buttons02 li a {
+	#resume-download li a {
 		width: 8.625rem;
-	}
-	
-	#buttons04 li a {
-		width: 30.125rem;
-	}
-	
-	#buttons03 li a {
-		width: 30.125rem;
 	}
 	
 	#container01 > .wrapper > .inner {
@@ -1623,72 +2364,160 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		margin-bottom: -2.25rem !important;
 	}
 	
-	#buttons01 {
+	#header-navigation {
 		gap: 0.5625rem;
 	}
 	
-	#buttons02 {
+	#resume-download {
 		gap: 0.5625rem;
 	}
 	
-	#buttons04 {
-		gap: 0.1875rem;
-	}
-	
-	#buttons03 {
-		gap: 0.5625rem;
-	}
-	
-	#text03 {
+	#home-name {
 		font-size: 1.5em;
 	}
 	
-	#text04 {
+	#home-title {
 		font-size: 0.875em;
 	}
 	
-	#text05 {
+	#resume-title {
+		font-size: 1.25em;
+	}
+	
+	#resume-work {
 		font-size: 1em;
 	}
 	
-	#text14 {
+	#resume-work-dev-mgr {
 		font-size: 1em;
 	}
 	
-	#text09 {
+	#resume-work-dev-sup {
 		font-size: 1em;
 	}
 	
-	#text10 {
+	#resume-skills {
 		font-size: 1em;
 	}
 	
-	#text11 {
+	#resume-skills-ledership {
 		font-size: 1em;
 	}
 	
-	#text12 {
+	#resume-skills-intergrity {
 		font-size: 1em;
 	}
 	
-	#text06 {
+	#resume-skills-customer-service {
 		font-size: 1em;
 	}
 	
-	#text01 {
+	#resume-skills-emotional-intelligence {
 		font-size: 1em;
 	}
 	
-	#text07 {
+	#resume-skills-data-analytics {
 		font-size: 1em;
 	}
 	
-	#text08 {
-		font-size: 1.375em;
+	#resume-skills-agile-devlopment {
+		font-size: 1em;
 	}
 	
-	#text02 {
+	#resume-skills-project-managemnt {
 		font-size: 1em;
+	}
+	
+	#resume-skills-development {
+		font-size: 1em;
+	}
+	
+	#resume-skills-edi-standards {
+		font-size: 1em;
+	}
+	
+	#resume-education {
+		font-size: 1em;
+	}
+	
+	#resume-education-wsu {
+		font-size: 1em;
+	}
+	
+	#resume-education-cert {
+		font-size: 1em;
+	}
+	
+	#about-title {
+		font-size: 1.25em;
+	}
+	
+	#about-text {
+		font-size: 1em;
+	}
+	
+	#about-name {
+		font-size: 1.5em;
+	}
+	
+	#about-contact {
+		font-size: 1em;
+	}
+	
+	#resume-work-dev-mgr-list {
+		font-size: 1em;
+	}
+	
+	#resume-work-dev-mgr-list ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-work-dev-mgr-list ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
+	}
+	
+	#resume-work-dev-sup-list {
+		font-size: 1em;
+	}
+	
+	#resume-work-dev-sup-list ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-work-dev-sup-list ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
+	}
+	
+	#resume-education-wsu-mis {
+		font-size: 1em;
+	}
+	
+	#resume-education-wsu-mis ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-education-wsu-mis ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
+	}
+	
+	#resume-education-cert-list {
+		font-size: 1em;
+	}
+	
+	#resume-education-cert-list ul li:after {
+		width: 0.625rem;
+	}
+	
+	#resume-education-cert-list ul li:before {
+		height: 1.875rem;
+		line-height: 1.875rem;
+		min-width: 0.87890625rem;
 	}
 	
 	#container01 > .wrapper > .inner {
@@ -1698,7 +2527,43 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		--spacing: 0rem;
 	}
 	
-	#icons01 {
+	#resume-skills-ledership-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-intergrity-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-customer-service-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-emotional-intelligence-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-data-analytics-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-agile-devlopment-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-project-managemnt-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-development-stars {
+		gap: 0rem;
+	}
+	
+	#resume-skills-edi-standards-stars {
+		gap: 0rem;
+	}
+	
+	#footer-contact {
 		gap: 0.5625rem;
 	}
 }
