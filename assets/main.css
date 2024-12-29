@@ -90,7 +90,7 @@ sup {
 a {
 	color: inherit;
 	text-decoration: underline;
-	transition: color 0.25s ease;
+	transition: none;
 }
 
 a[onclick]:not([href]) {
@@ -133,14 +133,14 @@ unloaded-script {
 	position: relative;
 	text-align: var(--alignment);
 	z-index: 1;
-	transition: opacity 1s ease-in-out 0s;
+	transition: opacity 0.5s ease-in-out 0s;
 }
 
 #main > .inner {
 	--padding-horizontal: 1.5rem;
 	--padding-vertical: 3rem;
 	--spacing: 1rem;
-	--width: 35rem;
+	--width: 50rem;
 	border-radius: var(--border-radius-tl) var(--border-radius-tr) var(--border-radius-br) var(--border-radius-bl);
 	max-width: 100%;
 	position: relative;
@@ -151,8 +151,6 @@ unloaded-script {
 
 #main > .inner > header {
 	margin-bottom: var(--spacing);
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
 }
 
 #main > .inner > footer {
@@ -218,16 +216,21 @@ unloaded-script {
 	right: auto;
 }
 
-#main > .inner > header > .full:first-child {
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
-	margin-top: -3rem !important;
-}
-
 #main > .inner > footer > .full:last-child {
 	margin-bottom: -3rem !important;
 	border-bottom-left-radius: inherit;
 	border-bottom-right-radius: inherit;
+}
+
+#main > .inner > .active > .full:first-child {
+	margin-top: -3rem !important;
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+#main > .inner > .active {
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
 }
 
 body.is-loading #main {
@@ -235,22 +238,22 @@ body.is-loading #main {
 }
 
 #main > .inner > header, #main > .inner > footer {
-	transition: opacity 0.25s ease-in-out 0.375s,visibility 0.25s linear 0.375s;
+	transition: opacity 0.125s ease-in-out 0.1875s,visibility 0.125s linear 0.1875s;
 }
 
 #main > .inner > header.hidden, #main > .inner > footer.hidden {
-	transition: opacity 0.25s ease-in-out, visibility 0.25s;
+	transition: opacity 0.125s ease-in-out, visibility 0.125s;
 	opacity: 0;
 	visibility: hidden;
 }
 
 #main > .inner > section {
-	transition: opacity 0.5s ease-in-out 0.25s,min-height 0.25s ease-in-out, max-height 0.25s ease-in-out;
+	transition: opacity 0.25s ease-in-out 0.125s,min-height 0.125s ease-in-out, max-height 0.125s ease-in-out;
 }
 
 #main > .inner > section.inactive {
 	opacity: 0;
-	transition: opacity 0.25s ease-in-out;
+	transition: opacity 0.125s ease-in-out;
 }
 
 body.is-instant #main, body.is-instant #main > .inner > *,body.is-instant #main > .inner > section > *  {
@@ -262,179 +265,39 @@ body.is-instant:after {
 	transition: none !important;
 }
 
-.buttons {
-	cursor: default;
-	display: flex;
-	justify-content: var(--flex-alignment);
-	letter-spacing: 0;
-	padding: 0;
+@keyframes loading-spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
-.buttons li {
-	max-width: 100%;
-	text-align: var(--alignment);
-}
-
-.buttons li a {
-	align-items: center;
-	justify-content: center;
-	max-width: 100%;
-	text-align: center;
-	text-decoration: none;
-	vertical-align: middle;
-	white-space: nowrap;
-}
-
-#header-navigation {
-	gap: 0.75rem;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-
-#header-navigation:not(:first-child) {
-	margin-top: 1.375rem !important;
-}
-
-#header-navigation:not(:last-child) {
-	margin-bottom: 1.375rem !important;
-}
-
-#header-navigation li a {
-	display: inline-block;
-	width: 6.5rem;
-	height: 2.25rem;
-	line-height: calc(2.25rem - 2px);
-	padding: 0 0.5rem;
-	vertical-align: middle;
-	text-transform: uppercase;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.225rem;
-	padding-left: calc(0.225rem + 0.5rem);
-	font-size: 0.625em;
-	font-weight: 400;
-	border-radius: 1.625rem;
-	direction: var(--site-language-direction);
-	overflow: hidden;
-	text-overflow: ellipsis;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#header-navigation .button {
-	color: #474747;
-	border: solid 1px #CCCCCC;
-}
-
-#header-navigation .button:hover {
-	border-color: #355D7E !important;
-	color: #355D7E !important;
-}
-
-#resume-download {
-	gap: 0.75rem;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-
-#resume-download:not(:first-child) {
-	margin-top: 1.375rem !important;
-}
-
-#resume-download:not(:last-child) {
-	margin-bottom: 1.375rem !important;
-}
-
-#resume-download li a {
-	display: inline-flex;
-	width: 8.625rem;
-	height: 2.25rem;
-	line-height: 2.25rem;
-	padding: 0 0.5rem;
-	vertical-align: middle;
-	text-transform: uppercase;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.225rem;
-	padding-left: calc(0.225rem + 0.5rem);
-	font-size: 0.625em;
-	font-weight: 400;
-	border-radius: 1.625rem;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-download li a svg {
-	display: block;
-	fill: #474747;
-	flex-grow: 0;
-	flex-shrink: 0;
-	height: 100%;
-	min-width: 18px;
-	width: 1.25em;
-	margin-left: -0.125em;
-	margin-right: calc(0.5em + 0.225rem);
-	transition: fill 0.25s ease;
-}
-
-#resume-download li a .label {
-	direction: var(--site-language-direction);
-	overflow: hidden;
-}
-
-#resume-download .button {
-	color: #474747;
-	border: solid 1px #CCCCCC;
-}
-
-#resume-download .button:hover {
-	border-color: #355D7E !important;
-	color: #355D7E !important;
-}
-
-#resume-download .button:hover svg {
-	fill: #355D7E !important;
-}
-
-hr {
-	align-items: center;
-	border: 0;
-	display: flex;
-	justify-content: var(--flex-alignment);
-	min-height: 1rem;
-	padding: 0;
-	position: relative;
-	width: 100%;
-}
-
-hr:before {
+.deferred:before {
 	content: '';
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -2rem 0 0 -2rem;
+	animation: loading-spinner 1s infinite linear;
+	transition: opacity 0.25s ease;
+	transition-delay: 0.5s;
+	opacity: 0;
+	z-index: -1;
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iOTZweCIgaGVpZ2h0PSI5NnB4IiB2aWV3Qm94PSIwIDAgOTYgOTYiIHpvb21BbmRQYW49ImRpc2FibGUiPjxzdHlsZT5jaXJjbGUge2ZpbGw6IHRyYW5zcGFyZW50OyBzdHJva2U6ICNmZmY7IHN0cm9rZS13aWR0aDogMS41cHg7IH08L3N0eWxlPjxkZWZzPjxjbGlwUGF0aCBpZD0iY29ybmVyIj48cG9seWdvbiBwb2ludHM9IjAsMCA0OCwwIDQ4LDQ4IDk2LDQ4IDk2LDk2IDAsOTYiIC8+PC9jbGlwUGF0aD48L2RlZnM+PGcgY2xpcC1wYXRoPSJ1cmwoI2Nvcm5lcikiPjxjaXJjbGUgY3g9IjQ4IiBjeT0iNDgiIHI9IjMyIi8+PC9nPjwvc3ZnPg==');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 3rem;
 }
 
-#header-divider:not(:first-child) {
-	margin-top: 0.5rem !important;
-}
-
-#header-divider:not(:last-child) {
-	margin-bottom: 0.5rem !important;
-}
-
-#header-divider:before {
-	width: 32rem;
-	background-color: #355D7E;
-	height: 1px;
-	border-radius: 0px;
-}
-
-#footer-divider:not(:first-child) {
-	margin-top: 0.5rem !important;
-}
-
-#footer-divider:not(:last-child) {
-	margin-bottom: 0.5rem !important;
-}
-
-#footer-divider:before {
-	width: 32rem;
-	background-color: #355D7E;
-	height: 1px;
-	border-radius: 0px;
+.deferred.loading:before {
+	opacity: 0.35;
+	z-index: 0;
 }
 
 .image {
@@ -475,21 +338,52 @@ hr:before {
 	border-bottom-right-radius: inherit;
 }
 
-#Tom-Irish:not(:first-child) {
+.image.style2 {
+	text-align: center;
+}
+
+.image.style2:not(:first-child) {
 	margin-top: 0rem !important;
 }
 
-#Tom-Irish:not(:last-child) {
+.image.style2:not(:last-child) {
 	margin-bottom: 0rem !important;
 }
 
-#Tom-Irish .frame {
-	width: 12rem;
+.image.style2 .frame {
+	width: 10rem;
 	border-radius: 100%;
 	transition: none;
 }
 
-#Tom-Irish .frame img {
+.image.style2 .frame img {
+	transition: none;
+}
+
+.image.style1 {
+	text-align: center;
+}
+
+.image.style1 .frame {
+	max-width: 100%;
+	width: 323px;
+	border-radius: 100%;
+	border-color: rgba(255,255,255,0.141);
+	border-style: solid;
+	border-width: 3px;
+	transition: none;
+}
+
+.image.style1 img {
+	height: 100% !important;
+	object-fit: cover;
+	object-position: center;
+	width: 100% !important;
+	border-radius: inherit !important;
+	padding: 0.25rem;
+}
+
+.image.style1 .frame img {
 	transition: none;
 }
 
@@ -507,554 +401,1025 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	-webkit-text-fill-color: currentcolor;
 }
 
-#home-name {
+h1.style9:not(:first-child), h2.style9:not(:first-child), h3.style9:not(:first-child), p.style9:not(:first-child) {
+	margin-top: 0rem !important;
+}
+
+h1.style9:not(:last-child), h2.style9:not(:last-child), h3.style9:not(:last-child), p.style9:not(:last-child) {
+	margin-bottom: 0rem !important;
+}
+
+h1.style9, h2.style9, h3.style9, p.style9 {
+	text-align: center;
 	text-transform: uppercase;
 	color: #355D7E;
 	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.4rem;
-	width: calc(100% + 0.4rem);
-	font-size: 2em;
-	line-height: 1.25;
-	font-weight: 400;
+	letter-spacing: 0.25rem;
+	width: calc(100% + 0.25rem);
+	font-size: 2.5em;
+	line-height: 2;
+	font-weight: 900;
 }
 
-#home-name a {
+h1.style9 a, h2.style9 a, h3.style9 a, p.style9 a {
 	text-decoration: underline;
 }
 
-#home-name a:hover {
+h1.style9 a:hover, h2.style9 a:hover, h3.style9 a:hover, p.style9 a:hover {
 	text-decoration: none;
 }
 
-#home-name span.p:nth-child(n + 2) {
+h1.style9 span.p:nth-child(n + 2), h2.style9 span.p:nth-child(n + 2), h3.style9 span.p:nth-child(n + 2), p.style9 span.p:nth-child(n + 2) {
 	margin-top: 1rem;
 }
 
-#home-title {
+h1.style6:not(:first-child), h2.style6:not(:first-child), h3.style6:not(:first-child), p.style6:not(:first-child) {
+	margin-top: 0rem !important;
+}
+
+h1.style6:not(:last-child), h2.style6:not(:last-child), h3.style6:not(:last-child), p.style6:not(:last-child) {
+	margin-bottom: 0rem !important;
+}
+
+h1.style6, h2.style6, h3.style6, p.style6 {
+	text-align: center;
 	text-transform: uppercase;
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.25rem;
+	width: calc(100% + 0.25rem);
+	font-size: 1.25em;
+	line-height: 1;
+	font-weight: 600;
+}
+
+h1.style6 a, h2.style6 a, h3.style6 a, p.style6 a {
+	text-decoration: underline;
+}
+
+h1.style6 a:hover, h2.style6 a:hover, h3.style6 a:hover, p.style6 a:hover {
+	text-decoration: none;
+}
+
+h1.style6 span.p:nth-child(n + 2), h2.style6 span.p:nth-child(n + 2), h3.style6 span.p:nth-child(n + 2), p.style6 span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+h1.style7:not(:first-child), h2.style7:not(:first-child), h3.style7:not(:first-child), p.style7:not(:first-child) {
+	margin-top: 2rem !important;
+}
+
+h1.style7:not(:last-child), h2.style7:not(:last-child), h3.style7:not(:last-child), p.style7:not(:last-child) {
+	margin-bottom: 2rem !important;
+}
+
+h1.style7, h2.style7, h3.style7, p.style7 {
+	text-transform: uppercase;
+	color: #FFFFFF;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.4rem;
+	width: calc(100% + 0.4rem);
+	font-size: 2.5em;
+	line-height: 1.25;
+	font-weight: 600;
+}
+
+h1.style7 a, h2.style7 a, h3.style7 a, p.style7 a {
+	text-decoration: underline;
+}
+
+h1.style7 a:hover, h2.style7 a:hover, h3.style7 a:hover, p.style7 a:hover {
+	text-decoration: none;
+}
+
+h1.style7 span.p:nth-child(n + 2), h2.style7 span.p:nth-child(n + 2), h3.style7 span.p:nth-child(n + 2), p.style7 span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+h1.style8:not(:first-child), h2.style8:not(:first-child), h3.style8:not(:first-child), p.style8:not(:first-child) {
+	margin-top: 2rem !important;
+}
+
+h1.style8:not(:last-child), h2.style8:not(:last-child), h3.style8:not(:last-child), p.style8:not(:last-child) {
+	margin-bottom: 2rem !important;
+}
+
+h1.style8, h2.style8, h3.style8, p.style8 {
+	text-transform: uppercase;
+	color: #FFFFFF;
+	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.225rem;
 	width: calc(100% + 0.225rem);
+	font-size: 1.125em;
+	line-height: 1.5;
+	font-weight: 400;
+}
+
+h1.style8 a, h2.style8 a, h3.style8 a, p.style8 a {
+	text-decoration: underline;
+}
+
+h1.style8 a:hover, h2.style8 a:hover, h3.style8 a:hover, p.style8 a:hover {
+	text-decoration: none;
+}
+
+h1.style8 span.p:nth-child(n + 2), h2.style8 span.p:nth-child(n + 2), h3.style8 span.p:nth-child(n + 2), p.style8 span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+h1.style1:not(:first-child), h2.style1:not(:first-child), h3.style1:not(:first-child), p.style1:not(:first-child) {
+	margin-top: 0rem !important;
+}
+
+h1.style1:not(:last-child), h2.style1:not(:last-child), h3.style1:not(:last-child), p.style1:not(:last-child) {
+	margin-bottom: 0rem !important;
+}
+
+h1.style1, h2.style1, h3.style1, p.style1 {
+	text-align: left;
+	text-transform: uppercase;
+	color: #355D7E;
+	font-family: 'Source Sans Pro', sans-serif;
+	letter-spacing: 0.05rem;
+	width: calc(100% + 0.05rem);
+	font-size: 1.25em;
+	line-height: 1;
+	font-weight: 700;
+}
+
+h1.style1 a, h2.style1 a, h3.style1 a, p.style1 a {
+	text-decoration: underline;
+}
+
+h1.style1 a:hover, h2.style1 a:hover, h3.style1 a:hover, p.style1 a:hover {
+	text-decoration: none;
+}
+
+h1.style1 span.p:nth-child(n + 2), h2.style1 span.p:nth-child(n + 2), h3.style1 span.p:nth-child(n + 2), p.style1 span.p:nth-child(n + 2) {
+	margin-top: 1rem;
+}
+
+h1.style3, h2.style3, h3.style3, p.style3 {
+	text-align: left;
+	color: #474747;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 0.875em;
 	line-height: 1.5;
 	font-weight: 400;
 }
 
-#home-title a {
+h1.style3 a, h2.style3 a, h3.style3 a, p.style3 a {
 	text-decoration: underline;
 }
 
-#home-title a:hover {
+h1.style3 a:hover, h2.style3 a:hover, h3.style3 a:hover, p.style3 a:hover {
 	text-decoration: none;
 }
 
-#home-title span.p:nth-child(n + 2) {
-	margin-top: 1rem;
+h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 span.p:nth-child(n + 2), p.style3 span.p:nth-child(n + 2) {
+	margin-top: 0.75rem;
 }
 
-#resume-title {
-	text-transform: uppercase;
-	color: #474747;
+h1.style2, h2.style2, h3.style2, p.style2 {
+	text-align: left;
+	color: #355D7E;
 	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.4rem;
-	width: calc(100% + 0.4rem);
+	letter-spacing: 0.025rem;
+	width: calc(100% + 0.025rem);
 	font-size: 1.25em;
-	line-height: 1.5;
-	font-weight: 400;
-}
-
-#resume-title a {
-	text-decoration: underline;
-}
-
-#resume-title a:hover {
-	text-decoration: none;
-}
-
-#resume-title span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-work {
-	text-align: left;
-	text-transform: uppercase;
-	color: #355D7E;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.5;
-	font-weight: 300;
-}
-
-#resume-work a:hover {
-	color: #309EDB;
-}
-
-#resume-work a {
-	text-decoration: underline;
-}
-
-#resume-work span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-work-dev-mgr {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
-}
-
-#resume-work-dev-mgr a:hover {
-	color: #309EDB;
-}
-
-#resume-work-dev-mgr a {
-	text-decoration: underline;
-}
-
-#resume-work-dev-mgr span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-work-dev-sup {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
-}
-
-#resume-work-dev-sup a:hover {
-	color: #309EDB;
-}
-
-#resume-work-dev-sup a {
-	text-decoration: underline;
-}
-
-#resume-work-dev-sup span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills {
-	text-align: left;
-	text-transform: uppercase;
-	color: #355D7E;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.5;
-	font-weight: 200;
-}
-
-#resume-skills a:hover {
-	color: #309EDB;
-}
-
-#resume-skills a {
-	text-decoration: underline;
-}
-
-#resume-skills span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-ledership {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-ledership a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-ledership a {
-	text-decoration: underline;
-}
-
-#resume-skills-ledership span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-intergrity {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-intergrity a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-intergrity a {
-	text-decoration: underline;
-}
-
-#resume-skills-intergrity span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-customer-service {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-customer-service a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-customer-service a {
-	text-decoration: underline;
-}
-
-#resume-skills-customer-service span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-emotional-intelligence {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-emotional-intelligence a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-emotional-intelligence a {
-	text-decoration: underline;
-}
-
-#resume-skills-emotional-intelligence span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-data-analytics {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-data-analytics a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-data-analytics a {
-	text-decoration: underline;
-}
-
-#resume-skills-data-analytics span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-agile-devlopment {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-agile-devlopment a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-agile-devlopment a {
-	text-decoration: underline;
-}
-
-#resume-skills-agile-devlopment span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-project-managemnt {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-project-managemnt a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-project-managemnt a {
-	text-decoration: underline;
-}
-
-#resume-skills-project-managemnt span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-development {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-development a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-development a {
-	text-decoration: underline;
-}
-
-#resume-skills-development span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-skills-edi-standards {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	padding-left: 1.5rem;
-	padding-right: 0;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 2;
-	font-weight: 200;
-}
-
-#resume-skills-edi-standards a:hover {
-	color: #309EDB;
-}
-
-#resume-skills-edi-standards a {
-	text-decoration: underline;
-}
-
-#resume-skills-edi-standards span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-education {
-	text-align: left;
-	text-transform: uppercase;
-	color: #355D7E;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.5;
-	font-weight: 300;
-}
-
-#resume-education a:hover {
-	color: #309EDB;
-}
-
-#resume-education a {
-	text-decoration: underline;
-}
-
-#resume-education span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-education-wsu {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
-}
-
-#resume-education-wsu a:hover {
-	color: #309EDB;
-}
-
-#resume-education-wsu a {
-	text-decoration: underline;
-}
-
-#resume-education-wsu span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#resume-education-cert {
-	text-align: left;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
-}
-
-#resume-education-cert a:hover {
-	color: #309EDB;
-}
-
-#resume-education-cert a {
-	text-decoration: underline;
-}
-
-#resume-education-cert span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#about-title {
-	text-transform: uppercase;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.4rem;
-	width: calc(100% + 0.4rem);
-	font-size: 1.25em;
-	line-height: 1.5;
-	font-weight: 400;
-}
-
-#about-title a {
-	text-decoration: underline;
-}
-
-#about-title a:hover {
-	text-decoration: none;
-}
-
-#about-title span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#about-text {
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
-}
-
-#about-text a:hover {
-	color: #309EDB;
-}
-
-#about-text a {
-	text-decoration: underline;
-}
-
-#about-text span.p:nth-child(n + 2) {
-	margin-top: 1rem;
-}
-
-#about-name {
-	text-align: center;
-	text-transform: uppercase;
-	color: #355D7E;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.4rem;
-	width: calc(100% + 0.4rem);
-	font-size: 1.5em;
 	line-height: 1;
-	font-weight: 400;
+	font-weight: 600;
 }
 
-#about-name a {
+h1.style2 a, h2.style2 a, h3.style2 a, p.style2 a {
 	text-decoration: underline;
 }
 
-#about-name a:hover {
+h1.style2 a:hover, h2.style2 a:hover, h3.style2 a:hover, p.style2 a:hover {
 	text-decoration: none;
 }
 
-#about-name span.p:nth-child(n + 2) {
-	margin-top: 1rem;
+h1.style2 span.p:nth-child(n + 2), h2.style2 span.p:nth-child(n + 2), h3.style2 span.p:nth-child(n + 2), p.style2 span.p:nth-child(n + 2) {
+	margin-top: 0.5rem;
 }
 
-#about-contact {
-	text-align: center;
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	width: calc(100% + 0.025rem);
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
+.icons {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: var(--flex-alignment);
+	letter-spacing: 0;
+	padding: 0;
 }
 
-#about-contact a:hover {
-	color: #355D7E;
+.icons li {
+	position: relative;
+	z-index: 1;
 }
 
-#about-contact a {
-	text-decoration: none;
+.icons li a {
+	align-items: center;
+	display: flex;
+	justify-content: center;
 }
 
-#about-contact span.p:nth-child(n + 2) {
-	margin-top: 1rem;
+.icons li a svg {
+	display: block;
+	position: relative;
+}
+
+.icons li a + svg {
+	display: block;
+	height: 100%;
+	left: 0;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+.icons li a .label {
+	display: none;
+}
+
+.icons.style1 {
+	font-size: 2em;
+	gap: 1.5rem;
+}
+
+.icons.style1:not(:first-child) {
+	margin-top: 1rem !important;
+}
+
+.icons.style1:not(:last-child) {
+	margin-bottom: 1rem !important;
+}
+
+.icons.style1 li a {
+	height: 2em;
+	width: 2em;
+	transition: transform 0.25s ease, color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.icons.style1 li a svg {
+	height: 50%;
+	width: 50%;
+	transition: fill 0.25s ease;
+}
+
+.icons.style1 a svg {
+	fill: #355D7E;
+}
+
+.icons.style1 a + svg {
+	fill: none;
+	stroke: #355D7E;
+	stroke-width: 2px;
+}
+
+.icons.style1 li a + svg {
+	transition: transform 0.25s ease, fill 0.25s ease, stroke 0.25s ease;
+}
+
+.icons.style1 li a:hover {
+	transform: scale(1.2);
+}
+
+.icons.style1 li a:hover + svg {
+	transform: scale(1.2);
+}
+
+.icons.style2 {
+	justify-content: center;
+	font-size: 2em;
+	gap: 1.5rem;
+}
+
+.icons.style2:not(:first-child) {
+	margin-top: 2rem !important;
+}
+
+.icons.style2:not(:last-child) {
+	margin-bottom: 2rem !important;
+}
+
+.icons.style2 li a {
+	height: 2em;
+	width: 2em;
+	transition: transform 0.25s ease, color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.icons.style2 li a svg {
+	height: 50%;
+	width: 50%;
+	transition: fill 0.25s ease;
+}
+
+.icons.style2 a svg {
+	fill: #FFFFFF;
+}
+
+.icons.style2 a + svg {
+	fill: none;
+	stroke: #FFFFFF;
+	stroke-width: 2px;
+}
+
+.icons.style2 li a + svg {
+	transition: transform 0.25s ease, fill 0.25s ease, stroke 0.25s ease;
+}
+
+.icons.style2 li a:hover {
+	transform: scale(1.2);
+}
+
+.icons.style2 li a:hover + svg {
+	transform: scale(1.2);
+}
+
+hr {
+	align-items: center;
+	border: 0;
+	display: flex;
+	justify-content: var(--flex-alignment);
+	min-height: 1rem;
+	padding: 0;
+	position: relative;
+	width: 100%;
+}
+
+hr:before {
+	content: '';
+}
+
+hr.style2:not(:first-child) {
+	margin-top: 0rem !important;
+}
+
+hr.style2:not(:last-child) {
+	margin-bottom: 0rem !important;
+}
+
+hr.style2:before {
+	width: 100%;
+	background-color: #355D7E;
+	height: 2px;
+	border-radius: 0px;
+}
+
+hr.style1:not(:first-child) {
+	margin-top: 2rem !important;
+}
+
+hr.style1:not(:last-child) {
+	margin-bottom: 2rem !important;
+}
+
+hr.style1:before {
+	width: 100%;
+	background-color: rgba(255,255,255,0.141);
+	height: 3px;
+}
+
+.container {
+	position: relative;
+}
+
+.container > .wrapper {
+	vertical-align: top;
+	position: relative;
+	max-width: 100%;
+	border-radius: inherit;
+}
+
+.container > .wrapper > .inner {
+	vertical-align: top;
+	position: relative;
+	max-width: 100%;
+	border-radius: inherit;
+	text-align: var(--alignment);
+}
+
+#main .container.full:first-child > .wrapper {
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+#main .container.full:last-child > .wrapper {
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+
+#main .container.full:first-child > .wrapper > .inner {
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+#main .container.full:last-child > .wrapper > .inner {
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+
+.container.style3 > .wrapper {
+	display: inline-block;
+	width: 35rem;
+	background-color: #355D7E;
+	border-color: rgba(255,255,255,0.141);
+	border-style: solid;
+	border-width: 3px;
+	border-radius: 3rem;
+}
+
+.container.style3 > .wrapper > .inner {
+	--gutters: 2rem;
+	padding: var(--padding-vertical) var(--padding-horizontal);
+	border-radius: calc(3rem - 3px);
+}
+
+.container.style3.default > .wrapper > .inner > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style3.default > .wrapper > .inner > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style3.default > .wrapper > .inner > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style3.columns > .wrapper > .inner {
+	flex-wrap: wrap;
+	display: flex;
+	align-items: flex-start;
+}
+
+.container.style3.columns > .wrapper > .inner > * {
+	flex-grow: 0;
+	flex-shrink: 0;
+	max-width: 100%;
+	text-align: var(--alignment);
+	padding: 0 0 0 var(--gutters);
+}
+
+.container.style3.columns > .wrapper > .inner > * > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style3.columns > .wrapper > .inner > * > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style3.columns > .wrapper > .inner > * > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style3.columns > .wrapper > .inner > *:first-child {
+	margin-left: calc(var(--gutters) * -1);
+}
+
+.container.style3.columns > .wrapper > .inner > *:before {
+	border-left: solid 3px rgba(255,255,255,0.141);
+	content: '';
+	display: block;
+	margin-left: calc((var(--gutters) * -0.5) - 1.5px);
+	position: absolute;
+	width: 0;
+	height: calc(100% - (var(--padding-vertical) * 2));
+	top: var(--padding-vertical);
+}
+
+.container.style3.columns > .wrapper > .inner > *:first-child:before {
+	display: none;
+}
+
+.container.style3.default > .wrapper > .inner > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	max-width: none !important;
+	width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+}
+
+.container.style3.default > .wrapper > .inner > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style3.default > .wrapper > .inner > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+
+.container.style3.columns > .wrapper > .inner > div > .full {
+	margin-left: calc((var(--gutters) * -0.5) + 1.5px);
+	max-width: none !important;
+	width: calc(100% + var(--gutters) + 0.4725px - 3px);
+}
+
+.container.style3.columns > .wrapper > .inner > div:first-child > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px - 1.5px);
+}
+
+.container.style3.columns > .wrapper > .inner > div:last-child > .full {
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px - 1.5px);
+}
+
+.container.style3.columns > .wrapper > .inner > div > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style3.columns > .wrapper > .inner > div > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style3.columns > .wrapper > .inner > div:first-child, .container.style3.columns > .wrapper > .inner > div:first-child > .full:first-child {
+	border-top-left-radius: inherit;
+}
+
+.container.style3.columns > .wrapper > .inner > div:last-child, .container.style3.columns > .wrapper > .inner > div:last-child > .full:first-child {
+	border-top-right-radius: inherit;
+}
+
+.container.style3.columns > .wrapper > .inner > .full {
+	align-self: stretch;
+}
+
+.container.style3.columns > .wrapper > .inner > .full:first-child {
+	border-bottom-left-radius: inherit;
+	border-top-left-radius: inherit;
+}
+
+.container.style3.columns > .wrapper > .inner > .full:last-child {
+	border-bottom-right-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child {
+	border-radius: inherit;
+	height: calc(100% + (var(--padding-vertical) * 2));
+}
+
+.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child > * {
+	border-radius: inherit;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.container.style2 {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+}
+
+.container.style2:not(:first-child) {
+	margin-top: 0rem !important;
+}
+
+.container.style2:not(:last-child) {
+	margin-bottom: 0rem !important;
+}
+
+.container.style2 > .wrapper > .inner {
+	--gutters: 0rem;
+	--padding-horizontal: 2rem;
+	--padding-vertical: 1rem;
+	padding: var(--padding-vertical) var(--padding-horizontal);
+}
+
+.container.style2 > .wrapper {
+	max-width: 100%;
+	width: 100%;
+}
+
+.container.style2.default > .wrapper > .inner > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style2.default > .wrapper > .inner > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style2.default > .wrapper > .inner > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style2.columns > .wrapper > .inner {
+	flex-wrap: wrap;
+	display: flex;
+	align-items: center;
+}
+
+.container.style2.columns > .wrapper > .inner > * {
+	flex-grow: 0;
+	flex-shrink: 0;
+	max-width: 100%;
+	text-align: var(--alignment);
+	padding: 0 0 0 var(--gutters);
+}
+
+.container.style2.columns > .wrapper > .inner > * > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style2.columns > .wrapper > .inner > * > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style2.columns > .wrapper > .inner > * > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style2.columns > .wrapper > .inner > *:first-child {
+	margin-left: calc(var(--gutters) * -1);
+}
+
+.container.style2.default > .wrapper > .inner > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	max-width: none !important;
+	width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+}
+
+.container.style2.default > .wrapper > .inner > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style2.default > .wrapper > .inner > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+
+.container.style2.columns > .wrapper > .inner > div > .full {
+	margin-left: calc(var(--gutters) * -0.5);
+	max-width: none !important;
+	width: calc(100% + var(--gutters) + 0.4725px);
+}
+
+.container.style2.columns > .wrapper > .inner > div:first-child > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
+}
+
+.container.style2.columns > .wrapper > .inner > div:last-child > .full {
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
+}
+
+.container.style2.columns > .wrapper > .inner > div > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style2.columns > .wrapper > .inner > div > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style2.columns > .wrapper > .inner > .full {
+	align-self: stretch;
+}
+
+.container.style2.columns > .wrapper > .inner > .full:first-child {
+	border-bottom-left-radius: inherit;
+	border-top-left-radius: inherit;
+}
+
+.container.style2.columns > .wrapper > .inner > .full:last-child {
+	border-bottom-right-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style2.columns > .wrapper > .inner > .full > .full:first-child:last-child {
+	border-radius: inherit;
+	height: calc(100% + (var(--padding-vertical) * 2));
+}
+
+.container.style2.columns > .wrapper > .inner > .full > .full:first-child:last-child > * {
+	border-radius: inherit;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.container.style4 {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+}
+
+.container.style4:not(:first-child) {
+	margin-top: 0rem !important;
+}
+
+.container.style4:not(:last-child) {
+	margin-bottom: 0.5rem !important;
+}
+
+.container.style4 > .wrapper > .inner {
+	--gutters: 2rem;
+	--padding-horizontal: 1rem;
+	--padding-vertical: 0rem;
+	padding: var(--padding-vertical) var(--padding-horizontal);
+}
+
+.container.style4 > .wrapper {
+	max-width: var(--width);
+	width: 100%;
+}
+
+.container.style4.default > .wrapper > .inner > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style4.default > .wrapper > .inner > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style4.default > .wrapper > .inner > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style4.columns > .wrapper > .inner {
+	flex-wrap: wrap;
+	display: flex;
+	align-items: flex-start;
+}
+
+.container.style4.columns > .wrapper > .inner > * {
+	flex-grow: 0;
+	flex-shrink: 0;
+	max-width: 100%;
+	text-align: var(--alignment);
+	padding: 0 0 0 var(--gutters);
+}
+
+.container.style4.columns > .wrapper > .inner > * > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style4.columns > .wrapper > .inner > * > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style4.columns > .wrapper > .inner > * > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style4.columns > .wrapper > .inner > *:first-child {
+	margin-left: calc(var(--gutters) * -1);
+}
+
+.container.style4.default > .wrapper > .inner > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	max-width: none !important;
+	width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+}
+
+.container.style4.default > .wrapper > .inner > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style4.default > .wrapper > .inner > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+
+.container.style4.columns > .wrapper > .inner > div > .full {
+	margin-left: calc(var(--gutters) * -0.5);
+	max-width: none !important;
+	width: calc(100% + var(--gutters) + 0.4725px);
+}
+
+.container.style4.columns > .wrapper > .inner > div:first-child > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
+}
+
+.container.style4.columns > .wrapper > .inner > div:last-child > .full {
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
+}
+
+.container.style4.columns > .wrapper > .inner > div > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style4.columns > .wrapper > .inner > div > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style4.columns > .wrapper > .inner > div:first-child, .container.style4.columns > .wrapper > .inner > div:first-child > .full:first-child {
+	border-top-left-radius: inherit;
+}
+
+.container.style4.columns > .wrapper > .inner > div:last-child, .container.style4.columns > .wrapper > .inner > div:last-child > .full:first-child {
+	border-top-right-radius: inherit;
+}
+
+.container.style4.columns > .wrapper > .inner > .full {
+	align-self: stretch;
+}
+
+.container.style4.columns > .wrapper > .inner > .full:first-child {
+	border-bottom-left-radius: inherit;
+	border-top-left-radius: inherit;
+}
+
+.container.style4.columns > .wrapper > .inner > .full:last-child {
+	border-bottom-right-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style4.columns > .wrapper > .inner > .full > .full:first-child:last-child {
+	border-radius: inherit;
+	height: calc(100% + (var(--padding-vertical) * 2));
+}
+
+.container.style4.columns > .wrapper > .inner > .full > .full:first-child:last-child > * {
+	border-radius: inherit;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+#resume-container-title > .wrapper > .inner > :nth-child(1) {
+	width: calc(40% + (var(--gutters) / 2));
+}
+
+#resume-container-title > .wrapper > .inner > :nth-child(2) {
+	width: calc(60% + (var(--gutters) / 2));
+}
+
+.container.style1 {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	background-image: linear-gradient(90deg, #EAE8E8 41%, #FFFFFF 0%);
+	background-position: 0% 0%;
+	background-repeat: repeat;
+	background-size: cover;
+}
+
+.container.style1:not(:first-child) {
+	margin-top: 0rem !important;
+}
+
+.container.style1:not(:last-child) {
+	margin-bottom: 0rem !important;
+}
+
+.container.style1 > .wrapper > .inner {
+	--gutters: 2rem;
+	--padding-horizontal: 1rem;
+	--padding-vertical: 0.625rem;
+	padding: var(--padding-vertical) var(--padding-horizontal);
+}
+
+.container.style1 > .wrapper {
+	max-width: var(--width);
+	width: 100%;
+}
+
+.container.style1.default > .wrapper > .inner > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style1.default > .wrapper > .inner > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style1.default > .wrapper > .inner > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style1.columns > .wrapper > .inner {
+	flex-wrap: wrap;
+	display: flex;
+	align-items: flex-start;
+}
+
+.container.style1.columns > .wrapper > .inner > * {
+	flex-grow: 0;
+	flex-shrink: 0;
+	max-width: 100%;
+	text-align: var(--alignment);
+	padding: 0 0 0 var(--gutters);
+}
+
+.container.style1.columns > .wrapper > .inner > * > * {
+	margin-bottom: var(--spacing);
+	margin-top: var(--spacing);
+}
+
+.container.style1.columns > .wrapper > .inner > * > *:first-child {
+	margin-top: 0 !important;
+}
+
+.container.style1.columns > .wrapper > .inner > * > *:last-child {
+	margin-bottom: 0 !important;
+}
+
+.container.style1.columns > .wrapper > .inner > *:first-child {
+	margin-left: calc(var(--gutters) * -1);
+}
+
+.container.style1.default > .wrapper > .inner > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	max-width: none !important;
+	width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+}
+
+.container.style1.default > .wrapper > .inner > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+	border-top-left-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style1.default > .wrapper > .inner > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+}
+
+.container.style1.columns > .wrapper > .inner > div > .full {
+	margin-left: calc(var(--gutters) * -0.5);
+	max-width: none !important;
+	width: calc(100% + var(--gutters) + 0.4725px);
+}
+
+.container.style1.columns > .wrapper > .inner > div:first-child > .full {
+	margin-left: calc(var(--padding-horizontal) * -1);
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
+}
+
+.container.style1.columns > .wrapper > .inner > div:last-child > .full {
+	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
+}
+
+.container.style1.columns > .wrapper > .inner > div > .full:first-child {
+	margin-top: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style1.columns > .wrapper > .inner > div > .full:last-child {
+	margin-bottom: calc(var(--padding-vertical) * -1) !important;
+}
+
+.container.style1.columns > .wrapper > .inner > div:first-child, .container.style1.columns > .wrapper > .inner > div:first-child > .full:first-child {
+	border-top-left-radius: inherit;
+}
+
+.container.style1.columns > .wrapper > .inner > div:last-child, .container.style1.columns > .wrapper > .inner > div:last-child > .full:first-child {
+	border-top-right-radius: inherit;
+}
+
+.container.style1.columns > .wrapper > .inner > .full {
+	align-self: stretch;
+}
+
+.container.style1.columns > .wrapper > .inner > .full:first-child {
+	border-bottom-left-radius: inherit;
+	border-top-left-radius: inherit;
+}
+
+.container.style1.columns > .wrapper > .inner > .full:last-child {
+	border-bottom-right-radius: inherit;
+	border-top-right-radius: inherit;
+}
+
+.container.style1.columns > .wrapper > .inner > .full > .full:first-child:last-child {
+	border-radius: inherit;
+	height: calc(100% + (var(--padding-vertical) * 2));
+}
+
+.container.style1.columns > .wrapper > .inner > .full > .full:first-child:last-child > * {
+	border-radius: inherit;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+#container-resume > .wrapper > .inner > :nth-child(1) {
+	width: calc(40% + (var(--gutters) / 2));
+}
+
+#container-resume > .wrapper > .inner > :nth-child(2) {
+	width: calc(60% + (var(--gutters) / 2));
 }
 
 .list {
@@ -1105,738 +1470,156 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	margin-top: 0 !important;
 }
 
-#resume-work-dev-mgr-list {
+.list.style2 {
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
+	font-size: 0.875em;
+	line-height: 1.5;
+	font-weight: 400;
+	padding-left: calc(0.75rem * var(--indent-left));
+	padding-right: calc(0.75rem * var(--indent-right));
 }
 
-#resume-work-dev-mgr-list a:hover {
-	color: #309EDB;
-}
-
-#resume-work-dev-mgr-list a {
+.list.style2 a {
+	color: #000000;
 	text-decoration: underline;
 }
 
-#resume-work-dev-mgr-list ul {
+.list.style2 a:hover {
+	text-decoration: none;
+}
+
+.list.style2 ul {
 	width: 100%;
 }
 
-#resume-work-dev-mgr-list ul li {
+.list.style2 ul li {
 	margin-top: 0.5rem;
 }
 
-#resume-work-dev-mgr-list ul li:after {
-	width: 0.625rem;
+.list.style2 ul li:after {
+	width: 0.546875rem;
 }
 
-#resume-work-dev-mgr-list ul li:before {
-	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
-	border-radius: 0.25rem;
+.list.style2 ul li:before {
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M37.9%2C10.6l-3.2-3.2c-0.4-0.4-1-0.7-1.6-0.7c-0.6%2C0-1.2%2C0.2-1.6%2C0.7L15.9%2C23l-7-7c-0.4-0.4-1-0.7-1.6-0.7S6.1%2C15.6%2C5.6%2C16%20l-3.2%2C3.2c-0.4%2C0.4-0.7%2C1-0.7%2C1.6S2%2C22%2C2.4%2C22.5l8.6%2C8.6l3.2%2C3.2c0.4%2C0.4%2C1%2C0.7%2C1.6%2C0.7c0.6%2C0%2C1.2-0.2%2C1.6-0.7l3.2-3.2l17.2-17.2%20c0.4-0.4%2C0.7-1%2C0.7-1.6C38.6%2C11.6%2C38.4%2C11.1%2C37.9%2C10.6z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
 	background-position: left 60%;
 	background-repeat: no-repeat;
 	background-size: contain;
-	height: 1.875rem;
-	line-height: 1.875rem;
-	min-width: 0.87890625rem;
+	height: 1.3125rem;
+	line-height: 1.3125rem;
+	min-width: 0.75rem;
 }
 
-#resume-work-dev-sup-list {
+.list.style1 {
 	color: #474747;
 	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
+	font-size: 0.875em;
+	line-height: 1.5;
+	font-weight: 400;
 }
 
-#resume-work-dev-sup-list a:hover {
-	color: #309EDB;
-}
-
-#resume-work-dev-sup-list a {
+.list.style1 a {
+	color: #000000;
 	text-decoration: underline;
 }
 
-#resume-work-dev-sup-list ul {
+.list.style1 a:hover {
+	text-decoration: none;
+}
+
+.list.style1 ul {
 	width: 100%;
 }
 
-#resume-work-dev-sup-list ul li {
-	margin-top: 0.5rem;
+.list.style1 ul li {
+	margin-top: 0.25rem;
 }
 
-#resume-work-dev-sup-list ul li:after {
-	width: 0.625rem;
+.list.style1 ul li:after {
+	width: 0.546875rem;
 }
 
-#resume-work-dev-sup-list ul li:before {
-	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
-	border-radius: 0.25rem;
+.list.style1 ul li:before {
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M31.7%2C21.1L14.3%2C38.5C14%2C38.8%2C13.7%2C39%2C13.2%2C39c-0.4%2C0-0.7-0.1-1.1-0.5l-3.9-3.9c-0.2-0.2-0.5-0.6-0.5-1.1%20c0-0.4%2C0.1-0.7%2C0.5-1.1L20.7%2C20L8.3%2C7.6C8.1%2C7.3%2C7.8%2C7%2C7.8%2C6.5c0-0.4%2C0.1-0.7%2C0.5-1.1l3.9-3.9C12.5%2C1.2%2C12.8%2C1%2C13.3%2C1%20c0.4%2C0%2C0.7%2C0.1%2C1.1%2C0.5l17.4%2C17.4c0.2%2C0.2%2C0.5%2C0.6%2C0.5%2C1.1C32.1%2C20.4%2C31.9%2C20.7%2C31.7%2C21.1z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
 	background-position: left 60%;
 	background-repeat: no-repeat;
 	background-size: contain;
-	height: 1.875rem;
-	line-height: 1.875rem;
-	min-width: 0.87890625rem;
+	height: 1.3125rem;
+	line-height: 1.3125rem;
+	min-width: 0.615234375rem;
 }
 
-#resume-education-wsu-mis {
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
-}
-
-#resume-education-wsu-mis a:hover {
-	color: #309EDB;
-}
-
-#resume-education-wsu-mis a {
-	text-decoration: underline;
-}
-
-#resume-education-wsu-mis ul {
-	width: 100%;
-}
-
-#resume-education-wsu-mis ul li {
-	margin-top: 0.5rem;
-}
-
-#resume-education-wsu-mis ul li:after {
-	width: 0.625rem;
-}
-
-#resume-education-wsu-mis ul li:before {
-	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
-	border-radius: 0.25rem;
-	background-position: left 60%;
-	background-repeat: no-repeat;
-	background-size: contain;
-	height: 1.875rem;
-	line-height: 1.875rem;
-	min-width: 0.87890625rem;
-}
-
-#resume-education-cert-list {
-	color: #474747;
-	font-family: 'Source Sans Pro', sans-serif;
-	letter-spacing: 0.025rem;
-	font-size: 1em;
-	line-height: 1.875;
-	font-weight: 200;
-}
-
-#resume-education-cert-list a:hover {
-	color: #309EDB;
-}
-
-#resume-education-cert-list a {
-	text-decoration: underline;
-}
-
-#resume-education-cert-list ul {
-	width: 100%;
-}
-
-#resume-education-cert-list ul li {
-	margin-top: 0.5rem;
-}
-
-#resume-education-cert-list ul li:after {
-	width: 0.625rem;
-}
-
-#resume-education-cert-list ul li:before {
-	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M12.9%2C32.4L25.3%2C20L13%2C7.6c-0.2-0.2-0.2-0.5%2C0-0.7l1.6-1.6c0.2-0.2%2C0.5-0.2%2C0.7%2C0L29.8%2C20L15.1%2C34.6c-0.2%2C0.2-0.5%2C0.2-0.7%2C0%20l-1.6-1.6C12.7%2C32.9%2C12.7%2C32.6%2C12.9%2C32.4z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
-	border-radius: 0.25rem;
-	background-position: left 60%;
-	background-repeat: no-repeat;
-	background-size: contain;
-	height: 1.875rem;
-	line-height: 1.875rem;
-	min-width: 0.87890625rem;
-}
-
-.container {
-	position: relative;
-}
-
-.container > .wrapper {
-	vertical-align: top;
-	position: relative;
-	max-width: 100%;
-	border-radius: inherit;
-}
-
-.container > .wrapper > .inner {
-	vertical-align: top;
-	position: relative;
-	max-width: 100%;
-	border-radius: inherit;
-	text-align: var(--alignment);
-}
-
-#main .container.full:first-child > .wrapper {
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
-}
-
-#main .container.full:last-child > .wrapper {
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
-}
-
-#main .container.full:first-child > .wrapper > .inner {
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
-}
-
-#main .container.full:last-child > .wrapper > .inner {
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
-}
-
-#container01 {
-	--alignment: left;
-	--flex-alignment: flex-start;
-	--indent-left: 1;
-	--indent-right: 0;
-	--margin-left: 0;
-	--margin-right: auto;
-}
-
-#container01:not(:first-child) {
-	margin-top: 0rem !important;
-}
-
-#container01:not(:last-child) {
-	margin-bottom: 1.5rem !important;
-}
-
-#container01 > .wrapper {
-	display: block;
-	margin: 0 auto 0 0;
-	width: 25rem;
-	background-color: transparent;
-}
-
-#container01 > .wrapper > .inner {
-	--gutters: 0rem;
-	--padding-horizontal: 0rem;
-	--padding-vertical: 0rem;
-	--spacing: 0rem;
-	padding: var(--padding-vertical) var(--padding-horizontal);
-}
-
-#container01.default > .wrapper > .inner > * {
-	margin-bottom: var(--spacing);
-	margin-top: var(--spacing);
-}
-
-#container01.default > .wrapper > .inner > *:first-child {
-	margin-top: 0 !important;
-}
-
-#container01.default > .wrapper > .inner > *:last-child {
-	margin-bottom: 0 !important;
-}
-
-#container01.columns > .wrapper > .inner {
-	flex-wrap: wrap;
+.buttons {
+	cursor: default;
 	display: flex;
-	align-items: flex-start;
-}
-
-#container01.columns > .wrapper > .inner > * {
-	flex-grow: 0;
-	flex-shrink: 0;
-	max-width: 100%;
-	text-align: var(--alignment);
-	padding: 0 0 0 var(--gutters);
-}
-
-#container01.columns > .wrapper > .inner > * > * {
-	margin-bottom: var(--spacing);
-	margin-top: var(--spacing);
-}
-
-#container01.columns > .wrapper > .inner > * > *:first-child {
-	margin-top: 0 !important;
-}
-
-#container01.columns > .wrapper > .inner > * > *:last-child {
-	margin-bottom: 0 !important;
-}
-
-#container01.columns > .wrapper > .inner > *:first-child {
-	margin-left: calc(var(--gutters) * -1);
-}
-
-#container01.default > .wrapper > .inner > .full {
-	margin-left: calc(var(--padding-horizontal) * -1);
-	max-width: none !important;
-	width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
-}
-
-#container01.default > .wrapper > .inner > .full:first-child {
-	margin-top: calc(var(--padding-vertical) * -1) !important;
-	border-top-left-radius: inherit;
-	border-top-right-radius: inherit;
-}
-
-#container01.default > .wrapper > .inner > .full:last-child {
-	margin-bottom: calc(var(--padding-vertical) * -1) !important;
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
-}
-
-#container01.columns > .wrapper > .inner > div > .full {
-	margin-left: calc(var(--gutters) * -0.5);
-	max-width: none !important;
-	width: calc(100% + var(--gutters) + 0.4725px);
-}
-
-#container01.columns > .wrapper > .inner > div:first-child > .full {
-	margin-left: calc(var(--padding-horizontal) * -1);
-	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
-}
-
-#container01.columns > .wrapper > .inner > div:last-child > .full {
-	width: calc(100% + var(--padding-horizontal) + calc(var(--gutters) * 0.5) + 0.4725px);
-}
-
-#container01.columns > .wrapper > .inner > div > .full:first-child {
-	margin-top: calc(var(--padding-vertical) * -1) !important;
-}
-
-#container01.columns > .wrapper > .inner > div > .full:last-child {
-	margin-bottom: calc(var(--padding-vertical) * -1) !important;
-}
-
-#container01.columns > .wrapper > .inner > div:first-child, #container01.columns > .wrapper > .inner > div:first-child > .full:first-child {
-	border-top-left-radius: inherit;
-}
-
-#container01.columns > .wrapper > .inner > div:last-child, #container01.columns > .wrapper > .inner > div:last-child > .full:first-child {
-	border-top-right-radius: inherit;
-}
-
-#container01.columns > .wrapper > .inner > .full {
-	align-self: stretch;
-}
-
-#container01.columns > .wrapper > .inner > .full:first-child {
-	border-bottom-left-radius: inherit;
-	border-top-left-radius: inherit;
-}
-
-#container01.columns > .wrapper > .inner > .full:last-child {
-	border-bottom-right-radius: inherit;
-	border-top-right-radius: inherit;
-}
-
-#container01.columns > .wrapper > .inner > .full > .full:first-child:last-child {
-	border-radius: inherit;
-	height: calc(100% + (var(--padding-vertical) * 2));
-}
-
-#container01.columns > .wrapper > .inner > .full > .full:first-child:last-child > * {
-	border-radius: inherit;
-	height: 100%;
-	position: absolute;
-	width: 100%;
-}
-
-#container01 > .wrapper > .inner > :nth-child(1) {
-	width: 50%;
-	--alignment: left;
-	--flex-alignment: flex-start;
-	--indent-left: 1;
-	--indent-right: 0;
-	--margin-left: 0;
-	--margin-right: auto;
-}
-
-#container01 > .wrapper > .inner > :nth-child(2) {
-	width: 50%;
-	--alignment: left;
-	--flex-alignment: flex-start;
-	--indent-left: 1;
-	--indent-right: 0;
-	--margin-left: 0;
-	--margin-right: auto;
-}
-
-.icons {
-	display: flex;
-	flex-wrap: wrap;
 	justify-content: var(--flex-alignment);
 	letter-spacing: 0;
 	padding: 0;
 }
 
-.icons li {
-	position: relative;
-	z-index: 1;
+.buttons li {
+	max-width: 100%;
+	text-align: var(--alignment);
 }
 
-.icons li a {
+.buttons li a {
 	align-items: center;
-	display: flex;
 	justify-content: center;
+	max-width: 100%;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
 }
 
-.icons li a svg {
-	display: block;
-	position: relative;
+.buttons.style1 {
+	--flex-alignment: flex-start;
+	--alignment: left;
+	gap: 0.625rem;
+	flex-direction: column;
+	flex-wrap: nowrap;
 }
 
-.icons li a + svg {
+.buttons.style1 li a {
+	display: inline-flex;
+	width: auto;
+	height: 1.25rem;
+	line-height: 1.25rem;
+	padding: 0 0.625rem;
+	vertical-align: middle;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 0.875em;
+	font-weight: 400;
+	border-radius: 0rem;
+	transition: none;
+}
+
+.buttons.style1 li a svg {
 	display: block;
+	fill: #474747;
+	flex-grow: 0;
+	flex-shrink: 0;
 	height: 100%;
-	left: 0;
-	pointer-events: none;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: -1;
+	min-width: 16px;
+	width: 1em;
+	margin-left: -0.125em;
+	margin-right: calc(0.5em + 0rem);
+	transition: none;
 }
 
-.icons li a .label {
-	display: none;
+.buttons.style1 li a .label {
+	direction: var(--site-language-direction);
+	overflow: hidden;
 }
 
-#resume-skills-ledership-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
+.buttons.style1 .button {
+	color: #474747;
+	border: solid 1px transparent;
 }
 
-#resume-skills-ledership-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-ledership-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-ledership-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-ledership-stars a svg {
+.buttons.style1 .button svg {
 	fill: #355D7E;
-}
-
-#resume-skills-ledership-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-intergrity-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-intergrity-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-intergrity-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-intergrity-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-intergrity-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-intergrity-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-customer-service-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-customer-service-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-customer-service-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-customer-service-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-customer-service-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-customer-service-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-emotional-intelligence-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-emotional-intelligence-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-emotional-intelligence-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-emotional-intelligence-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-emotional-intelligence-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-emotional-intelligence-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-data-analytics-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-data-analytics-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-data-analytics-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-data-analytics-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-data-analytics-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-data-analytics-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-agile-devlopment-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-agile-devlopment-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-agile-devlopment-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-agile-devlopment-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-agile-devlopment-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-agile-devlopment-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-project-managemnt-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-project-managemnt-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-project-managemnt-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-project-managemnt-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-project-managemnt-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-project-managemnt-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-development-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-development-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-development-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-development-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-development-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-development-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#resume-skills-edi-standards-stars {
-	justify-content: flex-start;
-	font-size: 1em;
-	gap: 0rem;
-}
-
-#resume-skills-edi-standards-stars li a {
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#resume-skills-edi-standards-stars li a svg {
-	height: 45%;
-	width: 45%;
-	top: 5.5%;
-	transition: fill 0.25s ease;
-}
-
-#resume-skills-edi-standards-stars a + svg {
-	fill: #FFFFFF;
-}
-
-#resume-skills-edi-standards-stars a svg {
-	fill: #355D7E;
-}
-
-#resume-skills-edi-standards-stars li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
-}
-
-#footer-contact {
-	font-size: 1em;
-	gap: 0.75rem;
-}
-
-#footer-contact:not(:first-child) {
-	margin-top: 1.375rem !important;
-}
-
-#footer-contact:not(:last-child) {
-	margin-bottom: 1.375rem !important;
-}
-
-#footer-contact li a {
-	border-radius: 100%;
-	height: 2em;
-	width: 2em;
-	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-}
-
-#footer-contact li a svg {
-	height: 60%;
-	width: 60%;
-	transition: fill 0.25s ease;
-}
-
-#footer-contact a svg {
-	fill: #CCCCCC;
-}
-
-#footer-contact a {
-	border: solid 1px #CCCCCC;
-}
-
-#footer-contact a:hover {
-	border-color: #355D7E !important;
-}
-
-#footer-contact a:hover svg {
-	fill: #355D7E !important;
-}
-
-#footer-contact li a + svg {
-	transition: fill 0.25s ease, stroke 0.25s ease;
 }
 
 @media (max-width: 1920px) {
@@ -1863,6 +1646,122 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 	html {
 		font-size: 11pt;
 	}
+	
+	
+	
+	.container.style3.columns > .wrapper > .inner {
+		flex-direction: column !important;
+		flex-wrap: nowrap !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > span {
+		height: 0;
+		margin-top: calc(var(--gutters) * -1);
+		pointer-events: none;
+		visibility: hidden;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > span:first-child + div:before {
+		display: none !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > *:first-child {
+		margin-left: 0 !important;
+		padding-top: 0 !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > * {
+		padding: calc(var(--gutters) * 0.5) 0 !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > *:before {
+		border-top: solid 3px rgba(255,255,255,0.141) !important;
+		height: 0 !important;
+		margin-left: 0 !important;
+		top: auto !important;
+		margin-top: calc((var(--gutters) * -0.5) - 1.5px) !important;
+		left: var(--padding-horizontal) !important;
+		width: calc(100% - (var(--padding-horizontal) * 2)) !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > *:last-child {
+		padding-bottom: 0 !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > *:first-child:before {
+		display: none !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > *:last-child:before {
+		display: block !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div > .full {
+		margin-left: calc(var(--padding-horizontal) * -1);
+		width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:first-of-type > .full {
+		margin-left: calc(var(--padding-horizontal) * -1);
+		width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:last-of-type > .full {
+		margin-left: calc(var(--padding-horizontal) * -1);
+		width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div > .full:first-child {
+		margin-top: calc((var(--gutters) * -0.5) + 1.5px) !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div > .full:last-child {
+		margin-bottom: calc((var(--gutters) * -0.5) + 1.5px) !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:first-of-type > .full:first-child {
+		margin-top: calc(var(--padding-vertical) * -1) !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:last-of-type > .full:last-child {
+		margin-bottom: calc(var(--padding-vertical) * -1) !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:first-of-type, .container.style3.columns > .wrapper > .inner > div:first-of-type > .full:first-child {
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:last-of-type, .container.style3.columns > .wrapper > .inner > div:last-of-type > .full:last-child {
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:first-of-type, .container.style3.columns > .wrapper > .inner > div:first-of-type > .full:last-child {
+		border-bottom-left-radius: 0 !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > div:last-of-type, .container.style3.columns > .wrapper > .inner > div:last-of-type > .full:first-child {
+		border-top-right-radius: 0 !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child {
+		height: auto;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child > * {
+		height: auto;
+		position: relative;
+		width: auto;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child.image img {
+		max-height: 35rem;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child.slideshow .bg {
+		min-height: 35rem;
+	}
 }
 
 @media (max-width: 736px) {
@@ -1888,436 +1787,386 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		margin-left: -50vw;
 	}
 	
-	#main > .inner > header > .full:first-child {
-		margin-top: -3rem !important;
-	}
-	
 	#main > .inner > footer > .full:last-child {
 		margin-bottom: -3rem !important;
 	}
 	
-	#header-navigation {
-		gap: 0.75rem;
+	#main > .inner > .active > .full:first-child {
+		margin-top: -3rem !important;
 	}
 	
-	#header-navigation:not(:first-child) {
-		margin-top: 1.03125rem !important;
-	}
-	
-	#header-navigation:not(:last-child) {
-		margin-bottom: 1.03125rem !important;
-	}
-	
-	#header-navigation li a {
-		letter-spacing: 0.225rem;
-		padding-left: calc(0.225rem + 0.5rem);
-		font-size: 0.625em;
-	}
-	
-	#resume-download {
-		gap: 0.75rem;
-	}
-	
-	#resume-download:not(:first-child) {
-		margin-top: 1.03125rem !important;
-	}
-	
-	#resume-download:not(:last-child) {
-		margin-bottom: 1.03125rem !important;
-	}
-	
-	#resume-download li a {
-		letter-spacing: 0.225rem;
-		padding-left: calc(0.225rem + 0.5rem);
-		font-size: 0.625em;
-	}
-	
-	#resume-download li a svg {
-		width: 1.25em;
-	}
-	
-	#header-divider:not(:first-child) {
-		margin-top: 0.5rem !important;
-	}
-	
-	#header-divider:not(:last-child) {
-		margin-bottom: 0.5rem !important;
-	}
-	
-	#header-divider:before {
-		width: 32rem;
-	}
-	
-	#footer-divider:not(:first-child) {
-		margin-top: 0.5rem !important;
-	}
-	
-	#footer-divider:not(:last-child) {
-		margin-bottom: 0.5rem !important;
-	}
-	
-	#footer-divider:before {
-		width: 32rem;
-	}
-	
-	#Tom-Irish:not(:first-child) {
+	.image.style2:not(:first-child) {
 		margin-top: 0rem !important;
 	}
 	
-	#Tom-Irish:not(:last-child) {
+	.image.style2:not(:last-child) {
 		margin-bottom: 0rem !important;
 	}
 	
-	#Tom-Irish .frame {
-		width: 12rem;
+	.image.style2 .frame {
+		width: 10rem;
 	}
 	
-	#home-name {
+	.image.style1 img {
+		height: 100% !important;
+		object-fit: cover;
+		object-position: center;
+		width: 100% !important;
+	}
+	
+	h1.style9:not(:first-child), h2.style9:not(:first-child), h3.style9:not(:first-child), p.style9:not(:first-child) {
+		margin-top: 0rem !important;
+	}
+	
+	h1.style9:not(:last-child), h2.style9:not(:last-child), h3.style9:not(:last-child), p.style9:not(:last-child) {
+		margin-bottom: 0rem !important;
+	}
+	
+	h1.style9, h2.style9, h3.style9, p.style9 {
+		letter-spacing: 0.21875rem;
+		width: calc(100% + 0.21875rem);
+		font-size: 2.25em;
+		line-height: 2;
+	}
+	
+	h1.style6:not(:first-child), h2.style6:not(:first-child), h3.style6:not(:first-child), p.style6:not(:first-child) {
+		margin-top: 0rem !important;
+	}
+	
+	h1.style6:not(:last-child), h2.style6:not(:last-child), h3.style6:not(:last-child), p.style6:not(:last-child) {
+		margin-bottom: 0rem !important;
+	}
+	
+	h1.style6, h2.style6, h3.style6, p.style6 {
+		letter-spacing: 0.21875rem;
+		width: calc(100% + 0.21875rem);
+		font-size: 1.25em;
+		line-height: 1;
+	}
+	
+	h1.style7:not(:first-child), h2.style7:not(:first-child), h3.style7:not(:first-child), p.style7:not(:first-child) {
+		margin-top: 1.5rem !important;
+	}
+	
+	h1.style7:not(:last-child), h2.style7:not(:last-child), h3.style7:not(:last-child), p.style7:not(:last-child) {
+		margin-bottom: 1.5rem !important;
+	}
+	
+	h1.style7, h2.style7, h3.style7, p.style7 {
 		letter-spacing: 0.35rem;
 		width: calc(100% + 0.35rem);
-		font-size: 2em;
+		font-size: 2.5em;
 		line-height: 1.25;
 	}
 	
-	#home-title {
+	h1.style8:not(:first-child), h2.style8:not(:first-child), h3.style8:not(:first-child), p.style8:not(:first-child) {
+		margin-top: 1.5rem !important;
+	}
+	
+	h1.style8:not(:last-child), h2.style8:not(:last-child), h3.style8:not(:last-child), p.style8:not(:last-child) {
+		margin-bottom: 1.5rem !important;
+	}
+	
+	h1.style8, h2.style8, h3.style8, p.style8 {
 		letter-spacing: 0.196875rem;
 		width: calc(100% + 0.196875rem);
+		font-size: 1.125em;
+		line-height: 1.5;
+	}
+	
+	h1.style1:not(:first-child), h2.style1:not(:first-child), h3.style1:not(:first-child), p.style1:not(:first-child) {
+		margin-top: 0rem !important;
+	}
+	
+	h1.style1:not(:last-child), h2.style1:not(:last-child), h3.style1:not(:last-child), p.style1:not(:last-child) {
+		margin-bottom: 0rem !important;
+	}
+	
+	h1.style1, h2.style1, h3.style1, p.style1 {
+		letter-spacing: 0.04375rem;
+		width: calc(100% + 0.04375rem);
+		font-size: 1.25em;
+		line-height: 1;
+	}
+	
+	h1.style3, h2.style3, h3.style3, p.style3 {
+		letter-spacing: 0rem;
+		width: 100%;
 		font-size: 0.875em;
 		line-height: 1.5;
 	}
 	
-	#resume-title {
-		letter-spacing: 0.35rem;
-		width: calc(100% + 0.35rem);
+	h1.style2, h2.style2, h3.style2, p.style2 {
+		letter-spacing: 0.021875rem;
+		width: calc(100% + 0.021875rem);
 		font-size: 1.25em;
-		line-height: 1.5;
-	}
-	
-	#resume-work {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.5;
-	}
-	
-	#resume-work-dev-mgr {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.875;
-	}
-	
-	#resume-work-dev-sup {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.875;
-	}
-	
-	#resume-skills {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.5;
-	}
-	
-	#resume-skills-ledership {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-intergrity {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-customer-service {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-emotional-intelligence {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-data-analytics {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-agile-devlopment {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-project-managemnt {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-development {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-skills-edi-standards {
-		padding-left: 1.125rem;
-		padding-right: 0;
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 2;
-	}
-	
-	#resume-education {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.5;
-	}
-	
-	#resume-education-wsu {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.875;
-	}
-	
-	#resume-education-cert {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.875;
-	}
-	
-	#about-title {
-		letter-spacing: 0.35rem;
-		width: calc(100% + 0.35rem);
-		font-size: 1.25em;
-		line-height: 1.5;
-	}
-	
-	#about-text {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.875;
-	}
-	
-	#about-name {
-		letter-spacing: 0.35rem;
-		width: calc(100% + 0.35rem);
-		font-size: 1.5em;
 		line-height: 1;
 	}
 	
-	#about-contact {
-		letter-spacing: 0.021875rem;
-		width: calc(100% + 0.021875rem);
-		font-size: 1em;
-		line-height: 1.875;
+	.icons.style1 {
+		font-size: 2em;
+		gap: 1.5rem;
 	}
 	
-	#resume-work-dev-mgr-list {
-		letter-spacing: 0.021875rem;
-		font-size: 1em;
-		line-height: 1.875;
+	.icons.style1:not(:first-child) {
+		margin-top: 1rem !important;
 	}
 	
-	#resume-work-dev-mgr-list ul li:after {
-		width: 0.625rem;
+	.icons.style1:not(:last-child) {
+		margin-bottom: 1rem !important;
 	}
 	
-	#resume-work-dev-mgr-list ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
+	.icons.style2 {
+		font-size: 2em;
+		gap: 1.5rem;
 	}
 	
-	#resume-work-dev-sup-list {
-		letter-spacing: 0.021875rem;
-		font-size: 1em;
-		line-height: 1.875;
+	.icons.style2:not(:first-child) {
+		margin-top: 1.5rem !important;
 	}
 	
-	#resume-work-dev-sup-list ul li:after {
-		width: 0.625rem;
+	.icons.style2:not(:last-child) {
+		margin-bottom: 1.5rem !important;
 	}
 	
-	#resume-work-dev-sup-list ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
-	}
-	
-	#resume-education-wsu-mis {
-		letter-spacing: 0.021875rem;
-		font-size: 1em;
-		line-height: 1.875;
-	}
-	
-	#resume-education-wsu-mis ul li:after {
-		width: 0.625rem;
-	}
-	
-	#resume-education-wsu-mis ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
-	}
-	
-	#resume-education-cert-list {
-		letter-spacing: 0.021875rem;
-		font-size: 1em;
-		line-height: 1.875;
-	}
-	
-	#resume-education-cert-list ul li:after {
-		width: 0.625rem;
-	}
-	
-	#resume-education-cert-list ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
-	}
-	
-	#container01 {
-		--alignment: left;
-		--flex-alignment: flex-start;
-		--indent-left: 1;
-		--indent-right: 0;
-		--margin-left: 0;
-		--margin-right: auto;
-	}
-	
-	#container01:not(:first-child) {
+	hr.style2:not(:first-child) {
 		margin-top: 0rem !important;
 	}
 	
-	#container01:not(:last-child) {
+	hr.style2:not(:last-child) {
 		margin-bottom: 0rem !important;
 	}
 	
-	#container01 > .wrapper {
-		display: block;
-		margin: 0 auto 0 0;
+	hr.style2:before {
+		width: 100rem;
 	}
 	
-	#container01 > .wrapper > .inner {
-		--gutters: 1rem;
-		--padding-horizontal: 0rem;
-		--padding-vertical: 0rem;
+	hr.style1:not(:first-child) {
+		margin-top: 2rem !important;
+	}
+	
+	hr.style1:not(:last-child) {
+		margin-bottom: 2rem !important;
+	}
+	
+	.container.style3 > .wrapper > .inner {
+		--gutters: 2rem;
+		--padding-vertical: 2rem;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > * {
+		padding: calc(var(--gutters) * 0.5) 0 !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > *:before {
+		margin-top: calc((var(--gutters) * -0.5) - 1.5px) !important;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child.image img {
+		max-height: none;
+	}
+	
+	.container.style3.columns > .wrapper > .inner > .full > .full:first-child:last-child.slideshow .bg {
+		min-height: auto;
+	}
+	
+	.container.style2 {
+		--alignment: center;
+		--flex-alignment: center;
+		--indent-left: 1;
+		--indent-right: 1;
+		--margin-left: auto;
+		--margin-right: auto;
+	}
+	
+	.container.style2:not(:first-child) {
+		margin-top: 0rem !important;
+	}
+	
+	.container.style2:not(:last-child) {
+		margin-bottom: 0rem !important;
+	}
+	
+	.container.style2 > .wrapper > .inner {
+		--gutters: 0rem;
+		--padding-horizontal: 1rem;
+		--padding-vertical: 1rem;
 		--spacing: 0rem;
 	}
 	
-	#container01 > .wrapper > .inner > :nth-child(1) {
-		--alignment: left;
-		--flex-alignment: left;
-		--indent-left: 1;
-		--indent-right: 0;
-		--margin-left: 0;
-		--margin-right: auto;
+	.container.style4:not(:first-child) {
+		margin-top: 0rem !important;
 	}
 	
-	#container01 > .wrapper > .inner > :nth-child(2) {
-		--alignment: left;
-		--flex-alignment: left;
-		--indent-left: 1;
-		--indent-right: 0;
-		--margin-left: 0;
-		--margin-right: auto;
+	.container.style4:not(:last-child) {
+		margin-bottom: 0rem !important;
 	}
 	
-	#resume-skills-ledership-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style4 > .wrapper > .inner {
+		--gutters: 2rem;
+		--padding-horizontal: 1rem;
+		--padding-vertical: 2rem;
 	}
 	
-	#resume-skills-intergrity-stars {
-		font-size: 1em;
-		gap: 0rem;
+	
+	
+	.container.style1:not(:first-child) {
+		margin-top: 0rem !important;
 	}
 	
-	#resume-skills-customer-service-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style1:not(:last-child) {
+		margin-bottom: 0rem !important;
 	}
 	
-	#resume-skills-emotional-intelligence-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style1 > .wrapper > .inner {
+		--gutters: 1rem;
+		--padding-horizontal: 1rem;
+		--padding-vertical: 0.625rem;
 	}
 	
-	#resume-skills-data-analytics-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style1.columns > .wrapper > .inner {
+		flex-direction: column !important;
+		flex-wrap: nowrap !important;
 	}
 	
-	#resume-skills-agile-devlopment-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style1.columns > .wrapper > .inner > span {
+		height: 0;
+		margin-top: calc(var(--gutters) * -1);
+		pointer-events: none;
+		visibility: hidden;
 	}
 	
-	#resume-skills-project-managemnt-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style1.columns > .wrapper > .inner > *:first-child {
+		margin-left: 0 !important;
+		padding-top: 0 !important;
 	}
 	
-	#resume-skills-development-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style1.columns > .wrapper > .inner > * {
+		padding: calc(var(--gutters) * 0.5) 0 !important;
 	}
 	
-	#resume-skills-edi-standards-stars {
-		font-size: 1em;
-		gap: 0rem;
+	.container.style1.columns > .wrapper > .inner > *:last-child {
+		padding-bottom: 0 !important;
 	}
 	
-	#footer-contact {
-		font-size: 1em;
-		gap: 0.75rem;
+	.container.style1.columns > .wrapper > .inner > div > .full {
+		margin-left: calc(var(--padding-horizontal) * -1);
+		width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
 	}
 	
-	#footer-contact:not(:first-child) {
-		margin-top: 1.03125rem !important;
+	.container.style1.columns > .wrapper > .inner > div:first-of-type > .full {
+		margin-left: calc(var(--padding-horizontal) * -1);
+		width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
 	}
 	
-	#footer-contact:not(:last-child) {
-		margin-bottom: 1.03125rem !important;
+	.container.style1.columns > .wrapper > .inner > div:last-of-type > .full {
+		margin-left: calc(var(--padding-horizontal) * -1);
+		width: calc(100% + (var(--padding-horizontal) * 2) + 0.4725px);
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div > .full:first-child {
+		margin-top: calc(var(--gutters) * -0.5) !important;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div > .full:last-child {
+		margin-bottom: calc(var(--gutters) * -0.5) !important;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div:first-of-type > .full:first-child {
+		margin-top: calc(var(--padding-vertical) * -1) !important;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div:last-of-type > .full:last-child {
+		margin-bottom: calc(var(--padding-vertical) * -1) !important;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div:first-of-type, .container.style1.columns > .wrapper > .inner > div:first-of-type > .full:first-child {
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div:last-of-type, .container.style1.columns > .wrapper > .inner > div:last-of-type > .full:last-child {
+		border-bottom-left-radius: inherit;
+		border-bottom-right-radius: inherit;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div:first-of-type, .container.style1.columns > .wrapper > .inner > div:first-of-type > .full:last-child {
+		border-bottom-left-radius: 0 !important;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > div:last-of-type, .container.style1.columns > .wrapper > .inner > div:last-of-type > .full:first-child {
+		border-top-right-radius: 0 !important;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > .full > .full:first-child:last-child {
+		height: auto;
+	}
+	
+	.container.style1.columns > .wrapper > .inner > .full > .full:first-child:last-child > * {
+		height: auto;
+		position: relative;
+		width: auto;
+	}
+	
+	#container-resume > .wrapper > .inner > :nth-child(1) {
+		min-height: 100% !important;
+		width: 100% !important;
+	}
+	
+	#container-resume > .wrapper > .inner > :nth-child(2) {
+		min-height: 100% !important;
+		width: 100% !important;
+	}
+	
+	#container-resume > .wrapper {
+		background-image: linear-gradient(#FFFFFF, #FFFFFF) ;
+	}
+	
+	.list.style2 {
+		letter-spacing: 0rem;
+		font-size: 0.875em;
+		line-height: 1.5;
+		padding-left: calc(0.5625rem * var(--indent-left));
+		padding-right: calc(0.5625rem * var(--indent-right));
+	}
+	
+	.list.style2 ul li:after {
+		width: 0.546875rem;
+	}
+	
+	.list.style2 ul li:before {
+		height: 1.3125rem;
+		line-height: 1.3125rem;
+		min-width: 0.75rem;
+	}
+	
+	.list.style1 {
+		letter-spacing: 0rem;
+		font-size: 0.75em;
+		line-height: 1.5;
+	}
+	
+	.list.style1 ul li:after {
+		width: 0.5rem;
+	}
+	
+	.list.style1 ul li:before {
+		height: 1.125rem;
+		line-height: 1.125rem;
+		min-width: 0.615234375rem;
+	}
+	
+	.buttons.style1 {
+		gap: 0.625rem;
+	}
+	
+	.buttons.style1 li a {
+		letter-spacing: 0rem;
+		font-size: 0.875em;
+	}
+	
+	.buttons.style1 li a svg {
+		width: 1em;
 	}
 }
 
@@ -2326,15 +2175,9 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		--spacing: 0.875rem;
 	}
 	
-	#header-navigation li a {
-		width: 6.5rem;
-	}
 	
-	#resume-download li a {
-		width: 8.625rem;
-	}
 	
-	#container01 > .wrapper > .inner {
+	.container.style2 > .wrapper > .inner {
 		--spacing: 0rem;
 	}
 }
@@ -2356,214 +2199,103 @@ h1 span[style], h2 span[style], h3 span[style], p span[style], h1 strong, h2 str
 		margin-left: -50vw;
 	}
 	
-	#main > .inner > header > .full:first-child {
-		margin-top: -2.25rem !important;
-	}
-	
 	#main > .inner > footer > .full:last-child {
 		margin-bottom: -2.25rem !important;
 	}
 	
-	#header-navigation {
-		gap: 0.5625rem;
+	#main > .inner > .active > .full:first-child {
+		margin-top: -2.25rem !important;
 	}
 	
-	#resume-download {
-		gap: 0.5625rem;
+	h1.style9, h2.style9, h3.style9, p.style9 {
+		font-size: 2.25em;
 	}
 	
-	#home-name {
-		font-size: 1.5em;
+	h1.style6, h2.style6, h3.style6, p.style6 {
+		font-size: 1.25em;
 	}
 	
-	#home-title {
+	h1.style7, h2.style7, h3.style7, p.style7 {
+		font-size: 2em;
+	}
+	
+	h1.style8, h2.style8, h3.style8, p.style8 {
+		font-size: 1.125em;
+	}
+	
+	h1.style1, h2.style1, h3.style1, p.style1 {
+		font-size: 1.25em;
+	}
+	
+	h1.style3, h2.style3, h3.style3, p.style3 {
 		font-size: 0.875em;
 	}
 	
-	#resume-title {
+	h1.style2, h2.style2, h3.style2, p.style2 {
 		font-size: 1.25em;
 	}
 	
-	#resume-work {
-		font-size: 1em;
+	.icons.style1 {
+		gap: 1.125rem;
 	}
 	
-	#resume-work-dev-mgr {
-		font-size: 1em;
+	.icons.style2 {
+		gap: 1.125rem;
 	}
 	
-	#resume-work-dev-sup {
-		font-size: 1em;
+	.container.style3 > .wrapper > .inner {
+		--gutters: 1.5rem;
+		--padding-vertical: 1.5rem;
 	}
 	
-	#resume-skills {
-		font-size: 1em;
-	}
-	
-	#resume-skills-ledership {
-		font-size: 1em;
-	}
-	
-	#resume-skills-intergrity {
-		font-size: 1em;
-	}
-	
-	#resume-skills-customer-service {
-		font-size: 1em;
-	}
-	
-	#resume-skills-emotional-intelligence {
-		font-size: 1em;
-	}
-	
-	#resume-skills-data-analytics {
-		font-size: 1em;
-	}
-	
-	#resume-skills-agile-devlopment {
-		font-size: 1em;
-	}
-	
-	#resume-skills-project-managemnt {
-		font-size: 1em;
-	}
-	
-	#resume-skills-development {
-		font-size: 1em;
-	}
-	
-	#resume-skills-edi-standards {
-		font-size: 1em;
-	}
-	
-	#resume-education {
-		font-size: 1em;
-	}
-	
-	#resume-education-wsu {
-		font-size: 1em;
-	}
-	
-	#resume-education-cert {
-		font-size: 1em;
-	}
-	
-	#about-title {
-		font-size: 1.25em;
-	}
-	
-	#about-text {
-		font-size: 1em;
-	}
-	
-	#about-name {
-		font-size: 1.5em;
-	}
-	
-	#about-contact {
-		font-size: 1em;
-	}
-	
-	#resume-work-dev-mgr-list {
-		font-size: 1em;
-	}
-	
-	#resume-work-dev-mgr-list ul li:after {
-		width: 0.625rem;
-	}
-	
-	#resume-work-dev-mgr-list ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
-	}
-	
-	#resume-work-dev-sup-list {
-		font-size: 1em;
-	}
-	
-	#resume-work-dev-sup-list ul li:after {
-		width: 0.625rem;
-	}
-	
-	#resume-work-dev-sup-list ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
-	}
-	
-	#resume-education-wsu-mis {
-		font-size: 1em;
-	}
-	
-	#resume-education-wsu-mis ul li:after {
-		width: 0.625rem;
-	}
-	
-	#resume-education-wsu-mis ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
-	}
-	
-	#resume-education-cert-list {
-		font-size: 1em;
-	}
-	
-	#resume-education-cert-list ul li:after {
-		width: 0.625rem;
-	}
-	
-	#resume-education-cert-list ul li:before {
-		height: 1.875rem;
-		line-height: 1.875rem;
-		min-width: 0.87890625rem;
-	}
-	
-	#container01 > .wrapper > .inner {
-		--gutters: 1rem;
-		--padding-horizontal: 0rem;
-		--padding-vertical: 0rem;
+	.container.style2 > .wrapper > .inner {
+		--gutters: 0rem;
+		--padding-horizontal: 0.75rem;
+		--padding-vertical: 0.75rem;
 		--spacing: 0rem;
 	}
 	
-	#resume-skills-ledership-stars {
-		gap: 0rem;
+	.container.style4 > .wrapper > .inner {
+		--gutters: 1.5rem;
+		--padding-horizontal: 0.75rem;
+		--padding-vertical: 1.5rem;
 	}
 	
-	#resume-skills-intergrity-stars {
-		gap: 0rem;
+	.container.style1 > .wrapper > .inner {
+		--gutters: 1rem;
+		--padding-horizontal: 0.75rem;
+		--padding-vertical: 0.46875rem;
 	}
 	
-	#resume-skills-customer-service-stars {
-		gap: 0rem;
+	.list.style2 {
+		font-size: 0.875em;
 	}
 	
-	#resume-skills-emotional-intelligence-stars {
-		gap: 0rem;
+	.list.style2 ul li:after {
+		width: 0.546875rem;
 	}
 	
-	#resume-skills-data-analytics-stars {
-		gap: 0rem;
+	.list.style2 ul li:before {
+		height: 1.3125rem;
+		line-height: 1.3125rem;
+		min-width: 0.75rem;
 	}
 	
-	#resume-skills-agile-devlopment-stars {
-		gap: 0rem;
+	.list.style1 {
+		font-size: 0.75em;
 	}
 	
-	#resume-skills-project-managemnt-stars {
-		gap: 0rem;
+	.list.style1 ul li:after {
+		width: 0.5rem;
 	}
 	
-	#resume-skills-development-stars {
-		gap: 0rem;
+	.list.style1 ul li:before {
+		height: 1.125rem;
+		line-height: 1.125rem;
+		min-width: 0.615234375rem;
 	}
 	
-	#resume-skills-edi-standards-stars {
-		gap: 0rem;
-	}
-	
-	#footer-contact {
-		gap: 0.5625rem;
+	.buttons.style1 {
+		gap: 0.46875rem;
 	}
 }
