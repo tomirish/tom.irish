@@ -171,6 +171,23 @@
 							.no-print {
 							display: none !important;
 							}
+							/* Specific to printing of background colors and images in browsers */
+							body {
+							-webkit-print-color-adjust: exact;
+							-moz-print-color-adjust: exact;
+							-ms-print-color-adjust: exact;
+							print-color-adjust: exact;
+							}
+
+							/* Specific margins for different sides */
+							@page {
+							margin-top: 0.0in;
+							padding-top: 0.4in;
+							margin-bottom: 0.0in;
+							padding-bottom: 0.4in;
+							margin-left: 0.4in;
+							margin-right: 0.4in;
+							}
 							}
 							
 							</style><!-- mnbnbxmbzxmncbzxc -->
