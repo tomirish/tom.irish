@@ -10,6 +10,13 @@
 		<meta property="og:title" content="Tom Irish" />
 		<meta property="og:type" content="website" />
 		<meta property="og:description" content="Tom Irish Website" />
+		<meta property="og:image" content="assets/images/share.jpg"/>
+        <meta property="og:image:type" content="image/jpeg"/>
+        <meta property="og:image:width" content="1200"/>
+        <meta property="og:image:height" content="750"/>
+        <meta property="og:url" content="https://tom.irish"/>
+        <meta property="twitter:card" content="summary_large_image"/>
+        <link rel="canonical" href="https://tom.irish"/>
 		<link href="https://fonts.googleapis.com/css2?display=swap&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900" rel="stylesheet" type="text/css" />
 		<link rel="icon" type="image/png" href="assets/images/favicon.png" />
 		<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
@@ -20,7 +27,7 @@
 		<div id="wrapper">
 			<div id="main">
 				<div class="inner">
-					<section id="home-section" data-title="Home">
+					<section id="home-section">
 						<div id="home-container" class="style3 container default">
 							<div class="wrapper">
 								<div class="inner">
@@ -33,8 +40,8 @@
 									<ul id="home-icons" class="style2 icons">
 										<li>
 											<a class="n01" href="#resume" role="button">
-												<svg aria-labelledby="home-icons-icon-1-title"><title id="home-icons-icon-1-title">Document</title><use xlink:href="assets/icons.svg#document"></use></svg>
-												<span class="label">Document</span>
+												<svg aria-labelledby="home-icons-icon-1-title"><title id="home-icons-icon-1-title">Resume</title><use xlink:href="assets/icons.svg#document"></use></svg>
+												<span class="label">Resume</span>
 											</a>
 											<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 40 40"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke" /></svg>
 										</li><li>
@@ -61,7 +68,7 @@
 							</div>
 						</div>
 					</section>
-					<section id="resume-section" data-title="Resume">
+					<section id="resume-section">
 						<div id="resume-header" class="style2 no-print container default">
 							<div class="wrapper">
 								<div class="inner">
@@ -74,8 +81,8 @@
 											<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 40 40"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke" /></svg>
 										</li><li>
 											<a class="n02" onclick="window.print();" role="button">
-												<svg aria-labelledby="resume-icons-icon-2-title"><title id="resume-icons-icon-2-title">Document</title><use xlink:href="assets/icons.svg#document"></use></svg>
-												<span class="label">Document</span>
+												<svg aria-labelledby="resume-icons-icon-2-title"><title id="resume-icons-icon-2-title">Print Resume</title><use xlink:href="assets/icons.svg#document"></use></svg>
+												<span class="label">Print Resume</span>
 											</a>
 											<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 40 40"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke" /></svg>
 										</li>
@@ -104,13 +111,13 @@
 								<div class="inner">
 									<div>
 										<p id="resume-section-profile" class="style1">Profile</p>
-										<hr id="divider01" class="style2">
+										<hr id="resume-divider-profile" class="style2">
 										<p id="resume-text-profile" class="style3 list"><span class="p">I am a dynamic and motivated leader with over 20 years of experience in information services, logistics, and software development. My expertise spans EDI, logistics, and agile software development.</span><span class="p">I have successfully led multiple agile teams, enhancing backend systems for customer integrations and processing over a billion transactions annually. My strong background in leadership, customer service, and project management has fostered a culture of continuous growth through mentoring and coaching. I demonstrate visionary leadership and analytical skills, driving measurable improvements in efficiency.</span></p>
 										<p id="resume-section-skills" class="style1">Skills</p>
-										<hr id="divider02" class="style2">
+										<hr id="resume-divider-skills" class="style2">
 										<div id="resume-list-skills" class="style2 list"><ul><li><p>Leadership</p></li><li><p>Emotional Intelligence</p></li><li><p>Customer Service</p></li><li><p>Data Analytics</p></li><li><p>Agile Development</p></li></ul></div>
 										<p id="resume-section-contact" class="style1">Contact</p>
-										<hr id="divider03" class="style2">
+										<hr id="resume-divider-contact" class="style2">
 										<ul id="resume-buttons-contact" class="style1 buttons">
 											<li>
 												<a href="mailto:tom@tom.irish" class="button n01" role="button"><svg aria-labelledby="resume-buttons-contact-icon-1-title"><title id="resume-buttons-contact-icon-1-title">Email</title><use xlink:href="assets/icons.svg#email"></use></svg><span class="label">tom@tom.irish</span></a>
@@ -125,13 +132,13 @@
 									</div>
 									<div>
 										<p id="resume-section-work-experience" class="style1">Work Experience</p>
-										<hr id="divider04" class="style2">
+										<hr id="resume-divider-work-experience" class="style2">
 										<h1 id="resume-text-work-development-manager" class="style2"><span class="p">Expeditors - Development Manager<br /><span style="color: #474747"><sup><sub>(2016 - Present)</sub></sup></span></span></h1>
 										<div id="resume-list-work-development-manager" class="style1 list"><ul><li><p>Lead multiple agile teams to develop backend systems supporting thousands of customer integrations and supporting over a billion transactions annually.</p></li><li><p>Deliver industry-leading integrations to meet customers’ business needs, significantly improving logistics efficiency.</p></li><li><p>Empower supervisors and indirect reports through continuous coaching and mentoring, fostering professional growth and excellence.</p></li></ul></div>
 										<p id="resume-text-work-development-supervisor" class="style2"><span class="p">Expeditors - Development Supervisor<br /><span style="color: #474747"><sup><sub>(2008 - 2016)</sub></sup></span></span></p>
 										<div id="resume-list-work-development-supervisor" class="style1 list"><ul><li><p>Led a team of 10 developers to build, test, and deploy EDI customer integrations, streamlining processes and ensuring operational efficiency.</p></li><li><p>Provided ongoing constructive feedback, enhancing both technical skills and professional growth within the team.</p></li><li><p>Cultivated a high-performing team culture through clear, measurable goals and strong interpersonal skills, consistently achieving on-time project completion.</p></li></ul></div>
 										<p id="resume-section-education" class="style1">Education</p>
-										<hr id="divider05" class="style2">
+										<hr id="resume-divider-education" class="style2">
 										<p id="resume-text-education-wsu" class="style2">Washington State University</p>
 										<div id="resume-list-education-wsu" class="style1 list"><ul><li><p>Management Information Systems</p></li></ul></div>
 										<p id="resume-text-education-certifications" class="style2">Certifications</p>
