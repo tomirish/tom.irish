@@ -265,41 +265,6 @@ body.is-instant:after {
 	transition: none !important;
 }
 
-@keyframes loading-spinner {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(360deg);
-	}
-}
-
-.deferred:before {
-	content: '';
-	display: block;
-	width: 4rem;
-	height: 4rem;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -2rem 0 0 -2rem;
-	animation: loading-spinner 1s infinite linear;
-	transition: opacity 0.25s ease;
-	transition-delay: 0.5s;
-	opacity: 0;
-	z-index: -1;
-	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iOTZweCIgaGVpZ2h0PSI5NnB4IiB2aWV3Qm94PSIwIDAgOTYgOTYiIHpvb21BbmRQYW49ImRpc2FibGUiPjxzdHlsZT5jaXJjbGUge2ZpbGw6IHRyYW5zcGFyZW50OyBzdHJva2U6ICNmZmY7IHN0cm9rZS13aWR0aDogMS41cHg7IH08L3N0eWxlPjxkZWZzPjxjbGlwUGF0aCBpZD0iY29ybmVyIj48cG9seWdvbiBwb2ludHM9IjAsMCA0OCwwIDQ4LDQ4IDk2LDQ4IDk2LDk2IDAsOTYiIC8+PC9jbGlwUGF0aD48L2RlZnM+PGcgY2xpcC1wYXRoPSJ1cmwoI2Nvcm5lcikiPjxjaXJjbGUgY3g9IjQ4IiBjeT0iNDgiIHI9IjMyIi8+PC9nPjwvc3ZnPg==');
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 3rem;
-}
-
-.deferred.loading:before {
-	opacity: 0.35;
-	z-index: 0;
-}
-
 .image {
 	display: block;
 	line-height: 0;
@@ -342,23 +307,11 @@ body.is-instant:after {
 	text-align: center;
 }
 
-.image.style2:not(:first-child) {
-	margin-top: 0rem !important;
-}
-
-.image.style2:not(:last-child) {
-	margin-bottom: 0rem !important;
-}
-
 .image.style2 .frame {
-	width: 10rem;
+	max-width: 100%;
+	width: 172px;
 	border-radius: 100%;
 	transition: none;
-}
-
-.image.style2 img {
-	-webkit-touch-callout: none;
-	user-select: none;
 }
 
 .image.style2 .frame img {
@@ -386,8 +339,6 @@ body.is-instant:after {
 	width: 100% !important;
 	border-radius: inherit !important;
 	padding: 0.25rem;
-	-webkit-touch-callout: none;
-	user-select: none;
 }
 
 .image.style1 .frame img {
@@ -424,7 +375,7 @@ h1.style9, h2.style9, h3.style9, p.style9 {
 	letter-spacing: 0.25rem;
 	width: calc(100% + 0.25rem);
 	font-size: 2.5em;
-	line-height: 2;
+	line-height: 1;
 	font-weight: 900;
 }
 
@@ -1802,18 +1753,6 @@ hr.style1:before {
 		margin-top: -3rem !important;
 	}
 	
-	.image.style2:not(:first-child) {
-		margin-top: 0rem !important;
-	}
-	
-	.image.style2:not(:last-child) {
-		margin-bottom: 0rem !important;
-	}
-	
-	.image.style2 .frame {
-		width: 10rem;
-	}
-	
 	.image.style1 img {
 		height: 100% !important;
 		object-fit: cover;
@@ -1833,7 +1772,7 @@ hr.style1:before {
 		letter-spacing: 0.21875rem;
 		width: calc(100% + 0.21875rem);
 		font-size: 2.25em;
-		line-height: 2;
+		line-height: 1;
 	}
 	
 	h1.style6:not(:first-child), h2.style6:not(:first-child), h3.style6:not(:first-child), p.style6:not(:first-child) {
