@@ -1771,7 +1771,7 @@ hr.style1:before {
 	h1.style9, h2.style9, h3.style9, p.style9 {
 		letter-spacing: 0.21875rem;
 		width: calc(100% + 0.21875rem);
-		font-size: 2.25em;
+		font-size: 2em;
 		line-height: 1;
 	}
 	
@@ -1786,7 +1786,7 @@ hr.style1:before {
 	h1.style6, h2.style6, h3.style6, p.style6 {
 		letter-spacing: 0.21875rem;
 		width: calc(100% + 0.21875rem);
-		font-size: 1.25em;
+		font-size: 0.875em;
 		line-height: 1;
 	}
 	
@@ -2154,11 +2154,11 @@ hr.style1:before {
 	}
 	
 	h1.style9, h2.style9, h3.style9, p.style9 {
-		font-size: 2.25em;
+		font-size: 2em;
 	}
 	
 	h1.style6, h2.style6, h3.style6, p.style6 {
-		font-size: 1.25em;
+		font-size: 0.875em;
 	}
 	
 	h1.style7, h2.style7, h3.style7, p.style7 {
