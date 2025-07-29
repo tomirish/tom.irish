@@ -29,27 +29,38 @@
 					a = [
 						[
 							'firefox',
-							/Firefox\/([0-9\.]+)/
+							/Firefox\/([0-9\.]+)/,
+							null
 						],
 						[
 							'edge',
-							/Edge\/([0-9\.]+)/
+							/Edge\/([0-9\.]+)/,
+							null
 						],
 						[
 							'safari',
-							/Version\/([0-9\.]+).+Safari/
+							/Version\/([0-9\.]+).+Safari/,
+							null
 						],
 						[
 							'chrome',
-							/Chrome\/([0-9\.]+)/
+							/Chrome\/([0-9\.]+)/,
+							null
 						],
 						[
 							'chrome',
-							/CriOS\/([0-9\.]+)/
+							/CriOS\/([0-9\.]+)/,
+							null
 						],
 						[
 							'ie',
-							/Trident\/.+rv:([0-9]+)/
+							/Trident\/.+rv:([0-9]+)/,
+							null
+						],
+						[
+							'safari',
+							/iPhone OS ([0-9_]+)/,
+							function(v) { return v.replace('_', '.').replace('_', ''); }
 						]
 					];
 		
@@ -58,7 +69,7 @@
 						if (ua.match(a[i][1])) {
 		
 							o.browser = a[i][0];
-							o.browserVersion = parseFloat(RegExp.$1);
+							o.browserVersion = parseFloat( a[i][2] ? (a[i][2])(RegExp.$1) : RegExp.$1 );
 		
 							break;
 		

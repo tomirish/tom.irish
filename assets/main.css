@@ -309,8 +309,11 @@ body.is-instant:after {
 
 .image.style2 .frame {
 	max-width: 100%;
-	width: 172px;
+	width: 165px;
 	border-radius: 100%;
+	border-color: #333333;
+	border-style: solid;
+	border-width: 2px;
 	transition: none;
 }
 
@@ -324,9 +327,9 @@ body.is-instant:after {
 
 .image.style1 .frame {
 	max-width: 100%;
-	width: 323px;
+	width: 329px;
 	border-radius: 100%;
-	border-color: rgba(255,255,255,0.141);
+	border-color: #333333;
 	border-style: solid;
 	border-width: 3px;
 	transition: none;
@@ -370,7 +373,7 @@ h1.style9:not(:last-child), h2.style9:not(:last-child), h3.style9:not(:last-chil
 h1.style9, h2.style9, h3.style9, p.style9 {
 	text-align: center;
 	text-transform: uppercase;
-	color: #355D7E;
+	color: #333333;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.25rem;
 	width: calc(100% + 0.25rem);
@@ -401,7 +404,7 @@ h1.style7:not(:last-child), h2.style7:not(:last-child), h3.style7:not(:last-chil
 
 h1.style7, h2.style7, h3.style7, p.style7 {
 	text-transform: uppercase;
-	color: #FFFFFF;
+	color: #D3D3D3;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.4rem;
 	width: calc(100% + 0.4rem);
@@ -433,7 +436,7 @@ h1.style1:not(:last-child), h2.style1:not(:last-child), h3.style1:not(:last-chil
 h1.style1, h2.style1, h3.style1, p.style1 {
 	text-align: left;
 	text-transform: uppercase;
-	color: #355D7E;
+	color: #333333;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.05rem;
 	width: calc(100% + 0.05rem);
@@ -456,7 +459,7 @@ h1.style1 span.p:nth-child(n + 2), h2.style1 span.p:nth-child(n + 2), h3.style1 
 
 h1.style2, h2.style2, h3.style2, p.style2 {
 	text-align: left;
-	color: #355D7E;
+	color: #333333;
 	font-family: 'Source Sans Pro', sans-serif;
 	letter-spacing: 0.025rem;
 	width: calc(100% + 0.025rem);
@@ -550,6 +553,7 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 	flex-shrink: 0;
 	height: 100%;
 	min-width: 16px;
+	pointer-events: none;
 	width: 1em;
 	margin-left: -0.125em;
 	margin-right: calc(0.5em + 0.025rem);
@@ -567,7 +571,7 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 }
 
 .buttons.style1 .button svg {
-	fill: #355D7E;
+	fill: #333333;
 }
 
 .buttons.style2 {
@@ -596,8 +600,8 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 }
 
 .buttons.style2 .button {
-	background-color: #355D7E;
-	color: #FFFFFF;
+	background-color: #333333;
+	color: #F5F5F5;
 }
 
 .icons {
@@ -621,6 +625,7 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 
 .icons li a svg {
 	display: block;
+	pointer-events: none;
 	position: relative;
 }
 
@@ -665,12 +670,12 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 }
 
 .icons.style1 a svg {
-	fill: #355D7E;
+	fill: #333333;
 }
 
 .icons.style1 a + svg {
 	fill: none;
-	stroke: #355D7E;
+	stroke: #333333;
 	stroke-width: 2px;
 }
 
@@ -713,12 +718,12 @@ h1.style3 span.p:nth-child(n + 2), h2.style3 span.p:nth-child(n + 2), h3.style3 
 }
 
 .icons.style2 a svg {
-	fill: #FFFFFF;
+	fill: #D3D3D3;
 }
 
 .icons.style2 a + svg {
 	fill: none;
-	stroke: #FFFFFF;
+	stroke: #D3D3D3;
 	stroke-width: 2px;
 }
 
@@ -759,7 +764,7 @@ hr.style2:not(:last-child) {
 
 hr.style2:before {
 	width: 100%;
-	background-color: #355D7E;
+	background-color: #333333;
 	height: 2px;
 	border-radius: 0px;
 }
@@ -774,7 +779,7 @@ hr.style1:not(:last-child) {
 
 hr.style1:before {
 	width: 100%;
-	background-color: rgba(255,255,255,0.141);
+	background-color: #D3D3D3;
 	height: 3px;
 }
 
@@ -820,8 +825,8 @@ hr.style1:before {
 .container.style3 > .wrapper {
 	display: inline-block;
 	width: 35rem;
-	background-color: #355D7E;
-	border-color: rgba(255,255,255,0.141);
+	background-color: #2C2C2C;
+	border-color: #333333;
 	border-style: solid;
 	border-width: 3px;
 	border-radius: 3rem;
@@ -878,7 +883,7 @@ hr.style1:before {
 }
 
 .container.style3.columns > .wrapper > .inner > *:before {
-	border-left: solid 3px rgba(255,255,255,0.141);
+	border-left: solid 3px #333333;
 	content: '';
 	display: block;
 	margin-left: calc((var(--gutters) * -0.5) - 1.5px);
@@ -1258,7 +1263,7 @@ hr.style1:before {
 	width: 100%;
 	align-items: center;
 	justify-content: center;
-	background-image: linear-gradient(90deg, #EAE8E8 41%, #FFFFFF 0%);
+	background-image: linear-gradient(90deg, #D3D3D3 41%, #FFFFFF 0%);
 	background-position: 0% 0%;
 	background-repeat: repeat;
 	background-size: cover;
@@ -1497,7 +1502,7 @@ hr.style1:before {
 }
 
 .list.style1 ul li:before {
-	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M31.7%2C21.1L14.3%2C38.5C14%2C38.8%2C13.7%2C39%2C13.2%2C39c-0.4%2C0-0.7-0.1-1.1-0.5l-3.9-3.9c-0.2-0.2-0.5-0.6-0.5-1.1%20c0-0.4%2C0.1-0.7%2C0.5-1.1L20.7%2C20L8.3%2C7.6C8.1%2C7.3%2C7.8%2C7%2C7.8%2C6.5c0-0.4%2C0.1-0.7%2C0.5-1.1l3.9-3.9C12.5%2C1.2%2C12.8%2C1%2C13.3%2C1%20c0.4%2C0%2C0.7%2C0.1%2C1.1%2C0.5l17.4%2C17.4c0.2%2C0.2%2C0.5%2C0.6%2C0.5%2C1.1C32.1%2C20.4%2C31.9%2C20.7%2C31.7%2C21.1z%22%20fill%3D%22%23355D7E%22%20%2F%3E%3C%2Fsvg%3E');
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M31.7%2C21.1L14.3%2C38.5C14%2C38.8%2C13.7%2C39%2C13.2%2C39c-0.4%2C0-0.7-0.1-1.1-0.5l-3.9-3.9c-0.2-0.2-0.5-0.6-0.5-1.1%20c0-0.4%2C0.1-0.7%2C0.5-1.1L20.7%2C20L8.3%2C7.6C8.1%2C7.3%2C7.8%2C7%2C7.8%2C6.5c0-0.4%2C0.1-0.7%2C0.5-1.1l3.9-3.9C12.5%2C1.2%2C12.8%2C1%2C13.3%2C1%20c0.4%2C0%2C0.7%2C0.1%2C1.1%2C0.5l17.4%2C17.4c0.2%2C0.2%2C0.5%2C0.6%2C0.5%2C1.1C32.1%2C20.4%2C31.9%2C20.7%2C31.7%2C21.1z%22%20fill%3D%22%23333333%22%20%2F%3E%3C%2Fsvg%3E');
 	background-position: left 60%;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -1559,7 +1564,7 @@ hr.style1:before {
 	}
 	
 	.container.style3.columns > .wrapper > .inner > *:before {
-		border-top: solid 3px rgba(255,255,255,0.141) !important;
+		border-top: solid 3px #333333 !important;
 		height: 0 !important;
 		margin-left: 0 !important;
 		top: auto !important;
