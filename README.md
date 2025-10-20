@@ -1,7 +1,7 @@
 ## Repository for [Tom.Irish](https://tom.irish) 
 
 ### About
-- a simple one-page design that simulate multiple pages using section breaks.
+- a simple one-page design that simulates multiple pages using section breaks.
   
 ### Credits
 
