@@ -1,10 +1,10 @@
 ## Repository for [Tom.Irish](https://tom.irish) 
 
+[![Platform: Tom.Irish](https://img.shields.io/badge/Platform-web-438440)](https://tom.irish)
+[![Template: Carrd.co](https://img.shields.io/badge/Template-Carrd.co-3E4374)](https://carrd.co)
+[![Host: Cloudflare](https://img.shields.io/badge/Host-Cloudflare-F38020)](https://cloudflare.com)
+
 ### About
 - a simple one-page design that simulates multiple pages using section breaks.
-  
-### Credits
 
-- Hosting: [cloudfare.com](https://cloudflare.com)
-- Template: [carrd.co](https://carrd.co)
-- Favicon: [Trébol de 4 hojas.svg](https://commons.wikimedia.org/wiki/File:Tr%C3%A9bol_de_4_hojas.svg)
+---
