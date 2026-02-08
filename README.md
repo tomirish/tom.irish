@@ -19,7 +19,7 @@
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Carrd.co](https://img.shields.io/badge/Carrd.co-3E4374)](https://carrd.co)
 
-Personal website and resume for Tom Irish using automated markdown-to-HTML conversion with a two-branch workflow for preview and production deployment.
+Personal website and resume for Tom Irish using automated markdown-to-HTML conversion and PDF generation with a two-branch workflow for preview and production deployment.
 
 ---
 
