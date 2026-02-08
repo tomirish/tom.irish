@@ -161,7 +161,7 @@ Your summary here...
 
 ## 🚀 Deploying to Production
 
-### The Simple Way (Command Line - No Conflicts!)
+### Method 1: Command Line (Recommended - No Conflicts!)
 
 After you've reviewed and approved the preview site:
 
@@ -184,9 +184,51 @@ git push origin main
 
 **Why no conflicts?** The repository uses `.gitattributes` to automatically resolve PDF merge conflicts. When merging `preview` to `main`, Git automatically uses the preview version of PDFs.
 
-### Why Pull Requests Are Harder
+### Method 2: GitHub Web UI (Pull Request)
 
-Pull requests work but may show PDF conflicts in the GitHub UI. The command line merge is simpler because `.gitattributes` handles conflicts automatically. For a single-maintainer workflow, command line is recommended.
+If you prefer using the GitHub website:
+
+1. **Create Pull Request:**
+   - Go to [github.com/tomirish/tom.irish](https://github.com/tomirish/tom.irish)
+   - Click "Pull requests" tab
+   - Click green "New pull request" button
+   - Set **base:** `main` ← **compare:** `preview`
+   - Click "Create pull request"
+   - Add a title like "Deploy to production"
+   - Click "Create pull request"
+
+2. **Review Changes:**
+   - Scroll through the "Files changed" tab
+   - Verify your resume changes look correct
+   - **Note:** You may see warnings about PDF conflicts in the UI - this is normal
+
+3. **Merge the Pull Request:**
+   - Click the green "Merge pull request" button
+   - Choose "Create a merge commit" (default)
+   - Click "Confirm merge"
+
+4. **If You See Merge Conflicts:**
+   - GitHub may show "This branch has conflicts that must be resolved"
+   - **Don't panic!** The conflicts are in the PDF files
+   - You'll need to use the command line to resolve:
+   
+   ```bash
+   git checkout main
+   git merge preview
+   # Accept preview's PDFs (they have your latest changes)
+   git checkout --theirs resume.pdf
+   git checkout --theirs public/resume.pdf
+   git add resume.pdf public/resume.pdf
+   git commit -m "Merge preview to main - deploy to production"
+   git push origin main
+   ```
+
+5. **Wait for Deployment:**
+   - Watch [GitHub Actions](https://github.com/tomirish/tom.irish/actions) for "Deploy to Production"
+   - Wait ~2 minutes
+   - Check [tom.irish](https://tom.irish)
+
+**Why Command Line Is Easier:** Pull requests may show PDF conflicts in the GitHub UI even though `.gitattributes` would resolve them automatically via command line. For a single-maintainer workflow, command line is simpler and faster.
 
 ---
 
