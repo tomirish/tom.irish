@@ -4,7 +4,7 @@
 **Mobile:** [253-299-4348](tel:2532994348)  
 **Website:** [https://tom.irish](https://tom.irish)  
 **LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)  
-**Location:** Bonney Lake, Washington
+**Location:** Seattle, Washington
 
 ---
 
@@ -61,3 +61,4 @@ As a data-driven decision-maker, I am passionate about leveraging technology to 
 
 - Path Forward - Leadership Platform Course
 - Scaled Agile - Leading SAFe Agilist Certified
+

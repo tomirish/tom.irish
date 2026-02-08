@@ -60,7 +60,6 @@ jobs:
           fi
       
       - name: Convert markdown to HTML
-        if: steps.check_resume.outputs.resume_changed == 'true'
         run: |
           python scripts/convert_resume.py
       
