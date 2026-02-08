@@ -13,11 +13,11 @@
 [![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Markdown](https://img.shields.io/badge/Content-Markdown-000000?logo=markdown)](https://www.markdownguide.org/)
-[![Python](https://img.shields.io/badge/Scripts-Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown)](https://www.markdownguide.org/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
-[![Template: Carrd.co](https://img.shields.io/badge/Template-Carrd.co-3E4374)](https://carrd.co)
+[![Carrd.co](https://img.shields.io/badge/Carrd.co-3E4374)](https://carrd.co)
 
 Personal website and resume for Tom Irish using automated markdown-to-HTML conversion with a two-branch workflow for preview and production deployment.
 
