@@ -1,0 +1,98 @@
+name: Build Preview
+
+on:
+  push:
+    branches:
+      - preview
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate Resume
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Validate resume.md format
+        run: |
+          python scripts/validate_resume.py
+
+  build:
+    name: Build HTML and PDF
+    needs: validate
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install beautifulsoup4 playwright
+          playwright install --with-deps chromium
+      
+      - name: Check if resume.md changed
+        id: check_resume
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q "resume.md"; then
+            echo "resume_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "resume_changed=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Convert markdown to HTML
+        if: steps.check_resume.outputs.resume_changed == 'true'
+        run: |
+          python scripts/convert_resume.py
+      
+      - name: Generate PDF
+        run: |
+          python scripts/generate_pdf_browser.py
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          
+          # Only add files if they changed
+          git add -A
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🤖 Auto-build: Update HTML and PDF [skip ci]"
+            git pull --rebase
+            git push
+          fi
+      
+      - name: Create deployment summary
+        run: |
+          echo "## 🎉 Preview Built Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View your preview at: **https://tomirish.github.io**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Changes:" >> $GITHUB_STEP_SUMMARY
+          echo "- Resume MD changed: ${{ steps.check_resume.outputs.resume_changed }}" >> $GITHUB_STEP_SUMMARY
+          echo "- PDF regenerated: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Ready to deploy to production?" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo "git checkout main" >> $GITHUB_STEP_SUMMARY
+          echo "git merge preview" >> $GITHUB_STEP_SUMMARY
+          echo "git push" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
