@@ -1,4 +1,4 @@
-name: Build Production
+name: Deploy to Production
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build for Production
+  deploy:
+    name: Deploy to Cloudflare Pages
     runs-on: ubuntu-latest
     
     permissions:
@@ -18,21 +18,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      
-      - name: Install dependencies
+      - name: Verify files exist
         run: |
-          pip install playwright
-          playwright install --with-deps chromium
+          if [ ! -f index.html ]; then
+            echo "❌ index.html not found! Did you merge from preview?"
+            exit 1
+          fi
+          if [ ! -f resume.pdf ]; then
+            echo "❌ resume.pdf not found! Did you merge from preview?"
+            exit 1
+          fi
+          echo "✅ All required files present"
       
-      - name: Regenerate PDF
-        run: |
-          python scripts/generate_pdf_browser.py
-      
-      - name: Sync files to public directory
+      - name: Sync to public directory
         run: |
           mkdir -p public
           cp index.html public/
@@ -40,25 +38,39 @@ jobs:
           cp -r assets public/
           echo "✅ Synced files to public/ directory"
       
-      - name: Commit changes if any
+      - name: Check if public/ changed
+        id: check_changes
+        run: |
+          git add public/
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes in public/ directory"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Commit public/ changes only
+        if: steps.check_changes.outputs.changed == 'true'
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
-          
-          git add resume.pdf public/
-          
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "🤖 Auto-build: Update PDF and public/"
-            git pull --no-rebase -X theirs
-            git push
-          fi
+          git commit -m "🚀 Deploy: Sync to public/ for production"
+          git push
       
       - name: Create deployment summary
         run: |
-          echo "## 🚀 Production Build Complete" >> $GITHUB_STEP_SUMMARY
+          echo "## 🚀 Production Deployment" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Your site is now live at: **https://tom.irish**" >> $GITHUB_STEP_SUMMARY
+          echo "Your site is deploying to: **https://tom.irish**" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Cloudflare will deploy automatically from public/ directory." >> $GITHUB_STEP_SUMMARY
+          echo "### Status:" >> $GITHUB_STEP_SUMMARY
+          echo "- Files verified: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Cloudflare Pages: Will deploy automatically" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### What was deployed:" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "index.html    → public/index.html" >> $GITHUB_STEP_SUMMARY
+          echo "resume.pdf    → public/resume.pdf" >> $GITHUB_STEP_SUMMARY
+          echo "assets/       → public/assets/" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
