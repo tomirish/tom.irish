@@ -35,6 +35,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -49,7 +51,9 @@ jobs:
       - name: Check if resume.md changed
         id: check_resume
         run: |
-          if git diff --name-only HEAD~1 HEAD | grep -q "resume.md"; then
+          if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q "resume.md"; then
+            echo "resume_changed=true" >> $GITHUB_OUTPUT
+          elif [ ! -f index.html ]; then
             echo "resume_changed=true" >> $GITHUB_OUTPUT
           else
             echo "resume_changed=false" >> $GITHUB_OUTPUT
