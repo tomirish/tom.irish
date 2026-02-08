@@ -70,6 +70,7 @@ tom.irish/
 │   ├── index.html                   # Deployed HTML
 │   ├── resume.pdf                   # Deployed PDF
 │   └── assets/                      # Deployed assets
+├── .gitattributes                   # Auto-resolves PDF merge conflicts
 ├── index.html                       # Generated from resume.md
 ├── resume.md                        # ✏️ EDIT THIS - Source of truth
 ├── resume.pdf                       # Auto-generated PDF
@@ -92,12 +93,29 @@ tom.irish/
 ### Method 2: Edit Locally
 
 ```bash
-cd ~/GitHub/tom.irish
+# 1. Switch to preview branch
+cd ~/github/tom.irish
 git checkout preview
-# Edit resume.md in your editor
+
+# 2. Pull latest changes (important!)
+git pull origin preview
+
+# 3. Edit resume.md in your editor
+code resume.md
+# or
+open -a "TextEdit" resume.md
+
+# 4. Commit and push
 git add resume.md
-git commit -m "Update resume"
-git push
+git commit -m "Update resume: [describe changes]"
+git push origin preview
+
+# 5. If you get "rejected" error, pull and try again
+git pull origin preview --no-rebase
+git push origin preview
+
+# 6. Wait for build (~2 min) and check preview site
+# https://tomirish.github.io/tom.irish/
 ```
 
 ### Resume Format
@@ -143,17 +161,32 @@ Your summary here...
 
 ## 🚀 Deploying to Production
 
-### Option 1: Command Line (No PDF conflicts)
+### The Simple Way (Command Line - No Conflicts!)
+
+After you've reviewed and approved the preview site:
 
 ```bash
+# 1. Switch to main branch
 git checkout main
+
+# 2. Pull latest changes
+git pull origin main
+
+# 3. Merge preview into main (NO conflicts!)
 git merge preview
-git push
+
+# 4. Push to production
+git push origin main
+
+# 5. Wait ~2 minutes for Cloudflare deployment
+# Your changes will be live at https://tom.irish
 ```
 
-### Option 2: Pull Request (May have PDF conflicts)
+**Why no conflicts?** The repository uses `.gitattributes` to automatically resolve PDF merge conflicts. When merging `preview` to `main`, Git automatically uses the preview version of PDFs.
 
-Pull requests work but require command line to resolve binary PDF conflicts. Command line merge is simpler for this single-maintainer workflow.
+### Why Pull Requests Are Harder
+
+Pull requests work but may show PDF conflicts in the GitHub UI. The command line merge is simpler because `.gitattributes` handles conflicts automatically. For a single-maintainer workflow, command line is recommended.
 
 ---
 
@@ -190,19 +223,25 @@ Deploys automatically
 
 ### Preview Branch Workflow
 
-1. ✅ Validates `resume.md` format
-2. 🔄 Converts markdown → HTML (if resume.md changed)
-3. 📄 Generates PDF (always)
-4. 📂 Syncs all files to `public/` directory
-5. 🚀 Auto-commits changes
-6. 📡 Deploys to GitHub Pages
+When you push to `preview`:
+
+1. ✅ **Validates** `resume.md` format
+2. 🔄 **Converts** markdown → HTML (ALWAYS runs - no detection issues)
+3. 📄 **Generates** PDF from HTML
+4. 📂 **Syncs** all files to `public/` directory
+5. 🚀 **Auto-commits** generated files back to branch
+6. 📡 **Deploys** to GitHub Pages: [tomirish.github.io/tom.irish](https://tomirish.github.io/tom.irish/)
 
 ### Main Branch Workflow
 
-1. 📄 Regenerates PDF
-2. 📂 Syncs files to `public/` directory
-3. 🚀 Auto-commits if changed
-4. 📡 Triggers Cloudflare deployment
+When you push to `main`:
+
+1. ✅ **Verifies** required files exist (safety check)
+2. 📂 **Syncs** files to `public/` directory
+3. 🚀 **Commits** only `public/` changes (does NOT regenerate PDFs)
+4. 📡 **Triggers** Cloudflare Pages deployment to [tom.irish](https://tom.irish)
+
+**Important:** Main branch does NOT regenerate HTML/PDF. It only deploys what was built in preview. This prevents merge conflicts!
 
 ### Key Scripts Explained
 
@@ -264,7 +303,8 @@ page.pdf(
 ### Prerequisites
 
 ```bash
-pip install beautifulsoup4 playwright
+# Use python3 on Mac (not python)
+pip3 install beautifulsoup4 playwright
 playwright install --with-deps chromium
 ```
 
@@ -272,16 +312,16 @@ playwright install --with-deps chromium
 
 ```bash
 # Validate resume format
-python scripts/validate_resume.py
+python3 scripts/validate_resume.py
 
 # Convert markdown to HTML
-python scripts/convert_resume.py
+python3 scripts/convert_resume.py
 
 # Generate PDF
-python scripts/generate_pdf_browser.py
+python3 scripts/generate_pdf_browser.py
 
 # View the site locally
-python -m http.server 8000
+python3 -m http.server 8000
 # Open http://localhost:8000
 ```
 
@@ -303,6 +343,7 @@ python -m http.server 8000
 | `index.html` | Website HTML | ❌ Auto-generated |
 | `resume.pdf` | PDF resume | ❌ Auto-generated |
 | `public/*` | Production-ready files | ❌ Auto-generated |
+| `.gitattributes` | Auto-resolves PDF conflicts | ℹ️ Already configured |
 | `scripts/validate_resume.py` | Format validator | 🔧 Only if changing automation |
 | `scripts/convert_resume.py` | Markdown → HTML script | 🔧 Only if changing automation |
 | `scripts/generate_pdf_browser.py` | HTML → PDF script | 🔧 Only if changing PDF settings |
@@ -325,6 +366,14 @@ python -m http.server 8000
 - **Deployment:** Cloudflare Pages (from `public/` directory)
 - **Only receives changes via merge from preview**
 
+### Why This Works
+
+The two-branch setup with `.gitattributes` ensures:
+- ✅ Preview builds everything fresh every time
+- ✅ Main only deploys (doesn't rebuild)
+- ✅ No PDF merge conflicts when merging preview → main
+- ✅ Safe testing before production
+
 ---
 
 ## 🚨 Troubleshooting
@@ -346,7 +395,7 @@ Common issues:
 
 Run validation locally to debug:
 ```bash
-python scripts/validate_resume.py
+python3 scripts/validate_resume.py
 ```
 
 ### PDF looks different than website
@@ -376,6 +425,57 @@ Make sure you:
 2. Have the workflow files in `.github/workflows/`
 3. Committed actual changes (not just whitespace)
 
+### "Push rejected" error when pushing to preview
+
+This happens when the auto-build commits files while you're working:
+
+```bash
+# Pull the auto-build commits first
+git pull origin preview --no-rebase
+
+# Then push your changes
+git push origin preview
+```
+
+This is normal behavior - the automation commits generated files back to the branch.
+
+### Need to regenerate files locally
+
+If automation isn't working and you need to fix things manually:
+
+```bash
+# Make sure you're on preview
+git checkout preview
+
+# Regenerate HTML from markdown
+python3 scripts/convert_resume.py
+
+# Regenerate PDF from HTML  
+python3 scripts/generate_pdf_browser.py
+
+# Commit the changes
+git add index.html resume.pdf public/
+git commit -m "Manual regeneration of HTML and PDF"
+git push origin preview
+```
+
+### Merge conflicts when merging to main (shouldn't happen!)
+
+If you somehow get PDF conflicts despite `.gitattributes`:
+
+```bash
+# Accept preview's version of PDFs
+git checkout --theirs resume.pdf
+git checkout --theirs public/resume.pdf
+
+# Stage and complete the merge
+git add resume.pdf public/resume.pdf
+git commit -m "Merge preview to main"
+git push origin main
+```
+
+**Note:** With `.gitattributes` properly configured, this shouldn't be necessary.
+
 ---
 
 ## 🔗 Links
@@ -390,3 +490,7 @@ Make sure you:
 ## 📄 License
 
 Personal website - all rights reserved.
+
+---
+
+**Last Updated:** February 2026
