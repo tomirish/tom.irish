@@ -86,7 +86,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "🤖 Auto-build: Update HTML, PDF, and public/ [skip ci]"
+            git commit -m "🤖 Auto-build: Update HTML, PDF, and public/"
             git pull --no-rebase -X theirs
             git push
           fi
