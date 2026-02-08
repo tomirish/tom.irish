@@ -62,3 +62,4 @@ As a data-driven decision-maker, I am passionate about leveraging technology to 
 - Path Forward - Leadership Platform Course
 - Scaled Agile - Leading SAFe Agilist Certified
 
+
