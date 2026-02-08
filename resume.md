@@ -46,7 +46,6 @@ As a data-driven decision-maker, I am passionate about leveraging technology to 
 - Creative Problem-Solving
 - Customer Service
 - Coaching and Mentoring
-- Having Fun
 
 ---
 
