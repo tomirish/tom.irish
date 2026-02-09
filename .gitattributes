@@ -1,3 +1,0 @@
-# Always use incoming version (theirs) for PDF files when merging to main
-*.pdf merge=ours
-public/*.pdf merge=ours
