@@ -1,32 +1,14 @@
-name: Build Preview
+name: Build and Deploy
 
 on:
   push:
     branches:
-      - preview
+      - main
   workflow_dispatch:
 
 jobs:
-  validate:
-    name: Validate Resume
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      
-      - name: Validate resume.md format
-        run: |
-          python scripts/validate_resume.py
-
   build:
     name: Build HTML and PDF
-    needs: validate
     runs-on: ubuntu-latest
     
     permissions:
@@ -48,16 +30,9 @@ jobs:
           pip install beautifulsoup4 playwright
           playwright install --with-deps chromium
       
-      - name: Check if resume.md changed
-        id: check_resume
+      - name: Validate resume format
         run: |
-          if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q "resume.md"; then
-            echo "resume_changed=true" >> $GITHUB_OUTPUT
-          elif [ ! -f index.html ]; then
-            echo "resume_changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "resume_changed=false" >> $GITHUB_OUTPUT
-          fi
+          python scripts/validate_resume.py
       
       - name: Convert markdown to HTML
         run: |
@@ -92,18 +67,14 @@ jobs:
       
       - name: Create deployment summary
         run: |
-          echo "## 🎉 Preview Built Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "## 🚀 Build Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "View your preview at: **https://tomirish.github.io/tom.irish/**" >> $GITHUB_STEP_SUMMARY
+          echo "Your site is now live at: **https://tom.irish**" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Changes:" >> $GITHUB_STEP_SUMMARY
-          echo "- Resume MD changed: ${{ steps.check_resume.outputs.resume_changed }}" >> $GITHUB_STEP_SUMMARY
-          echo "- PDF regenerated: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Resume validated: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- PDF generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Ready to deploy to production?" >> $GITHUB_STEP_SUMMARY
-          echo '```bash' >> $GITHUB_STEP_SUMMARY
-          echo "git checkout main" >> $GITHUB_STEP_SUMMARY
-          echo "git merge preview" >> $GITHUB_STEP_SUMMARY
-          echo "git push" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "Cloudflare will deploy automatically from public/ directory." >> $GITHUB_STEP_SUMMARY
