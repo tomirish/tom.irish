@@ -1,25 +1,18 @@
 # Tom Irish - Personal Website
 
-**Status & Links:**  
-[![Preview Site](https://img.shields.io/badge/Preview-tomirish.github.io/tom.irish-blue)](https://tomirish.github.io/tom.irish/)
-[![Production Site](https://img.shields.io/badge/Production-tom.irish-green)](https://tom.irish)
+**Live Site:**  
+[![Production Site](https://img.shields.io/badge/Live-tom.irish-green)](https://tom.irish)
 [![Build Status](https://img.shields.io/badge/Build-Automated-success)](https://github.com/tomirish/tom.irish/actions)
-
-**Platform & Infrastructure:**  
-[![Host: Cloudflare](https://img.shields.io/badge/Host-Cloudflare-F38020)](https://cloudflare.com)
-[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222222?logo=github)](https://pages.github.com)
 
 **Tech Stack:**  
 [![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown)](https://www.markdownguide.org/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
-[![Carrd.co](https://img.shields.io/badge/Carrd.co-3E4374)](https://carrd.co)
+[![Cloudflare](https://img.shields.io/badge/Host-Cloudflare-F38020)](https://cloudflare.com)
 
-Personal website and resume for Tom Irish using automated markdown-to-HTML conversion and PDF generation with a two-branch workflow for preview and production deployment.
+Personal website and resume for Tom Irish with automated markdown-to-HTML conversion and PDF generation. Edit one markdown file, push to GitHub, and your website and PDF update automatically.
 
 ---
 
@@ -27,13 +20,12 @@ Personal website and resume for Tom Irish using automated markdown-to-HTML conve
 
 ### Update Your Resume (Easiest Way)
 
-1. Go to [resume.md on preview branch](https://github.com/tomirish/tom.irish/blob/preview/resume.md)
+1. Go to [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md)
 2. Click the pencil icon (✏️) to edit directly on GitHub
 3. Make your changes
-4. Commit directly to the `preview` branch
+4. Commit directly to the `main` branch
 5. Wait ~2 minutes for GitHub Actions to build
-6. Review at [tomirish.github.io/tom.irish](https://tomirish.github.io/tom.irish/)
-7. When happy, merge to production (see below)
+6. Your site updates automatically at [tom.irish](https://tom.irish)
 
 **Your website and PDF stay in sync automatically!**
 
@@ -41,12 +33,11 @@ Personal website and resume for Tom Irish using automated markdown-to-HTML conve
 
 ## 📋 About
 
-This repository uses a **two-branch workflow**:
-
-- **Preview Branch:** Development and testing → [tomirish.github.io/tom.irish](https://tomirish.github.io/tom.irish/)
-- **Main Branch:** Production → [tom.irish](https://tom.irish) via Cloudflare Pages
-
-All content is managed through a single `resume.md` file.
+This is a simple, automated personal website that:
+- Uses a single `resume.md` file as the source of truth
+- Automatically generates HTML and PDF versions
+- Deploys to Cloudflare Pages via the `public/` directory
+- Runs on every push to `main` branch
 
 ---
 
@@ -56,8 +47,7 @@ All content is managed through a single `resume.md` file.
 tom.irish/
 ├── .github/
 │   └── workflows/
-│       ├── build-preview.yml        # Preview automation
-│       └── build-main.yml           # Production automation
+│       └── build.yml                # Automation workflow
 ├── scripts/                         # Automation scripts
 │   ├── validate_resume.py           # Format validation
 │   ├── convert_resume.py            # Markdown → HTML
@@ -83,22 +73,21 @@ tom.irish/
 
 ### Method 1: Edit on GitHub (Recommended)
 
-1. Go to [resume.md on preview branch](https://github.com/tomirish/tom.irish/blob/preview/resume.md)
+1. Go to [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md)
 2. Click the pencil icon (✏️)
 3. Make changes
-4. Commit to `preview` branch
+4. Commit to `main` branch
 5. Wait for GitHub Actions (~2 min)
-6. Check [preview site](https://tomirish.github.io/tom.irish/)
+6. Check [tom.irish](https://tom.irish)
 
 ### Method 2: Edit Locally
 
 ```bash
-# 1. Switch to preview branch
+# 1. Navigate to repository
 cd ~/github/tom.irish
-git checkout preview
 
-# 2. Pull latest changes (important!)
-git pull origin preview
+# 2. Pull latest changes
+git pull origin main
 
 # 3. Edit resume.md in your editor
 code resume.md
@@ -108,17 +97,19 @@ open -a "TextEdit" resume.md
 # 4. Commit and push
 git add resume.md
 git commit -m "Update resume: [describe changes]"
-git push origin preview
+git push origin main
 
 # 5. If you get "rejected" error, pull and try again
-git pull origin preview --no-rebase
-git push origin preview
+git pull origin main --no-rebase
+git push origin main
 
-# 6. Wait for build (~2 min) and check preview site
-# https://tomirish.github.io/tom.irish/
+# 6. Wait for build (~2 min) and check live site
+# https://tom.irish
 ```
 
 ### Resume Format
+
+Your `resume.md` should follow this structure:
 
 ```markdown
 # Tom Irish
@@ -159,87 +150,14 @@ Your summary here...
 
 ---
 
-## 🚀 Deploying to Production
-
-### Method 1: Command Line (Recommended - No Conflicts!)
-
-After you've reviewed and approved the preview site:
-
-```bash
-# 1. Switch to main branch
-git checkout main
-
-# 2. Pull latest changes
-git pull origin main
-
-# 3. Merge preview into main (NO conflicts!)
-git merge preview
-
-# 4. Push to production
-git push origin main
-
-# 5. Wait ~2 minutes for Cloudflare deployment
-# Your changes will be live at https://tom.irish
-```
-
-**Why no conflicts?** The repository uses `.gitattributes` to automatically resolve PDF merge conflicts. When merging `preview` to `main`, Git automatically uses the preview version of PDFs.
-
-### Method 2: GitHub Web UI (Pull Request)
-
-If you prefer using the GitHub website:
-
-1. **Create Pull Request:**
-   - Go to [github.com/tomirish/tom.irish](https://github.com/tomirish/tom.irish)
-   - Click "Pull requests" tab
-   - Click green "New pull request" button
-   - Set **base:** `main` ← **compare:** `preview`
-   - Click "Create pull request"
-   - Add a title like "Deploy to production"
-   - Click "Create pull request"
-
-2. **Review Changes:**
-   - Scroll through the "Files changed" tab
-   - Verify your resume changes look correct
-   - **Note:** You may see warnings about PDF conflicts in the UI - this is normal
-
-3. **Merge the Pull Request:**
-   - Click the green "Merge pull request" button
-   - Choose "Create a merge commit" (default)
-   - Click "Confirm merge"
-
-4. **If You See Merge Conflicts:**
-   - GitHub may show "This branch has conflicts that must be resolved"
-   - **Don't panic!** The conflicts are in the PDF files
-   - You'll need to use the command line to resolve:
-   
-   ```bash
-   git checkout main
-   git merge preview
-   # Accept preview's PDFs (they have your latest changes)
-   git checkout --theirs resume.pdf
-   git checkout --theirs public/resume.pdf
-   git add resume.pdf public/resume.pdf
-   git commit -m "Merge preview to main - deploy to production"
-   git push origin main
-   ```
-
-5. **Wait for Deployment:**
-   - Watch [GitHub Actions](https://github.com/tomirish/tom.irish/actions) for "Deploy to Production"
-   - Wait ~2 minutes
-   - Check [tom.irish](https://tom.irish)
-
-**Why Command Line Is Easier:** Pull requests may show PDF conflicts in the GitHub UI even though `.gitattributes` would resolve them automatically via command line. For a single-maintainer workflow, command line is simpler and faster.
-
----
-
 ## 🤖 How The Automation Works
 
 ### The Build Pipeline
 
 ```
-You edit resume.md
+You edit resume.md and push to main
        ↓
-GitHub Actions triggers
+GitHub Actions triggers automatically
        ↓
 scripts/validate_resume.py
   - Checks markdown format
@@ -258,32 +176,12 @@ scripts/generate_pdf_browser.py
        ↓
 Files synced to public/ directory
        ↓
-Changes committed & pushed
+Changes committed & pushed back to repo
        ↓
-Deploys automatically
+Cloudflare deploys from public/
+       ↓
+Your site is live at https://tom.irish
 ```
-
-### Preview Branch Workflow
-
-When you push to `preview`:
-
-1. ✅ **Validates** `resume.md` format
-2. 🔄 **Converts** markdown → HTML (ALWAYS runs - no detection issues)
-3. 📄 **Generates** PDF from HTML
-4. 📂 **Syncs** all files to `public/` directory
-5. 🚀 **Auto-commits** generated files back to branch
-6. 📡 **Deploys** to GitHub Pages: [tomirish.github.io/tom.irish](https://tomirish.github.io/tom.irish/)
-
-### Main Branch Workflow
-
-When you push to `main`:
-
-1. ✅ **Verifies** required files exist (safety check)
-2. 📂 **Syncs** files to `public/` directory
-3. 🚀 **Commits** only `public/` changes (does NOT regenerate PDFs)
-4. 📡 **Triggers** Cloudflare Pages deployment to [tom.irish](https://tom.irish)
-
-**Important:** Main branch does NOT regenerate HTML/PDF. It only deploys what was built in preview. This prevents merge conflicts!
 
 ### Key Scripts Explained
 
@@ -291,7 +189,7 @@ When you push to `main`:
 - Validates markdown structure
 - Checks for required sections (Professional Summary, Work Experience, Skills, Education)
 - Reports warnings for potential issues
-- Runs before every build on preview branch
+- Runs before every build
 
 **`scripts/convert_resume.py`**
 - Parses `resume.md` content using BeautifulSoup
@@ -318,7 +216,7 @@ Edit files in `assets/`:
 - `assets/images/` - Images and photos
 - `assets/icons.svg` - Icon definitions
 
-Changes to CSS/images take effect immediately. The automation only modifies text content in `index.html`, not styling.
+Changes to CSS/images take effect on next push. The automation only modifies text content in `index.html`, not styling.
 
 ### Adjust PDF Margins/Sizing
 
@@ -345,7 +243,7 @@ page.pdf(
 ### Prerequisites
 
 ```bash
-# Use python3 on Mac (not python)
+# Install Python dependencies
 pip3 install beautifulsoup4 playwright
 playwright install --with-deps chromium
 ```
@@ -373,7 +271,7 @@ python3 -m http.server 8000
 
 - **Production deployment:** Only serves files from `public/` directory
 - **Source files protected:** `resume.md`, `scripts/`, and `.github/` are not publicly accessible on tom.irish
-- **Preview site:** All files accessible (for development purposes)
+- Cloudflare Pages automatically handles HTTPS and security
 
 ---
 
@@ -389,32 +287,8 @@ python3 -m http.server 8000
 | `scripts/validate_resume.py` | Format validator | 🔧 Only if changing automation |
 | `scripts/convert_resume.py` | Markdown → HTML script | 🔧 Only if changing automation |
 | `scripts/generate_pdf_browser.py` | HTML → PDF script | 🔧 Only if changing PDF settings |
-| `.github/workflows/*.yml` | GitHub Actions config | 🔧 Only if changing automation |
+| `.github/workflows/build.yml` | GitHub Actions config | 🔧 Only if changing automation |
 | `assets/` | CSS, images, icons | ✅ Yes - to change styling |
-
----
-
-## 🔄 Branch Strategy
-
-### Preview Branch
-- **Purpose:** Development and testing
-- **URL:** [tomirish.github.io/tom.irish](https://tomirish.github.io/tom.irish/)
-- **Deployment:** GitHub Pages
-- **Edit here first!** All changes start on preview
-
-### Main Branch  
-- **Purpose:** Production
-- **URL:** [tom.irish](https://tom.irish)
-- **Deployment:** Cloudflare Pages (from `public/` directory)
-- **Only receives changes via merge from preview**
-
-### Why This Works
-
-The two-branch setup with `.gitattributes` ensures:
-- ✅ Preview builds everything fresh every time
-- ✅ Main only deploys (doesn't rebuild)
-- ✅ No PDF merge conflicts when merging preview → main
-- ✅ Safe testing before production
 
 ---
 
@@ -423,7 +297,7 @@ The two-branch setup with `.gitattributes` ensures:
 ### Resume didn't update after push
 
 1. Check [GitHub Actions](https://github.com/tomirish/tom.irish/actions) for build status
-2. Click on the latest "Build Preview" workflow run
+2. Click on the latest workflow run
 3. Review the logs for errors
 4. Wait 2-3 minutes for deployment
 5. Hard refresh browser (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows)
@@ -443,7 +317,7 @@ python3 scripts/validate_resume.py
 ### PDF looks different than website
 
 The PDF is generated using Chromium's print function. If it looks wrong:
-1. Verify the website looks correct at the preview URL first
+1. Verify the website looks correct first
 2. Check that `generate_pdf_browser.py` completed successfully in Actions logs
 3. Try adjusting margins or scale in `scripts/generate_pdf_browser.py`
 
@@ -457,26 +331,18 @@ The PDF is generated using Chromium's print function. If it looks wrong:
 
 1. Check [Cloudflare dashboard](https://dash.cloudflare.com/) for deployment status
 2. Verify build output directory is set to `/public` in Cloudflare settings
-3. Ensure commit doesn't have `[skip ci]` in message
-4. Check that you're on main branch
+3. Ensure you're on main branch
 
-### Workflow not triggering
-
-Make sure you:
-1. Pushed to the correct branch (`preview` for testing, `main` for production)
-2. Have the workflow files in `.github/workflows/`
-3. Committed actual changes (not just whitespace)
-
-### "Push rejected" error when pushing to preview
+### "Push rejected" error
 
 This happens when the auto-build commits files while you're working:
 
 ```bash
 # Pull the auto-build commits first
-git pull origin preview --no-rebase
+git pull origin main --no-rebase
 
 # Then push your changes
-git push origin preview
+git push origin main
 ```
 
 This is normal behavior - the automation commits generated files back to the branch.
@@ -486,9 +352,6 @@ This is normal behavior - the automation commits generated files back to the bra
 If automation isn't working and you need to fix things manually:
 
 ```bash
-# Make sure you're on preview
-git checkout preview
-
 # Regenerate HTML from markdown
 python3 scripts/convert_resume.py
 
@@ -498,32 +361,14 @@ python3 scripts/generate_pdf_browser.py
 # Commit the changes
 git add index.html resume.pdf public/
 git commit -m "Manual regeneration of HTML and PDF"
-git push origin preview
-```
-
-### Merge conflicts when merging to main (shouldn't happen!)
-
-If you somehow get PDF conflicts despite `.gitattributes`:
-
-```bash
-# Accept preview's version of PDFs
-git checkout --theirs resume.pdf
-git checkout --theirs public/resume.pdf
-
-# Stage and complete the merge
-git add resume.pdf public/resume.pdf
-git commit -m "Merge preview to main"
 git push origin main
 ```
-
-**Note:** With `.gitattributes` properly configured, this shouldn't be necessary.
 
 ---
 
 ## 🔗 Links
 
-- **Production:** [tom.irish](https://tom.irish)
-- **Preview:** [tomirish.github.io/tom.irish](https://tomirish.github.io/tom.irish/)
+- **Live Site:** [tom.irish](https://tom.irish)
 - **Repository:** [github.com/tomirish/tom.irish](https://github.com/tomirish/tom.irish)
 - **Actions:** [github.com/tomirish/tom.irish/actions](https://github.com/tomirish/tom.irish/actions)
 
