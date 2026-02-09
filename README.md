@@ -1,9 +1,8 @@
 # Tom Irish - Personal Website
 
-**Live Site:**  
-[![Production Site](https://img.shields.io/badge/Live-tom.irish-green)](https://tom.irish)
+**Status:**  
+[![Production Site](https://img.shields.io/badge/Site-tom.irish-green)](https://tom.irish)
 [![Cloudflare](https://img.shields.io/badge/Host-Cloudflare-F38020)](https://cloudflare.com)
-[![Build Status](https://img.shields.io/badge/Build-Automated-success)](https://github.com/tomirish/tom.irish/actions)
 [![Build and Deploy](https://github.com/tomirish/tom.irish/actions/workflows/build.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/build.yml)
 
 **Tech Stack:**  
