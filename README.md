@@ -57,13 +57,14 @@ tom.irish/
 │   └── generate_pdf_browser.py      # HTML → PDF
 ├── assets/                          # Website styling & images
 │   ├── main.css
-│   ├── images/
+│   ├── main.js
+│   ├── noscript.css
 │   └── icons.svg
+│   ├── images/
 ├── public/                          # Production-ready files
 │   ├── index.html                   # Deployed HTML
 │   ├── resume.pdf                   # Deployed PDF
 │   └── assets/                      # Deployed assets
-├── .gitattributes                   # Auto-resolves PDF merge conflicts
 ├── index.html                       # Generated from resume.md
 ├── resume.md                        # ✏️ EDIT THIS - Source of truth
 ├── resume.pdf                       # Auto-generated PDF
