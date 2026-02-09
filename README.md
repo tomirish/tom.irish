@@ -15,7 +15,7 @@
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Carrd.co](https://img.shields.io/badge/Carrd.co-3E4374)](https://carrd.co)
 
-Personal website and resume for Tom Irish with automated markdown-to-HTML conversion and PDF generation. Edit one markdown file, push to GitHub, and your website and PDF update automatically.
+Personal website and resume for Tom Irish using a simple one-page design that simulates multiple pages using section breaks. Built with automated markdown-to-HTML conversion and PDF generation. Edit one markdown file, push to GitHub, and the website and PDF update automatically.
 
 ---
 
@@ -380,7 +380,3 @@ git push origin main
 ## 📄 License
 
 Personal website - all rights reserved.
-
----
-
-**Last Updated:** February 2026
