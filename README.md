@@ -287,7 +287,6 @@ python3 -m http.server 8000
 | `index.html` | Website HTML | ❌ Auto-generated |
 | `resume.pdf` | PDF resume | ❌ Auto-generated |
 | `public/*` | Production-ready files | ❌ Auto-generated |
-| `.gitattributes` | Auto-resolves PDF conflicts | ℹ️ Already configured |
 | `scripts/validate_resume.py` | Format validator | 🔧 Only if changing automation |
 | `scripts/convert_resume.py` | Markdown → HTML script | 🔧 Only if changing automation |
 | `scripts/generate_pdf_browser.py` | HTML → PDF script | 🔧 Only if changing PDF settings |
