@@ -1,9 +1,8 @@
 # Tom Irish - Personal Website
 
-**Live Site:**  
-[![Production Site](https://img.shields.io/badge/Live-tom.irish-green)](https://tom.irish)
+**Status:**  
+[![Production Site](https://img.shields.io/badge/Site-tom.irish-green)](https://tom.irish)
 [![Cloudflare](https://img.shields.io/badge/Host-Cloudflare-F38020)](https://cloudflare.com)
-[![Build Status](https://img.shields.io/badge/Build-Automated-success)](https://github.com/tomirish/tom.irish/actions)
 [![Build and Deploy](https://github.com/tomirish/tom.irish/actions/workflows/build.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/build.yml)
 
 **Tech Stack:**  
@@ -58,13 +57,14 @@ tom.irish/
 │   └── generate_pdf_browser.py      # HTML → PDF
 ├── assets/                          # Website styling & images
 │   ├── main.css
-│   ├── images/
+│   ├── main.js
+│   ├── noscript.css
 │   └── icons.svg
+│   ├── images/
 ├── public/                          # Production-ready files
 │   ├── index.html                   # Deployed HTML
 │   ├── resume.pdf                   # Deployed PDF
 │   └── assets/                      # Deployed assets
-├── .gitattributes                   # Auto-resolves PDF merge conflicts
 ├── index.html                       # Generated from resume.md
 ├── resume.md                        # ✏️ EDIT THIS - Source of truth
 ├── resume.pdf                       # Auto-generated PDF
