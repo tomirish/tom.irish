@@ -68,18 +68,19 @@ def main():
             time.sleep(2)
             
             # Generate PDF using browser's print function
+            # Optimized for ONE PAGE with maximum readability
             page.pdf(
                 path='resume.pdf',
                 format='Letter',
                 print_background=True,
                 prefer_css_page_size=False,
                 margin={
-                    'top': '0.25in',
-                    'right': '0.3in',
-                    'bottom': '0.25in',
-                    'left': '0.3in'
+                    'top': '0.2in',
+                    'right': '0.2in',
+                    'bottom': '0.2in',
+                    'left': '0.2in'
                 },
-                scale=0.95
+                scale=0.92  # Slightly smaller to fit more content on one page
             )
             
             browser.close()
