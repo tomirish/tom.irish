@@ -80,7 +80,7 @@ def main():
                     'bottom': '0.2in',
                     'left': '0.2in'
                 },
-                scale=0.99  # Slightly smaller to fit more content on one page
+                scale=0.98  # Slightly smaller to fit more content on one page
             )
             
             browser.close()
