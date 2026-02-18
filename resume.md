@@ -5,7 +5,6 @@
 **Website:** [https://tom.irish](https://tom.irish)  
 **LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)  
 **Location:** Seattle, Washington
-**TEST** This is a test
 
 ---
 
