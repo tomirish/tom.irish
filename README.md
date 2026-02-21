@@ -75,41 +75,12 @@ tom.irish/
 
 ## ✏️ How to Update Your Resume
 
-### Method 1: Edit on GitHub (Recommended)
-
 1. Go to [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md)
 2. Click the pencil icon (✏️)
 3. Make changes
 4. Commit to `main` branch
 5. Wait for GitHub Actions (~2 min)
 6. Check [tom.irish](https://tom.irish)
-
-### Method 2: Edit Locally
-
-```bash
-# 1. Navigate to repository
-cd ~/github/tom.irish
-
-# 2. Pull latest changes
-git pull origin main
-
-# 3. Edit resume.md in your editor
-code resume.md
-# or
-open -a "TextEdit" resume.md
-
-# 4. Commit and push
-git add resume.md
-git commit -m "Update resume: [describe changes]"
-git push origin main
-
-# 5. If you get "rejected" error, pull and try again
-git pull origin main --no-rebase
-git push origin main
-
-# 6. Wait for build (~2 min) and check live site
-# https://tom.irish
-```
 
 ### Resume Format
 
@@ -224,20 +195,15 @@ Changes to CSS/images take effect on next push. The automation only modifies tex
 
 ### Adjust PDF Margins/Sizing
 
-Edit `scripts/generate_pdf_browser.py` and modify the `margin` and `scale` values:
+Edit the named constants at the top of `scripts/generate_pdf_browser.py`:
 
 ```python
-page.pdf(
-    path='resume.pdf',
-    format='Letter',
-    margin={
-        'top': '0.25in',
-        'right': '0.3in',
-        'bottom': '0.25in',
-        'left': '0.3in'
-    },
-    scale=0.95
-)
+PDF_FORMAT        = 'Letter'
+PDF_MARGIN_TOP    = '0.2in'
+PDF_MARGIN_RIGHT  = '0.2in'
+PDF_MARGIN_BOTTOM = '0.2in'
+PDF_MARGIN_LEFT   = '0.2in'
+PDF_SCALE         = 0.98   # < 1.0 shrinks content to fit more on one page
 ```
 
 ---
@@ -352,23 +318,6 @@ git push origin main
 ```
 
 This is normal behavior - the automation commits generated files back to the branch.
-
-### Need to regenerate files locally
-
-If automation isn't working and you need to fix things manually:
-
-```bash
-# Regenerate HTML from markdown
-python3 scripts/convert_resume.py
-
-# Regenerate PDF from HTML  
-python3 scripts/generate_pdf_browser.py
-
-# Commit the changes
-git add index.html resume.pdf public/
-git commit -m "Manual regeneration of HTML and PDF"
-git push origin main
-```
 
 ---
 
