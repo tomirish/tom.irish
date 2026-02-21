@@ -70,12 +70,13 @@ jobs:
           fi
       
       - name: Create deployment summary
+        if: success()
         run: |
           echo "## 🚀 Build Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Your site is now live at: **https://tom.irish**" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Changes:" >> $GITHUB_STEP_SUMMARY
+          echo "### Steps:" >> $GITHUB_STEP_SUMMARY
           echo "- Tests passed: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Resume validated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
@@ -83,3 +84,18 @@ jobs:
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Cloudflare will deploy automatically from public/ directory." >> $GITHUB_STEP_SUMMARY
+
+      - name: Create failure summary
+        if: failure()
+        run: |
+          echo "## ❌ Build Failed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The build did not complete. Check the step logs above to see which step failed." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Common causes:" >> $GITHUB_STEP_SUMMARY
+          echo "- **Tests failed** — a script change broke existing behaviour" >> $GITHUB_STEP_SUMMARY
+          echo "- **Validation failed** — resume.md is missing a required section" >> $GITHUB_STEP_SUMMARY
+          echo "- **Conversion failed** — index.html is missing an expected element ID" >> $GITHUB_STEP_SUMMARY
+          echo "- **PDF generation failed** — Playwright/Chromium error or port conflict" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**The live site has not been updated.**" >> $GITHUB_STEP_SUMMARY
