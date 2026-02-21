@@ -1,11 +1,11 @@
 # Tom Irish - Personal Website
 
-**Status:**  
+**Status:**
 [![Production Site](https://img.shields.io/badge/Site-tom.irish-green)](https://tom.irish)
 [![Cloudflare](https://img.shields.io/badge/Host-Cloudflare-F38020)](https://cloudflare.com)
 [![Build and Deploy](https://github.com/tomirish/tom.irish/actions/workflows/build.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/build.yml)
 
-**Tech Stack:**  
+**Tech Stack:**
 [![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -15,13 +15,11 @@
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Carrd.co](https://img.shields.io/badge/Carrd.co-3E4374)](https://carrd.co)
 
-Personal website and resume for Tom Irish using a simple one-page design that simulates multiple pages using section breaks. Built with automated markdown-to-HTML conversion and PDF generation. Edit one markdown file, push to GitHub, and the website and PDF update automatically.
+Personal website and resume for Tom Irish. Edit `resume.md`, push to GitHub, and the site and PDF update automatically.
 
 ---
 
-## 🚀 Quick Start
-
-### Update Your Resume (Easiest Way)
+## Updating Your Resume
 
 1. Go to [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md)
 2. Click the pencil icon (✏️) to edit directly on GitHub
@@ -30,61 +28,7 @@ Personal website and resume for Tom Irish using a simple one-page design that si
 5. Wait ~2 minutes for GitHub Actions to build
 6. Your site updates automatically at [tom.irish](https://tom.irish)
 
-**Your website and PDF stay in sync automatically!**
-
----
-
-## 📋 About
-
-This is a simple, automated personal website that:
-- Uses a single `resume.md` file as the source of truth
-- Automatically generates HTML and PDF versions
-- Deploys to Cloudflare Pages via the `public/` directory
-- Runs on every push to `main` branch
-
----
-
-## 📁 Repository Structure
-
-```
-tom.irish/
-├── .github/
-│   └── workflows/
-│       └── build.yml                # Automation workflow
-├── scripts/                         # Automation scripts
-│   ├── validate_resume.py           # Format validation
-│   ├── convert_resume.py            # Markdown → HTML
-│   └── generate_pdf_browser.py      # HTML → PDF
-├── assets/                          # Website styling & images
-│   ├── main.css
-│   ├── main.js
-│   ├── noscript.css
-│   └── icons.svg
-│   ├── images/
-├── public/                          # Production-ready files
-│   ├── index.html                   # Deployed HTML
-│   ├── resume.pdf                   # Deployed PDF
-│   └── assets/                      # Deployed assets
-├── index.html                       # Generated from resume.md
-├── resume.md                        # ✏️ EDIT THIS - Source of truth
-├── resume.pdf                       # Auto-generated PDF
-└── README.md                        # This file
-```
-
----
-
-## ✏️ How to Update Your Resume
-
-1. Go to [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md)
-2. Click the pencil icon (✏️)
-3. Make changes
-4. Commit to `main` branch
-5. Wait for GitHub Actions (~2 min)
-6. Check [tom.irish](https://tom.irish)
-
 ### Resume Format
-
-Your `resume.md` should follow this structure:
 
 ```markdown
 # Tom Irish
@@ -100,100 +44,56 @@ Your summary here...
 
 ### Company - Job Title (Start - End)
 
-- Bullet point 1
-- Bullet point 2
-- Bullet point 3
+- Bullet point
 
 ## Skills
 
 - Skill 1
-- Skill 2
-- Skill 3
 
 ## Education
 
 ### School Name
 
 - Degree information
-- Graduation year
 
 ## Certifications
 
-- Certification 1
-- Certification 2
+- Certification name
 ```
 
 ---
 
-## 🤖 How The Automation Works
-
-### The Build Pipeline
+## How It Works
 
 ```
-You edit resume.md and push to main
+resume.md edited and pushed to main
        ↓
-GitHub Actions triggers automatically
+GitHub Actions triggers
        ↓
-scripts/validate_resume.py
-  - Checks markdown format
-  - Validates required sections
-  - Reports warnings
+validate_resume.py    — checks format and required sections
        ↓
-scripts/convert_resume.py
-  - Parses resume.md
-  - Updates index.html (preserves styling)
-  - Handles unlimited jobs, skills, education
+convert_resume.py     — updates index.html from resume.md
        ↓
-scripts/generate_pdf_browser.py
-  - Starts local HTTP server
-  - Opens page in headless Chromium
-  - Generates PDF (just like manual browser print)
+generate_pdf_browser.py — generates resume.pdf via headless Chromium
        ↓
-Files synced to public/ directory
+Files synced to public/
        ↓
-Changes committed & pushed back to repo
-       ↓
-Cloudflare deploys from public/
-       ↓
-Your site is live at https://tom.irish
+Cloudflare deploys from public/ → https://tom.irish
 ```
-
-### Key Scripts Explained
-
-**`scripts/validate_resume.py`**
-- Validates markdown structure
-- Checks for required sections (Professional Summary, Work Experience, Skills, Education)
-- Reports warnings for potential issues
-- Runs before every build
-
-**`scripts/convert_resume.py`**
-- Parses `resume.md` content using BeautifulSoup
-- Updates specific sections in `index.html` by ID
-- Dynamically generates work experience entries
-- Dynamically generates education entries
-- Preserves all website styling and structure
-
-**`scripts/generate_pdf_browser.py`**
-- Uses Playwright with headless Chromium
-- Loads actual website locally via HTTP
-- Generates PDF using browser's native print function
-- Same result as manually printing from Chrome
-- Customizable margins and scaling
 
 ---
 
-## 🎨 Customization
+## Customization
 
-### Change Website Styling
+### Website Styling
 
 Edit files in `assets/`:
-- `assets/main.css` - Main stylesheet
-- `assets/images/` - Images and photos
-- `assets/icons.svg` - Icon definitions
+- `assets/main.css` — main stylesheet
+- `assets/images/` — images and photos
 
-Changes to CSS/images take effect on next push. The automation only modifies text content in `index.html`, not styling.
+Changes take effect on next push. The automation only modifies text content in `index.html`, not styling.
 
-### Adjust PDF Margins/Sizing
+### PDF Margins
 
 Edit the named constants at the top of `scripts/generate_pdf_browser.py`:
 
@@ -208,162 +108,77 @@ PDF_SCALE         = 0.98   # < 1.0 shrinks content to fit more on one page
 
 ---
 
-## 🛠️ Local Development
-
-### Prerequisites
+## Local Development
 
 ```bash
-# Install Python dependencies
+# Install dependencies
 pip3 install -r requirements.txt
 playwright install --with-deps chromium
-```
 
-### Test Locally Before Pushing
-
-```bash
 # Validate resume format
 python3 scripts/validate_resume.py
 
-# Check that conversion would succeed without writing index.html
+# Dry-run conversion (no files written)
 python3 scripts/convert_resume.py --dry-run
 
-# Convert markdown to HTML (writes index.html)
+# Full conversion
 python3 scripts/convert_resume.py
 
 # Generate PDF
 python3 scripts/generate_pdf_browser.py
 
-# View the site locally
+# Run tests
+python3 -m pytest tests/ -v
+
+# Preview site locally
 python3 -m http.server 8000
 # Open http://localhost:8000
 ```
 
 ---
 
-## 🔒 Security
-
-- **Production deployment:** Only serves files from `public/` directory
-- **Source files protected:** `resume.md`, `scripts/`, and `.github/` are not publicly accessible on tom.irish
-- Cloudflare Pages automatically handles HTTPS and security
-
----
-
-## 📝 File Descriptions
+## Files
 
 | File | Purpose | Edit? |
 |------|---------|-------|
-| `resume.md` | Resume content source | ✅ Yes - edit this! |
+| `resume.md` | Resume content source | ✅ Yes |
 | `index.html` | Website HTML | ❌ Auto-generated |
 | `resume.pdf` | PDF resume | ❌ Auto-generated |
-| `public/*` | Production-ready files | ❌ Auto-generated |
-| `scripts/validate_resume.py` | Format validator | 🔧 Only if changing automation |
-| `scripts/convert_resume.py` | Markdown → HTML script | 🔧 Only if changing automation |
-| `scripts/generate_pdf_browser.py` | HTML → PDF script | 🔧 Only if changing PDF settings |
+| `public/` | Production-ready files | ❌ Auto-generated |
+| `assets/` | CSS, images, icons | ✅ Yes — to change styling |
+| `scripts/` | Build automation | 🔧 Only if changing the pipeline |
 | `.github/workflows/build.yml` | GitHub Actions config | 🔧 Only if changing automation |
-| `assets/` | CSS, images, icons | ✅ Yes - to change styling |
 
 ---
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Resume didn't update after push
 
 1. Check [GitHub Actions](https://github.com/tomirish/tom.irish/actions) for build status
-2. Click on the latest workflow run
-3. Review the logs for errors
-4. Wait 2-3 minutes for deployment
-5. Hard refresh browser (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows)
+2. Review the logs for errors
+3. Wait 2-3 minutes for Cloudflare to deploy
+4. Hard refresh browser (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows)
 
 ### Build failed
 
-Common issues:
-- **Missing required sections:** Ensure resume.md has Professional Summary, Work Experience, Skills, and Education
-- **Incorrect markdown format:** Check that job entries follow the format: `### Company - Job Title (Start - End)`
-- **Dependency issues:** Actions logs will show if Python packages failed to install
+- **Missing required sections:** `resume.md` must have Professional Summary, Work Experience, Skills, and Education
+- **Incorrect format:** Job entries must follow `### Company - Job Title (Start - End)`
+- **Dependency issues:** Check Actions logs for pip install errors
 
-Run validation locally to debug:
-```bash
-python3 scripts/validate_resume.py
-```
-
-### PDF looks different than website
-
-The PDF is generated using Chromium's print function. If it looks wrong:
-1. Verify the website looks correct first
-2. Check that `generate_pdf_browser.py` completed successfully in Actions logs
-3. Try adjusting margins or scale in `scripts/generate_pdf_browser.py`
-
-### Changes to CSS/images not showing
-
-- Clear browser cache or hard refresh (Cmd+Shift+R / Ctrl+Shift+R)
-- Wait 2-3 minutes for deployment to complete
-- Check [GitHub Actions](https://github.com/tomirish/tom.irish/actions) to ensure workflow completed
-
-### Cloudflare not deploying
-
-1. Check [Cloudflare dashboard](https://dash.cloudflare.com/) for deployment status
-2. Verify build output directory is set to `/public` in Cloudflare settings
-3. Ensure you're on main branch
+Run locally to debug: `python3 scripts/validate_resume.py`
 
 ### "Push rejected" error
 
-This happens when the auto-build commits files while you're working:
+The auto-build commits generated files back to `main` — if it runs while you're working you'll need to pull first:
 
 ```bash
-# Pull the auto-build commits first
 git pull origin main --no-rebase
-
-# Then push your changes
 git push origin main
 ```
 
-This is normal behavior - the automation commits generated files back to the branch.
-
 ---
 
-## 🔗 Links
+## License
 
-- **Live Site:** [tom.irish](https://tom.irish)
-- **Repository:** [github.com/tomirish/tom.irish](https://github.com/tomirish/tom.irish)
-- **Actions:** [github.com/tomirish/tom.irish/actions](https://github.com/tomirish/tom.irish/actions)
-
----
-
-## 🧪 Running Tests
-
-Unit tests cover the resume parsing and validation logic.
-
-```bash
-# Install test dependencies (included in requirements.txt)
-pip3 install -r requirements.txt
-
-# Run all tests
-python3 -m pytest tests/ -v
-```
-
-Tests live in `tests/` and do not require a browser or network connection.
-
----
-
-## 🍴 Using as a Template
-
-Want to use this as your own resume site? Here's what to change:
-
-1. **Fork** this repository on GitHub
-2. **Update `resume.md`** with your own information (name, contact info, jobs, skills, education)
-3. **Replace profile images** in `assets/images/` with your own photos
-4. **Update `index.html`** — search for hardcoded references to "Tom Irish" and replace them with your name. Key spots:
-   - `<title>` tag
-   - Open Graph / social share meta tags (`og:title`, `og:description`)
-   - Any `aria-label` attributes that reference the name
-5. **Update `README.md`** — replace links pointing to `tomirish/tom.irish` and `tom.irish` with your own repo and domain
-6. **Set up Cloudflare Pages** (or your preferred host) to deploy from the `public/` directory
-7. **Push to main** — GitHub Actions will build and deploy automatically
-
-The only file you'll edit day-to-day after setup is `resume.md`.
-
----
-
-## 📄 License
-
-Personal website - all rights reserved.
+Personal website — all rights reserved.
