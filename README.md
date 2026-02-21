@@ -83,30 +83,6 @@ Cloudflare deploys from public/ → https://tom.irish
 
 ---
 
-## Customization
-
-### Website Styling
-
-Edit files in `assets/`:
-- `assets/main.css` — main stylesheet
-- `assets/images/` — images and photos
-
-Changes take effect on next push. The automation only modifies text content in `index.html`, not styling.
-
-### PDF Margins
-
-Edit the named constants at the top of `scripts/generate_pdf_browser.py`:
-
-```python
-PDF_FORMAT        = 'Letter'
-PDF_MARGIN_TOP    = '0.2in'
-PDF_MARGIN_RIGHT  = '0.2in'
-PDF_MARGIN_BOTTOM = '0.2in'
-PDF_MARGIN_LEFT   = '0.2in'
-PDF_SCALE         = 0.98   # < 1.0 shrinks content to fit more on one page
-```
-
----
 
 ## Local Development
 
