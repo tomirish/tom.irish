@@ -30,6 +30,10 @@ jobs:
           pip install -r requirements.txt
           playwright install --with-deps chromium
       
+      - name: Run tests
+        run: |
+          pytest tests/ -v
+
       - name: Validate resume format
         run: |
           python scripts/validate_resume.py
@@ -72,6 +76,7 @@ jobs:
           echo "Your site is now live at: **https://tom.irish**" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Changes:" >> $GITHUB_STEP_SUMMARY
+          echo "- Tests passed: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Resume validated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- PDF generated: ✅" >> $GITHUB_STEP_SUMMARY
