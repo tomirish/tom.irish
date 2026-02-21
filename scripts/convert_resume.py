@@ -231,10 +231,9 @@ def inject_build_info(soup):
     Actions on every run. Falls back to 'local' when run outside CI. The timestamp
     is always generated fresh from the current UTC time.
 
-    Produces two meta tags (queryable via browser console or web fetch) and an
-    HTML comment (visible in View Source), all appended to the end of <head>:
+    Produces two meta tags appended to the end of <head>, queryable via the
+    browser console or programmatically:
 
-        <!-- build: sha=abc1234 time=2026-02-21T15:30:00Z -->
         <meta name="build-sha" content="abc1234">
         <meta name="build-time" content="2026-02-21T15:30:00Z">
 
@@ -252,7 +251,7 @@ def inject_build_info(soup):
         print('  ⚠️  Warning: No <head> element found, skipping build info injection')
         return sha, build_time
 
-    # Remove any existing build tags from a previous run before inserting fresh ones.
+    # Remove any existing build tags and legacy build comments from a previous run.
     for tag in head.find_all('meta', attrs={'name': lambda v: v in ('build-sha', 'build-time')}):
         tag.decompose()
     for comment in head.find_all(string=lambda t: isinstance(t, Comment) and 'build:' in t):
@@ -262,8 +261,6 @@ def inject_build_info(soup):
     while head.contents and isinstance(head.contents[-1], NavigableString) and not head.contents[-1].strip():
         head.contents[-1].extract()
 
-    head.append(NavigableString('\n'))
-    head.append(Comment(f' build: sha={sha} time={build_time} '))
     head.append(NavigableString('\n'))
     head.append(soup.new_tag('meta', attrs={'name': 'build-sha', 'content': sha}))
     head.append(NavigableString('\n'))

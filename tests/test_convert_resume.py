@@ -11,7 +11,7 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 from convert_resume import parse_markdown_resume, parse_summary_paragraphs, inject_build_info, update_html_with_data
 
 # ---------------------------------------------------------------------------
@@ -279,13 +279,6 @@ def test_inject_build_info_meta_tags_in_head():
     assert time_tag is not None, 'build-time meta tag not in <head>'
 
 
-def test_inject_build_info_adds_html_comment():
-    from bs4 import Comment
-    soup = _make_soup()
-    inject_build_info(soup)
-    comments = soup.find_all(string=lambda t: isinstance(t, Comment))
-    assert any('build:' in c for c in comments), 'No build comment found in HTML'
-
 
 def test_inject_build_info_local_fallback(monkeypatch):
     """Without GITHUB_SHA set, sha should fall back to 'local'."""
@@ -327,8 +320,7 @@ def test_inject_build_info_no_head():
 
 
 def test_inject_build_info_does_not_duplicate(monkeypatch):
-    """Calling inject_build_info twice should not produce duplicate tags or comments."""
-    from bs4 import Comment as BSComment
+    """Calling inject_build_info twice should not produce duplicate meta tags."""
     monkeypatch.delenv('GITHUB_SHA', raising=False)
     soup = _make_soup()
     inject_build_info(soup)
@@ -336,20 +328,17 @@ def test_inject_build_info_does_not_duplicate(monkeypatch):
 
     sha_tags = soup.find_all('meta', attrs={'name': 'build-sha'})
     time_tags = soup.find_all('meta', attrs={'name': 'build-time'})
-    build_comments = [t for t in soup.find_all(string=lambda text: isinstance(text, BSComment)) if 'build:' in t]
 
     assert len(sha_tags) == 1, f"Expected 1 build-sha tag, found {len(sha_tags)}"
     assert len(time_tags) == 1, f"Expected 1 build-time tag, found {len(time_tags)}"
-    assert len(build_comments) == 1, f"Expected 1 build comment, found {len(build_comments)}"
 
 
 def test_inject_build_info_no_blank_line_accumulation(monkeypatch):
-    """Repeated calls must not accumulate blank lines before the build comment.
+    """Repeated calls must not accumulate blank lines before the build meta tags.
 
     Each single '\n' between elements is fine; the bug was multiple consecutive
     whitespace-only text nodes piling up (e.g. '\n\n\n\n') with each run.
     """
-    from bs4 import NavigableString as NS
     monkeypatch.delenv('GITHUB_SHA', raising=False)
     soup = _make_soup()
     inject_build_info(soup)
@@ -361,8 +350,8 @@ def test_inject_build_info_no_blank_line_accumulation(monkeypatch):
     consecutive_blanks = sum(
         1
         for a, b in zip(head.contents, head.contents[1:])
-        if isinstance(a, NS) and not a.strip()
-        and isinstance(b, NS) and not b.strip()
+        if isinstance(a, NavigableString) and not a.strip()
+        and isinstance(b, NavigableString) and not b.strip()
     )
     assert consecutive_blanks == 0, (
         f"Found {consecutive_blanks} consecutive blank text node pair(s) in <head> "
