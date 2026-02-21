@@ -252,6 +252,12 @@ def inject_build_info(soup):
         print('  ⚠️  Warning: No <head> element found, skipping build info injection')
         return sha, build_time
 
+    # Remove any existing build tags from a previous run before inserting fresh ones.
+    for tag in head.find_all('meta', attrs={'name': lambda v: v in ('build-sha', 'build-time')}):
+        tag.decompose()
+    for comment in head.find_all(string=lambda t: isinstance(t, Comment) and 'build:' in t):
+        comment.extract()
+
     head.append(Comment(f' build: sha={sha} time={build_time} '))
     head.append(soup.new_tag('meta', attrs={'name': 'build-sha', 'content': sha}))
     head.append(soup.new_tag('meta', attrs={'name': 'build-time', 'content': build_time}))

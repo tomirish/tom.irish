@@ -324,3 +324,20 @@ def test_inject_build_info_no_head():
     sha, build_time = inject_build_info(soup)  # Should not raise
     assert sha is not None
     assert build_time is not None
+
+
+def test_inject_build_info_does_not_duplicate(monkeypatch):
+    """Calling inject_build_info twice should not produce duplicate tags or comments."""
+    from bs4 import Comment as BSComment
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    soup = _make_soup()
+    inject_build_info(soup)
+    inject_build_info(soup)
+
+    sha_tags = soup.find_all('meta', attrs={'name': 'build-sha'})
+    time_tags = soup.find_all('meta', attrs={'name': 'build-time'})
+    build_comments = [t for t in soup.find_all(string=lambda text: isinstance(text, BSComment)) if 'build:' in t]
+
+    assert len(sha_tags) == 1, f"Expected 1 build-sha tag, found {len(sha_tags)}"
+    assert len(time_tags) == 1, f"Expected 1 build-time tag, found {len(time_tags)}"
+    assert len(build_comments) == 1, f"Expected 1 build comment, found {len(build_comments)}"
