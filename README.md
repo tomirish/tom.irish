@@ -16,7 +16,8 @@
 [![Carrd.co](https://img.shields.io/badge/Carrd.co-3E4374)](https://carrd.co)
 
 Personal website and resume for [Tom Irish](https://tom.irish). It's a single-page design that simulates multiple sections, with automated markdown-to-HTML conversion and PDF generation.
-Edit `resume.md`, push to GitHub, and everything updates automatically.
+
+Simply edit `resume.md`, push to GitHub, and everything updates automatically.
 
 ---
 
