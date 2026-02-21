@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """
-Convert resume.md to HTML by dynamically generating all content sections.
-Whatever is in the markdown is exactly what appears on the site.
+Convert resume.md to HTML by dynamically regenerating all content sections.
 
-IMPROVED VERSION:
-- Better error messages for missing HTML elements
-- Validates HTML structure before modifying
-- More detailed logging
-- Handles edge cases gracefully
+Reads resume.md (the single source of truth) and index.html (the styled
+template), then uses BeautifulSoup to replace every content section in the
+HTML with whatever is currently in the markdown. The result is written back
+to index.html. Styling and structure are preserved; only text content changes.
+
+The script locates HTML elements by their id attributes. If the template is
+modified and an expected id is missing, the script exits with a clear error
+rather than silently producing broken output.
+
+Usage:
+    python3 scripts/convert_resume.py            # normal run, updates index.html
+    python3 scripts/convert_resume.py --dry-run  # parse only, no files written
 """
 
+import argparse
 import re
 import sys
 from bs4 import BeautifulSoup
@@ -27,8 +34,11 @@ def read_file(filepath):
         print(f"❌ ERROR: Could not read {filepath}: {e}")
         sys.exit(1)
 
-def write_file(filepath, content):
-    """Write content to a file."""
+def write_file(filepath, content, dry_run=False):
+    """Write content to a file, or skip writing if dry_run is True."""
+    if dry_run:
+        print(f"🔍 DRY RUN: Would write {len(content)} bytes to {filepath} (skipped)")
+        return
     try:
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
@@ -107,7 +117,11 @@ def parse_markdown_resume(md_content):
             
             job_line = line.replace('### ', '').strip()
             # Parse: "Expeditors - Senior Manager (2025 - Present)"
-            match = re.match(r'(.+?)\s*\((.+?)\)', job_line)
+            # Use a greedy first group so we always match the LAST set of parentheses.
+            # This handles job titles that themselves contain parentheses, e.g.
+            # "Manager (Operations) - ACME (2020 - 2022)" correctly captures
+            # "Manager (Operations) - ACME" as title and "2020 - 2022" as dates.
+            match = re.match(r'^(.*\S)\s*\(([^)]+)\)\s*$', job_line)
             if match:
                 current_job = {
                     'title': match.group(1).strip(),
@@ -367,29 +381,49 @@ def update_html_with_data(html_content, data):
     return str(soup)
 
 def main():
-    """Main function to convert resume.md to update index.html"""
+    """Main function to convert resume.md to update index.html.
+
+    Supports --dry-run to validate and simulate conversion without writing any files.
+    """
+    parser = argparse.ArgumentParser(
+        description='Convert resume.md to HTML by updating index.html.'
+    )
+    parser.add_argument(
+        '--dry-run',
+        action='store_true',
+        help='Parse and validate resume.md without writing index.html. '
+             'Useful for checking your resume locally before committing.'
+    )
+    args = parser.parse_args()
+
+    if args.dry_run:
+        print("🔍 DRY RUN MODE - no files will be written\n")
+
     print("🚀 Starting resume conversion...\n")
-    
+
     try:
         # Read files
         print("📖 Reading files...")
         html_content = read_file('index.html')
         md_content = read_file('resume.md')
-        
+
         # Parse markdown
         print("\n📊 Parsing resume.md...")
         data = parse_markdown_resume(md_content)
-        
+
         # Update HTML
         updated_html = update_html_with_data(html_content, data)
-        
-        # Write output
+
+        # Write output (skipped in dry-run mode)
         print("\n💾 Writing output...")
-        write_file('index.html', updated_html)
-        
+        write_file('index.html', updated_html, dry_run=args.dry_run)
+
         # Summary
         print("\n" + "="*50)
-        print("✨ SUCCESS! Resume converted successfully")
+        if args.dry_run:
+            print("✨ DRY RUN COMPLETE - conversion would succeed")
+        else:
+            print("✨ SUCCESS! Resume converted successfully")
         print("="*50)
         print(f"  📍 Location: {data['location'] or '(not set)'}")
         print(f"  📝 Summary: {len(data['summary'])} paragraph(s)")
@@ -398,7 +432,7 @@ def main():
         print(f"  🎓 Education: {len(data['education'])} school(s)")
         print(f"  📜 Certifications: {len(data['certifications'])} item(s)")
         print("="*50 + "\n")
-        
+
     except Exception as e:
         print(f"\n❌ FATAL ERROR: {e}")
         import traceback

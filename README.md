@@ -248,7 +248,7 @@ page.pdf(
 
 ```bash
 # Install Python dependencies
-pip3 install beautifulsoup4 playwright
+pip3 install -r requirements.txt
 playwright install --with-deps chromium
 ```
 
@@ -258,7 +258,10 @@ playwright install --with-deps chromium
 # Validate resume format
 python3 scripts/validate_resume.py
 
-# Convert markdown to HTML
+# Check that conversion would succeed without writing index.html
+python3 scripts/convert_resume.py --dry-run
+
+# Convert markdown to HTML (writes index.html)
 python3 scripts/convert_resume.py
 
 # Generate PDF
@@ -374,6 +377,41 @@ git push origin main
 - **Live Site:** [tom.irish](https://tom.irish)
 - **Repository:** [github.com/tomirish/tom.irish](https://github.com/tomirish/tom.irish)
 - **Actions:** [github.com/tomirish/tom.irish/actions](https://github.com/tomirish/tom.irish/actions)
+
+---
+
+## 🧪 Running Tests
+
+Unit tests cover the resume parsing and validation logic.
+
+```bash
+# Install test dependencies (included in requirements.txt)
+pip3 install -r requirements.txt
+
+# Run all tests
+python3 -m pytest tests/ -v
+```
+
+Tests live in `tests/` and do not require a browser or network connection.
+
+---
+
+## 🍴 Using as a Template
+
+Want to use this as your own resume site? Here's what to change:
+
+1. **Fork** this repository on GitHub
+2. **Update `resume.md`** with your own information (name, contact info, jobs, skills, education)
+3. **Replace profile images** in `assets/images/` with your own photos
+4. **Update `index.html`** — search for hardcoded references to "Tom Irish" and replace them with your name. Key spots:
+   - `<title>` tag
+   - Open Graph / social share meta tags (`og:title`, `og:description`)
+   - Any `aria-label` attributes that reference the name
+5. **Update `README.md`** — replace links pointing to `tomirish/tom.irish` and `tom.irish` with your own repo and domain
+6. **Set up Cloudflare Pages** (or your preferred host) to deploy from the `public/` directory
+7. **Push to main** — GitHub Actions will build and deploy automatically
+
+The only file you'll edit day-to-day after setup is `resume.md`.
 
 ---
 

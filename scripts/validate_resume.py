@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
 """
-Validate resume.md format before building.
-Checks for required sections and common formatting issues.
+Validate resume.md format before the build pipeline runs.
+
+Checks for:
+- Required sections (Professional Summary, Work Experience, Skills, Education)
+- Job entries with properly formatted date ranges
+- Common markdown issues (tabs, unusual trailing whitespace, consecutive blank lines)
+
+Exits with code 0 on success (warnings are non-blocking) or code 1 on errors.
+Intended to run as the first step in the GitHub Actions build workflow so
+problems are caught before the more expensive HTML/PDF generation steps.
+
+Usage:
+    python3 scripts/validate_resume.py
 """
 
 import sys
@@ -44,34 +55,36 @@ def validate_resume(content):
     if "**Location:**" not in content:
         warnings.append("Location not found - resume may not display location properly")
     
-    # Check work experience format
+    # Check work experience format.
+    # Split on "\n## " rather than "##" so that ### job-title headers inside the
+    # section are not accidentally treated as section boundaries.
     work_section = content.split("## Work Experience")
     if len(work_section) > 1:
-        work_content = work_section[1].split("##")[0]  # Get content until next section
-        
+        work_content = re.split(r'\n## ', work_section[1])[0]
+
         # Count job entries (### headers)
         job_count = len(re.findall(r'^### .+', work_content, re.MULTILINE))
         if job_count == 0:
             warnings.append("No job entries found in Work Experience section")
-        
+
         # Check for date format in job titles
         job_lines = re.findall(r'^### (.+)$', work_content, re.MULTILINE)
         for job_line in job_lines:
             if not re.search(r'\(.*?\)', job_line):
                 warnings.append(f"Job entry missing dates: '{job_line[:50]}...'")
-    
+
     # Check skills section
     skills_section = content.split("## Skills")
     if len(skills_section) > 1:
-        skills_content = skills_section[1].split("##")[0]
+        skills_content = re.split(r'\n## ', skills_section[1])[0]
         skill_count = len(re.findall(r'^[-*] ', skills_content, re.MULTILINE))
         if skill_count == 0:
             warnings.append("No skills found in Skills section")
-    
+
     # Check education section
     education_section = content.split("## Education")
     if len(education_section) > 1:
-        education_content = education_section[1].split("##")[0]
+        education_content = re.split(r'\n## ', education_section[1])[0]
         school_count = len(re.findall(r'^### .+', education_content, re.MULTILINE))
         if school_count == 0:
             warnings.append("No schools found in Education section")
@@ -83,8 +96,9 @@ def validate_resume(content):
         if '\t' in line:
             warnings.append(f"Line {i}: Contains tab character (use spaces instead)")
         
-        # Check for trailing whitespace
-        if line.rstrip() != line and line.strip():
+        # Check for trailing whitespace.
+        # Allow exactly two trailing spaces, which is valid Markdown hard line break syntax.
+        if line.rstrip() != line and line.strip() and not line.endswith('  '):
             warnings.append(f"Line {i}: Has trailing whitespace")
         
         # Check for multiple consecutive blank lines

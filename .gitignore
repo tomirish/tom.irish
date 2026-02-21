@@ -1,1 +1,16 @@
 .DS_Store
+CLAUDE.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Playwright
+.playwright/
+
+# Local test artifacts
+*.log
