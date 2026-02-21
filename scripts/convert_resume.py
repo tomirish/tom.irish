@@ -21,7 +21,7 @@ import os
 import re
 import sys
 from datetime import datetime, timezone
-from bs4 import BeautifulSoup, Comment
+from bs4 import BeautifulSoup, Comment, NavigableString
 
 def read_file(filepath):
     """Read content from a file."""
@@ -258,9 +258,13 @@ def inject_build_info(soup):
     for comment in head.find_all(string=lambda t: isinstance(t, Comment) and 'build:' in t):
         comment.extract()
 
+    head.append(NavigableString('\n'))
     head.append(Comment(f' build: sha={sha} time={build_time} '))
+    head.append(NavigableString('\n'))
     head.append(soup.new_tag('meta', attrs={'name': 'build-sha', 'content': sha}))
+    head.append(NavigableString('\n'))
     head.append(soup.new_tag('meta', attrs={'name': 'build-time', 'content': build_time}))
+    head.append(NavigableString('\n'))
 
     print(f'  ✓ Injected build info (sha={sha} time={build_time})')
     return sha, build_time
