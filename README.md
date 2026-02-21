@@ -144,6 +144,19 @@ python3 -m http.server 8000
 
 Run locally to debug: `python3 scripts/validate_resume.py`
 
+### PDF is more than one page or content is cut off
+
+Edit the named constants at the top of `scripts/generate_pdf_browser.py`:
+
+```python
+PDF_FORMAT        = 'Letter'
+PDF_MARGIN_TOP    = '0.2in'
+PDF_MARGIN_RIGHT  = '0.2in'
+PDF_MARGIN_BOTTOM = '0.2in'
+PDF_MARGIN_LEFT   = '0.2in'
+PDF_SCALE         = 0.98   # < 1.0 shrinks content to fit more on one page
+```
+
 ### "Push rejected" error
 
 The auto-build commits generated files back to `main` — if it runs while you're working you'll need to pull first:
