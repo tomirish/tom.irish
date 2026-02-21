@@ -2281,13 +2281,4 @@ html {
 		print-color-adjust: exact;
 	}
 
-	@page {
-		margin-top: 0.0in;
-		padding-top: 0.25in;
-		margin-bottom: 0.0in;
-		padding-bottom: 0.25in;
-		margin-left: 0.25in;
-		margin-right: 0.25in;
-	}
-
 }

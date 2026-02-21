@@ -70,10 +70,6 @@ def test_main_css_print_color_adjust():
     assert 'print-color-adjust: exact' in css, 'print-color-adjust missing from main.css'
 
 
-def test_main_css_page_margins():
-    css = read('assets/main.css')
-    assert '@page' in css, '@page rule missing from main.css'
-
 
 def test_main_css_no_typo_in_units():
     """Catch invalid CSS unit values like '0.25.in' (double period)."""
