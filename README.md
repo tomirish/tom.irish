@@ -83,6 +83,19 @@ Cloudflare deploys from public/ → https://tom.irish
 
 ---
 
+## Files
+
+| File | Purpose | Edit? |
+|------|---------|-------|
+| `resume.md` | Resume content source | ✅ Yes |
+| `index.html` | Website HTML | ❌ Auto-generated |
+| `resume.pdf` | PDF resume | ❌ Auto-generated |
+| `public/` | Production-ready files | ❌ Auto-generated |
+| `assets/` | CSS, images, icons | ✅ Yes — to change styling |
+| `scripts/` | Build automation | 🔧 Only if changing the pipeline |
+| `.github/workflows/build.yml` | GitHub Actions config | 🔧 Only if changing automation |
+
+---
 
 ## Local Development
 
@@ -110,20 +123,6 @@ python3 -m pytest tests/ -v
 python3 -m http.server 8000
 # Open http://localhost:8000
 ```
-
----
-
-## Files
-
-| File | Purpose | Edit? |
-|------|---------|-------|
-| `resume.md` | Resume content source | ✅ Yes |
-| `index.html` | Website HTML | ❌ Auto-generated |
-| `resume.pdf` | PDF resume | ❌ Auto-generated |
-| `public/` | Production-ready files | ❌ Auto-generated |
-| `assets/` | CSS, images, icons | ✅ Yes — to change styling |
-| `scripts/` | Build automation | 🔧 Only if changing the pipeline |
-| `.github/workflows/build.yml` | GitHub Actions config | 🔧 Only if changing automation |
 
 ---
 
