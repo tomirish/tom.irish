@@ -17,9 +17,11 @@ Usage:
 """
 
 import argparse
+import os
 import re
 import sys
-from bs4 import BeautifulSoup
+from datetime import datetime, timezone
+from bs4 import BeautifulSoup, Comment
 
 def read_file(filepath):
     """Read content from a file."""
@@ -222,6 +224,42 @@ def validate_html_structure(soup):
     
     return (len(missing) == 0, missing)
 
+def inject_build_info(soup):
+    """Inject build SHA and UTC timestamp into <head> as meta tags and an HTML comment.
+
+    Reads GITHUB_SHA from the environment, which is automatically set by GitHub
+    Actions on every run. Falls back to 'local' when run outside CI. The timestamp
+    is always generated fresh from the current UTC time.
+
+    Produces two meta tags (queryable via browser console or web fetch) and an
+    HTML comment (visible in View Source), all appended to the end of <head>:
+
+        <!-- build: sha=abc1234 time=2026-02-21T15:30:00Z -->
+        <meta name="build-sha" content="abc1234">
+        <meta name="build-time" content="2026-02-21T15:30:00Z">
+
+    Returns:
+        Tuple of (sha, build_time) strings for logging.
+    """
+    sha = os.environ.get('GITHUB_SHA', 'local')
+    if sha != 'local':
+        sha = sha[:7]
+
+    build_time = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+    head = soup.find('head')
+    if not head:
+        print('  ⚠️  Warning: No <head> element found, skipping build info injection')
+        return sha, build_time
+
+    head.append(Comment(f' build: sha={sha} time={build_time} '))
+    head.append(soup.new_tag('meta', attrs={'name': 'build-sha', 'content': sha}))
+    head.append(soup.new_tag('meta', attrs={'name': 'build-time', 'content': build_time}))
+
+    print(f'  ✓ Injected build info (sha={sha} time={build_time})')
+    return sha, build_time
+
+
 def update_html_with_data(html_content, data):
     """
     Update the HTML content using BeautifulSoup.
@@ -377,7 +415,11 @@ def update_html_with_data(html_content, data):
             ul.append(li)
         cert_list.append(ul)
         print(f"  ✓ Updated certifications ({len(data['certifications'])} items)")
-    
+
+    # Inject build metadata into <head>
+    print("\n🔖 Injecting build info...")
+    inject_build_info(soup)
+
     return str(soup)
 
 def main():

@@ -11,7 +11,8 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from convert_resume import parse_markdown_resume, parse_summary_paragraphs
+from bs4 import BeautifulSoup
+from convert_resume import parse_markdown_resume, parse_summary_paragraphs, inject_build_info
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -240,3 +241,86 @@ def test_no_work_experience():
     )
     data = parse_markdown_resume(content)
     assert data['work_experience'] == []
+
+
+# ---------------------------------------------------------------------------
+# Build info injection
+# ---------------------------------------------------------------------------
+
+MINIMAL_HTML = """\
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test</title>
+</head>
+<body></body>
+</html>
+"""
+
+
+def _make_soup(html=MINIMAL_HTML):
+    return BeautifulSoup(html, 'html.parser')
+
+
+def test_inject_build_info_adds_meta_tags():
+    soup = _make_soup()
+    inject_build_info(soup)
+    assert soup.find('meta', attrs={'name': 'build-sha'}) is not None
+    assert soup.find('meta', attrs={'name': 'build-time'}) is not None
+
+
+def test_inject_build_info_meta_tags_in_head():
+    soup = _make_soup()
+    inject_build_info(soup)
+    head = soup.find('head')
+    sha_tag = head.find('meta', attrs={'name': 'build-sha'})
+    time_tag = head.find('meta', attrs={'name': 'build-time'})
+    assert sha_tag is not None, 'build-sha meta tag not in <head>'
+    assert time_tag is not None, 'build-time meta tag not in <head>'
+
+
+def test_inject_build_info_adds_html_comment():
+    from bs4 import Comment
+    soup = _make_soup()
+    inject_build_info(soup)
+    comments = soup.find_all(string=lambda t: isinstance(t, Comment))
+    assert any('build:' in c for c in comments), 'No build comment found in HTML'
+
+
+def test_inject_build_info_local_fallback(monkeypatch):
+    """Without GITHUB_SHA set, sha should fall back to 'local'."""
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    soup = _make_soup()
+    sha, _ = inject_build_info(soup)
+    assert sha == 'local'
+    tag = soup.find('meta', attrs={'name': 'build-sha'})
+    assert tag['content'] == 'local'
+
+
+def test_inject_build_info_truncates_sha(monkeypatch):
+    """Full GitHub SHA (40 chars) should be truncated to 7."""
+    monkeypatch.setenv('GITHUB_SHA', 'a' * 40)
+    soup = _make_soup()
+    sha, _ = inject_build_info(soup)
+    assert sha == 'aaaaaaa'
+    tag = soup.find('meta', attrs={'name': 'build-sha'})
+    assert tag['content'] == 'aaaaaaa'
+
+
+def test_inject_build_info_timestamp_format(monkeypatch):
+    """Timestamp should be in ISO 8601 UTC format: YYYY-MM-DDTHH:MM:SSZ."""
+    import re
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    soup = _make_soup()
+    _, build_time = inject_build_info(soup)
+    assert re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$', build_time), (
+        f"Timestamp '{build_time}' does not match expected format"
+    )
+
+
+def test_inject_build_info_no_head():
+    """Should handle missing <head> gracefully without raising."""
+    soup = BeautifulSoup('<html><body></body></html>', 'html.parser')
+    sha, build_time = inject_build_info(soup)  # Should not raise
+    assert sha is not None
+    assert build_time is not None
