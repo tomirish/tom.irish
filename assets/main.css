@@ -2241,14 +2241,53 @@ hr.style1:before {
 	.list.style1 {
 		font-size: 0.75em;
 	}
-	
+
 	.list.style1 ul li:after {
 		width: 0.5rem;
 	}
-	
+
 	.list.style1 ul li:before {
 		height: 1.125rem;
 		line-height: 1.125rem;
 		min-width: 0.615234375rem;
 	}
+}
+
+/* ==========================================================================
+   Custom styles
+   ========================================================================== */
+
+/* Hide scrollbar across all browsers while preserving scroll functionality */
+::-webkit-scrollbar {
+	display: none;
+}
+
+html {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+/* Print styles */
+@media print {
+
+	.no-print {
+		display: none !important;
+	}
+
+	body {
+		-webkit-print-color-adjust: exact;
+		-moz-print-color-adjust: exact;
+		-ms-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	@page {
+		margin-top: 0.0in;
+		padding-top: 0.25in;
+		margin-bottom: 0.0in;
+		padding-bottom: 0.25in;
+		margin-left: 0.25in;
+		margin-right: 0.25in;
+	}
+
 }
