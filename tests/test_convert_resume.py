@@ -12,7 +12,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
 from bs4 import BeautifulSoup
-from convert_resume import parse_markdown_resume, parse_summary_paragraphs, inject_build_info
+from convert_resume import parse_markdown_resume, parse_summary_paragraphs, inject_build_info, update_html_with_data
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -341,3 +341,77 @@ def test_inject_build_info_does_not_duplicate(monkeypatch):
     assert len(sha_tags) == 1, f"Expected 1 build-sha tag, found {len(sha_tags)}"
     assert len(time_tags) == 1, f"Expected 1 build-time tag, found {len(time_tags)}"
     assert len(build_comments) == 1, f"Expected 1 build comment, found {len(build_comments)}"
+
+
+def test_inject_build_info_no_blank_line_accumulation(monkeypatch):
+    """Repeated calls must not accumulate blank lines before the build comment.
+
+    Each single '\n' between elements is fine; the bug was multiple consecutive
+    whitespace-only text nodes piling up (e.g. '\n\n\n\n') with each run.
+    """
+    from bs4 import NavigableString as NS
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    soup = _make_soup()
+    inject_build_info(soup)
+    inject_build_info(soup)
+    inject_build_info(soup)
+
+    head = soup.find('head')
+    # Check that no two consecutive children are both whitespace-only text nodes.
+    consecutive_blanks = sum(
+        1
+        for a, b in zip(head.contents, head.contents[1:])
+        if isinstance(a, NS) and not a.strip()
+        and isinstance(b, NS) and not b.strip()
+    )
+    assert consecutive_blanks == 0, (
+        f"Found {consecutive_blanks} consecutive blank text node pair(s) in <head> "
+        "— whitespace is accumulating between inject_build_info calls"
+    )
+
+
+# ---------------------------------------------------------------------------
+# HTML generation — h2 and CSS class for job titles
+# ---------------------------------------------------------------------------
+
+MINIMAL_HTML_FOR_GENERATION = """\
+<!DOCTYPE html>
+<html>
+<head><title>Test</title></head>
+<body>
+<div id="resume-buttons-contact-2">
+  <a class="button n02" role="button"><span class="label">Old Location</span></a>
+</div>
+<p id="resume-text-summary"></p>
+<p id="resume-section-work">Work Experience</p>
+<hr id="resume-divider-work"/>
+<ul id="resume-buttons-skills"></ul>
+<p id="resume-section-education">Education</p>
+<hr id="resume-divider-education"/>
+<p id="resume-text-education-certifications">Certifications</p>
+<div id="resume-list-education-certifications"></div>
+</body>
+</html>
+"""
+
+
+def test_work_experience_generates_h2(monkeypatch):
+    """Job title headers should use <h2>, not <h1>."""
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    html_out = update_html_with_data(MINIMAL_HTML_FOR_GENERATION, data)
+    soup = BeautifulSoup(html_out, 'html.parser')
+    assert not soup.find('h1', class_='style2'), '<h1 class="style2"> should not exist; use <h2>'
+    h2_tags = soup.find_all('h2', class_='style2')
+    assert len(h2_tags) == 2, f"Expected 2 job title <h2> tags, found {len(h2_tags)}"
+
+
+def test_work_experience_uses_job_dates_class(monkeypatch):
+    """Date spans on job titles should use class 'job-dates', not inline style."""
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    html_out = update_html_with_data(MINIMAL_HTML_FOR_GENERATION, data)
+    assert 'class="job-dates"' in html_out, "'job-dates' class missing from generated HTML"
+    assert 'style="color:' not in html_out and 'style="color :' not in html_out, (
+        "Inline color style should not appear in generated HTML"
+    )

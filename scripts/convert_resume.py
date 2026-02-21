@@ -258,6 +258,10 @@ def inject_build_info(soup):
     for comment in head.find_all(string=lambda t: isinstance(t, Comment) and 'build:' in t):
         comment.extract()
 
+    # Strip orphaned whitespace-only text nodes left behind after removal.
+    while head.contents and isinstance(head.contents[-1], NavigableString) and not head.contents[-1].strip():
+        head.contents[-1].extract()
+
     head.append(NavigableString('\n'))
     head.append(Comment(f' build: sha={sha} time={build_time} '))
     head.append(NavigableString('\n'))
@@ -326,23 +330,23 @@ def update_html_with_data(html_content, data):
             # Generate new work entries
             for job in data['work_experience']:
                 # Create job title element
-                h1 = soup.new_tag('h1', **{'class': 'style2'})
+                h2 = soup.new_tag('h2', **{'class': 'style2'})
                 span_outer = soup.new_tag('span', **{'class': 'p'})
                 span_outer.string = job['title']
                 span_outer.append(soup.new_tag('br'))
-                
-                span_inner = soup.new_tag('span', style='color: #474747')
+
+                span_inner = soup.new_tag('span', **{'class': 'job-dates'})
                 sup_tag = soup.new_tag('sup')
                 sub_tag = soup.new_tag('sub')
                 sub_tag.string = f"({job['dates']})"
                 sup_tag.append(sub_tag)
                 span_inner.append(sup_tag)
                 span_outer.append(span_inner)
-                h1.append(span_outer)
-                
+                h2.append(span_outer)
+
                 # Insert after hr
-                hr.insert_after(h1)
-                
+                hr.insert_after(h2)
+
                 # Create bullets element
                 div = soup.new_tag('div', **{'class': 'style1 list'})
                 ul = soup.new_tag('ul')
@@ -353,10 +357,10 @@ def update_html_with_data(html_content, data):
                     li.append(p)
                     ul.append(li)
                 div.append(ul)
-                
-                # Insert after h1
-                h1.insert_after(div)
-                
+
+                # Insert after h2
+                h2.insert_after(div)
+
                 # Update hr reference for next iteration
                 hr = div
             print(f"  ✓ Generated {len(data['work_experience'])} work entries")
