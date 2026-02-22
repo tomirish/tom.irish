@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(du:*)",
+      "Bash(head:*)",
+      "Bash(find /Users/tom/GitHub/tom.irish -name \"*.py\" -exec wc -l {} ;)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(/opt/homebrew/bin/python3.13:*)",
+      "Bash(tail:*)",
+      "Bash(/Users/tom/Library/Python/3.9/bin/pytest:*)",
+      "Bash(pip3 show:*)",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:tom.irish)",
+      "Bash(gh run:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(brew list gh)",
+      "Bash(curl:*)",
+      "WebSearch",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "WebFetch(domain:blog.cloudflare.com)",
+      "WebFetch(domain:community.cloudflare.com)"
+    ]
+  }
+}
