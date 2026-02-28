@@ -1,6 +1,9 @@
 .DS_Store
 CLAUDE.md
 .claude/
+pending/
+Pending/
+
 
 # Python
 __pycache__/
