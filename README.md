@@ -14,7 +14,7 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 
-Personal website and resume for [Tom Irish](https://tom.irish). It's a single-page design that simulates multiple sections, driven entirely by a single Markdown file — edit `resume.md` and the site and PDF rebuild automatically on every push.
+Personal website and resume for [Tom Irish](https://tom.irish). It's a single-page design that simulates multiple sections, driven entirely by a single Markdown file — edit [`resume.md`](https://github.com/tomirish/tom.irish/blob/main/resume.md) and the site and PDF rebuild automatically on every push.
 
 ---
 
