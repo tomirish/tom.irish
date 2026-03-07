@@ -37,21 +37,21 @@ jobs:
           pip install -r requirements.txt
           playwright install --with-deps chromium
       
-      - name: Run tests
-        run: |
-          pytest tests/ -v
-
       - name: Validate resume format
         run: |
           python scripts/validate_resume.py
-      
+
       - name: Convert markdown to HTML
         run: |
           python scripts/convert_resume.py
-      
+
       - name: Generate PDF
         run: |
           python scripts/generate_pdf_browser.py
+
+      - name: Run tests
+        run: |
+          pytest tests/ -v
       
       - name: Sync files to public directory
         run: |
