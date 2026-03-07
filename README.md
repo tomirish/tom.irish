@@ -18,16 +18,9 @@ Personal website and resume for [Tom Irish](https://tom.irish). It's a single-pa
 
 ---
 
-## Updating the Resume
-
-1. Open [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md) on GitHub
-2. Click the pencil icon to edit
-3. Commit directly to `main`
-4. GitHub Actions builds and deploys automatically
-
----
-
 ## How It Works
+
+Edit [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md) on GitHub and commit to `main` — the rest is automatic:
 
 ```
 resume.md pushed to main
