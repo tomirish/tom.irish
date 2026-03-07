@@ -11,14 +11,9 @@ jobs:
     name: Build HTML and PDF
     runs-on: ubuntu-latest
     
-    permissions:
-      contents: write
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
       
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -54,20 +49,12 @@ jobs:
           cp -r assets public/
           echo "✅ Synced files to public/ directory"
       
-      - name: Commit and push changes
-        run: |
-          git config --local user.name "GitHub Action"
-          git config --local user.email "action@github.com"
-          
-          git add -A
-          
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "🤖 Auto-build: Update HTML, PDF, and public/"
-            git pull --no-rebase -X theirs
-            git push
-          fi
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public/ --project-name=tom-irish
       
       - name: Create deployment summary
         if: success()
@@ -82,8 +69,7 @@ jobs:
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- PDF generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Cloudflare will deploy automatically from public/ directory." >> $GITHUB_STEP_SUMMARY
+          echo "- Deployed to Cloudflare Pages: ✅" >> $GITHUB_STEP_SUMMARY
 
       - name: Create failure summary
         if: failure()
