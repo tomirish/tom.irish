@@ -38,11 +38,11 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 
 | File | Purpose | Edit? |
 |------|---------|-------|
-| `resume.md` | Resume content — single source of truth | ✅ Yes |
-| `index.template.html` | Website HTML template | ✅ Yes — to change layout or structure |
-| `assets/` | CSS, images, icons | ✅ Yes — to change styling |
-| `scripts/` | Build automation | 🔧 Only if changing the pipeline |
-| `.github/workflows/build.yml` | CI/CD configuration | 🔧 Only if changing automation |
+| `resume.md` | Resume content | ✅ Yes |
+| `index.template.html` | HTML template | ✅ Yes — layout or structure |
+| `assets/` | CSS, images, icons | ✅ Yes — styling |
+| `scripts/` | Build automation | 🔧 Pipeline changes only |
+| `.github/workflows/build.yml` | CI/CD config | 🔧 Automation changes only |
 
 ---
 
