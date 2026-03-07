@@ -14,70 +14,31 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 
-Personal website and resume for [Tom Irish](https://tom.irish). It's a single-page design that simulates multiple sections, with automated markdown-to-HTML conversion and PDF generation.
-
-Simply edit `resume.md`, push to GitHub, and everything updates automatically.
+Personal website and resume for [Tom Irish](https://tom.irish). `resume.md` is the single source of truth — editing it automatically rebuilds the site and PDF.
 
 ---
 
-## Updating Your Resume
+## Updating the Resume
 
-1. Go to [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md)
-2. Click the pencil icon (✏️) to edit directly on GitHub
-3. Make your changes
-4. Commit directly to the `main` branch
-5. Wait ~2 minutes for GitHub Actions to build
-6. Your site updates automatically at [tom.irish](https://tom.irish)
-
-### Resume Format
-
-```markdown
-# Tom Irish
-
-**Email:** [your@email.com](mailto:your@email.com)
-**Location:** Your City, State
-
-## Professional Summary
-
-Your summary here...
-
-## Work Experience
-
-### Company - Job Title (Start - End)
-
-- Bullet point
-
-## Skills
-
-- Skill 1
-
-## Education
-
-### School Name
-
-- Degree information
-
-## Certifications
-
-- Certification name
-```
+1. Open [resume.md](https://github.com/tomirish/tom.irish/blob/main/resume.md) on GitHub
+2. Click the pencil icon to edit
+3. Commit directly to `main`
+4. GitHub Actions builds and deploys automatically
 
 ---
 
 ## How It Works
 
 ```
-resume.md edited and pushed to main
+resume.md pushed to main
        ↓
 GitHub Actions triggers
        ↓
 validate_resume.py      — checks format and required sections
-       ↓
 convert_resume.py       — updates index.html from resume.md
-       ↓
 generate_pdf_browser.py — generates resume.pdf via headless Chromium
        ↓
-Wrangler deploys public/ directly to Cloudflare Pages → https://tom.irish
+Wrangler deploys to Cloudflare Pages → https://tom.irish
 ```
 
 ---
@@ -86,73 +47,13 @@ Wrangler deploys public/ directly to Cloudflare Pages → https://tom.irish
 
 | File | Purpose | Edit? |
 |------|---------|-------|
-| `resume.md` | Resume content source | ✅ Yes |
+| `resume.md` | Resume content — single source of truth | ✅ Yes |
 | `index.html` | Website HTML | ❌ Auto-generated |
 | `resume.pdf` | PDF resume | ❌ Auto-generated |
-| `public/` | Transient build artifact, deployed by Wrangler | ❌ Not committed to git |
+| `public/` | Transient build artifact, deployed by Wrangler | ❌ Not committed |
 | `assets/` | CSS, images, icons | ✅ Yes — to change styling |
 | `scripts/` | Build automation | 🔧 Only if changing the pipeline |
-| `.github/workflows/build.yml` | GitHub Actions config | 🔧 Only if changing automation |
-
----
-
-## Local Development
-
-```bash
-# Install dependencies
-pip3 install -r requirements.txt
-playwright install --with-deps chromium
-
-# Validate resume format
-python3 scripts/validate_resume.py
-
-# Dry-run conversion (no files written)
-python3 scripts/convert_resume.py --dry-run
-
-# Full conversion
-python3 scripts/convert_resume.py
-
-# Generate PDF
-python3 scripts/generate_pdf_browser.py
-
-# Run tests
-python3 -m pytest tests/ -v
-
-# Preview site locally
-python3 -m http.server 8000
-# Open http://localhost:8000
-```
-
----
-
-## Troubleshooting
-
-### Resume didn't update after push
-
-1. Check [GitHub Actions](https://github.com/tomirish/tom.irish/actions) for build status
-2. Review the logs for errors — the Wrangler deploy step will show if deployment succeeded
-3. Hard refresh browser (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows)
-
-### Build failed
-
-- **Missing required sections:** `resume.md` must have Professional Summary, Work Experience, Skills, and Education
-- **Incorrect format:** Job entries must follow `### Company - Job Title (Start - End)`
-- **Dependency issues:** Check Actions logs for pip install errors
-
-Run locally to debug: `python3 scripts/validate_resume.py`
-
-### PDF is more than one page or content is cut off
-
-Edit the named constants at the top of `scripts/generate_pdf_browser.py`:
-
-```python
-PDF_FORMAT        = 'Letter'
-PDF_MARGIN_TOP    = '0.2in'
-PDF_MARGIN_RIGHT  = '0.2in'
-PDF_MARGIN_BOTTOM = '0.2in'
-PDF_MARGIN_LEFT   = '0.2in'
-PDF_SCALE         = 0.98   # < 1.0 shrinks content to fit more on one page
-```
+| `.github/workflows/build.yml` | CI/CD configuration | 🔧 Only if changing automation |
 
 ---
 
