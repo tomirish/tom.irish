@@ -56,6 +56,11 @@ def parse_markdown_resume(md_content):
     """
     lines = md_content.split('\n')
     data = {
+        'name': '',
+        'email': {'display': '', 'href': ''},
+        'phone': {'display': '', 'href': ''},
+        'website': {'display': '', 'href': ''},
+        'linkedin': {'display': '', 'href': ''},
         'location': '',
         'summary': [],
         'work_experience': [],
@@ -72,8 +77,31 @@ def parse_markdown_resume(md_content):
     for line_num, line in enumerate(lines, 1):
         line_stripped = line.strip()
         
+        # Name from the first h1
+        if line.startswith('# ') and not data['name']:
+            data['name'] = line[2:].strip()
+            print(f"  👤 Found name: {data['name']}")
+
+        # Contact fields from the header area
+        elif '**Email:**' in line:
+            m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
+            if m:
+                data['email'] = {'display': m.group(1), 'href': m.group(2)}
+        elif '**Mobile:**' in line:
+            m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
+            if m:
+                data['phone'] = {'display': m.group(1), 'href': m.group(2)}
+        elif '**Website:**' in line:
+            m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
+            if m:
+                data['website'] = {'display': m.group(1), 'href': m.group(2)}
+        elif '**LinkedIn:**' in line:
+            m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
+            if m:
+                data['linkedin'] = {'display': m.group(1), 'href': m.group(2)}
+
         # Extract location from the header area
-        if '**Location:**' in line:
+        elif '**Location:**' in line:
             match = re.search(r'\*\*Location:\*\*\s*(.+)', line)
             if match:
                 data['location'] = match.group(1).strip()
@@ -294,6 +322,74 @@ def update_html_with_data(html_content, data):
     
     print("\n🔄 Updating HTML sections...")
     
+    # Update page title and meta tags
+    if data['name']:
+        title_tag = soup.find('title')
+        if title_tag:
+            title_tag.string = data['name']
+        for prop, value in [
+            ('og:site_name', data['name']),
+            ('og:title', data['name']),
+            ('og:description', f"{data['name']} Website"),
+        ]:
+            tag = soup.find('meta', attrs={'property': prop})
+            if tag:
+                tag['content'] = value
+        desc = soup.find('meta', attrs={'name': 'description'})
+        if desc:
+            desc['content'] = f"{data['name']} Website"
+        for img in soup.find_all('img', src='assets/images/tom-irish.jpg'):
+            img['alt'] = f"{data['name']} Profile Picture"
+            img['title'] = data['name']
+        home_name = soup.find(id='home-name')
+        if home_name:
+            home_name.string = data['name']
+        resume_name = soup.find(id='resume-name')
+        if resume_name:
+            resume_name.string = data['name']
+        print(f"  ✓ Updated name: {data['name']}")
+
+    if data['website']['href']:
+        for prop in ('og:url', 'og:image'):
+            tag = soup.find('meta', attrs={'property': prop})
+            if tag:
+                tag['content'] = (
+                    data['website']['href'] if prop == 'og:url'
+                    else f"{data['website']['href']}/assets/images/share.jpg"
+                )
+        canonical = soup.find('link', attrs={'rel': 'canonical'})
+        if canonical:
+            canonical['href'] = data['website']['href']
+
+    # Update home icon links
+    home_icons = soup.find(id='home-icons')
+    if home_icons:
+        for cls, field in [('n02', 'email'), ('n03', 'phone'), ('n04', 'linkedin')]:
+            a = home_icons.find('a', class_=cls)
+            if a and data[field]['href']:
+                a['href'] = data[field]['href']
+
+    # Update resume contact buttons (row 1: email, phone, website)
+    contact1 = soup.find(id='resume-buttons-contact-1')
+    if contact1:
+        for cls, field in [('n01', 'email'), ('n02', 'phone'), ('n03', 'website')]:
+            a = contact1.find('a', class_=cls)
+            if a and data[field]['href']:
+                a['href'] = data[field]['href']
+                span = a.find('span', class_='label')
+                if span:
+                    span.string = data[field]['display']
+
+    # Update resume contact buttons (row 2: linkedin — location handled below)
+    contact2 = soup.find(id='resume-buttons-contact-2')
+    if contact2:
+        a = contact2.find('a', class_='n01')
+        if a and data['linkedin']['href']:
+            a['href'] = data['linkedin']['href']
+            span = a.find('span', class_='label')
+            if span:
+                span.string = data['linkedin']['display']
+
     # Update location
     location_elem = soup.find(id='resume-buttons-contact-2')
     if location_elem and data['location']:
@@ -478,6 +574,7 @@ def main():
         else:
             print("✨ SUCCESS! Resume converted successfully")
         print("="*50)
+        print(f"  👤 Name: {data['name'] or '(not set)'}")
         print(f"  📍 Location: {data['location'] or '(not set)'}")
         print(f"  📝 Summary: {len(data['summary'])} paragraph(s)")
         print(f"  💼 Work Experience: {len(data['work_experience'])} job(s)")
