@@ -13,7 +13,6 @@
 [![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown)](https://www.markdownguide.org/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
-[![Carrd.co](https://img.shields.io/badge/Carrd.co-3E4374)](https://carrd.co)
 
 Personal website and resume for [Tom Irish](https://tom.irish). It's a single-page design that simulates multiple sections, with automated markdown-to-HTML conversion and PDF generation.
 
@@ -72,15 +71,13 @@ resume.md edited and pushed to main
        ↓
 GitHub Actions triggers
        ↓
-validate_resume.py    — checks format and required sections
+validate_resume.py      — checks format and required sections
        ↓
-convert_resume.py     — updates index.html from resume.md
+convert_resume.py       — updates index.html from resume.md
        ↓
 generate_pdf_browser.py — generates resume.pdf via headless Chromium
        ↓
-Files synced to public/
-       ↓
-Cloudflare deploys from public/ → https://tom.irish
+Wrangler deploys public/ directly to Cloudflare Pages → https://tom.irish
 ```
 
 ---
@@ -92,7 +89,7 @@ Cloudflare deploys from public/ → https://tom.irish
 | `resume.md` | Resume content source | ✅ Yes |
 | `index.html` | Website HTML | ❌ Auto-generated |
 | `resume.pdf` | PDF resume | ❌ Auto-generated |
-| `public/` | Production-ready files | ❌ Auto-generated |
+| `public/` | Transient build artifact, deployed by Wrangler | ❌ Not committed to git |
 | `assets/` | CSS, images, icons | ✅ Yes — to change styling |
 | `scripts/` | Build automation | 🔧 Only if changing the pipeline |
 | `.github/workflows/build.yml` | GitHub Actions config | 🔧 Only if changing automation |
@@ -133,9 +130,8 @@ python3 -m http.server 8000
 ### Resume didn't update after push
 
 1. Check [GitHub Actions](https://github.com/tomirish/tom.irish/actions) for build status
-2. Review the logs for errors
-3. Wait 2-3 minutes for Cloudflare to deploy
-4. Hard refresh browser (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows)
+2. Review the logs for errors — the Wrangler deploy step will show if deployment succeeded
+3. Hard refresh browser (Cmd+Shift+R on Mac, Ctrl+Shift+R on Windows)
 
 ### Build failed
 
@@ -156,15 +152,6 @@ PDF_MARGIN_RIGHT  = '0.2in'
 PDF_MARGIN_BOTTOM = '0.2in'
 PDF_MARGIN_LEFT   = '0.2in'
 PDF_SCALE         = 0.98   # < 1.0 shrinks content to fit more on one page
-```
-
-### "Push rejected" error
-
-The auto-build commits generated files back to `main` — if it runs while you're working you'll need to pull first:
-
-```bash
-git pull origin main --no-rebase
-git push origin main
 ```
 
 ---
