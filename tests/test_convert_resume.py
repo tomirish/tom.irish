@@ -21,6 +21,10 @@ from convert_resume import parse_markdown_resume, parse_summary_paragraphs, inje
 MINIMAL_RESUME = """\
 # Tom Irish
 
+**Email:** [test@example.com](mailto:test@example.com)
+**Mobile:** [555-555-5555](tel:5555555555)
+**Website:** [https://example.com](https://example.com)
+**LinkedIn:** [linkedin.com/in/test](https://linkedin.com/in/test)
 **Location:** Seattle, Washington
 
 ---
@@ -68,6 +72,35 @@ A summary.
 # ---------------------------------------------------------------------------
 # Location parsing
 # ---------------------------------------------------------------------------
+
+def test_name_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    assert data['name'] == 'Tom Irish'
+
+
+def test_email_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    assert data['email']['display'] == 'test@example.com'
+    assert data['email']['href'] == 'mailto:test@example.com'
+
+
+def test_phone_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    assert data['phone']['display'] == '555-555-5555'
+    assert data['phone']['href'] == 'tel:5555555555'
+
+
+def test_website_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    assert data['website']['display'] == 'https://example.com'
+    assert data['website']['href'] == 'https://example.com'
+
+
+def test_linkedin_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    assert data['linkedin']['display'] == 'linkedin.com/in/test'
+    assert data['linkedin']['href'] == 'https://linkedin.com/in/test'
+
 
 def test_location_parsed():
     data = parse_markdown_resume(MINIMAL_RESUME)
