@@ -14,7 +14,7 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/)
 
-Personal website and resume for [Tom Irish](https://tom.irish). `resume.md` is the single source of truth — editing it automatically rebuilds the site and PDF.
+Personal website and resume for [Tom Irish](https://tom.irish). It's a single-page design that simulates multiple sections, with automated markdown-to-HTML conversion and PDF generation.
 
 ---
 
