@@ -82,7 +82,7 @@ def test_main_css_no_typo_in_units():
 # index.html required element IDs
 # ---------------------------------------------------------------------------
 
-# These IDs must be present in index.html for convert_resume.py to function.
+# These IDs must be present in index.template.html for convert_resume.py to function.
 # Mirrors the required_ids list in validate_html_structure() in convert_resume.py.
 REQUIRED_IDS = [
     'resume-buttons-contact-2',
@@ -97,28 +97,28 @@ REQUIRED_IDS = [
 
 
 def test_index_html_required_ids_present():
-    soup = BeautifulSoup(read('index.html'), 'html.parser')
+    soup = BeautifulSoup(read('index.template.html'), 'html.parser')
     missing = [id_ for id_ in REQUIRED_IDS if not soup.find(id=id_)]
     assert not missing, (
-        f"index.html is missing required element IDs: {missing}\n"
+        f"index.template.html is missing required element IDs: {missing}\n"
         "These IDs are required by convert_resume.py. "
-        "Do not remove them from index.html."
+        "Do not remove them from index.template.html."
     )
 
 
 def test_index_html_has_head():
-    soup = BeautifulSoup(read('index.html'), 'html.parser')
-    assert soup.find('head') is not None, 'index.html is missing <head>'
+    soup = BeautifulSoup(read('index.template.html'), 'html.parser')
+    assert soup.find('head') is not None, 'index.template.html is missing <head>'
 
 
 def test_index_html_has_footer():
-    soup = BeautifulSoup(read('index.html'), 'html.parser')
-    assert soup.find(id='footer') is not None, 'index.html is missing <footer id="footer">'
+    soup = BeautifulSoup(read('index.template.html'), 'html.parser')
+    assert soup.find(id='footer') is not None, 'index.template.html is missing <footer id="footer">'
 
 
 def test_index_html_no_inline_style_blocks_in_body():
     """Styles should live in main.css, not in inline <style> tags in the body."""
-    soup = BeautifulSoup(read('index.html'), 'html.parser')
+    soup = BeautifulSoup(read('index.template.html'), 'html.parser')
     body = soup.find('body')
     if body:
         inline_styles = body.find_all('style')

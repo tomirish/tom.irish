@@ -2,9 +2,9 @@
 """
 Convert resume.md to HTML by dynamically regenerating all content sections.
 
-Reads resume.md (the single source of truth) and index.html (the styled
-template), then uses BeautifulSoup to replace every content section in the
-HTML with whatever is currently in the markdown. The result is written back
+Reads resume.md (the single source of truth) and index.template.html (the
+styled template), then uses BeautifulSoup to replace every content section
+in the HTML with whatever is currently in the markdown. The result is written
 to index.html. Styling and structure are preserved; only text content changes.
 
 The script locates HTML elements by their id attributes. If the template is
@@ -12,7 +12,7 @@ modified and an expected id is missing, the script exits with a clear error
 rather than silently producing broken output.
 
 Usage:
-    python3 scripts/convert_resume.py            # normal run, updates index.html
+    python3 scripts/convert_resume.py            # reads index.template.html, writes index.html
     python3 scripts/convert_resume.py --dry-run  # parse only, no files written
 """
 
@@ -286,7 +286,7 @@ def update_html_with_data(html_content, data):
         print("❌ ERROR: HTML structure is missing required elements:")
         for elem_id in missing:
             print(f"   • Missing element with id='{elem_id}'")
-        print("\n💡 Your index.html may have been modified.")
+        print("\n💡 Your index.template.html may have been modified.")
         print("   The conversion script expects specific HTML structure.")
         sys.exit(1)
     
@@ -457,7 +457,7 @@ def main():
     try:
         # Read files
         print("📖 Reading files...")
-        html_content = read_file('index.html')
+        html_content = read_file('index.template.html')
         md_content = read_file('resume.md')
 
         # Parse markdown
