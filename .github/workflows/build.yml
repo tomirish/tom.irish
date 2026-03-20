@@ -5,6 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly, Sunday 2 AM UTC
 
 jobs:
   build:
@@ -37,6 +39,11 @@ jobs:
           pip install -r requirements.txt
           playwright install --with-deps chromium
       
+      - name: Audit dependencies for known vulnerabilities
+        run: |
+          pip install pip-audit
+          pip-audit
+
       - name: Validate resume format
         run: |
           python scripts/validate_resume.py

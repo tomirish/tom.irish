@@ -19,3 +19,16 @@ __pycache__/
 
 # Local test artifacts
 *.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+
+# OS
+Thumbs.db

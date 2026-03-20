@@ -45,12 +45,6 @@ PDF_SCALE = 0.98
 # Server constants
 # ---------------------------------------------------------------------------
 
-# First port to try when starting the local HTTP server.
-SERVER_START_PORT = 8000
-
-# How many sequential ports to try before giving up.
-SERVER_MAX_ATTEMPTS = 10
-
 # Seconds to wait after starting the server before loading the page.
 SERVER_START_DELAY = 1
 
@@ -62,51 +56,33 @@ PAGE_RENDER_DELAY = 2
 PAGE_SELECTOR_TIMEOUT_MS = 10_000
 
 
-def start_local_server(port=SERVER_START_PORT, max_attempts=SERVER_MAX_ATTEMPTS):
-    """Start a simple HTTP server on the first available port.
+def start_local_server():
+    """Start a simple HTTP server on an OS-assigned port.
 
-    Tries ``port`` through ``port + max_attempts - 1`` in order. Raises
-    RuntimeError if no port is available.
-
-    Args:
-        port: First port to attempt.
-        max_attempts: Maximum number of ports to try.
+    Binds to port 0 so the OS picks any available port, avoiding conflicts
+    with other processes.
 
     Returns:
         Tuple of (httpd, port) where httpd is the running server instance.
     """
-    for attempt in range(max_attempts):
-        try:
-            handler = http.server.SimpleHTTPRequestHandler
+    handler = http.server.SimpleHTTPRequestHandler
 
-            class QuietHTTPServer(socketserver.TCPServer):
-                """TCPServer that suppresses per-request error output."""
+    class QuietHTTPServer(socketserver.TCPServer):
+        """TCPServer that suppresses per-request error output."""
 
-                allow_reuse_address = True
+        allow_reuse_address = True
 
-                def handle_error(self, request, client_address):
-                    pass  # Suppress connection-reset noise in CI logs
+        def handle_error(self, request, client_address):
+            pass  # Suppress connection-reset noise in CI logs
 
-            httpd = QuietHTTPServer(("", port), handler)
+    httpd = QuietHTTPServer(("127.0.0.1", 0), handler)
+    port = httpd.server_address[1]
 
-            server_thread = threading.Thread(target=httpd.serve_forever, daemon=True)
-            server_thread.start()
+    server_thread = threading.Thread(target=httpd.serve_forever, daemon=True)
+    server_thread.start()
 
-            print(f'✓ HTTP server started on port {port}')
-            return httpd, port
-
-        except OSError:
-            if attempt < max_attempts - 1:
-                print(f'  Port {port} unavailable, trying {port + 1}...')
-                port += 1
-            else:
-                raise RuntimeError(
-                    f"Could not find an available port after {max_attempts} attempts "
-                    f"(tried {SERVER_START_PORT}–{port}). "
-                    "Kill any process using those ports and retry."
-                )
-
-    raise RuntimeError("Unexpected error in start_local_server")
+    print(f'✓ HTTP server started on port {port}')
+    return httpd, port
 
 
 def generate_pdf(port):

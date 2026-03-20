@@ -21,7 +21,10 @@ import os
 import re
 import sys
 from datetime import datetime, timezone
+from urllib.parse import urlparse
 from bs4 import BeautifulSoup, Comment, NavigableString
+
+ALLOWED_URL_SCHEMES = {'http', 'https', 'mailto', 'tel'}
 
 def read_file(filepath):
     """Read content from a file."""
@@ -85,19 +88,19 @@ def parse_markdown_resume(md_content):
         # Contact fields from the header area
         elif '**Email:**' in line:
             m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
-            if m:
+            if m and urlparse(m.group(2)).scheme in ALLOWED_URL_SCHEMES:
                 data['email'] = {'display': m.group(1), 'href': m.group(2)}
         elif '**Mobile:**' in line:
             m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
-            if m:
+            if m and urlparse(m.group(2)).scheme in ALLOWED_URL_SCHEMES:
                 data['phone'] = {'display': m.group(1), 'href': m.group(2)}
         elif '**Website:**' in line:
             m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
-            if m:
+            if m and urlparse(m.group(2)).scheme in ALLOWED_URL_SCHEMES:
                 data['website'] = {'display': m.group(1), 'href': m.group(2)}
         elif '**LinkedIn:**' in line:
             m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
-            if m:
+            if m and urlparse(m.group(2)).scheme in ALLOWED_URL_SCHEMES:
                 data['linkedin'] = {'display': m.group(1), 'href': m.group(2)}
 
         # Extract location from the header area
