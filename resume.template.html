@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="assets/pdf.css"/>
+  <title>{{ name }} — Resume</title>
+</head>
+<body>
+
+  <header class="pdf-header">
+    <div class="pdf-photo">
+      <img src="assets/images/tom-irish.jpg" alt="{{ name }}"/>
+    </div>
+    <div class="pdf-header-text">
+      <h1 class="pdf-name">{{ name }}</h1>
+      <div class="pdf-contact">
+        {% if email.display %}<span>{{ email.display }}</span>{% endif %}
+        {% if phone.display %}<span>{{ phone.display }}</span>{% endif %}
+        {% if website.display %}<span>{{ website.display }}</span>{% endif %}
+        {% if linkedin.display %}<span>{{ linkedin.display }}</span>{% endif %}
+        {% if github.display %}<span>{{ github.display }}</span>{% endif %}
+        {% if location %}<span>{{ location }}</span>{% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main class="pdf-body">
+
+    {% if summary %}
+    <section class="pdf-section">
+      <h2 class="pdf-section-heading">Professional Summary</h2>
+      <hr class="pdf-rule"/>
+      {% for para in summary %}<p class="pdf-summary">{{ para }}</p>{% endfor %}
+    </section>
+    {% endif %}
+
+    {% if achievements %}
+    <section class="pdf-section">
+      <h2 class="pdf-section-heading">Key Achievements</h2>
+      <hr class="pdf-rule"/>
+      <ul class="pdf-bullets">
+        {% for item in achievements %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% if work_experience %}
+    <section class="pdf-section">
+      <h2 class="pdf-section-heading">Work Experience</h2>
+      <hr class="pdf-rule"/>
+      {% for job in work_experience %}
+      <div class="pdf-job">
+        <div class="pdf-job-header">
+          <strong class="pdf-job-title">{{ job.role }}</strong>
+          <span class="pdf-job-dates">{{ job.dates }}</span>
+        </div>
+        <div class="pdf-job-company">{{ job.company }}</div>
+        <ul class="pdf-bullets">
+          {% for bullet in job.bullets %}<li>{{ bullet }}</li>{% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if skills %}
+    <section class="pdf-section">
+      <h2 class="pdf-section-heading">Skills</h2>
+      <hr class="pdf-rule"/>
+      {% for skill in skills %}
+        {% if skill.type == 'group' %}
+        <div class="pdf-skill-row">
+          <span class="pdf-skill-label">{{ skill.label }}:</span>
+          <span class="pdf-skill-items">{{ skill.items | join(', ') }}</span>
+        </div>
+        {% else %}
+        <div class="pdf-skill-row"><span class="pdf-skill-items">{{ skill.label }}</span></div>
+        {% endif %}
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if education %}
+    <section class="pdf-section">
+      <h2 class="pdf-section-heading">Education</h2>
+      <hr class="pdf-rule"/>
+      {% for school in education %}
+      <div class="pdf-edu">
+        <strong>{{ school.name }}</strong>
+        {% for item in school.items %}<div class="pdf-edu-item">{{ item }}</div>{% endfor %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if certifications %}
+    <section class="pdf-section">
+      <h2 class="pdf-section-heading">Certifications</h2>
+      <hr class="pdf-rule"/>
+      <ul class="pdf-bullets">
+        {% for cert in certifications %}<li>{{ cert }}</li>{% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+  </main>
+</body>
+</html>
