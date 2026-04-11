@@ -173,3 +173,76 @@ def test_no_schools_warns():
     is_valid, warnings, errors = validate_resume(content)
     assert is_valid
     assert any("No schools" in w for w in warnings)
+
+
+# ---------------------------------------------------------------------------
+# New sections: Key Achievements, grouped skills, GitHub field
+# ---------------------------------------------------------------------------
+
+VALID_RESUME_WITH_NEW_SECTIONS = """\
+# Tom Irish
+
+**Email:** [tom@tom.irish](mailto:tom@tom.irish)
+**GitHub:** [github.com/tom-irish](https://github.com/tom-irish)
+**Location:** Seattle, Washington
+
+---
+
+## Professional Summary
+
+A summary paragraph.
+
+---
+
+## Key Achievements
+
+- Reduced costs by 38%
+- Improved uptime to 99.5%
+
+---
+
+## Work Experience
+
+### ACME Corp - Engineer (2020 - Present)
+
+- Built things
+
+---
+
+## Skills
+
+- **Reliability:** SRE, DORA metrics, incident command
+- **Infrastructure:** Azure, Nomad, RHEL
+- Leadership
+
+---
+
+## Education
+
+### University of Example
+
+- Bachelor of Science in Computer Science
+"""
+
+
+def test_key_achievements_section_is_valid():
+    """Key Achievements is a recognized optional section — should not cause errors or warnings."""
+    is_valid, warnings, errors = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
+    assert is_valid, f"Expected valid, got errors: {errors}"
+    assert errors == []
+
+
+def test_grouped_skills_are_valid():
+    """Skills formatted as '- **Label:** item, item' should pass without skill-related warnings."""
+    is_valid, warnings, errors = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
+    assert is_valid
+    skill_warnings = [w for w in warnings if 'skill' in w.lower()]
+    assert not skill_warnings, f"Unexpected skill warnings: {skill_warnings}"
+
+
+def test_github_field_no_warning():
+    """GitHub field in header should not generate warnings."""
+    is_valid, warnings, errors = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
+    assert is_valid
+    github_warnings = [w for w in warnings if 'github' in w.lower()]
+    assert not github_warnings, f"Unexpected GitHub warnings: {github_warnings}"
