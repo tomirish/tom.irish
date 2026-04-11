@@ -150,6 +150,9 @@ def parse_markdown_resume(md_content):
             print(f"  📜 Parsing Certifications (line {line_num})")
         elif line_stripped == '## Key Achievements':
             current_section = 'achievements'
+            if current_job:
+                data['work_experience'].append(current_job)
+                current_job = None
             print(f"  🏆 Parsing Key Achievements (line {line_num})")
 
         # Job titles in work experience

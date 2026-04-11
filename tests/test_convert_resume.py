@@ -551,3 +551,66 @@ def test_job_company_role_title_remains():
     data = parse_markdown_resume(MINIMAL_RESUME_V2)
     job = data['work_experience'][0]
     assert job['title'] == 'Expeditors - Senior Manager'
+
+
+def test_job_title_no_separator_falls_back():
+    """Job title with no ' - ' separator sets company and role both to full_title."""
+    content = MINIMAL_RESUME.replace(
+        "### Expeditors - Senior Manager (2025 - Present)",
+        "### SomeCo (2020 - 2022)"
+    )
+    data = parse_markdown_resume(content)
+    job = data['work_experience'][0]
+    assert job['company'] == 'SomeCo'
+    assert job['role'] == 'SomeCo'
+    assert job['title'] == 'SomeCo'
+
+
+def test_key_achievements_after_work_does_not_drop_last_job():
+    """Key Achievements section after Work Experience must not drop the last job."""
+    content = """\
+# Tom Irish
+
+**Email:** [test@example.com](mailto:test@example.com)
+**Mobile:** [555-555-5555](tel:5555555555)
+**Website:** [https://example.com](https://example.com)
+**LinkedIn:** [linkedin.com/in/test](https://linkedin.com/in/test)
+**Location:** Seattle, Washington
+
+---
+
+## Professional Summary
+
+A summary.
+
+---
+
+## Work Experience
+
+### Expeditors - Senior Manager (2025 - Present)
+
+- Led things
+
+## Key Achievements
+
+- An achievement
+
+---
+
+## Skills
+
+- Leadership
+
+---
+
+## Education
+
+### Washington State University
+
+- Bachelor of Arts in MIS
+"""
+    data = parse_markdown_resume(content)
+    assert len(data['work_experience']) == 1
+    assert data['work_experience'][0]['title'] == 'Expeditors - Senior Manager'
+    assert len(data['achievements']) == 1
+    assert 'An achievement' in data['achievements']
