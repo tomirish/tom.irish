@@ -1,163 +1,165 @@
-<!DOCTYPE HTML>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Your Name</title>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="light only" name="color-scheme"/>
-<meta content="Your Name Website" name="description"/>
-<meta content="Your Name" property="og:site_name"/>
-<meta content="Your Name" property="og:title"/>
-<meta content="website" property="og:type"/>
-<meta content="Your Name Website" property="og:description"/>
-<meta content="https://yoursite.com/assets/images/share.jpg" property="og:image"/>
-<meta content="image/jpeg" property="og:image:type"/>
-<meta content="1200" property="og:image:width"/>
-<meta content="750" property="og:image:height"/>
-<meta content="https://yoursite.com" property="og:url"/>
-<meta content="summary_large_image" property="twitter:card"/>
-<link href="https://yoursite.com" rel="canonical"/>
-<link href="https://fonts.googleapis.com/css2?display=swap&amp;family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900" rel="stylesheet" type="text/css"/>
-<link href="assets/images/favicon.png" rel="icon" type="image/png"/>
-<link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link href="assets/main.css" rel="stylesheet"/>
-<noscript><link href="assets/noscript.css" rel="stylesheet"/></noscript>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light"/>
+  <meta name="description" content="{{ name }} — Seattle-based engineering leader"/>
+  <meta property="og:title" content="{{ name }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{ website.href }}"/>
+  <meta property="og:description" content="{{ name }} — Seattle-based engineering leader"/>
+  <meta property="og:image" content="{{ website.href }}/assets/images/share.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="build-sha" content="{{ build_sha }}"/>
+  <meta name="build-time" content="{{ build_time }}"/>
+  <link rel="canonical" href="{{ website.href }}"/>
+  <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+  <link rel="stylesheet" href="assets/main.css"/>
+  <title>{{ name }}</title>
 </head>
-<body class="is-loading">
-<div id="wrapper">
-<div id="main">
-<div class="inner">
-<section id="home-section">
-<div class="style3 container default" id="home-container">
-<div class="wrapper">
-<div class="inner">
-<div class="style1 image" data-position="center" id="tom-irish">
-<span class="frame"><img alt="Profile Picture" src="assets/images/tom-irish.jpg" title="Your Name"/></span>
-</div>
-<h2 class="style7" id="home-name">Your Name</h2>
-<hr class="style1 no-print full screen" id="home-divider"/>
-<ul class="style2 icons" id="home-icons">
-<li>
-<a class="n01" href="#resume" role="button">
-<svg aria-labelledby="home-icons-icon-1-title"><title id="home-icons-icon-1-title">Resume</title><use xlink:href="assets/icons.svg#document"></use></svg>
-<span class="label">Resume</span>
-</a>
-<svg viewbox="0 0 40 40" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke"></polygon></svg>
-</li><li>
-<a class="n02" href="mailto:your@email.com" role="button">
-<svg aria-labelledby="home-icons-icon-2-title"><title id="home-icons-icon-2-title">Email</title><use xlink:href="assets/icons.svg#email"></use></svg>
-<span class="label">Email</span>
-</a>
-<svg viewbox="0 0 40 40" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke"></polygon></svg>
-</li><li>
-<a class="n03" href="tel:0000000000" role="button">
-<svg aria-labelledby="home-icons-icon-3-title"><title id="home-icons-icon-3-title">Mobile</title><use xlink:href="assets/icons.svg#mobile"></use></svg>
-<span class="label">Mobile</span>
-</a>
-<svg viewbox="0 0 40 40" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke"></polygon></svg>
-</li><li>
-<a class="n04" href="https://linkedin.com/in/your-profile" rel="noopener noreferrer" role="button" target="_blank">
-<svg aria-labelledby="home-icons-icon-4-title"><title id="home-icons-icon-4-title">LinkedIn</title><use xlink:href="assets/icons.svg#linkedin"></use></svg>
-<span class="label">LinkedIn</span>
-</a>
-<svg viewbox="0 0 40 40" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke"></polygon></svg>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="resume-section">
-<div class="style2 no-print container default" id="resume-header">
-<div class="wrapper">
-<div class="inner">
-<ul class="style1 no-print icons" id="resume-icons">
-<li>
-<a class="n01" href="#home" role="button">
-<svg aria-labelledby="resume-icons-icon-1-title"><title id="resume-icons-icon-1-title">Home</title><use xlink:href="assets/icons.svg#home"></use></svg>
-<span class="label">Home</span>
-</a>
-<svg viewbox="0 0 40 40" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke"></polygon></svg>
-</li><li>
-<a class="n02" href="resume.pdf" role="button" target="_blank">
-<svg aria-labelledby="resume-icons-icon-2-title"><title id="resume-icons-icon-2-title">PDF Resume</title><use xlink:href="assets/icons.svg#pdf"></use></svg>
-<span class="label">PDF Resume</span>
-</a>
-<svg viewbox="0 0 40 40" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><polygon points="3.6,10.5 3.6,29.5 20,39 36.4,29.5 36.4,10.5 20,1" vector-effect="non-scaling-stroke"></polygon></svg>
-</li>
-</ul>
-<hr class="style2 no-print" id="resume-divider-header"/>
-</div>
-</div>
-</div>
-<div class="style4 container columns" id="resume-container-title">
-<div class="wrapper">
-<div class="inner">
-<div>
-<div class="style2 image" id="tom-irish-resume">
-<span class="frame"><img alt="Profile Picture" src="assets/images/tom-irish.jpg" title="Your Name"/></span>
-</div>
-</div>
-<div>
-<h2 class="style9" id="resume-name">Your Name</h2>
-<ul class="style1 buttons" id="resume-buttons-contact-1">
-<li>
-<a class="button n01" href="mailto:your@email.com" role="button"><svg aria-labelledby="resume-buttons-contact-1-icon-1-title"><title id="resume-buttons-contact-1-icon-1-title">Email</title><use xlink:href="assets/icons.svg#email"></use></svg><span class="label">your@email.com</span></a>
-</li><li>
-<a class="button n02" href="tel:0000000000" role="button"><svg aria-labelledby="resume-buttons-contact-1-icon-2-title"><title id="resume-buttons-contact-1-icon-2-title">Mobile</title><use xlink:href="assets/icons.svg#mobile"></use></svg><span class="label">000-000-0000</span></a>
-</li><li>
-<a class="button n03" href="https://yoursite.com" rel="noopener noreferrer" role="button" target="_blank"><svg aria-labelledby="resume-buttons-contact-1-icon-3-title"><title id="resume-buttons-contact-1-icon-3-title">Globe</title><use xlink:href="assets/icons.svg#globe"></use></svg><span class="label">https://yoursite.com</span></a>
-</li>
-</ul>
-<ul class="style1 buttons" id="resume-buttons-contact-2">
-<li>
-<a class="button n01" href="https://linkedin.com/in/your-profile" rel="noopener noreferrer" role="button" target="_blank"><svg aria-labelledby="resume-buttons-contact-2-icon-1-title"><title id="resume-buttons-contact-2-icon-1-title">LinkedIn</title><use xlink:href="assets/icons.svg#linkedin"></use></svg><span class="label">linkedin.com/in/your-profile</span></a>
-</li><li>
-<a class="button n02" role="button"><svg aria-labelledby="resume-buttons-contact-2-icon-2-title"><title id="resume-buttons-contact-2-icon-2-title">Location</title><use xlink:href="assets/icons.svg#location"></use></svg><span class="label">Your City, State</span></a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="style1 container columns" id="container-resume-1">
-<div class="wrapper">
-<div class="inner">
-<div>
-<p class="style1" id="resume-section-summary">Professional Summary</p>
-<hr class="style2" id="resume-divider-summary"/>
-<p class="style3 list" id="resume-text-summary"></p>
-</div>
-<div>
-<p class="style1" id="resume-section-work">Work Experience</p>
-<hr class="style2" id="resume-divider-work"/>
-</div>
-</div>
-</div>
-</div>
-<div class="style1 container columns" id="container-resume-2">
-<div class="wrapper">
-<div class="inner">
-<div>
-<p class="style1" id="resume-section-skills">Skills</p>
-<hr class="style2" id="resume-divider-skills"/>
-<ul class="style2 buttons" id="resume-buttons-skills"></ul>
-</div>
-<div>
-<p class="style1" id="resume-section-education">Education</p>
-<hr class="style2" id="resume-divider-education"/>
-<p class="style2" id="resume-text-education-certifications">Certifications</p>
-<div class="style1 list" id="resume-list-education-certifications"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<footer id="footer"></footer>
-</div>
-</div>
-</div>
-<script src="assets/main.js"></script>
+<body>
+
+  <!-- ═══════════════════════════════════════════ LANDING -->
+  <section id="home">
+    <div class="landing-inner">
+      <div class="landing-photo">
+        <img src="assets/images/tom-irish.jpg" alt="{{ name }}"/>
+      </div>
+      <h1 class="landing-name">{{ name }}</h1>
+      <p class="landing-location">{{ location }}</p>
+      <nav class="icon-links" aria-label="Contact links">
+        {% if email.href %}
+        <a class="icon-link" href="{{ email.href }}" title="Email" aria-label="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+        {% endif %}
+        {% if phone.href %}
+        <a class="icon-link" href="{{ phone.href }}" title="Phone" aria-label="Phone">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        </a>
+        {% endif %}
+        {% if linkedin.href %}
+        <a class="icon-link" href="{{ linkedin.href }}" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        </a>
+        {% endif %}
+        {% if github.href %}
+        <a class="icon-link" href="{{ github.href }}" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+        </a>
+        {% endif %}
+        <a class="icon-link primary" href="#resume" title="Resume" aria-label="View Resume">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ RESUME -->
+  <section id="resume">
+    <nav class="resume-nav" aria-label="Resume navigation">
+      <a class="resume-back" href="#home">← Back</a>
+      <a class="resume-pdf" href="resume.pdf" target="_blank">↓ PDF Resume</a>
+    </nav>
+
+    <header class="resume-header">
+      <div class="resume-photo">
+        <img src="assets/images/tom-irish.jpg" alt="{{ name }}"/>
+      </div>
+      <div class="resume-header-text">
+        <h2 class="resume-name">{{ name }}</h2>
+        <div class="contact-pills">
+          {% if email.href %}<a class="contact-pill" href="{{ email.href }}">{{ email.display }}</a>{% endif %}
+          {% if phone.href %}<a class="contact-pill" href="{{ phone.href }}">{{ phone.display }}</a>{% endif %}
+          {% if website.href %}<a class="contact-pill" href="{{ website.href }}" target="_blank" rel="noopener noreferrer">{{ website.display }}</a>{% endif %}
+          {% if linkedin.href %}<a class="contact-pill" href="{{ linkedin.href }}" target="_blank" rel="noopener noreferrer">{{ linkedin.display }}</a>{% endif %}
+          {% if github.href %}<a class="contact-pill" href="{{ github.href }}" target="_blank" rel="noopener noreferrer">{{ github.display }}</a>{% endif %}
+          {% if location %}<span class="contact-pill">{{ location }}</span>{% endif %}
+        </div>
+      </div>
+    </header>
+
+    <div class="resume-body">
+      <main class="resume-main">
+
+        {% if summary %}
+        <h3 class="section-heading">Professional Summary</h3>
+        <hr class="section-rule"/>
+        <div class="summary-text">
+          {% for para in summary %}<p>{{ para }}</p>{% endfor %}
+        </div>
+        {% endif %}
+
+        {% if achievements %}
+        <h3 class="section-heading">Key Achievements</h3>
+        <hr class="section-rule"/>
+        <ul class="achievements-list">
+          {% for item in achievements %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if work_experience %}
+        <h3 class="section-heading">Work Experience</h3>
+        <hr class="section-rule"/>
+        {% for job in work_experience %}
+        <div class="job">
+          <div class="job-header">
+            <span class="job-title">{{ job.role }}</span>
+            <span class="job-dates">{{ job.dates }}</span>
+          </div>
+          <div class="job-company">{{ job.company }}</div>
+          <ul class="job-bullets">
+            {% for bullet in job.bullets %}<li>{{ bullet }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+      </main>
+
+      <aside class="resume-sidebar">
+
+        {% if skills %}
+        <h3 class="section-heading">Skills</h3>
+        <hr class="section-rule"/>
+        {% for skill in skills %}
+          {% if skill.type == 'group' %}
+          <div class="skill-group">
+            <div class="skill-group-label">{{ skill.label }}</div>
+            <div class="skill-tags">
+              {% for item in skill.items %}<span class="skill-tag">{{ item }}</span>{% endfor %}
+            </div>
+          </div>
+          {% else %}
+          <div class="skill-tags"><span class="skill-tag">{{ skill.label }}</span></div>
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if education %}
+        <h3 class="section-heading">Education</h3>
+        <hr class="section-rule"/>
+        {% for school in education %}
+        <div class="edu-entry">
+          <div class="edu-name">{{ school.name }}</div>
+          {% for item in school.items %}<div class="edu-item">{{ item }}</div>{% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if certifications %}
+        <h3 class="section-heading">Certifications</h3>
+        <hr class="section-rule"/>
+        {% for cert in certifications %}
+        <div class="cert-item">{{ cert }}</div>
+        {% endfor %}
+        {% endif %}
+
+      </aside>
+    </div>
+  </section>
+
 </body>
 </html>
