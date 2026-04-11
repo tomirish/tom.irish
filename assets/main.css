@@ -25,7 +25,6 @@ img { display: block; max-width: 100%; }
 #resume { display: none; }
 #resume:target { display: block; }
 :root:has(#resume:target) #home { display: none; }
-#home:target { display: flex; }
 
 /* ── LANDING ──────────────────────────────────────────────── */
 .landing-inner {

@@ -15,11 +15,11 @@
     <div class="pdf-header-text">
       <h1 class="pdf-name">{{ name }}</h1>
       <div class="pdf-contact">
-        {% if email.display %}<span>{{ email.display }}</span>{% endif %}
-        {% if phone.display %}<span>{{ phone.display }}</span>{% endif %}
-        {% if website.display %}<span>{{ website.display }}</span>{% endif %}
-        {% if linkedin.display %}<span>{{ linkedin.display }}</span>{% endif %}
-        {% if github.display %}<span>{{ github.display }}</span>{% endif %}
+        {% if email.href %}<span>{{ email.display }}</span>{% endif %}
+        {% if phone.href %}<span>{{ phone.display }}</span>{% endif %}
+        {% if website.href %}<span>{{ website.display }}</span>{% endif %}
+        {% if linkedin.href %}<span>{{ linkedin.display }}</span>{% endif %}
+        {% if github.href %}<span>{{ github.display }}</span>{% endif %}
         {% if location %}<span>{{ location }}</span>{% endif %}
       </div>
     </div>
