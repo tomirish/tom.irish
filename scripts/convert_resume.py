@@ -64,8 +64,10 @@ def parse_markdown_resume(md_content):
         'phone': {'display': '', 'href': ''},
         'website': {'display': '', 'href': ''},
         'linkedin': {'display': '', 'href': ''},
+        'github': {'display': '', 'href': ''},
         'location': '',
         'summary': [],
+        'achievements': [],
         'work_experience': [],
         'skills': [],
         'education': [],
@@ -102,6 +104,10 @@ def parse_markdown_resume(md_content):
             m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
             if m and urlparse(m.group(2)).scheme in ALLOWED_URL_SCHEMES:
                 data['linkedin'] = {'display': m.group(1), 'href': m.group(2)}
+        elif '**GitHub:**' in line:
+            m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
+            if m and urlparse(m.group(2)).scheme in ALLOWED_URL_SCHEMES:
+                data['github'] = {'display': m.group(1), 'href': m.group(2)}
 
         # Extract location from the header area
         elif '**Location:**' in line:
@@ -142,7 +148,10 @@ def parse_markdown_resume(md_content):
                 data['education'].append(current_school)
                 current_school = None
             print(f"  📜 Parsing Certifications (line {line_num})")
-        
+        elif line_stripped == '## Key Achievements':
+            current_section = 'achievements'
+            print(f"  🏆 Parsing Key Achievements (line {line_num})")
+
         # Job titles in work experience
         elif current_section == 'work' and line.startswith('### '):
             if current_job:
@@ -156,8 +165,19 @@ def parse_markdown_resume(md_content):
             # "Manager (Operations) - ACME" as title and "2020 - 2022" as dates.
             match = re.match(r'^(.*\S)\s*\(([^)]+)\)\s*$', job_line)
             if match:
+                full_title = match.group(1).strip()
+                # Split "Company - Role" into separate fields
+                if ' - ' in full_title:
+                    title_parts = full_title.split(' - ', 1)
+                    company = title_parts[0].strip()
+                    role = title_parts[1].strip()
+                else:
+                    company = full_title
+                    role = full_title
                 current_job = {
-                    'title': match.group(1).strip(),
+                    'title': full_title,   # kept for backward compat
+                    'company': company,
+                    'role': role,
                     'dates': match.group(2).strip(),
                     'bullets': []
                 }
@@ -183,7 +203,16 @@ def parse_markdown_resume(md_content):
             if current_section == 'work' and current_job:
                 current_job['bullets'].append(bullet)
             elif current_section == 'skills':
-                data['skills'].append(bullet)
+                # Detect grouped skill: "- **Label:** item, item, item"
+                group_match = re.match(r'^\*\*([^*]+):\*\*\s*(.+)$', bullet)
+                if group_match:
+                    label = group_match.group(1).strip()
+                    items = [i.strip() for i in group_match.group(2).split(',') if i.strip()]
+                    data['skills'].append({'type': 'group', 'label': label, 'items': items})
+                else:
+                    data['skills'].append({'type': 'flat', 'label': bullet})
+            elif current_section == 'achievements':
+                data['achievements'].append(bullet)
             elif current_section == 'certifications':
                 data['certifications'].append(bullet)
             elif current_section == 'education' and current_school:

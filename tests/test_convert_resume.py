@@ -219,13 +219,14 @@ def test_job_title_multiple_parentheses_groups():
 
 def test_skills_count():
     data = parse_markdown_resume(MINIMAL_RESUME)
-    assert len(data['skills']) == 2
+    assert len(data['skills']) == 2  # unchanged — still 2 items
 
 
 def test_skills_content():
     data = parse_markdown_resume(MINIMAL_RESUME)
-    assert 'Leadership' in data['skills']
-    assert 'Python' in data['skills']
+    flat_labels = [s['label'] for s in data['skills'] if s['type'] == 'flat']
+    assert 'Leadership' in flat_labels
+    assert 'Python' in flat_labels
 
 
 # ---------------------------------------------------------------------------
@@ -437,3 +438,116 @@ def test_work_experience_uses_job_dates_class(monkeypatch):
     assert 'style="color:' not in html_out and 'style="color :' not in html_out, (
         "Inline color style should not appear in generated HTML"
     )
+
+
+# ---------------------------------------------------------------------------
+# Updated MINIMAL_RESUME with new fields (used in new tests only)
+# ---------------------------------------------------------------------------
+
+MINIMAL_RESUME_V2 = """\
+# Tom Irish
+
+**Email:** [test@example.com](mailto:test@example.com)
+**Mobile:** [555-555-5555](tel:5555555555)
+**Website:** [https://example.com](https://example.com)
+**LinkedIn:** [linkedin.com/in/test](https://linkedin.com/in/test)
+**GitHub:** [github.com/test-user](https://github.com/test-user)
+**Location:** Seattle, Washington
+
+---
+
+## Professional Summary
+
+A summary.
+
+---
+
+## Key Achievements
+
+- Reduced costs by 38%
+- Improved uptime to 99.5%
+
+---
+
+## Work Experience
+
+### Expeditors - Senior Manager (2025 - Present)
+
+- Led things
+
+---
+
+## Skills
+
+- **Reliability:** SRE, DORA metrics
+- **Infrastructure:** Azure, Nomad
+- Leadership
+
+---
+
+## Education
+
+### Washington State University
+
+- Bachelor of Arts in MIS
+
+---
+
+## Certifications
+
+- Some Cert
+"""
+
+
+def test_github_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    assert data['github']['display'] == 'github.com/test-user'
+    assert data['github']['href'] == 'https://github.com/test-user'
+
+
+def test_github_missing_returns_empty():
+    data = parse_markdown_resume(MINIMAL_RESUME)  # original fixture, no GitHub field
+    assert data['github']['display'] == ''
+    assert data['github']['href'] == ''
+
+
+def test_achievements_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    assert len(data['achievements']) == 2
+    assert 'Reduced costs by 38%' in data['achievements']
+    assert 'Improved uptime to 99.5%' in data['achievements']
+
+
+def test_achievements_missing_returns_empty():
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    assert data['achievements'] == []
+
+
+def test_grouped_skill_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    groups = [s for s in data['skills'] if s['type'] == 'group']
+    assert len(groups) == 2
+    reliability = next(g for g in groups if g['label'] == 'Reliability')
+    assert 'SRE' in reliability['items']
+    assert 'DORA metrics' in reliability['items']
+
+
+def test_flat_skill_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    flats = [s for s in data['skills'] if s['type'] == 'flat']
+    assert len(flats) == 1
+    assert flats[0]['label'] == 'Leadership'
+
+
+def test_job_company_and_role_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    job = data['work_experience'][0]
+    assert job['company'] == 'Expeditors'
+    assert job['role'] == 'Senior Manager'
+
+
+def test_job_company_role_title_remains():
+    """Original 'title' field kept for backward compatibility."""
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    job = data['work_experience'][0]
+    assert job['title'] == 'Expeditors - Senior Manager'
