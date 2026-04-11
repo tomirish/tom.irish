@@ -129,7 +129,7 @@
           <div class="skill-group">
             <div class="skill-group-label">{{ skill.label }}</div>
             <div class="skill-tags">
-              {% for item in skill.items %}<span class="skill-tag">{{ item }}</span>{% endfor %}
+              {% for item in skill['items'] %}<span class="skill-tag">{{ item }}</span>{% endfor %}
             </div>
           </div>
           {% else %}
@@ -144,7 +144,7 @@
         {% for school in education %}
         <div class="edu-entry">
           <div class="edu-name">{{ school.name }}</div>
-          {% for item in school.items %}<div class="edu-item">{{ item }}</div>{% endfor %}
+          {% for item in school['items'] %}<div class="edu-item">{{ item }}</div>{% endfor %}
         </div>
         {% endfor %}
         {% endif %}

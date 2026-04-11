@@ -1,9 +1,9 @@
 """
 Tests for static assets and index.html structure.
 
-These tests guard against accidental deletion of asset files, corruption of
-the custom CSS section we own in main.css, and removal of the HTML element
-IDs that the build pipeline depends on.
+These tests guard against accidental deletion of asset files, regression in
+the CSS design tokens, and removal of the key structural sections in the
+Jinja2 templates.
 """
 
 import os
@@ -26,9 +26,7 @@ def read(path):
 
 EXPECTED_ASSETS = [
     'assets/main.css',
-    'assets/main.js',
-    'assets/noscript.css',
-    'assets/icons.svg',
+    'assets/pdf.css',
     'assets/images/favicon.png',
     'assets/images/apple-touch-icon.png',
     'assets/images/share.jpg',
@@ -45,30 +43,23 @@ def test_asset_files_exist():
 
 
 # ---------------------------------------------------------------------------
-# Custom CSS section in main.css
+# main.css design tokens and structure
 # ---------------------------------------------------------------------------
 
-def test_main_css_has_custom_section():
+def test_main_css_accent_color():
     css = read('assets/main.css')
-    assert 'Custom styles' in css, 'Custom styles section missing from main.css'
+    assert '#9b2335' in css, 'Accent color #9b2335 missing from main.css'
 
 
-def test_main_css_scrollbar_hiding():
+def test_main_css_css_target_toggle():
     css = read('assets/main.css')
-    assert '::-webkit-scrollbar' in css, 'WebKit scrollbar rule missing from main.css'
-    assert '-ms-overflow-style: none' in css, 'IE scrollbar rule missing from main.css'
-    assert 'scrollbar-width: none' in css, 'Firefox scrollbar rule missing from main.css'
+    assert '#resume:target' in css, 'CSS :target section toggle missing from main.css'
 
 
-def test_main_css_no_print_rule():
+def test_main_css_no_external_resources():
+    """main.css must not reference external URLs (no Google Fonts, no CDN)."""
     css = read('assets/main.css')
-    assert '.no-print' in css, '.no-print rule missing from main.css'
-
-
-def test_main_css_print_color_adjust():
-    css = read('assets/main.css')
-    assert 'print-color-adjust: exact' in css, 'print-color-adjust missing from main.css'
-
+    assert '@import' not in css, 'main.css must not @import external resources'
 
 
 def test_main_css_no_typo_in_units():
@@ -79,31 +70,31 @@ def test_main_css_no_typo_in_units():
 
 
 # ---------------------------------------------------------------------------
-# index.html required element IDs
+# pdf.css design tokens
 # ---------------------------------------------------------------------------
 
-# These IDs must be present in index.template.html for convert_resume.py to function.
-# Mirrors the required_ids list in validate_html_structure() in convert_resume.py.
-REQUIRED_IDS = [
-    'resume-buttons-contact-2',
-    'resume-text-summary',
-    'resume-section-work',
-    'resume-divider-work',
-    'resume-buttons-skills',
-    'resume-section-education',
-    'resume-divider-education',
-    'resume-list-education-certifications',
-]
+def test_pdf_css_print_color_adjust():
+    css = read('assets/pdf.css')
+    assert 'print-color-adjust: exact' in css, 'print-color-adjust missing from pdf.css'
 
 
-def test_index_html_required_ids_present():
+def test_pdf_css_accent_color():
+    css = read('assets/pdf.css')
+    assert '#9b2335' in css, 'Accent color #9b2335 missing from pdf.css'
+
+
+# ---------------------------------------------------------------------------
+# index.template.html structural sections
+# ---------------------------------------------------------------------------
+
+def test_index_html_has_home_section():
     soup = BeautifulSoup(read('index.template.html'), 'html.parser')
-    missing = [id_ for id_ in REQUIRED_IDS if not soup.find(id=id_)]
-    assert not missing, (
-        f"index.template.html is missing required element IDs: {missing}\n"
-        "These IDs are required by convert_resume.py. "
-        "Do not remove them from index.template.html."
-    )
+    assert soup.find(id='home') is not None, 'index.template.html is missing <section id="home">'
+
+
+def test_index_html_has_resume_section():
+    soup = BeautifulSoup(read('index.template.html'), 'html.parser')
+    assert soup.find(id='resume') is not None, 'index.template.html is missing <section id="resume">'
 
 
 def test_index_html_has_head():
@@ -111,9 +102,10 @@ def test_index_html_has_head():
     assert soup.find('head') is not None, 'index.template.html is missing <head>'
 
 
-def test_index_html_has_footer():
+def test_index_html_links_main_css():
     soup = BeautifulSoup(read('index.template.html'), 'html.parser')
-    assert soup.find(id='footer') is not None, 'index.template.html is missing <footer id="footer">'
+    link = soup.find('link', {'rel': 'stylesheet', 'href': 'assets/main.css'})
+    assert link is not None, 'index.template.html must link to assets/main.css'
 
 
 def test_index_html_no_inline_style_blocks_in_body():
@@ -126,3 +118,23 @@ def test_index_html_no_inline_style_blocks_in_body():
             f"Found {len(inline_styles)} inline <style> block(s) in <body>. "
             "CSS belongs in assets/main.css."
         )
+
+
+# ---------------------------------------------------------------------------
+# resume.template.html structural sections
+# ---------------------------------------------------------------------------
+
+def test_resume_template_exists():
+    assert os.path.isfile(os.path.join(REPO_ROOT, 'resume.template.html')), \
+        'resume.template.html does not exist'
+
+
+def test_resume_template_links_pdf_css():
+    soup = BeautifulSoup(read('resume.template.html'), 'html.parser')
+    link = soup.find('link', {'rel': 'stylesheet', 'href': 'assets/pdf.css'})
+    assert link is not None, 'resume.template.html must link to assets/pdf.css'
+
+
+def test_resume_template_has_header():
+    soup = BeautifulSoup(read('resume.template.html'), 'html.parser')
+    assert soup.find('header') is not None, 'resume.template.html is missing <header>'

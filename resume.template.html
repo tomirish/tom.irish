@@ -72,7 +72,7 @@
         {% if skill.type == 'group' %}
         <div class="pdf-skill-row">
           <span class="pdf-skill-label">{{ skill.label }}:</span>
-          <span class="pdf-skill-items">{{ skill.items | join(', ') }}</span>
+          <span class="pdf-skill-items">{{ skill['items'] | join(', ') }}</span>
         </div>
         {% else %}
         <div class="pdf-skill-row"><span class="pdf-skill-items">{{ skill.label }}</span></div>
@@ -88,7 +88,7 @@
       {% for school in education %}
       <div class="pdf-edu">
         <strong>{{ school.name }}</strong>
-        {% for item in school.items %}<div class="pdf-edu-item">{{ item }}</div>{% endfor %}
+        {% for item in school['items'] %}<div class="pdf-edu-item">{{ item }}</div>{% endfor %}
       </div>
       {% endfor %}
     </section>
