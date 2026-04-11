@@ -98,7 +98,7 @@ def generate_pdf(port):
         browser = p.chromium.launch()
         page = browser.new_page()
 
-        url = f'http://localhost:{port}/index.html#resume'
+        url = f'http://localhost:{port}/resume.html'
         print(f'  Loading {url}...')
         page.goto(url)
 
@@ -106,16 +106,16 @@ def generate_pdf(port):
         page.wait_for_load_state('networkidle')
         page.wait_for_load_state('domcontentloaded')
 
-        # Wait for the resume section specifically so we know content is rendered.
+        # Wait for the PDF body to confirm content is rendered.
         try:
             page.wait_for_selector(
-                '#resume-section',
+                '.pdf-body',
                 state='visible',
                 timeout=PAGE_SELECTOR_TIMEOUT_MS,
             )
         except Exception:
             print(
-                '  ⚠️  Warning: #resume-section not visible within '
+                '  ⚠️  Warning: .pdf-body not visible within '
                 f'{PAGE_SELECTOR_TIMEOUT_MS / 1000:.0f}s — continuing anyway. '
                 'The PDF may be incomplete.'
             )
