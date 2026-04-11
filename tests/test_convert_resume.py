@@ -12,7 +12,12 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
 from bs4 import BeautifulSoup, NavigableString
-from convert_resume import parse_markdown_resume, parse_summary_paragraphs, inject_build_info, update_html_with_data
+from convert_resume import parse_markdown_resume, parse_summary_paragraphs
+try:
+    from convert_resume import inject_build_info, update_html_with_data
+except ImportError:
+    inject_build_info = None
+    update_html_with_data = None
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -614,3 +619,44 @@ A summary.
     assert data['work_experience'][0]['title'] == 'Expeditors - Senior Manager'
     assert len(data['achievements']) == 1
     assert 'An achievement' in data['achievements']
+
+
+# ---------------------------------------------------------------------------
+# Jinja2 rendering tests
+# ---------------------------------------------------------------------------
+
+def test_render_index_html_contains_name(tmp_path, monkeypatch):
+    """Rendered index.html should contain the person's name."""
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    monkeypatch.chdir(os.path.join(os.path.dirname(__file__), '..'))
+    from convert_resume import render_templates
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    render_templates(data, index_out=str(tmp_path / 'index.html'),
+                     resume_out=str(tmp_path / 'resume.html'))
+    html = (tmp_path / 'index.html').read_text()
+    assert 'Tom Irish' in html
+
+
+def test_render_resume_html_contains_name(tmp_path, monkeypatch):
+    """Rendered resume.html (PDF template) should contain the person's name."""
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    monkeypatch.chdir(os.path.join(os.path.dirname(__file__), '..'))
+    from convert_resume import render_templates
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    render_templates(data, index_out=str(tmp_path / 'index.html'),
+                     resume_out=str(tmp_path / 'resume.html'))
+    html = (tmp_path / 'resume.html').read_text()
+    assert 'Tom Irish' in html
+
+
+def test_render_index_html_contains_build_meta(tmp_path, monkeypatch):
+    """Rendered index.html should have build-sha and build-time meta tags."""
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    monkeypatch.chdir(os.path.join(os.path.dirname(__file__), '..'))
+    from convert_resume import render_templates
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    render_templates(data, index_out=str(tmp_path / 'index.html'),
+                     resume_out=str(tmp_path / 'resume.html'))
+    html = (tmp_path / 'index.html').read_text()
+    assert 'name="build-sha"' in html
+    assert 'name="build-time"' in html
