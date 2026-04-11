@@ -230,19 +230,19 @@ def test_key_achievements_section_is_valid():
     is_valid, warnings, errors = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
     assert is_valid, f"Expected valid, got errors: {errors}"
     assert errors == []
+    achievement_warnings = [w for w in warnings if 'achievement' in w.lower()]
+    assert not achievement_warnings, f"Unexpected achievement warnings: {achievement_warnings}"
 
 
 def test_grouped_skills_are_valid():
     """Skills formatted as '- **Label:** item, item' should pass without skill-related warnings."""
-    is_valid, warnings, errors = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
-    assert is_valid
+    _, warnings, _ = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
     skill_warnings = [w for w in warnings if 'skill' in w.lower()]
     assert not skill_warnings, f"Unexpected skill warnings: {skill_warnings}"
 
 
 def test_github_field_no_warning():
     """GitHub field in header should not generate warnings."""
-    is_valid, warnings, errors = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
-    assert is_valid
+    _, warnings, _ = validate_resume(VALID_RESUME_WITH_NEW_SECTIONS)
     github_warnings = [w for w in warnings if 'github' in w.lower()]
     assert not github_warnings, f"Unexpected GitHub warnings: {github_warnings}"
