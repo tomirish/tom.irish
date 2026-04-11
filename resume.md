@@ -4,6 +4,7 @@
 **Mobile:** [253-299-4348](tel:2532994348)  
 **Website:** [tom.irish](https://tom.irish)  
 **LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)  
+**GitHub:** [github.com/tom-irish](https://github.com/tom-irish)  
 **Location:** Seattle, Washington
 
 ---
@@ -15,6 +16,13 @@ I am a dynamic and motivated leader with over 20 years of experience in informat
 My expertise includes leading multiple high-performing agile teams, leveraging microservices architecture with continuous integration and continuous deployment pipelines. My goal is to inspire my teams to reach their full potential in a collaborative and inclusive environment, focusing on coaching, mentoring, and fostering continuous innovation and growth.
 
 As a data-driven decision-maker, I am passionate about leveraging technology to solve complex problems. I successfully manage a $10 million budget, optimizing resources, reducing costs, and planning for the future. My commitment to delivering results-based customer service and continuous improvement is unwavering.
+
+---
+
+## Key Achievements
+
+- Placeholder — add metric-driven achievement here
+- Placeholder — add metric-driven achievement here
 
 ---
 
@@ -36,16 +44,9 @@ As a data-driven decision-maker, I am passionate about leveraging technology to 
 
 ## Skills
 
-- Leadership
-- Strategic Thinking
-- Project Management
-- Technical Expertise
-- Agile Development
-- Communication
-- Financial Management
-- Creative Problem-Solving
-- Customer Service
-- Coaching and Mentoring
+- **Leadership & Management:** Leadership, Strategic Thinking, Coaching and Mentoring, Financial Management
+- **Engineering Practices:** Agile Development, DevSecOps, Project Management, Creative Problem-Solving
+- **Soft Skills:** Communication, Customer Service
 
 ---
 
