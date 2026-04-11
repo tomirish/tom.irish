@@ -1,9 +1,10 @@
 """
 Unit tests for scripts/convert_resume.py
 
-Focuses on parse_markdown_resume() and parse_summary_paragraphs(), which
-contain the core logic including the job-title regex that was previously
-vulnerable to parentheses in the title portion.
+Covers parse_markdown_resume(), parse_summary_paragraphs(), and
+render_templates(). The parser tests include the job-title regex,
+grouped skills, Key Achievements, and GitHub field. The rendering
+tests verify that both Jinja2 templates produce correct output.
 """
 
 import sys
@@ -460,7 +461,6 @@ A summary.
 def test_render_index_html_contains_name(tmp_path, monkeypatch):
     """Rendered index.html should contain the person's name."""
     monkeypatch.delenv('GITHUB_SHA', raising=False)
-    monkeypatch.chdir(os.path.join(os.path.dirname(__file__), '..'))
     from convert_resume import render_templates
     data = parse_markdown_resume(MINIMAL_RESUME_V2)
     render_templates(data, index_out=str(tmp_path / 'index.html'),
@@ -472,7 +472,6 @@ def test_render_index_html_contains_name(tmp_path, monkeypatch):
 def test_render_resume_html_contains_name(tmp_path, monkeypatch):
     """Rendered resume.html (PDF template) should contain the person's name."""
     monkeypatch.delenv('GITHUB_SHA', raising=False)
-    monkeypatch.chdir(os.path.join(os.path.dirname(__file__), '..'))
     from convert_resume import render_templates
     data = parse_markdown_resume(MINIMAL_RESUME_V2)
     render_templates(data, index_out=str(tmp_path / 'index.html'),
@@ -484,7 +483,6 @@ def test_render_resume_html_contains_name(tmp_path, monkeypatch):
 def test_render_index_html_contains_build_meta(tmp_path, monkeypatch):
     """Rendered index.html should have build-sha and build-time meta tags."""
     monkeypatch.delenv('GITHUB_SHA', raising=False)
-    monkeypatch.chdir(os.path.join(os.path.dirname(__file__), '..'))
     from convert_resume import render_templates
     data = parse_markdown_resume(MINIMAL_RESUME_V2)
     render_templates(data, index_out=str(tmp_path / 'index.html'),

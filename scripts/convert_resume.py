@@ -236,16 +236,26 @@ def _build_info():
 
 def render_templates(data, index_out='index.html', resume_out='resume.html', dry_run=False):
     """Render both Jinja2 templates with resume data and write output files."""
+    from jinja2 import TemplateNotFound, TemplateError
     env = Environment(loader=FileSystemLoader(REPO_ROOT), autoescape=True)
     sha, build_time = _build_info()
 
     context = {**data, 'build_sha': sha, 'build_time': build_time}
 
-    index_tmpl = env.get_template('index.template.html')
-    write_file(index_out, index_tmpl.render(**context), dry_run=dry_run)
-
-    resume_tmpl = env.get_template('resume.template.html')
-    write_file(resume_out, resume_tmpl.render(**context), dry_run=dry_run)
+    for tmpl_name, out_path in [
+        ('index.template.html', index_out),
+        ('resume.template.html', resume_out),
+    ]:
+        try:
+            tmpl = env.get_template(tmpl_name)
+            write_file(out_path, tmpl.render(**context), dry_run=dry_run)
+        except TemplateNotFound:
+            print(f"❌ ERROR: Template not found: {tmpl_name}")
+            print(f"   Expected at: {os.path.join(REPO_ROOT, tmpl_name)}")
+            sys.exit(1)
+        except TemplateError as e:
+            print(f"❌ ERROR: Template rendering failed for {tmpl_name}: {e}")
+            sys.exit(1)
 
 
 def main():
