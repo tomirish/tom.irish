@@ -6,6 +6,7 @@ memory/
 public/
 resume.pdf
 index.html
+resume.html
 
 # Python
 __pycache__/
