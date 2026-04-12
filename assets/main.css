@@ -3,6 +3,8 @@
 
 html {
   background: #fff;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -23,7 +25,7 @@ img { display: block; max-width: 100%; }
   justify-content: center;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: calc(48px + env(safe-area-inset-top)) 24px 48px;
+  padding: calc(48px + env(safe-area-inset-top)) calc(24px + env(safe-area-inset-right)) 48px calc(24px + env(safe-area-inset-left));
   border-top: 4px solid #9b2335;
   background: #fff;
 }
@@ -129,6 +131,8 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid #eee;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .resume-header {
@@ -186,6 +190,8 @@ a.contact-pill-pdf:hover { background: #9b2335; color: #fff; border-color: #9b23
   grid-template-columns: 1fr clamp(220px, 30%, 360px);
   max-width: 1200px;
   margin: 0 auto;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .resume-main { padding: 28px 32px; border-right: 1px solid #dedad5; }
@@ -249,7 +255,7 @@ a.contact-pill-pdf:hover { background: #9b2335; color: #fff; border-color: #9b23
 
 .job-bullets { list-style: none; }
 .job-bullets li {
-  font-size: 14px;
+  font-size: 15px;
   color: #333;
   padding-left: 18px;
   position: relative;
