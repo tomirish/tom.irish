@@ -17,7 +17,7 @@ Personal website and resume for [Tom Irish](https://tom.irish) — a clean, sing
 
 ## How It Works
 
-Edit `resume.md`, commit to `main`, and the site and PDF update automatically:
+Edit [`resume.md`](resume.md), commit to `main`, and the site and PDF update automatically:
 
 ```
 resume.md pushed to main
