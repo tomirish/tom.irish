@@ -40,9 +40,7 @@ jobs:
           playwright install --with-deps chromium
       
       - name: Audit dependencies for known vulnerabilities
-        run: |
-          pip install pip-audit
-          pip-audit
+        run: pip-audit
 
       - name: Validate resume format
         run: |
@@ -52,13 +50,11 @@ jobs:
         run: |
           python scripts/convert_resume.py
 
-      - name: Generate PDF
+      - name: Generate PDF and share image
         run: |
-          python scripts/generate_pdf_browser.py
-
-      - name: Generate share image
-        run: |
-          python scripts/generate_share_image.py
+          python scripts/generate_pdf_browser.py &
+          python scripts/generate_share_image.py &
+          wait
 
       - name: Run tests
         run: |
@@ -91,8 +87,7 @@ jobs:
           echo "- Tests passed: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Resume validated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
-          echo "- PDF generated: ✅" >> $GITHUB_STEP_SUMMARY
-          echo "- Share image generated: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- PDF and share image generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Deployed to Cloudflare Pages: ✅" >> $GITHUB_STEP_SUMMARY
 
