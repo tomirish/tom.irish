@@ -17,8 +17,8 @@ img { display: block; }
   display: flex;
   gap: 18px;
   align-items: center;
-  padding: 14px 0;
-  margin-bottom: 16px;
+  padding: 11px 0;
+  margin-bottom: 12px;
   border-top: 3px solid #9b2335;
   border-bottom: 1px solid #e4e4e4;
   print-color-adjust: exact;
@@ -52,7 +52,7 @@ img { display: block; }
 }
 
 /* ── SECTIONS ────────────────────────────────────────────── */
-.pdf-section { margin-bottom: 13px; }
+.pdf-section { margin-bottom: 10px; }
 
 .pdf-section-heading {
   font-family: 'Playfair Display', Georgia, serif;
@@ -67,7 +67,7 @@ img { display: block; }
 .pdf-rule {
   border: none;
   border-top: 1px solid #e4e4e4;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .pdf-summary {
@@ -84,8 +84,8 @@ img { display: block; }
   color: #333;
   padding-left: 12px;
   position: relative;
-  margin-bottom: 3px;
-  line-height: 1.5;
+  margin-bottom: 2px;
+  line-height: 1.4;
 }
 .pdf-bullets li::before {
   content: "–";
@@ -97,10 +97,10 @@ img { display: block; }
 }
 
 /* ── JOBS ────────────────────────────────────────────────── */
-.pdf-job { margin-bottom: 9px; }
+.pdf-job { margin-bottom: 7px; }
 .pdf-job + .pdf-job {
   border-top: 1px solid #eee;
-  padding-top: 9px;
+  padding-top: 7px;
 }
 .pdf-job-header {
   display: flex;

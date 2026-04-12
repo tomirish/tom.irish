@@ -11,18 +11,20 @@
 
 ## Professional Summary
 
-I am a dynamic and motivated leader with over 20 years of experience in information services and logistics, specializing in customer integration solutions. With a proven track record of enhancing customer experience through seamless integrations and managing systems that handle over a billion transactions annually, I bring a wealth of expertise to any organization.
-
-My expertise includes leading multiple high-performing agile teams, leveraging microservices architecture with continuous integration and continuous deployment pipelines. My goal is to inspire my teams to reach their full potential in a collaborative and inclusive environment, focusing on coaching, mentoring, and fostering continuous innovation and growth.
-
-As a data-driven decision-maker, I am passionate about leveraging technology to solve complex problems. I successfully manage a $10 million budget, optimizing resources, reducing costs, and planning for the future. My commitment to delivering results-based customer service and continuous improvement is unwavering.
+Senior engineering leader with 21 years at Expeditors, running Connected Systems & Infrastructure — 50+ people across five global agile teams responsible for billions of annual B2B, EDI, and government connectivity transactions at 99.5%+ availability. Known for measurable delivery improvement, operational resilience under pressure, and building high-performance engineering organizations through deliberate team development and succession planning.
 
 ---
 
 ## Key Achievements
 
-- Placeholder — add metric-driven achievement here
-- Placeholder — add metric-driven achievement here
+- Owns the platform behind billions of annual transactions at 99.5%+ availability — spanning B2B integration, EDI, government connectivity, and service provider connectivity
+- Reduced reactive workload (RTR) from 96% to 52% in one year through CI/CD pipeline buildout and test automation, reclaiming 44 points of team capacity for strategic delivery
+- Delivered $465K in cost savings (38.4% reduction) through infrastructure optimization and operational discipline
+- Improved ART Predictability from 79% to 90%; DORA scores of 9.47 and 8.2 across delivery teams
+- Achieved and sustained zero critical and high vulnerabilities across the full portfolio
+- First team in the organization to modernize application identity with Microsoft Entra ID
+- Led incident command through a major cyber attack, achieving full recovery
+- 21 years at Expeditors including 10+ years managing engineering managers across global locations
 
 ---
 
@@ -30,23 +32,23 @@ As a data-driven decision-maker, I am passionate about leveraging technology to 
 
 ### Expeditors - Senior Manager (2025 - Present)
 
-- Spearheaded the development and optimization of new systems infrastructure, retiring legacy systems to enhance customer integration efficiency, facilitating over a billion transactions annually.
-- Led cross-functional teams in implementing DevSecOps and agile methodologies, increasing system efficiency by 20% and reducing operational costs by 5%.
-- Cultivated a high-performance culture through continuous coaching and mentoring, increasing team productivity by 25% and fostering professional growth.
+- Lead Connected Systems & Infrastructure — 50+ engineers, TPMs, and project managers across five global agile delivery teams including a Global Service Center in Chennai
+- Sponsor security-first engineering across the portfolio; team maintains zero critical and high vulnerabilities and was first in the organization to adopt Microsoft Entra ID for application identity
+- Led incident command through a major cyber attack, coordinating full cross-functional response and recovery
 
 ### Expeditors - Manager (2016 - 2025)
 
-- Pioneered customized integration solutions, consistently exceeding customer expectations by delivering exceptional onboarding experiences.
-- Directed multiple high-impact projects, ensuring on-time delivery and achieving a 90% success rate.
-- Developed and implemented comprehensive training programs, enhancing team skills and fostering a culture of continuous improvement.
+- Built and scaled the integration platform now responsible for billions of annual transactions at 99.5%+ availability, spanning B2B, EDI, government connectivity, and service provider integrations
+- Reduced team reactive workload (RTR) from 96% to 52% through CI/CD automation and test coverage, reclaiming 44 points of sprint capacity for strategic delivery
+- Delivered $465K in cost savings (38.4% reduction); improved ART Predictability from 79% to 90% and achieved DORA scores of 9.47 / 8.2
+- Grew from managing a single engineering team to leading multiple engineering managers across global locations over a 9-year tenure
 
 ---
 
 ## Skills
 
-- **Leadership & Management:** Leadership, Strategic Thinking, Coaching and Mentoring, Financial Management
-- **Engineering Practices:** Agile Development, DevSecOps, Project Management, Creative Problem-Solving
-- **Soft Skills:** Communication, Customer Service
+- **Leadership & Management:** Organizational Design, Succession Planning, Incident Command, Cross-functional Leadership, Coaching and Mentoring, Budget Management
+- **Engineering & Platform:** Reliability Engineering (SRE), Observability, DevSecOps, CI/CD, B2B & EDI Integration, Cloud Identity (Entra ID)
 
 ---
 
@@ -61,4 +63,5 @@ As a data-driven decision-maker, I am passionate about leveraging technology to 
 ## Certifications
 
 - Path Forward - Leadership Platform Course
-- Scaled Agile - Leading SAFe Agilist Certified
+- Scaled Agile - SAFe Agilist Certified
+- Scaled Agile - SAFe DevOps Practitioner Certified
