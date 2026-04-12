@@ -26,7 +26,9 @@ GitHub Actions triggers
        ↓
 validate_resume.py      — checks format and required sections
 convert_resume.py       — updates index.html from resume.md
-generate_pdf_browser.py — generates resume.pdf via headless Chromium
+generate_pdf_browser.py — generates resume.pdf via headless Chromium  ┐ parallel
+generate_share_image.py — regenerates OG preview image                ┘
+pytest tests/           — verifies scripts and templates
        ↓
 Wrangler deploys to Cloudflare Pages → https://tom.irish
 ```
