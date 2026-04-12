@@ -69,21 +69,24 @@ body {{
   margin-bottom: 12px;
 }}
 .role {{
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: #555;
+  margin-bottom: 10px;
+}}
+.tagline {{
+  font-size: 16px;
+  font-weight: 400;
+  color: #777;
+  line-height: 1.5;
   margin-bottom: 28px;
+  white-space: nowrap;
 }}
 .divider {{
   width: 48px;
   height: 3px;
   background: #9b2335;
-  margin-bottom: 28px;
-}}
-.meta {{
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  margin-bottom: 24px;
 }}
 .meta-item {{
   font-size: 15px;
@@ -108,12 +111,10 @@ body {{
   </div>
   <div class="text">
     <div class="name">Tom Irish</div>
-    <div class="role">Engineering Leader</div>
+    <div class="role">Senior Manager</div>
+    <div class="tagline">Engineering leader building the systems that keep global freight moving.</div>
     <div class="divider"></div>
-    <div class="meta">
-      <div class="meta-item">Seattle, Washington</div>
-      <div class="meta-item">tom.irish</div>
-    </div>
+    <div class="meta-item">Seattle, Washington</div>
   </div>
 </div>
 <div class="site">tom.irish</div>
