@@ -58,7 +58,7 @@ Senior engineering leader with 21 years at Expeditors, owning the systems and in
 
 ## Skills
 
-- **Leadership & Management:** Organizational Design, OKR-driven reliability, Incident Command, Budget Management, Cross-functional, Coaching & Mentoring
+- **Leadership & Management:** Organizational Design, OKR-led Reliability, Incident Command, Budget Management, Cross-functional, Coaching & Mentoring
 - **Engineering & Platform:** Reliability Engineering, Observability, DORA metrics, Toil Reduction, DevSecOps, Agile Teams, CI/CD Pipelines, Data Integration
 
 ---
