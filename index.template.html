@@ -141,12 +141,6 @@
 
       <aside class="resume-sidebar">
 
-        {% if location %}
-        <h3 class="section-heading">Location</h3>
-        <hr class="section-rule"/>
-        <div class="cert-item">{{ location }}</div>
-        {% endif %}
-
         {% if skills %}
         <h3 class="section-heading">Skills</h3>
         <hr class="section-rule"/>
@@ -181,6 +175,12 @@
         {% for cert in certifications %}
         <div class="cert-item">{{ cert }}</div>
         {% endfor %}
+        {% endif %}
+
+        {% if location %}
+        <h3 class="section-heading">Location</h3>
+        <hr class="section-rule"/>
+        <div class="cert-item">{{ location }}</div>
         {% endif %}
 
       </aside>
