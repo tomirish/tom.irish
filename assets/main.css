@@ -76,7 +76,7 @@ img { display: block; max-width: 100%; }
   justify-content: center;
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #efefef;
+  border-top: 1px solid #9b2335;
 }
 
 .icon-link {
@@ -98,51 +98,33 @@ img { display: block; max-width: 100%; }
 }
 .icon-link svg { width: 18px; height: 18px; fill: currentColor; }
 
-/* ── RESUME NAV ───────────────────────────────────────────── */
-.resume-nav {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 32px;
-  border-bottom: 1px solid #f0f0f0;
-  background: #fafafa;
-  border-top: 4px solid #9b2335;
-}
-
-.resume-back {
-  font-size: 12px;
-  font-weight: 600;
-  color: #9b2335;
-}
-.resume-back:hover { text-decoration: underline; }
-
-.resume-pdf {
-  font-size: 12px;
-  color: #555;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 4px 14px;
-}
-.resume-pdf:hover { border-color: #9b2335; color: #9b2335; }
-
 /* ── RESUME HEADER ────────────────────────────────────────── */
+.resume-header-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-top: 4px solid #9b2335;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
 .resume-header {
   display: flex;
   gap: 24px;
   align-items: center;
-  padding: 28px 32px 24px;
-  border-bottom: 1px solid #eee;
+  padding: 16px 32px;
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
 }
 
 .resume-photo {
-  width: 72px;
-  height: 72px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2.5px solid #eee;
+  border: 2px solid #eee;
   flex-shrink: 0;
 }
 .resume-photo img { width: 100%; height: 100%; object-fit: cover; }
@@ -162,14 +144,19 @@ img { display: block; max-width: 100%; }
 }
 
 .contact-pill {
-  font-size: 11px;
+  font-size: 12px;
   color: #444;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  padding: 3px 12px;
+  padding: 4px 13px;
   white-space: nowrap;
 }
 a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
+
+.contact-pill-back { font-weight: 500; }
+
+.contact-pill-pdf { color: #9b2335; border-color: #9b2335; font-weight: 500; }
+a.contact-pill-pdf:hover { background: #9b2335; color: #fff; border-color: #9b2335; }
 
 /* ── RESUME BODY (two column) ─────────────────────────────── */
 .resume-body {
@@ -184,13 +171,12 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
 
 /* ── SECTION HEADINGS ─────────────────────────────────────── */
 .section-heading {
-  font-size: 10px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
   color: #9b2335;
-  margin-top: 24px;
-  margin-bottom: 6px;
+  margin-top: 28px;
+  margin-bottom: 8px;
 }
 .resume-main .section-heading:first-child,
 .resume-sidebar .section-heading:first-child { margin-top: 0; }
@@ -202,18 +188,18 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
 }
 
 /* ── SUMMARY ──────────────────────────────────────────────── */
-.summary-text { font-size: 13px; line-height: 1.7; color: #333; }
-.summary-text p + p { margin-top: 10px; }
+.summary-text { font-size: 15px; line-height: 1.7; color: #333; }
+.summary-text p + p { margin-top: 12px; }
 
 /* ── KEY ACHIEVEMENTS ─────────────────────────────────────── */
 .achievements-list { list-style: none; }
 .achievements-list li {
-  font-size: 13px;
+  font-size: 15px;
   color: #333;
-  padding-left: 16px;
+  padding-left: 18px;
   position: relative;
-  margin-bottom: 6px;
-  line-height: 1.55;
+  margin-bottom: 8px;
+  line-height: 1.6;
 }
 .achievements-list li::before {
   content: "–";
@@ -224,7 +210,7 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
 }
 
 /* ── WORK EXPERIENCE ──────────────────────────────────────── */
-.job { margin-bottom: 20px; }
+.job { margin-bottom: 24px; }
 
 .job-header {
   display: flex;
@@ -234,18 +220,18 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
   margin-bottom: 2px;
 }
 
-.job-title { font-size: 14px; font-weight: 700; color: #111; }
-.job-dates { font-size: 11px; color: #999; white-space: nowrap; }
-.job-company { font-size: 12px; color: #555; margin-bottom: 8px; }
+.job-title { font-size: 15px; font-weight: 700; color: #111; }
+.job-dates { font-size: 13px; color: #999; white-space: nowrap; }
+.job-company { font-size: 13px; color: #555; margin-bottom: 10px; }
 
 .job-bullets { list-style: none; }
 .job-bullets li {
-  font-size: 12.5px;
+  font-size: 14px;
   color: #333;
-  padding-left: 16px;
+  padding-left: 18px;
   position: relative;
-  margin-bottom: 5px;
-  line-height: 1.55;
+  margin-bottom: 7px;
+  line-height: 1.6;
 }
 .job-bullets li::before {
   content: "–";
@@ -255,41 +241,41 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
 }
 
 /* ── SKILLS ───────────────────────────────────────────────── */
-.skill-group { margin-bottom: 14px; }
+.skill-group { margin-bottom: 16px; }
 
 .skill-group-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   color: #666;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
-.skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
 .skill-tag {
-  font-size: 11px;
+  font-size: 13px;
   color: #333;
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 10px;
-  padding: 3px 10px;
+  padding: 4px 11px;
 }
 
 /* ── EDUCATION ────────────────────────────────────────────── */
-.edu-entry { margin-bottom: 16px; }
-.edu-name { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 4px; }
-.edu-item { font-size: 12px; color: #555; }
+.edu-entry { margin-bottom: 18px; }
+.edu-name { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 5px; }
+.edu-item { font-size: 13px; color: #555; }
 
 /* ── CERTIFICATIONS ───────────────────────────────────────── */
 .cert-item {
-  font-size: 12px;
+  font-size: 13px;
   color: #444;
-  padding-left: 14px;
+  padding-left: 16px;
   position: relative;
-  margin-bottom: 6px;
-  line-height: 1.5;
+  margin-bottom: 7px;
+  line-height: 1.6;
 }
 .cert-item::before {
   content: "–";
@@ -300,8 +286,7 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 767px) {
-  .resume-nav { padding: 12px 20px; }
-  .resume-header { padding: 20px 20px 16px; gap: 16px; }
+  .resume-header { padding: 12px 20px; gap: 14px; }
   .resume-body { grid-template-columns: 1fr; }
   .resume-main { padding: 20px; border-right: none; }
   .resume-sidebar { padding: 20px; background: #fff; border-top: 1px solid #eee; }
