@@ -46,7 +46,7 @@ Senior engineering leader with 21 years at Expeditors, owning the systems and in
 
 ### Expeditors - Earlier Career (2004 - 2016)
 
-Progressed through Application Support, Development, and Management roles, building deep fluency in global freight operations, supply chain integration, and the systems that power them.
+- Progressed through Application Support, Development, and Management roles, building deep fluency in global freight operations, supply chain integration, and the systems that power them.
 
 ---
 
