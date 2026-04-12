@@ -48,6 +48,4 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 
 ---
 
-## License
-
 MIT — see [LICENSE](LICENSE).
