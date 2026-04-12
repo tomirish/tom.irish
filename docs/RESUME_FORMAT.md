@@ -47,6 +47,9 @@ These must appear at the top of the file:
 | Field | Format |
 |---|---|
 | GitHub | `**GitHub:** [text](https://...)` |
+| Tagline | `**Tagline:** Plain text (no link)` |
+
+The `Tagline` field populates the short bio line on the landing page, the OG/meta description for social sharing, and the share image. Keep it under ~80 characters so it renders on a single line everywhere.
 
 ---
 
@@ -226,6 +229,7 @@ Plain bullet list. Add or remove lines freely. If the section is empty or remove
 **LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)
 **GitHub:** [github.com/tomirish](https://github.com/tomirish)
 **Location:** Seattle, Washington
+**Tagline:** Engineering leader building the systems that keep global freight moving.
 
 ---
 
