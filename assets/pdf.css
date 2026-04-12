@@ -3,10 +3,10 @@
 
 body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 11px;
+  font-size: 10.5px;
   color: #111;
   background: #fff;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -17,23 +17,14 @@ img { display: block; }
   display: flex;
   gap: 18px;
   align-items: center;
-  padding: 11px 0;
-  margin-bottom: 12px;
+  padding: 8px 0;
+  margin-bottom: 8px;
   border-top: 3px solid #9b2335;
   border-bottom: 1px solid #e4e4e4;
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
 }
 
-.pdf-photo {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1.5px solid #ddd;
-  flex-shrink: 0;
-}
-.pdf-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 .pdf-name {
   font-family: 'Playfair Display', Georgia, serif;
@@ -52,7 +43,7 @@ img { display: block; }
 }
 
 /* ── SECTIONS ────────────────────────────────────────────── */
-.pdf-section { margin-bottom: 10px; }
+.pdf-section { margin-bottom: 7px; }
 
 .pdf-section-heading {
   font-family: 'Playfair Display', Georgia, serif;
@@ -67,25 +58,25 @@ img { display: block; }
 .pdf-rule {
   border: none;
   border-top: 1px solid #e4e4e4;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .pdf-summary {
-  font-size: 11px;
-  line-height: 1.6;
+  font-size: 10.5px;
+  line-height: 1.5;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 /* ── BULLETS ─────────────────────────────────────────────── */
 .pdf-bullets { list-style: none; }
 .pdf-bullets li {
-  font-size: 11px;
+  font-size: 10.5px;
   color: #333;
   padding-left: 12px;
   position: relative;
-  margin-bottom: 2px;
-  line-height: 1.4;
+  margin-bottom: 1px;
+  line-height: 1.35;
 }
 .pdf-bullets li::before {
   content: "–";
@@ -97,10 +88,10 @@ img { display: block; }
 }
 
 /* ── JOBS ────────────────────────────────────────────────── */
-.pdf-job { margin-bottom: 7px; }
+.pdf-job { margin-bottom: 5px; }
 .pdf-job + .pdf-job {
   border-top: 1px solid #eee;
-  padding-top: 7px;
+  padding-top: 5px;
 }
 .pdf-job-header {
   display: flex;
@@ -110,15 +101,15 @@ img { display: block; }
 }
 .pdf-job-title { font-size: 12px; font-weight: 700; }
 .pdf-job-dates { font-size: 10px; color: #999; }
-.pdf-job-company { font-size: 10.5px; color: #555; margin-bottom: 5px; }
+.pdf-job-company { font-size: 10px; color: #555; margin-bottom: 3px; }
 
 /* ── SKILLS ──────────────────────────────────────────────── */
-.pdf-skill-row { margin-bottom: 4px; font-size: 11px; }
+.pdf-skill-row { margin-bottom: 3px; font-size: 10.5px; }
 .pdf-skill-label { font-weight: 600; color: #333; margin-right: 4px; }
 .pdf-skill-items { color: #444; }
 
 /* ── EDUCATION ───────────────────────────────────────────── */
-.pdf-edu { margin-bottom: 8px; font-size: 11px; }
+.pdf-edu { margin-bottom: 5px; font-size: 10.5px; }
 .pdf-edu-item { color: #555; margin-top: 2px; }
 
 @media print {
