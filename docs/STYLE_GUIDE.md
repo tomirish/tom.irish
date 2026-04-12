@@ -148,4 +148,4 @@ En dash (`–`) positioned absolutely at `left: 0`, colored `#9b2335`. Used in: 
 
 ## Fonts Note
 
-DM Sans and Playfair Display are loaded from Google Fonts in `index.template.html` only. `pdf.css` uses system fonts exclusively — the PDF is intentionally independent of the web typography.
+DM Sans and Playfair Display are loaded from Google Fonts in both `index.template.html` and `resume.template.html`. The PDF uses the same typefaces as the web — Playwright has internet access during generation so Google Fonts load correctly.
