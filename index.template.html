@@ -50,7 +50,10 @@
   <section id="home">
     <main class="landing-inner">
       <div class="landing-photo">
-        <img src="assets/images/tom-irish.jpg" alt="{{ name }}"/>
+        <picture>
+          <source srcset="assets/images/tom-irish-480.webp" type="image/webp"/>
+          <img src="assets/images/tom-irish-480.jpg" alt="{{ name }}"/>
+        </picture>
       </div>
       <div class="landing-right">
       <h1 class="landing-name">{{ name }}</h1>
@@ -86,7 +89,10 @@
     <div class="resume-header-wrap">
       <header class="resume-header">
         <div class="resume-photo">
-          <img src="assets/images/tom-irish.jpg" alt="{{ name }}"/>
+          <picture>
+            <source srcset="assets/images/tom-irish-480.webp" type="image/webp"/>
+            <img src="assets/images/tom-irish-480.jpg" alt="{{ name }}"/>
+          </picture>
         </div>
         <div class="resume-header-text">
           <h2 class="resume-name">{{ name }}</h2>

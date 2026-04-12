@@ -30,7 +30,8 @@ REQUIRED_ASSETS = [
     'assets/images/favicon.png',
     'assets/images/apple-touch-icon.png',
     'assets/images/share.jpg',
-    'assets/images/tom-irish.jpg',
+    'assets/images/tom-irish-480.jpg',
+    'assets/images/tom-irish-480.webp',
 ]
 
 def test_required_assets_exist():

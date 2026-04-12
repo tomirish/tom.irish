@@ -246,7 +246,7 @@ a.contact-pill-pdf:hover { background: #9b2335; color: #fff; border-color: #9b23
 }
 
 .job-title { font-size: 15px; font-weight: 700; color: #111; }
-.job-dates { font-size: 13px; color: #999; white-space: nowrap; }
+.job-dates { font-size: 13px; color: #767676; white-space: nowrap; }
 .job-company { font-size: 13px; color: #555; margin-bottom: 10px; }
 
 .job-bullets { list-style: none; }
