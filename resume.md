@@ -6,7 +6,7 @@
 
 **Website:** [https://tom.irish](https://tom.irish)
 
-**LinkedIn:** [https://linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)
+**LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)
 
 **GitHub:** [github.com/tomirish](https://github.com/tomirish)
 
