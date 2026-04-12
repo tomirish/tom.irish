@@ -95,7 +95,6 @@
             {% if email.href %}<a class="contact-pill" href="{{ email.href }}">{{ email.display }}</a>{% endif %}
             {% if linkedin.href %}<a class="contact-pill" href="{{ linkedin.href }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>{% endif %}
             {% if github.href %}<a class="contact-pill" href="{{ github.href }}" target="_blank" rel="noopener noreferrer">GitHub</a>{% endif %}
-            {% if location %}<span class="contact-pill">{{ location }}</span>{% endif %}
             <a class="contact-pill contact-pill-pdf" href="resume.pdf" target="_blank">↓ PDF</a>
           </div>
         </div>
@@ -141,6 +140,12 @@
       </main>
 
       <aside class="resume-sidebar">
+
+        {% if location %}
+        <h3 class="section-heading">Location</h3>
+        <hr class="section-rule"/>
+        <div class="cert-item">{{ location }}</div>
+        {% endif %}
 
         {% if skills %}
         <h3 class="section-heading">Skills</h3>
