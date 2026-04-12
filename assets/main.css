@@ -12,6 +12,7 @@
   --text-dates:   #767676;
   --text-body:    #333;
   --accent:       #9b2335;
+  --accent-text:  #9b2335; /* same as accent in light mode */
   --border:       #e0e0e0;
   --border-sm:    #eee;
   --border-mid:   #dedad5;
@@ -28,6 +29,7 @@
     --text-dates:   #878787;
     --text-body:    #ccc;
     --accent:       #c4394e;
+    --accent-text:  #e0506a; /* lighter red — passes 4.5:1 on dark backgrounds */
     --border:       #484848;
     --border-sm:    #363636;
     --border-mid:   #383634;
@@ -239,8 +241,8 @@ a.contact-pill:hover { border-color: var(--accent); color: var(--accent); }
 
 .contact-pill-back { font-weight: 500; }
 
-.contact-pill-pdf { color: var(--accent); border-color: var(--accent); font-weight: 500; }
-a.contact-pill-pdf:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.contact-pill-pdf { color: var(--accent-text); border-color: var(--accent-text); font-weight: 500; }
+a.contact-pill-pdf:hover { background: var(--accent-text); color: #fff; border-color: var(--accent-text); }
 
 /* ── RESUME BODY (two column) ─────────────────────────────── */
 .resume-body {
@@ -258,7 +260,7 @@ a.contact-pill-pdf:hover { background: var(--accent); color: #fff; border-color:
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 18px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-top: 28px;
   margin-bottom: 8px;
 }
