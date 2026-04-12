@@ -46,6 +46,10 @@ jobs:
         run: |
           python scripts/validate_resume.py
 
+      - name: Check links in resume
+        run: |
+          python scripts/check_links.py
+
       - name: Convert markdown to HTML
         run: |
           python scripts/convert_resume.py
