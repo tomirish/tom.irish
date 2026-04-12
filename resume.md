@@ -58,7 +58,7 @@ Senior engineering leader with 21 years at Expeditors, owning the systems and in
 
 ## Skills
 
-- **Leadership & Management:** Organizational Design, OKR-driven reliability, Incident Command, Cross-functional Leadership, Coaching and Mentoring, Budget Management
+- **Leadership & Management:** Organizational Design, OKR-driven reliability, Incident Command, Budget Management, Cross-functional, Coaching & Mentoring
 - **Engineering & Platform:** Reliability Engineering, Observability, DORA metrics, Toil Reduction, DevSecOps, Agile Teams, CI/CD Pipelines, Data Integration
 
 ---
@@ -73,6 +73,6 @@ Senior engineering leader with 21 years at Expeditors, owning the systems and in
 
 ## Certifications
 
-- Path Forward - Leadership Platform Course
-- Scaled Agile - SAFe Agilist
-- Scaled Agile - SAFe DevOps Practitioner
+- Path Forward: Leadership Platform
+- SAFe Agilist
+- SAFe DevOps Practitioner
