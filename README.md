@@ -46,6 +46,3 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 | `tests/` | Test suite | 🔧 Pipeline changes only |
 | `.github/workflows/build.yml` | CI/CD config | 🔧 Automation changes only |
 
----
-
-MIT — see [LICENSE](LICENSE).
