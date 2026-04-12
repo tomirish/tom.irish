@@ -2,7 +2,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #111;
   background: #fff;
   line-height: 1.5;
@@ -31,32 +31,42 @@ img { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .landing-photo {
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #eee;
+  border: 3px solid #e8e8e8;
+  margin-bottom: 6px;
 }
 .landing-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 .landing-name {
-  font-size: 24px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 52px;
   font-weight: 700;
-  letter-spacing: -0.4px;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
   text-align: center;
 }
 
+.landing-role {
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  text-align: center;
+  letter-spacing: 0.1px;
+}
+
 .landing-location {
-  font-size: 11px;
-  color: #999;
-  letter-spacing: 0.8px;
+  font-size: 10px;
+  color: #aaa;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   text-align: center;
-  margin-top: -4px;
 }
 
 .icon-links {
@@ -64,7 +74,9 @@ img { display: block; max-width: 100%; }
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #efefef;
 }
 
 .icon-link {
@@ -136,9 +148,10 @@ img { display: block; max-width: 100%; }
 .resume-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 .resume-name {
-  font-size: 22px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 30px;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
   margin-bottom: 10px;
 }
 
@@ -167,7 +180,7 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
 }
 
 .resume-main { padding: 28px 32px; border-right: 1px solid #f0f0f0; }
-.resume-sidebar { padding: 28px 24px; background: #fafafa; }
+.resume-sidebar { padding: 28px 24px; background: #f8f7f5; }
 
 /* ── SECTION HEADINGS ─────────────────────────────────────── */
 .section-heading {
@@ -184,7 +197,7 @@ a.contact-pill:hover { border-color: #9b2335; color: #9b2335; }
 
 .section-rule {
   border: none;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #e4e4e4;
   margin-bottom: 14px;
 }
 

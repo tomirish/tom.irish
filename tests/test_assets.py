@@ -66,7 +66,7 @@ def test_main_css_has_accent_color():
 
 def test_main_css_no_google_fonts():
     css = read('assets/main.css')
-    assert 'fonts.googleapis.com' not in css, 'Google Fonts reference found in main.css'
+    assert 'fonts.googleapis.com' not in css, 'Google Fonts should be in the HTML template, not main.css'
 
 
 def test_main_css_responsive_breakpoint():
@@ -102,9 +102,9 @@ def test_index_template_no_javascript():
     assert '<script' not in tmpl, 'Script tag found in index.template.html — should have zero JS'
 
 
-def test_index_template_no_google_fonts():
+def test_index_template_loads_google_fonts():
     tmpl = read('index.template.html')
-    assert 'fonts.googleapis.com' not in tmpl, 'Google Fonts link found in index.template.html'
+    assert 'fonts.googleapis.com' in tmpl, 'Google Fonts link missing from index.template.html'
 
 
 def test_index_template_has_head():

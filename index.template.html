@@ -16,6 +16,9 @@
   <link rel="canonical" href="{{ website.href }}"/>
   <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Playfair+Display:wght@400;700&display=swap"/>
   <link rel="stylesheet" href="assets/main.css"/>
   <title>{{ name }}</title>
 </head>
@@ -28,6 +31,7 @@
         <img src="assets/images/tom-irish.jpg" alt="{{ name }}"/>
       </div>
       <h1 class="landing-name">{{ name }}</h1>
+      {% if work_experience %}<p class="landing-role">{{ work_experience[0].role }} · {{ work_experience[0].company }}</p>{% endif %}
       <p class="landing-location">{{ location }}</p>
       <nav class="icon-links" aria-label="Contact links">
         {% if email.href %}
