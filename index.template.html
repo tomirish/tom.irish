@@ -180,6 +180,7 @@
         {% if location or phone.href %}
         <h3 class="section-heading">Contact</h3>
         <hr class="section-rule"/>
+        {% if email.href %}<div class="cert-item"><a href="{{ email.href }}">{{ email.display }}</a></div>{% endif %}
         {% if phone.href %}<div class="cert-item"><a href="{{ phone.href }}">{{ phone.display }}</a></div>{% endif %}
         {% if location %}<div class="cert-item">{{ location }}</div>{% endif %}
         {% endif %}
