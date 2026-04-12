@@ -3,8 +3,6 @@
 
 html {
   background: #fff;
-  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
-  padding-top: env(safe-area-inset-top);      /* iOS 11.2+ */
 }
 
 body {
@@ -25,7 +23,7 @@ img { display: block; max-width: 100%; }
   justify-content: center;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 48px 24px;
+  padding: calc(48px + env(safe-area-inset-top)) 24px 48px;
   border-top: 4px solid #9b2335;
   background: #fff;
 }
@@ -130,6 +128,7 @@ img { display: block; max-width: 100%; }
   border-top: 4px solid #9b2335;
   border-bottom: 1px solid #eee;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding-top: env(safe-area-inset-top);
 }
 
 .resume-header {
