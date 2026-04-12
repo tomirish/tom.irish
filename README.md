@@ -6,7 +6,6 @@
 
 [![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown)](https://www.markdownguide.org/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)](https://github.com/features/actions)
@@ -39,13 +38,15 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 | File | Purpose | Edit? |
 |------|---------|-------|
 | `resume.md` | Resume content | ✅ Yes |
-| `index.template.html` | HTML template | ✅ Yes — layout or structure |
-| `assets/` | CSS, images, icons | ✅ Yes — styling |
+| `index.template.html` | Web page template | ✅ Yes — layout or structure |
+| `resume.template.html` | PDF template | ✅ Yes — PDF layout or structure |
+| `assets/` | CSS and images | ✅ Yes — styling |
 | `scripts/` | Build automation | 🔧 Pipeline changes only |
+| `tests/` | Test suite | 🔧 Pipeline changes only |
 | `.github/workflows/build.yml` | CI/CD config | 🔧 Automation changes only |
 
 ---
 
 ## License
 
-Personal website — all rights reserved.
+MIT — see [LICENSE](LICENSE).
