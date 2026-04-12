@@ -23,20 +23,20 @@ Both loaded from Google Fonts via `index.template.html`:
 
 | Element | Font | Size | Weight | Color |
 |---|---|---|---|---|
-| Landing name | Playfair Display | 56px | 700 | #111 |
-| Resume name (header) | Playfair Display | 30px | 700 | #111 |
-| Section headings | Playfair Display | 18px | 700 | #9b2335 |
-| Job title | DM Sans | 15px | 700 | #111 |
-| Body text (summary, achievements, job bullets) | DM Sans | 15px | 400 | #333 |
-| Job company | DM Sans | 13px | 400 | #555 |
-| Job dates | DM Sans | 13px | 400 | #999 |
-| Landing role | DM Sans | 16px | 500 | #555 |
-| Tagline | DM Sans | 15px | 400 | #666 |
-| Education name | DM Sans | 14px | 600 | #111 |
-| Education items | DM Sans | 13px | 400 | #555 |
-| Certifications | DM Sans | 13px | 400 | #444 |
-| Skill tags | DM Sans | 13px | 400 | #333 |
-| Skill group labels | DM Sans | 11px | 600 | #666 |
+| Landing name | Playfair Display | 56px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Resume name (header) | Playfair Display | 30px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Section headings | Playfair Display | 18px | 700 | ![](https://placehold.co/12x12/9b2335/9b2335.png) `#9b2335` |
+| Job title | DM Sans | 15px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Body text (summary, achievements, job bullets) | DM Sans | 15px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
+| Job company | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
+| Job dates | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/767676/767676.png) `#767676` |
+| Landing role | DM Sans | 16px | 500 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
+| Tagline | DM Sans | 15px | 400 | ![](https://placehold.co/12x12/666666/666666.png) `#666` |
+| Education name | DM Sans | 14px | 600 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Education items | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
+| Certifications | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/444444/444444.png) `#444` |
+| Skill tags | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
+| Skill group labels | DM Sans | 11px | 600 | ![](https://placehold.co/12x12/666666/666666.png) `#666` |
 | Contact pills | DM Sans | 12px | 400 | #444 |
 | Landing location | DM Sans | 11px | 400 | #666 |
 
@@ -60,7 +60,7 @@ Both loaded from Google Fonts via `index.template.html`:
 | ![](https://placehold.co/12x12/444444/444444.png) | `#444` | Contact pill text | Default pill color |
 | ![](https://placehold.co/12x12/555555/555555.png) | `#555` | Secondary text | Job company, landing role, education items |
 | ![](https://placehold.co/12x12/666666/666666.png) | `#666` | Muted text | Tagline, landing location, skill group labels |
-| ![](https://placehold.co/12x12/999999/999999.png) | `#999` | Faint text | Job dates |
+| ![](https://placehold.co/12x12/767676/767676.png) | `#767676` | Faint text | Job dates |
 | `—` | `#fff` | Background | Page, skill tags, resume header |
 | ![](https://placehold.co/12x12/edeae5/edeae5.png) | `#edeae5` | Sidebar background | Resume sidebar (warm, clearly distinct from main column) |
 | ![](https://placehold.co/12x12/dedad5/dedad5.png) | `#dedad5` | Sidebar border | Divider between main column and sidebar |
