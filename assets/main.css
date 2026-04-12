@@ -20,7 +20,9 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 48px 24px;
+  padding-top: calc(48px + env(safe-area-inset-top));
   border-top: 4px solid #9b2335;
   background: #fff;
 }
@@ -120,6 +122,7 @@ img { display: block; max-width: 100%; }
 .resume-header-wrap {
   position: sticky;
   top: 0;
+  top: env(safe-area-inset-top);
   z-index: 10;
   background: #fff;
   border-top: 4px solid #9b2335;
@@ -310,7 +313,7 @@ a.contact-pill-pdf:hover { background: #9b2335; color: #fff; border-color: #9b23
   .landing-right { gap: 8px; }
   .landing-name { font-size: 44px; text-align: center; }
   .landing-role { text-align: center; }
-  .landing-tagline { text-align: center; }
+  .landing-tagline { font-size: 13px; text-align: center; }
   .landing-location { text-align: center; }
   .icon-links { justify-content: center; margin-top: 8px; }
   .resume-header { padding: 12px 20px; gap: 14px; }
