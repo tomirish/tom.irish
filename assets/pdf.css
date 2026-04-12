@@ -104,8 +104,8 @@ img { display: block; }
 .pdf-job-company { font-size: 10px; color: #555; margin-bottom: 3px; }
 
 /* ── SKILLS ──────────────────────────────────────────────── */
-.pdf-skill-row { margin-bottom: 3px; font-size: 10.5px; }
-.pdf-skill-label { font-weight: 600; color: #333; margin-right: 4px; }
+.pdf-skill-row { margin-bottom: 9px; font-size: 10.5px; }
+.pdf-skill-label { display: block; font-weight: 600; color: #333; margin-bottom: 1px; }
 .pdf-skill-items { color: #444; }
 
 /* ── EDUCATION ───────────────────────────────────────────── */
