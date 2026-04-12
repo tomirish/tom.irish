@@ -27,18 +27,18 @@ Both loaded from Google Fonts via `index.template.html`:
 | Resume name (header) | Playfair Display | 30px | 700 | #111 |
 | Section headings | Playfair Display | 18px | 700 | #9b2335 |
 | Job title | DM Sans | 15px | 700 | #111 |
-| Body text (summary, achievements) | DM Sans | 15px | 400 | #333 |
-| Job bullets | DM Sans | 14px | 400 | #333 |
+| Body text (summary, achievements, job bullets) | DM Sans | 15px | 400 | #333 |
 | Job company | DM Sans | 13px | 400 | #555 |
 | Job dates | DM Sans | 13px | 400 | #999 |
-| Landing role | DM Sans | 15px | 500 | #555 |
+| Landing role | DM Sans | 16px | 500 | #555 |
+| Tagline | DM Sans | 15px | 400 | #666 |
 | Education name | DM Sans | 14px | 600 | #111 |
 | Education items | DM Sans | 13px | 400 | #555 |
 | Certifications | DM Sans | 13px | 400 | #444 |
 | Skill tags | DM Sans | 13px | 400 | #333 |
 | Skill group labels | DM Sans | 11px | 600 | #666 |
 | Contact pills | DM Sans | 12px | 400 | #444 |
-| Landing location | DM Sans | 10px | 400 | #aaa |
+| Landing location | DM Sans | 11px | 400 | #666 |
 
 ### Line Heights
 
@@ -52,22 +52,21 @@ Both loaded from Google Fonts via `index.template.html`:
 
 ## Color
 
-| Name | Hex | Usage |
-|---|---|---|
-| Accent / crimson | `#9b2335` | Section headings, bullet markers, top borders, icon hover, PDF pill, landing separator |
-| Body text | `#111` | Names, job titles, education names |
-| Primary text | `#333` | Summary, bullets, skill tags |
-| Secondary text | `#555` | Job company, landing role, education items |
-| Muted text | `#666` | Skill group labels |
-| Faint text | `#999` | Job dates |
-| Placeholder text | `#aaa` | Landing location |
-| Contact pill text | `#444` | Default pill color |
-| Background | `#fff` | Page, skill tags, resume header |
-| Sidebar background | `#edeae5` | Resume sidebar (warm, clearly distinct from main column) |
-| Sidebar border | `#dedad5` | Divider between main column and sidebar |
-| Section rule | `#e4e4e4` | Horizontal rule under section headings |
-| Job rule | `#eee` | Separator between job entries |
-| Border light | `#e0e0e0` | Contact pill borders |
+| Swatch | Hex | Name | Usage |
+|:---:|---|---|---|
+| ![](https://placehold.co/12x12/9b2335/9b2335.png) | `#9b2335` | Accent / crimson | Section headings, bullet markers, top borders, icon hover, PDF pill, landing separator |
+| ![](https://placehold.co/12x12/111111/111111.png) | `#111` | Body text | Names, job titles, education names |
+| ![](https://placehold.co/12x12/333333/333333.png) | `#333` | Primary text | Summary, bullets, skill tags |
+| ![](https://placehold.co/12x12/444444/444444.png) | `#444` | Contact pill text | Default pill color |
+| ![](https://placehold.co/12x12/555555/555555.png) | `#555` | Secondary text | Job company, landing role, education items |
+| ![](https://placehold.co/12x12/666666/666666.png) | `#666` | Muted text | Tagline, landing location, skill group labels |
+| ![](https://placehold.co/12x12/999999/999999.png) | `#999` | Faint text | Job dates |
+| `—` | `#fff` | Background | Page, skill tags, resume header |
+| ![](https://placehold.co/12x12/edeae5/edeae5.png) | `#edeae5` | Sidebar background | Resume sidebar (warm, clearly distinct from main column) |
+| ![](https://placehold.co/12x12/dedad5/dedad5.png) | `#dedad5` | Sidebar border | Divider between main column and sidebar |
+| ![](https://placehold.co/12x12/e4e4e4/e4e4e4.png) | `#e4e4e4` | Section rule | Horizontal rule under section headings |
+| ![](https://placehold.co/12x12/eeeeee/eeeeee.png) | `#eee` | Job rule | Separator between job entries |
+| ![](https://placehold.co/12x12/e0e0e0/e0e0e0.png) | `#e0e0e0` | Border light | Contact pill borders |
 
 ---
 
@@ -75,23 +74,25 @@ Both loaded from Google Fonts via `index.template.html`:
 
 ### Landing Page (`#home`)
 
-- Full viewport height (`min-height: 100vh`), centered flex column
+- Full viewport height (`min-height: 100dvh`), centered flex column
 - 4px crimson top border, white background
 - **Horizontal layout** — photo left, text right, `gap: 56px`, `max-width: 780px`
 - Photo: 210px circle, `box-shadow: 0 4px 24px rgba(0,0,0,0.13)` (no border ring)
-- Text stack (`.landing-right`): name → role → location → separator → icon links
+- Text stack (`.landing-right`): name → role → tagline → location → separator → icon links
 - Separator: `1px solid #9b2335` above icon links
+- Safe area: `env(safe-area-inset-top/left/right)` included in padding so content clears the Dynamic Island in all orientations
 - **Mobile (≤767px):** collapses to centered vertical stack; photo shrinks to 120px; name 44px; text center-aligned
 
 ### Resume View (`#resume`)
 
-- Sticky header (full-width wrapper, max-width 1000px inner content)
+- Sticky header (full-width wrapper, max-width 1200px inner content)
   - `position: sticky; top: 0; z-index: 10`
   - 4px crimson top border, subtle `box-shadow: 0 2px 8px rgba(0,0,0,0.04)`
+  - Safe area: `env(safe-area-inset-top/left/right)` on wrapper so header content clears Dynamic Island
   - Header photo: 52px circle, `box-shadow: 0 2px 8px rgba(0,0,0,0.10)`
-- Two-column body: `1fr 280px` grid, max-width 1000px
+- Two-column body: `1fr clamp(220px, 30%, 360px)` grid, max-width 1200px
   - Main column: `padding: 28px 32px`, `border-right: 1px solid #dedad5`
-  - Sidebar: `padding: 28px 24px`, `background: #edeae5`
+  - Sidebar: `padding: 28px 16px`, `background: #edeae5`
 - Job entries separated by `border-top: 1px solid #eee` via `.job + .job`
 
 ### Section Toggle

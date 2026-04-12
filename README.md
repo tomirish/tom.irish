@@ -41,7 +41,8 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 | `index.template.html` | Web page template | ✅ Yes — layout or structure |
 | `resume.template.html` | PDF template | ✅ Yes — PDF layout or structure |
 | `assets/` | CSS and images | ✅ Yes — styling |
-| `docs/` | Format and style reference | 📖 Reference only |
+| [`docs/RESUME_FORMAT.md`](docs/RESUME_FORMAT.md) | How to edit `resume.md` | 📖 Reference |
+| [`docs/STYLE_GUIDE.md`](docs/STYLE_GUIDE.md) | Design system reference | 📖 Reference |
 | `scripts/` | Build automation | 🔧 Pipeline changes only |
 | `tests/` | Test suite | 🔧 Pipeline changes only |
 | `.github/workflows/build.yml` | CI/CD config | 🔧 Automation changes only |
