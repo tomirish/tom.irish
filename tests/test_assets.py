@@ -99,8 +99,12 @@ def test_index_template_has_home_and_resume_sections():
 
 
 def test_index_template_no_javascript():
+    import re
     tmpl = read('index.template.html')
-    assert '<script' not in tmpl, 'Script tag found in index.template.html — should have zero JS'
+    # JSON-LD structured data is allowed; executable JavaScript is not
+    script_tags = re.findall(r'<script([^>]*)>', tmpl)
+    non_jsonld = [t for t in script_tags if 'application/ld+json' not in t]
+    assert not non_jsonld, f'Executable script tag found in index.template.html: {non_jsonld}'
 
 
 def test_index_template_loads_google_fonts():

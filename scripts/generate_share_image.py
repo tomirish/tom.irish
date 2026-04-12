@@ -86,15 +86,9 @@ body {{
   gap: 6px;
 }}
 .meta-item {{
-  font-size: 16px;
-  color: #777;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}}
-.meta-item span {{
-  color: #333;
-  font-weight: 500;
+  font-size: 15px;
+  color: #999;
+  letter-spacing: 0.2px;
 }}
 .site {{
   position: absolute;
@@ -117,8 +111,8 @@ body {{
     <div class="role">Engineering Leader</div>
     <div class="divider"></div>
     <div class="meta">
-      <div class="meta-item">📍 <span>Seattle, Washington</span></div>
-      <div class="meta-item">🔗 <span>tom.irish</span></div>
+      <div class="meta-item">Seattle, Washington</div>
+      <div class="meta-item">tom.irish</div>
     </div>
   </div>
 </div>

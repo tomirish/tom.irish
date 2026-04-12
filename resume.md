@@ -6,6 +6,7 @@
 **LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)  
 **GitHub:** [github.com/tomirish](https://github.com/tomirish)  
 **Location:** Seattle, Washington
+**Tagline:** Engineering leader building the systems that keep global freight moving.
 
 ---
 

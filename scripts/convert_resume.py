@@ -69,6 +69,7 @@ def parse_markdown_resume(md_content):
         'linkedin': {'display': '', 'href': ''},
         'github': {'display': '', 'href': ''},
         'location': '',
+        'tagline': '',
         'summary': [],
         'achievements': [],
         'work_experience': [],
@@ -104,6 +105,10 @@ def parse_markdown_resume(md_content):
             m = re.search(r'\*\*Location:\*\*\s*(.+)', line)
             if m:
                 data['location'] = m.group(1).strip()
+        elif '**Tagline:**' in line:
+            m = re.search(r'\*\*Tagline:\*\*\s*(.+)', line)
+            if m:
+                data['tagline'] = m.group(1).strip()
 
         # Section headers — finalize any in-progress job/school first
         elif stripped == '## Professional Summary':
