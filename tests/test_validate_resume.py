@@ -179,50 +179,22 @@ def test_no_schools_warns():
 # New sections: Key Achievements, grouped skills, GitHub field
 # ---------------------------------------------------------------------------
 
-VALID_RESUME_WITH_NEW_SECTIONS = """\
-# Tom Irish
-
-**Email:** [tom@tom.irish](mailto:tom@tom.irish)
-**GitHub:** [github.com/tom-irish](https://github.com/tom-irish)
-**Location:** Seattle, Washington
-
----
-
-## Professional Summary
-
-A summary paragraph.
-
----
-
-## Key Achievements
-
-- Reduced costs by 38%
-- Improved uptime to 99.5%
-
----
-
-## Work Experience
-
-### ACME Corp - Engineer (2020 - Present)
-
-- Built things
-
----
-
-## Skills
-
-- **Reliability:** SRE, DORA metrics, incident command
-- **Infrastructure:** Azure, Nomad, RHEL
-- Leadership
-
----
-
-## Education
-
-### University of Example
-
-- Bachelor of Science in Computer Science
-"""
+# Derived from VALID_RESUME — adds GitHub, Key Achievements, and grouped skills.
+VALID_RESUME_WITH_NEW_SECTIONS = (
+    VALID_RESUME
+    .replace(
+        "**Email:** [tom@tom.irish](mailto:tom@tom.irish)",
+        "**Email:** [tom@tom.irish](mailto:tom@tom.irish)\n**GitHub:** [github.com/tom-irish](https://github.com/tom-irish)"
+    )
+    .replace(
+        "\n## Professional Summary",
+        "\n## Key Achievements\n\n- Reduced costs by 38%\n- Improved uptime to 99.5%\n\n---\n\n## Professional Summary"
+    )
+    .replace(
+        "- Python\n- Leadership",
+        "- **Reliability:** SRE, DORA metrics, incident command\n- **Infrastructure:** Azure, Nomad, RHEL\n- Leadership"
+    )
+)
 
 
 def test_key_achievements_section_is_valid():

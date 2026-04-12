@@ -279,7 +279,7 @@ def test_no_work_experience():
 
 
 # ---------------------------------------------------------------------------
-# Updated MINIMAL_RESUME with new fields (used in new tests only)
+# Extended fixture — includes GitHub, Tagline, Key Achievements, grouped skills
 # ---------------------------------------------------------------------------
 
 MINIMAL_RESUME_V2 = """\
@@ -291,6 +291,7 @@ MINIMAL_RESUME_V2 = """\
 **LinkedIn:** [linkedin.com/in/test](https://linkedin.com/in/test)
 **GitHub:** [github.com/test-user](https://github.com/test-user)
 **Location:** Seattle, Washington
+**Tagline:** Engineering leader who builds things.
 
 ---
 
@@ -375,6 +376,16 @@ def test_flat_skill_parsed():
     flats = [s for s in data['skills'] if s['type'] == 'flat']
     assert len(flats) == 1
     assert flats[0]['label'] == 'Leadership'
+
+
+def test_tagline_parsed():
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    assert data['tagline'] == 'Engineering leader who builds things.'
+
+
+def test_tagline_missing_returns_empty():
+    data = parse_markdown_resume(MINIMAL_RESUME)
+    assert data['tagline'] == ''
 
 
 def test_job_company_and_role_parsed():

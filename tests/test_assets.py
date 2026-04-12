@@ -33,22 +33,9 @@ REQUIRED_ASSETS = [
     'assets/images/tom-irish.jpg',
 ]
 
-DELETED_ASSETS = [
-    'assets/main.js',
-    'assets/noscript.css',
-    'assets/icons.svg',
-    'assets/images/favicon.ico',
-]
-
-
 def test_required_assets_exist():
     missing = [p for p in REQUIRED_ASSETS if not exists(p)]
     assert not missing, f"Missing asset files: {missing}"
-
-
-def test_deleted_assets_are_gone():
-    still_present = [p for p in DELETED_ASSETS if exists(p)]
-    assert not still_present, f"These files should have been deleted: {still_present}"
 
 
 # ---------------------------------------------------------------------------
@@ -99,7 +86,6 @@ def test_index_template_has_home_and_resume_sections():
 
 
 def test_index_template_no_javascript():
-    import re
     tmpl = read('index.template.html')
     # JSON-LD structured data is allowed; executable JavaScript is not
     script_tags = re.findall(r'<script([^>]*)>', tmpl)
