@@ -27,7 +27,7 @@ def exists(path):
 REQUIRED_ASSETS = [
     'assets/main.css',
     'assets/pdf.css',
-    'assets/images/favicon.ico',
+    'assets/images/favicon.png',
     'assets/images/apple-touch-icon.png',
     'assets/images/share.jpg',
     'assets/images/tom-irish.jpg',
@@ -37,7 +37,7 @@ DELETED_ASSETS = [
     'assets/main.js',
     'assets/noscript.css',
     'assets/icons.svg',
-    'assets/images/favicon.png',
+    'assets/images/favicon.ico',
 ]
 
 
