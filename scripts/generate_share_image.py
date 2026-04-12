@@ -3,18 +3,27 @@
 
 import base64
 import os
+import sys
 import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 OUT_PATH = REPO_ROOT / "assets" / "images" / "share.jpg"
-
 PHOTO_PATH = REPO_ROOT / "assets" / "images" / "tom-irish.jpg"
+
+
+def load_resume_data():
+    sys.path.insert(0, str(REPO_ROOT / "scripts"))
+    from convert_resume import parse_markdown_resume
+    md = (REPO_ROOT / "resume.md").read_text(encoding="utf-8")
+    return parse_markdown_resume(md)
+
 
 def photo_data_uri():
     with open(PHOTO_PATH, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
     return f"data:image/jpeg;base64,{b64}"
+
 
 HTML = """<!DOCTYPE html>
 <html>
@@ -107,23 +116,43 @@ body {{
 <body>
 <div class="card">
   <div class="photo">
-    <img src="{photo_uri}" alt="Tom Irish"/>
+    <img src="{photo_uri}" alt="{name}"/>
   </div>
   <div class="text">
-    <div class="name">Tom Irish</div>
-    <div class="role">Senior Manager</div>
-    <div class="tagline">Engineering leader building the systems that keep global freight moving.</div>
+    <div class="name">{name}</div>
+    {role_html}
+    {tagline_html}
     <div class="divider"></div>
-    <div class="meta-item">Seattle, Washington</div>
+    {location_html}
   </div>
 </div>
-<div class="site">tom.irish</div>
+<div class="site">{website}</div>
 </body>
 </html>"""
 
+
 def main():
+    data = load_resume_data()
     photo_uri = photo_data_uri()
-    html = HTML.format(photo_uri=photo_uri)
+
+    name = data.get('name', 'Tom Irish')
+    role = data['work_experience'][0]['role'] if data.get('work_experience') else ''
+    tagline = data.get('tagline', '')
+    location = data.get('location', '')
+    website = data.get('website', {}).get('display', 'tom.irish')
+
+    role_html = f'<div class="role">{role}</div>' if role else ''
+    tagline_html = f'<div class="tagline">{tagline}</div>' if tagline else ''
+    location_html = f'<div class="meta-item">{location}</div>' if location else ''
+
+    html = HTML.format(
+        photo_uri=photo_uri,
+        name=name,
+        role_html=role_html,
+        tagline_html=tagline_html,
+        location_html=location_html,
+        website=website,
+    )
 
     with tempfile.NamedTemporaryFile(suffix=".html", mode="w", delete=False) as f:
         f.write(html)
@@ -142,6 +171,7 @@ def main():
         os.unlink(tmp_path)
 
     print(f"Written: {OUT_PATH}")
+
 
 if __name__ == "__main__":
     main()

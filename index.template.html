@@ -177,10 +177,11 @@
         {% endfor %}
         {% endif %}
 
-        {% if location %}
-        <h3 class="section-heading">Location</h3>
+        {% if location or phone.href %}
+        <h3 class="section-heading">Contact</h3>
         <hr class="section-rule"/>
-        <div class="cert-item">{{ location }}</div>
+        {% if phone.href %}<div class="cert-item"><a href="{{ phone.href }}">{{ phone.display }}</a></div>{% endif %}
+        {% if location %}<div class="cert-item">{{ location }}</div>{% endif %}
         {% endif %}
 
       </aside>

@@ -56,6 +56,10 @@ jobs:
         run: |
           python scripts/generate_pdf_browser.py
 
+      - name: Generate share image
+        run: |
+          python scripts/generate_share_image.py
+
       - name: Run tests
         run: |
           pytest tests/ -v
@@ -87,6 +91,7 @@ jobs:
           echo "- Resume validated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- PDF generated: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Share image generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Deployed to Cloudflare Pages: ✅" >> $GITHUB_STEP_SUMMARY
 
