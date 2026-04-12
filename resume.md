@@ -4,9 +4,9 @@
 
 **Mobile:** [253-299-4348](tel:2532994348)
 
-**Website:** [tom.irish](https://tom.irish)
+**Website:** [https://tom.irish](https://tom.irish)
 
-**LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)
+**LinkedIn:** [https://linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)
 
 **GitHub:** [github.com/tomirish](https://github.com/tomirish)
 
