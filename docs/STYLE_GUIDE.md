@@ -23,7 +23,7 @@ Both loaded from Google Fonts via `index.template.html`:
 
 | Element | Font | Size | Weight | Color |
 |---|---|---|---|---|
-| Landing name | Playfair Display | 52px | 700 | #111 |
+| Landing name | Playfair Display | 56px | 700 | #111 |
 | Resume name (header) | Playfair Display | 30px | 700 | #111 |
 | Section headings | Playfair Display | 18px | 700 | #9b2335 |
 | Job title | DM Sans | 15px | 700 | #111 |
@@ -31,13 +31,13 @@ Both loaded from Google Fonts via `index.template.html`:
 | Job bullets | DM Sans | 14px | 400 | #333 |
 | Job company | DM Sans | 13px | 400 | #555 |
 | Job dates | DM Sans | 13px | 400 | #999 |
+| Landing role | DM Sans | 15px | 500 | #555 |
 | Education name | DM Sans | 14px | 600 | #111 |
 | Education items | DM Sans | 13px | 400 | #555 |
 | Certifications | DM Sans | 13px | 400 | #444 |
 | Skill tags | DM Sans | 13px | 400 | #333 |
 | Skill group labels | DM Sans | 11px | 600 | #666 |
 | Contact pills | DM Sans | 12px | 400 | #444 |
-| Landing role | DM Sans | 13px | 500 | #555 |
 | Landing location | DM Sans | 10px | 400 | #aaa |
 
 ### Line Heights
@@ -46,7 +46,7 @@ Both loaded from Google Fonts via `index.template.html`:
 |---|---|
 | Summary / achievements / bullets | 1.6–1.7 |
 | Body default | 1.5 |
-| Landing name | 1.1 |
+| Landing name | 1.05 |
 
 ---
 
@@ -63,10 +63,11 @@ Both loaded from Google Fonts via `index.template.html`:
 | Placeholder text | `#aaa` | Landing location |
 | Contact pill text | `#444` | Default pill color |
 | Background | `#fff` | Page, skill tags, resume header |
-| Sidebar background | `#f8f7f5` | Resume sidebar (warm off-white) |
-| Border light | `#e0e0e0` | Icon link borders, contact pill borders |
-| Border faint | `#e4e4e4` | Section rules |
-| Border hairline | `#eee` | Resume header bottom border, photo border |
+| Sidebar background | `#edeae5` | Resume sidebar (warm, clearly distinct from main column) |
+| Sidebar border | `#dedad5` | Divider between main column and sidebar |
+| Section rule | `#e4e4e4` | Horizontal rule under section headings |
+| Job rule | `#eee` | Separator between job entries |
+| Border light | `#e0e0e0` | Contact pill borders |
 
 ---
 
@@ -75,17 +76,23 @@ Both loaded from Google Fonts via `index.template.html`:
 ### Landing Page (`#home`)
 
 - Full viewport height (`min-height: 100vh`), centered flex column
-- 4px crimson top border
-- Content stack: photo → name → role → location → separator → icon links
-- Photo: 120px circle, `#e8e8e8` border
+- 4px crimson top border, white background
+- **Horizontal layout** — photo left, text right, `gap: 56px`, `max-width: 780px`
+- Photo: 210px circle, `box-shadow: 0 4px 24px rgba(0,0,0,0.13)` (no border ring)
+- Text stack (`.landing-right`): name → role → location → separator → icon links
 - Separator: `1px solid #9b2335` above icon links
+- **Mobile (≤767px):** collapses to centered vertical stack; photo shrinks to 120px; name 44px; text center-aligned
 
 ### Resume View (`#resume`)
 
 - Sticky header (full-width wrapper, max-width 1000px inner content)
+  - `position: sticky; top: 0; z-index: 10`
+  - 4px crimson top border, subtle `box-shadow: 0 2px 8px rgba(0,0,0,0.04)`
+  - Header photo: 52px circle, `box-shadow: 0 2px 8px rgba(0,0,0,0.10)`
 - Two-column body: `1fr 280px` grid, max-width 1000px
-- Main column padding: `28px 32px`
-- Sidebar padding: `28px 24px`, background `#f8f7f5`
+  - Main column: `padding: 28px 32px`, `border-right: 1px solid #dedad5`
+  - Sidebar: `padding: 28px 24px`, `background: #edeae5`
+- Job entries separated by `border-top: 1px solid #eee` via `.job + .job`
 
 ### Section Toggle
 
@@ -113,11 +120,12 @@ Zero-JavaScript. Pure CSS `:target`:
 - Default: `#444` text
 - Hover: `#9b2335` text and border
 - `← Home` pill: `font-weight: 500`
-- `↓ PDF` pill: `#9b2335` text and border; hover inverts to white text on `#9b2335` background
+- `↓ PDF` pill: `#9b2335` text and border; hover inverts to white text on `#9b2335` fill
 
-### Section Rules
+### Section Headings
 
-`1px solid #e4e4e4` horizontal rule beneath each section heading.
+Playfair Display, 18px, `#9b2335`. Followed by `1px solid #e4e4e4` rule.
+First heading in each column has no top margin.
 
 ### Bullet Markers
 
@@ -125,7 +133,7 @@ En dash (`–`) positioned absolutely at `left: 0`, colored `#9b2335`. Used in: 
 
 ### Skill Tags
 
-`border-radius: 10px`, `1px solid #e8e8e8`, white background, `4px 11px` padding.
+`border-radius: 10px`, `1px solid #e8e8e8`, white background, `4px 11px` padding, 13px.
 
 ---
 
@@ -133,7 +141,7 @@ En dash (`–`) positioned absolutely at `left: 0`, colored `#9b2335`. Used in: 
 
 | Breakpoint | Changes |
 |---|---|
-| `≤ 767px` | Resume header padding tightens; body switches to single column; sidebar loses background, gets top border |
+| `≤ 767px` | Landing stacks vertically (photo 120px, name 44px, text centered); resume header padding tightens; body switches to single column; sidebar loses background, gets top border |
 | `≤ 479px` | Resume photo 56px; resume name 18px; icon links 34px |
 
 ---
