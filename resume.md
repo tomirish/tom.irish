@@ -1,11 +1,17 @@
 # Tom Irish
 
 **Email:** [tom@tom.irish](mailto:tom@tom.irish)
+
 **Mobile:** [253-299-4348](tel:2532994348)
+
 **Website:** [tom.irish](https://tom.irish)
+
 **LinkedIn:** [linkedin.com/in/tom-irish](https://linkedin.com/in/tom-irish)
+
 **GitHub:** [github.com/tomirish](https://github.com/tomirish)
+
 **Location:** Seattle, Washington
+
 **Tagline:** Engineering leader building the systems that keep global freight moving.
 
 ---
