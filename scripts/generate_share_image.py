@@ -37,7 +37,7 @@ HTML = """<!DOCTYPE html>
 body {{
   width: 1200px;
   height: 630px;
-  background: #fff;
+  background: #faf9f7;
   font-family: 'DM Sans', -apple-system, sans-serif;
   overflow: hidden;
   border-top: 8px solid #9b2335;
@@ -48,17 +48,17 @@ body {{
 .card {{
   display: flex;
   align-items: center;
-  gap: 64px;
-  padding: 0 80px;
+  gap: 56px;
+  padding: 0 100px;
   width: 100%;
 }}
 .photo {{
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+  width: 260px;
+  height: 260px;
+  border-radius: 20px;
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
 }}
 .photo img {{
   width: 100%;
@@ -67,46 +67,46 @@ body {{
 }}
 .text {{
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }}
 .name {{
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 56px;
   font-weight: 700;
   color: #111;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
   line-height: 1.05;
-  margin-bottom: 12px;
 }}
 .role {{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: #555;
-  margin-bottom: 10px;
+  letter-spacing: 0.1px;
 }}
 .tagline {{
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 400;
-  color: #777;
-  line-height: 1.5;
-  margin-bottom: 28px;
-  white-space: nowrap;
+  color: #333;
+  line-height: 1.6;
+}}
+.location {{
+  font-size: 11px;
+  color: #666;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
 }}
 .divider {{
   width: 48px;
-  height: 3px;
+  height: 1px;
   background: #9b2335;
-  margin-bottom: 24px;
-}}
-.meta-item {{
-  font-size: 15px;
-  color: #999;
-  letter-spacing: 0.2px;
 }}
 .site {{
   position: absolute;
   bottom: 32px;
-  right: 80px;
-  font-size: 15px;
+  right: 100px;
+  font-size: 14px;
   color: #9b2335;
   font-weight: 600;
   letter-spacing: 0.3px;

@@ -88,7 +88,7 @@ img { display: block; }
 }
 
 /* ── JOBS ────────────────────────────────────────────────── */
-.pdf-job { margin-bottom: 5px; }
+.pdf-job { margin-bottom: 5px; page-break-inside: avoid; }
 .pdf-job + .pdf-job {
   border-top: 1px solid #eee;
   padding-top: 5px;
@@ -100,7 +100,7 @@ img { display: block; }
   margin-bottom: 1px;
 }
 .pdf-job-title { font-size: 12px; font-weight: 700; }
-.pdf-job-dates { font-size: 10px; color: #999; }
+.pdf-job-dates { font-size: 10px; color: #767676; }
 .pdf-job-company { font-size: 10px; color: #555; margin-bottom: 3px; }
 
 /* ── SKILLS ──────────────────────────────────────────────── */
