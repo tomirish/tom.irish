@@ -3,4 +3,4 @@ pip-audit==2.9.0
 playwright==1.58.0
 pygments==2.20.0
 pypdf==6.10.0
-pytest==8.4.2
+pytest==9.0.3
