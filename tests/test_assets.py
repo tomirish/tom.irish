@@ -86,12 +86,15 @@ def test_index_template_has_home_and_resume_sections():
     assert 'id="resume"' in tmpl, 'Resume section id="resume" missing from index.template.html'
 
 
-def test_index_template_no_javascript():
+def test_index_template_javascript_limited_to_theme_toggle():
     tmpl = read('index.template.html')
-    # JSON-LD structured data is allowed; executable JavaScript is not
-    script_tags = re.findall(r'<script([^>]*)>', tmpl)
-    non_jsonld = [t for t in script_tags if 'application/ld+json' not in t]
-    assert not non_jsonld, f'Executable script tag found in index.template.html: {non_jsonld}'
+    # JSON-LD and theme-toggle scripts are permitted; no other JS
+    script_blocks = re.findall(r'<script([^>]*)>(.*?)</script>', tmpl, re.DOTALL)
+    for attrs, content in script_blocks:
+        if 'application/ld+json' in attrs:
+            continue
+        assert 'theme' in content.lower() or 'localStorage' in content, \
+            f'Unexpected executable script in index.template.html: {content[:80]}'
 
 
 def test_index_template_loads_google_fonts():
