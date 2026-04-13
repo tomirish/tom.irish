@@ -3,7 +3,7 @@
 
 /* ── CUSTOM PROPERTIES ────────────────────────────────────── */
 :root {
-  --bg:           #fff;
+  --bg:           #faf9f7;
   --bg-sidebar:   #edeae5;
   --bg-skill:     #fff;
   --text-1:       #111;
@@ -35,8 +35,8 @@
     --border-mid:   #383634;
   }
 
-  .landing-photo { box-shadow: 0 0 0 2px rgba(255,255,255,0.08); }
-  .resume-photo  { box-shadow: 0 0 0 1px rgba(255,255,255,0.08); }
+  .landing-photo { box-shadow: 0 0 0 1px rgba(255,255,255,0.10); }
+  .resume-photo  { box-shadow: 0 0 0 1px rgba(255,255,255,0.10); }
 }
 
 html {
@@ -84,14 +84,14 @@ img { display: block; max-width: 100%; }
   flex-direction: row;
   align-items: center;
   gap: 56px;
-  max-width: 1200px;
+  max-width: 900px;
   width: 100%;
 }
 
 .landing-photo {
-  width: 210px;
-  height: 210px;
-  border-radius: 50%;
+  width: 240px;
+  height: 240px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0,0,0,0.13);
   flex-shrink: 0;
@@ -208,7 +208,7 @@ img { display: block; max-width: 100%; }
 .resume-photo {
   width: 52px;
   height: 52px;
-  border-radius: 50%;
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
   flex-shrink: 0;
@@ -376,12 +376,13 @@ a.contact-pill-pdf:hover { background: var(--accent-text); color: #fff; border-c
   .landing-photo, .landing-name, .landing-role,
   .landing-tagline, .landing-location, .icon-links {
     animation: none;
+    opacity: 1;
   }
 }
 
 @media (max-width: 767px) {
   .landing-inner { flex-direction: column; align-items: center; gap: 10px; }
-  .landing-photo { width: 120px; height: 120px; border-width: 3px; }
+  .landing-photo { width: 140px; height: 140px; border-radius: 14px; }
   .landing-right { gap: 8px; }
   .landing-name { font-size: 44px; text-align: center; }
   .landing-role { text-align: center; }
