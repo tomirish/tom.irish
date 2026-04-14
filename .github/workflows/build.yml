@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '0 2 * * 0'  # Weekly, Sunday 2 AM UTC
+    - cron: '0 2 * * *'  # Daily, 2 AM UTC
 
 jobs:
   build:
