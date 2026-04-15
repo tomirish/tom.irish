@@ -1,4 +1,4 @@
-# Style Guide — tom.irish
+# Style Guide
 
 Design system reference for the web layer (`index.template.html` + `assets/main.css`).
 The PDF layer (`resume.template.html` + `assets/pdf.css`) is intentionally separate and is not covered here.
