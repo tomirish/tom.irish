@@ -366,7 +366,7 @@ a.contact-pill-pdf:hover { background: var(--accent-text); color: #fff; border-c
   line-height: 1.6;
 }
 .achievements-list li::before {
-  content: "–";
+  content: "›";
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -399,10 +399,11 @@ a.contact-pill-pdf:hover { background: var(--accent-text); color: #fff; border-c
   line-height: 1.6;
 }
 .job-bullets li::before {
-  content: "–";
+  content: "›";
   position: absolute;
   left: 0;
   color: var(--accent);
+  font-weight: 600;
 }
 
 /* ── SKILLS ───────────────────────────────────────────────── */
@@ -443,10 +444,11 @@ a.contact-pill-pdf:hover { background: var(--accent-text); color: #fff; border-c
   line-height: 1.6;
 }
 .cert-item::before {
-  content: "–";
+  content: "›";
   position: absolute;
   left: 0;
   color: var(--accent);
+  font-weight: 600;
 }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */

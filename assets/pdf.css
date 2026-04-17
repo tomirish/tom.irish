@@ -79,10 +79,11 @@ img { display: block; }
   line-height: 1.35;
 }
 .pdf-bullets li::before {
-  content: "–";
+  content: "›";
   position: absolute;
   left: 0;
   color: #9b2335;
+  font-weight: 600;
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
 }
