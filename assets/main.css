@@ -475,8 +475,9 @@ a.contact-pill-pdf:hover { background: var(--accent-text); color: #fff; border-c
   .resume-sidebar { padding: 20px max(20px, env(safe-area-inset-right)) 20px 20px; background: var(--bg); border-top: 1px solid var(--border-sm); }
 }
 
-@media (max-width: 479px) {
-  .resume-photo { width: 56px; height: 56px; }
+@media (max-width: 470px) {
+  .resume-photo { display: none; }
+  .contact-pill { padding: 4px 9px; }
   .resume-name { font-size: 18px; }
   .icon-link { width: 34px; height: 34px; }
   .icon-link svg { width: 16px; height: 16px; }
