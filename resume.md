@@ -22,7 +22,6 @@ Senior engineering leader with 21 years in global logistics and 10+ years leadin
 
 Known for driving measurable delivery improvement through DevSecOps culture and engineering discipline, leading with calm under pressure, and genuinely investing in the growth and careers of the individuals on my team. I believe building reliable systems and building reliable teams require the same discipline, and I bring both to everything I do.
 
-
 ---
 
 ## Key Achievements
