@@ -3,13 +3,16 @@
 
 /* ── CUSTOM PROPERTIES ────────────────────────────────────── */
 :root {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
   --bg:           #faf9f7;
   --bg-sidebar:   #edeae5;
   --bg-skill:     #fff;
   --text-1:       #111;
   --text-2:       #555;
   --text-3:       #666;
-  --text-dates:   #666666;
+  --text-dates:   #767676;
   --text-body:    #333;
   --accent:       #9b2335;
   --accent-text:  #9b2335; /* same as accent in light mode */
@@ -72,7 +75,7 @@ html[data-theme="light"] {
   --text-1:       #111;
   --text-2:       #555;
   --text-3:       #666;
-  --text-dates:   #666666;
+  --text-dates:   #767676;
   --text-body:    #333;
   --accent:       #9b2335;
   --accent-text:  #9b2335;
@@ -100,7 +103,7 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   color: var(--text-1);
   background: var(--bg);
   line-height: 1.5;
@@ -185,7 +188,7 @@ img { display: block; max-width: 100%; }
 }
 
 .landing-name {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 56px;
   font-weight: 700;
   letter-spacing: -2px;
@@ -294,7 +297,7 @@ img { display: block; max-width: 100%; }
 .resume-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 .resume-name {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.3px;
@@ -335,7 +338,7 @@ a.contact-pill-pdf:hover { background: var(--accent-text); color: #fff; border-c
 
 /* ── SECTION HEADINGS ─────────────────────────────────────── */
 .section-heading {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
   color: var(--accent-text);
