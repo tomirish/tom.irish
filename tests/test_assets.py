@@ -97,9 +97,10 @@ def test_index_template_javascript_limited_to_theme_toggle():
             f'Unexpected executable script in index.template.html: {content[:80]}'
 
 
-def test_index_template_loads_google_fonts():
+def test_index_template_loads_local_fonts():
     tmpl = read('index.template.html')
-    assert 'fonts.googleapis.com' in tmpl, 'Google Fonts link missing from index.template.html'
+    assert 'assets/fonts.css' in tmpl, 'Local fonts.css link missing from index.template.html'
+    assert 'fonts.googleapis.com' not in tmpl, 'Google Fonts CDN should not be used — fonts are self-hosted'
 
 
 def test_index_template_has_head():
