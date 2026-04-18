@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
-  <g transform="rotate(-8)">
-    <g transform="rotate(0)"><path d="M 0 0 C -6 -12, -26 -12, -20 -28 C -14 -40, 0 -38, 0 -24 C 0 -38, 14 -40, 20 -28 C 26 -12, 6 -12, 0 0 Z" fill="#1a1a1a"></path></g>
-    <g transform="rotate(90)"><path d="M 0 0 C -6 -12, -26 -12, -20 -28 C -14 -40, 0 -38, 0 -24 C 0 -38, 14 -40, 20 -28 C 26 -12, 6 -12, 0 0 Z" fill="#1a1a1a"></path></g>
-    <g transform="rotate(180)"><path d="M 0 0 C -6 -12, -26 -12, -20 -28 C -14 -40, 0 -38, 0 -24 C 0 -38, 14 -40, 20 -28 C 26 -12, 6 -12, 0 0 Z" fill="#1a1a1a"></path></g>
-    <g transform="rotate(270)"><path d="M 0 0 C -6 -12, -26 -12, -20 -28 C -14 -40, 0 -38, 0 -24 C 0 -38, 14 -40, 20 -28 C 26 -12, 6 -12, 0 0 Z" fill="#1a1a1a"></path></g>
-  </g>
-</svg>
