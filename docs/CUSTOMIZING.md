@@ -47,22 +47,22 @@ Playfair Display 700 is used for names and section headings only — nothing els
 
 | Element | Font | Size | Weight | Color |
 |---|---|---|---|---|
-| Landing name | Playfair Display | 56px | 700 | `#111` |
-| Resume name (header) | Playfair Display | 22px | 700 | `#111` |
-| Section headings | Playfair Display | 18px | 700 | `#9b2335` |
-| Job title | DM Sans | 15px | 700 | `#111` |
-| Body text (summary, achievements, bullets) | DM Sans | 15px | 400 | `#333` |
-| Landing tagline | DM Sans | 17px | 400 | `#333` |
-| Landing role | DM Sans | 16px | 500 | `#555` |
-| Job company | DM Sans | 13px | 400 | `#555` |
-| Job dates | DM Sans | 13px | 400 | `#767676` |
-| Education name | DM Sans | 14px | 600 | `#111` |
-| Education items | DM Sans | 13px | 400 | `#555` |
-| Certifications | DM Sans | 13px | 400 | `#333` |
-| Skill tags | DM Sans | 13px | 400 | `#333` |
-| Skill group labels | DM Sans | 11px | 600 | `#666` |
-| Contact pills | DM Sans | 12px | 400 | `#333` |
-| Landing location | DM Sans | 11px | 400 | `#666` |
+| Landing name | Playfair Display | 56px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Resume name (header) | Playfair Display | 22px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Section headings | Playfair Display | 18px | 700 | ![](https://placehold.co/12x12/9b2335/9b2335.png) `#9b2335` |
+| Job title | DM Sans | 15px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Body text (summary, achievements, bullets) | DM Sans | 15px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
+| Landing tagline | DM Sans | 17px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
+| Landing role | DM Sans | 16px | 500 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
+| Job company | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
+| Job dates | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/767676/767676.png) `#767676` |
+| Education name | DM Sans | 14px | 600 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
+| Education items | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
+| Certifications | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
+| Skill tags | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
+| Skill group labels | DM Sans | 11px | 600 | ![](https://placehold.co/12x12/666666/666666.png) `#666` |
+| Contact pills | DM Sans | 12px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
+| Landing location | DM Sans | 11px | 400 | ![](https://placehold.co/12x12/666666/666666.png) `#666` |
 
 ### Line Heights
 
