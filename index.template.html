@@ -203,6 +203,18 @@
   </button>
   <script>
     (function() {
+      var sha = document.querySelector('meta[name="build-sha"]');
+      var time = document.querySelector('meta[name="build-time"]');
+      console.log(
+        '%c👋 Hey, you found the source.',
+        'font-size:14px;font-weight:bold;color:#9b2335;'
+      );
+      console.log(
+        'Built by hand. Deployed on Cloudflare.\ngithub.com/tomirish/tom.irish' +
+        (sha ? '\n\nbuild: ' + sha.content + (time ? '  ·  ' + time.content : '') : '')
+      );
+    })();
+    (function() {
       var root = document.documentElement;
       document.getElementById('theme-toggle').addEventListener('click', function() {
         var isDark = root.getAttribute('data-theme') === 'dark' ||
