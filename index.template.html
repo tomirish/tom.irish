@@ -223,11 +223,15 @@
         root.classList.add('theme-transitioning');
         root.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
+        var color = next === 'dark' ? '#c4394e' : '#9b2335';
         var oldMeta = document.querySelector('meta[name="theme-color"]');
-        var newMeta = document.createElement('meta');
-        newMeta.setAttribute('name', 'theme-color');
-        newMeta.setAttribute('content', next === 'dark' ? '#c4394e' : '#9b2335');
-        oldMeta.parentNode.replaceChild(newMeta, oldMeta);
+        oldMeta.remove();
+        requestAnimationFrame(function() {
+          var newMeta = document.createElement('meta');
+          newMeta.name = 'theme-color';
+          newMeta.content = color;
+          document.head.insertBefore(newMeta, document.head.firstChild);
+        });
         setTimeout(function() { root.classList.remove('theme-transitioning'); }, 300);
       });
     })();
