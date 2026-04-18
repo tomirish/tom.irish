@@ -44,7 +44,8 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 | `resume.template.html` | PDF template | ✅ Yes — PDF layout or structure |
 | `assets/` | CSS and images | ✅ Yes — styling |
 | `docs/EDITING.md` | How to edit resume.md | 📖 Reference |
-| `docs/CUSTOMIZING.md` | Design system reference | 📖 Reference |
+| `docs/CUSTOMIZING.md` | Style and design reference | 📖 Reference |
+| `docs/design/` | Design system, tokens, and logo assets | 📖 Reference |
 | `scripts/` | Build automation | 🔧 Pipeline changes only |
 | `tests/` | Test suite | 🔧 Pipeline changes only |
 | `.github/workflows/build.yml` | CI/CD config | 🔧 Automation changes only |
@@ -54,4 +55,5 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 ## Docs
 
 - **[EDITING.md](docs/EDITING.md)** — format reference for `resume.md`: required sections, field formats, section-by-section examples
-- **[CUSTOMIZING.md](docs/CUSTOMIZING.md)** — design system reference: typography, color palette, layout, components, and breakpoints
+- **[CUSTOMIZING.md](docs/CUSTOMIZING.md)** — style reference: typography, color palette, layout, components, and breakpoints
+- **[design/](docs/design/)** — design system documentation, CSS tokens, and logo assets
