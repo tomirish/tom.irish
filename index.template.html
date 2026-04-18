@@ -219,20 +219,8 @@
       document.getElementById('theme-toggle').addEventListener('click', function() {
         var isDark = root.getAttribute('data-theme') === 'dark' ||
           (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        var next = isDark ? 'light' : 'dark';
-        root.classList.add('theme-transitioning');
-        root.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        var color = next === 'dark' ? '#c4394e' : '#9b2335';
-        var oldMeta = document.querySelector('meta[name="theme-color"]');
-        oldMeta.remove();
-        requestAnimationFrame(function() {
-          var newMeta = document.createElement('meta');
-          newMeta.name = 'theme-color';
-          newMeta.content = color;
-          document.head.insertBefore(newMeta, document.head.firstChild);
-        });
-        setTimeout(function() { root.classList.remove('theme-transitioning'); }, 300);
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        location.reload();
       });
     })();
   </script>
