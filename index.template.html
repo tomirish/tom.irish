@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <script>!function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}()</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <meta name="color-scheme" content="light dark"/>
-  <meta name="theme-color" content="#9b2335" media="(prefers-color-scheme: light)"/>
-  <meta name="theme-color" content="#c4394e" media="(prefers-color-scheme: dark)"/>
+  <meta name="theme-color" content="#9b2335"/>
+  <script>!function(){var t=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme: dark)').matches,dark=t?t==='dark':d;if(t)document.documentElement.setAttribute('data-theme',t);document.querySelector('meta[name="theme-color"]').setAttribute('content',dark?'#c4394e':'#9b2335')}()</script>
   <meta name="description" content="{{ tagline if tagline else name }}"/>
   <meta property="og:title" content="{{ name }}"/>
   <meta property="og:type" content="website"/>
@@ -213,6 +212,7 @@
         root.classList.add('theme-transitioning');
         root.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', next === 'dark' ? '#c4394e' : '#9b2335');
         setTimeout(function() { root.classList.remove('theme-transitioning'); }, 300);
       });
     })();
