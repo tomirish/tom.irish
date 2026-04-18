@@ -211,7 +211,11 @@
         root.classList.add('theme-transitioning');
         root.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', next === 'dark' ? '#c4394e' : '#9b2335');
+        var oldMeta = document.querySelector('meta[name="theme-color"]');
+        var newMeta = document.createElement('meta');
+        newMeta.setAttribute('name', 'theme-color');
+        newMeta.setAttribute('content', next === 'dark' ? '#c4394e' : '#9b2335');
+        oldMeta.parentNode.replaceChild(newMeta, oldMeta);
         setTimeout(function() { root.classList.remove('theme-transitioning'); }, 300);
       });
     })();
