@@ -78,36 +78,36 @@ Playfair Display 700 is used for names and section headings only — nothing els
 
 ### Light mode
 
-| Hex | Name | Usage |
-|---|---|---|
-| `#9b2335` | Accent / crimson | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
-| `#111` | Ink | Names, job titles, education names |
-| `#333` | Body text | Summary, bullets, skill tags |
-| `#444` | Contact pill text | Default pill color |
-| `#555` | Secondary text | Job company, landing role, education items |
-| `#666` | Muted | Tagline, landing location, skill group labels |
-| `#767676` | Faint | Job dates |
-| `#faf9f7` | Page background | Warm off-white |
-| `#edeae5` | Sidebar background | Warm stone — clearly distinct from main column |
-| `#dedad5` | Sidebar border | Divider between main and sidebar |
-| `#e4e4e4` | Section rule | Horizontal rule under section headings |
-| `#eee` | Job rule | Separator between job entries |
-| `#e0e0e0` | Border light | Contact pill borders, icon-link rings |
+| Swatch | Hex | Name | Usage |
+|:---:|---|---|---|
+| ![](https://placehold.co/12x12/9b2335/9b2335.png) | `#9b2335` | Accent / crimson | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
+| ![](https://placehold.co/12x12/111111/111111.png) | `#111` | Ink | Names, job titles, education names |
+| ![](https://placehold.co/12x12/333333/333333.png) | `#333` | Body text | Summary, bullets, skill tags |
+| ![](https://placehold.co/12x12/444444/444444.png) | `#444` | Contact pill text | Default pill color |
+| ![](https://placehold.co/12x12/555555/555555.png) | `#555` | Secondary text | Job company, landing role, education items |
+| ![](https://placehold.co/12x12/666666/666666.png) | `#666` | Muted | Tagline, landing location, skill group labels |
+| ![](https://placehold.co/12x12/767676/767676.png) | `#767676` | Faint | Job dates |
+| ![](https://placehold.co/12x12/faf9f7/faf9f7.png) | `#faf9f7` | Page background | Warm off-white |
+| ![](https://placehold.co/12x12/edeae5/edeae5.png) | `#edeae5` | Sidebar background | Warm stone — clearly distinct from main column |
+| ![](https://placehold.co/12x12/dedad5/dedad5.png) | `#dedad5` | Sidebar border | Divider between main and sidebar |
+| ![](https://placehold.co/12x12/e4e4e4/e4e4e4.png) | `#e4e4e4` | Section rule | Horizontal rule under section headings |
+| ![](https://placehold.co/12x12/eeeeee/eeeeee.png) | `#eee` | Job rule | Separator between job entries |
+| ![](https://placehold.co/12x12/e0e0e0/e0e0e0.png) | `#e0e0e0` | Border light | Contact pill borders, icon-link rings |
 
 ### Dark mode
 
 Triggered by `prefers-color-scheme: dark` or `html[data-theme="dark"]`.
 
-| Variable | Value | Notes |
-|---|---|---|
-| `--bg` | `#131313` | Near-black |
-| `--bg-sidebar` | `#1c1b1a` | Slightly warm |
-| `--accent` | `#c4394e` | Brighter crimson for contrast |
-| `--accent-text` | `#e0506a` | Even brighter for text readability |
-| `--text-1` | `#f0ece8` | Warm cream |
-| `--text-body` | `#ccc` | |
-| `--border` | `#484848` | |
-| `--border-sm` | `#363636` | |
+| Swatch | Variable | Value | Notes |
+|:---:|---|---|---|
+| ![](https://placehold.co/12x12/131313/131313.png) | `--bg` | `#131313` | Near-black |
+| ![](https://placehold.co/12x12/1c1b1a/1c1b1a.png) | `--bg-sidebar` | `#1c1b1a` | Slightly warm |
+| ![](https://placehold.co/12x12/c4394e/c4394e.png) | `--accent` | `#c4394e` | Brighter crimson for contrast |
+| ![](https://placehold.co/12x12/e0506a/e0506a.png) | `--accent-text` | `#e0506a` | Even brighter for text readability |
+| ![](https://placehold.co/12x12/f0ece8/f0ece8.png) | `--text-1` | `#f0ece8` | Warm cream |
+| ![](https://placehold.co/12x12/cccccc/cccccc.png) | `--text-body` | `#ccc` | |
+| ![](https://placehold.co/12x12/484848/484848.png) | `--border` | `#484848` | |
+| ![](https://placehold.co/12x12/363636/363636.png) | `--border-sm` | `#363636` | |
 
 Photos lose the box-shadow and get `box-shadow: 0 0 0 1px rgba(255,255,255,0.10)` instead — a subtle ring to separate them from the dark background.
 
