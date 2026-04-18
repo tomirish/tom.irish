@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <meta name="color-scheme" content="light dark"/>
   <meta name="theme-color" content="#9b2335"/>
-  <script>!function(){var t=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme: dark)').matches,dark=t?t==='dark':d;if(t)document.documentElement.setAttribute('data-theme',t);document.querySelector('meta[name="theme-color"]').setAttribute('content',dark?'#c4394e':'#9b2335')}()</script>
+  <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
+  <script>!function(){var t=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme: dark)').matches,dark=t?t==='dark':d;if(t)document.documentElement.setAttribute('data-theme',t);document.querySelector('meta[name="theme-color"]').setAttribute('content',dark?'#c4394e':'#9b2335');document.querySelector('link[rel="icon"]').setAttribute('href',dark?'assets/images/favicon-dark.png':'assets/images/favicon.png')}()</script>
   <meta name="description" content="{{ tagline if tagline else name }}"/>
   <meta property="og:title" content="{{ name }}"/>
   <meta property="og:type" content="website"/>
@@ -16,7 +17,6 @@
   <meta name="build-sha" content="{{ build_sha }}"/>
   <meta name="build-time" content="{{ build_time }}"/>
   <link rel="canonical" href="{{ website.href }}"/>
-  <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
   <link rel="preload" href="assets/images/tom-irish-480.webp" as="image" type="image/webp"/>
   <link rel="stylesheet" href="assets/fonts.css"/>
