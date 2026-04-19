@@ -199,7 +199,8 @@ jobs:
                       with open(f) as fh:
                           data = json.load(fh)
                       for key, cat in data.get('categories', {}).items():
-                          scores.setdefault(key, []).append(round(cat['score'] * 100))
+                          if cat.get('score') is not None:
+                              scores.setdefault(key, []).append(round(cat['score'] * 100))
                   avg = {k: sum(v) / len(v) for k, v in scores.items()}
                   labels = {
                       'performance':    'Performance',
