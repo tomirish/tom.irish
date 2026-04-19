@@ -99,7 +99,7 @@ def test_index_template_javascript_limited_to_theme_toggle():
 
 def test_index_template_loads_local_fonts():
     tmpl = read('index.template.html')
-    assert 'fonts_css' in tmpl, 'fonts.css must be inlined via {{ fonts_css }} in index.template.html'
+    assert 'assets/fonts.css' in tmpl, 'Local fonts.css link missing from index.template.html'
     assert 'fonts.googleapis.com' not in tmpl, 'Google Fonts CDN should not be used — fonts are self-hosted'
 
 

@@ -245,11 +245,7 @@ def render_templates(data, index_out='index.html', resume_out='resume.html', dry
     env = Environment(loader=FileSystemLoader(REPO_ROOT), autoescape=True)
     sha, build_time = _build_info()
 
-    fonts_css = read_file(os.path.join(REPO_ROOT, 'assets', 'fonts.css'))
-    main_css = read_file(os.path.join(REPO_ROOT, 'assets', 'main.css'))
-
-    context = {**data, 'build_sha': sha, 'build_time': build_time,
-               'fonts_css': fonts_css, 'main_css': main_css}
+    context = {**data, 'build_sha': sha, 'build_time': build_time}
 
     for tmpl_name, out_path in [
         ('index.template.html', index_out),
