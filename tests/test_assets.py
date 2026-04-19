@@ -31,7 +31,8 @@ REQUIRED_ASSETS = [
     'assets/images/apple-touch-icon.png',
     'assets/images/share.jpg',
     'assets/images/tom-irish-480.jpg',
-    'assets/images/tom-irish-480.webp',
+    'assets/images/tom-irish-280.jpg',
+    'assets/images/tom-irish-280.webp',
     'robots.txt',
     'sitemap.xml',
 ]
