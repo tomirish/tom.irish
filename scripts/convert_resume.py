@@ -245,7 +245,12 @@ def render_templates(data, index_out='index.html', resume_out='resume.html', dry
     env = Environment(loader=FileSystemLoader(REPO_ROOT), autoescape=True)
     sha, build_time = _build_info()
 
-    context = {**data, 'build_sha': sha, 'build_time': build_time}
+    import codecs
+    email_href = data.get('email', {}).get('href', '')
+    email_rot13 = codecs.encode(email_href, 'rot_13') if email_href else ''
+
+    context = {**data, 'build_sha': sha, 'build_time': build_time,
+               'email_rot13': email_rot13}
 
     for tmpl_name, out_path in [
         ('index.template.html', index_out),

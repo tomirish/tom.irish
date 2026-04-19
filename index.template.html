@@ -37,7 +37,6 @@
       "@type": "PostalAddress",
       "addressLocality": "{{ location }}"
     },
-    "email": "{{ email.href }}",
     "sameAs": [
       "{{ linkedin.href }}",
       "{{ github.href }}"
@@ -63,7 +62,7 @@
       <p class="landing-location">{{ location }}</p>
       <nav class="icon-links" aria-label="Contact links">
         {% if email.href %}
-        <a class="icon-link" href="{{ email.href }}" title="Email" aria-label="Email">
+        <a class="icon-link" href="#" data-email="{{ email_rot13 }}" title="Email" aria-label="Email">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         </a>
         {% endif %}
@@ -205,7 +204,7 @@
         {% if location or phone.href %}
         <h3 class="section-heading">Contact</h3>
         <hr class="section-rule"/>
-        {% if email.href %}<div class="cert-item"><a href="{{ email.href }}">{{ email.display }}</a></div>{% endif %}
+        {% if email.href %}<div class="cert-item"><a href="#" data-email="{{ email_rot13 }}"><span data-email-text></span></a></div>{% endif %}
         {% if phone.href %}<div class="cert-item"><a href="{{ phone.href }}">{{ phone.display }}</a></div>{% endif %}
         {% if location %}<div class="cert-item">{{ location }}</div>{% endif %}
         {% endif %}
@@ -233,6 +232,19 @@
         'Built by hand https://github.com/tomirish/tom.irish' +
         (sha ? '\n\nbuild: ' + sha.content + (time ? '  ·  ' + time.content : '') : '')
       );
+    })();
+    (function() {
+      function rot13(s) {
+        return s.replace(/[a-zA-Z]/g, function(c) {
+          return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+        });
+      }
+      document.querySelectorAll('[data-email]').forEach(function(el) {
+        var decoded = rot13(el.getAttribute('data-email'));
+        el.href = decoded;
+        var textEl = el.querySelector('[data-email-text]');
+        if (textEl) textEl.textContent = decoded.replace('mailto:', '');
+      });
     })();
     (function() {
       var root = document.documentElement;
