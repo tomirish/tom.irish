@@ -187,6 +187,10 @@ img { display: block; max-width: 100%; }
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes slide-up {
+  from { transform: translateY(20px); }
+  to   { transform: translateY(0); }
+}
 
 /* ── SECTION TOGGLE (CSS :target, zero JS) ────────────────── */
 #home {
@@ -222,7 +226,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0,0,0,0.13);
   flex-shrink: 0;
-  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: 0s;
 }
 .landing-photo img { width: 100%; height: 100%; object-fit: cover; }
