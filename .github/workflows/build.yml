@@ -159,7 +159,7 @@ jobs:
           python3 - <<'EOF'
           import json, glob, os
 
-          files = glob.glob('./lighthouse-results/lhr-*.json')
+          files = glob.glob('.lighthouseci/lhr-*.json')
           if not files:
               print("No Lighthouse results found")
               exit(0)
