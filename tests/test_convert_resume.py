@@ -501,3 +501,35 @@ def test_render_index_html_contains_build_meta(tmp_path, monkeypatch):
     html = (tmp_path / 'index.html').read_text()
     assert 'name="build-sha"' in html
     assert 'name="build-time"' in html
+
+
+def test_render_index_html_json_ld_is_valid(tmp_path, monkeypatch):
+    """JSON-LD block in rendered index.html must be valid JSON."""
+    import json, re
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    from convert_resume import render_templates
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    render_templates(data, index_out=str(tmp_path / 'index.html'),
+                     resume_out=str(tmp_path / 'resume.html'))
+    html = (tmp_path / 'index.html').read_text()
+    match = re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.DOTALL)
+    assert match, 'No JSON-LD script block found in rendered index.html'
+    try:
+        json.loads(match.group(1))
+    except json.JSONDecodeError as e:
+        raise AssertionError(f'JSON-LD block is not valid JSON: {e}')
+
+
+def test_render_index_html_og_tags_have_content(tmp_path, monkeypatch):
+    """OG meta tags in rendered index.html must have non-empty content."""
+    import re
+    monkeypatch.delenv('GITHUB_SHA', raising=False)
+    from convert_resume import render_templates
+    data = parse_markdown_resume(MINIMAL_RESUME_V2)
+    render_templates(data, index_out=str(tmp_path / 'index.html'),
+                     resume_out=str(tmp_path / 'resume.html'))
+    html = (tmp_path / 'index.html').read_text()
+    for prop in ('og:title', 'og:description', 'og:image', 'og:url'):
+        match = re.search(rf'property="{re.escape(prop)}"\s+content="([^"]*)"', html)
+        assert match, f'Missing OG tag: {prop}'
+        assert match.group(1).strip(), f'OG tag {prop} has empty content'

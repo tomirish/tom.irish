@@ -32,6 +32,8 @@ REQUIRED_ASSETS = [
     'assets/images/share.jpg',
     'assets/images/tom-irish-480.jpg',
     'assets/images/tom-irish-480.webp',
+    'robots.txt',
+    'sitemap.xml',
 ]
 
 def test_required_assets_exist():
