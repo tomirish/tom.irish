@@ -9,7 +9,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 OUT_PATH = REPO_ROOT / "assets" / "images" / "share.jpg"
-PHOTO_PATH = REPO_ROOT / "assets" / "images" / "tom-irish-480.jpg"
+PHOTO_PATH = REPO_ROOT / "assets" / "images" / "tom-irish-original.jpg"
 
 
 def load_resume_data():
