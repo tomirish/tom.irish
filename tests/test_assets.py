@@ -27,6 +27,7 @@ def exists(path):
 REQUIRED_ASSETS = [
     'assets/main.css',
     'assets/pdf.css',
+
     'assets/images/favicon.png',
     'assets/images/apple-touch-icon.png',
     'assets/images/share.jpg',
@@ -102,7 +103,7 @@ def test_index_template_javascript_limited_to_theme_toggle():
 
 def test_index_template_loads_local_fonts():
     tmpl = read('index.template.html')
-    assert 'assets/fonts.css' in tmpl, 'Local fonts.css link missing from index.template.html'
+    assert '@font-face' in read('assets/main.css'), 'Font declarations missing from main.css'
     assert 'fonts.googleapis.com' not in tmpl, 'Google Fonts CDN should not be used — fonts are self-hosted'
 
 
