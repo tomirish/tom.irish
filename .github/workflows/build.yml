@@ -151,7 +151,6 @@ jobs:
           configPath: .lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
-          outputDir: ./lighthouse-results
 
       - name: Write Lighthouse summary
         if: always()
