@@ -92,7 +92,7 @@ jobs:
       - name: Create deployment summary
         if: success()
         run: |
-          TEST_RESULT=$(grep -E '^\d+ passed' /tmp/pytest-out.txt | tail -1 || echo 'unknown')
+          TEST_RESULT=$(grep -oE '[0-9]+ passed in [0-9.]+s' /tmp/pytest-out.txt | tail -1 || echo 'unknown')
           SHA="${{ github.sha }}"
           echo "## 🚀 Build Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
