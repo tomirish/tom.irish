@@ -46,6 +46,9 @@ jobs:
       - name: Audit dependencies for known vulnerabilities
         run: pip-audit
 
+      - name: Lint CSS
+        run: npx --yes stylelint "assets/*.css"
+
       - name: Validate resume format
         run: |
           python scripts/validate_resume.py

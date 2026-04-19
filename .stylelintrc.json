@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "declaration-block-no-duplicate-properties": [true, { "ignore": ["consecutive-duplicates-with-different-values"] }],
+    "font-family-no-duplicate-names": true,
+    "no-duplicate-selectors": true,
+    "property-no-unknown": [true, { "ignoreProperties": ["font-display"] }],
+    "unit-no-unknown": true,
+    "no-invalid-double-slash-comments": true,
+    "function-no-unknown": [true, { "ignoreFunctions": ["env"] }]
+  }
+}

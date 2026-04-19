@@ -108,6 +108,23 @@ def test_index_template_has_head():
     assert '<head>' in tmpl, 'index.template.html is missing <head>'
 
 
+def test_csp_compatible_with_template_stylesheets():
+    headers = read('_headers')
+    csp_line = next((l for l in headers.splitlines() if 'Content-Security-Policy' in l), '')
+    style_src = next(
+        (d.strip() for d in csp_line.split(';') if d.strip().startswith('style-src')),
+        ''
+    )
+    allows_inline = not style_src or "'unsafe-inline'" in style_src
+    tmpl = read('index.template.html')
+    has_inline_styles = '<style>' in tmpl or '<style ' in tmpl
+    if not allows_inline:
+        assert not has_inline_styles, (
+            'index.template.html uses <style> tags but CSP style-src lacks '
+            "'unsafe-inline'. Use external stylesheets or update the CSP."
+        )
+
+
 # ---------------------------------------------------------------------------
 # resume.template.html checks
 # ---------------------------------------------------------------------------
