@@ -19,7 +19,7 @@
   <link rel="canonical" href="{{ website.href }}"/>
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
   <link rel="preload" href="assets/images/tom-irish-280.webp" as="image" type="image/webp" fetchpriority="high"/>
-  <link rel="stylesheet" href="assets/main.css"/>
+  <style>{{ main_css | safe }}</style>
   <title>{{ name }}</title>
   <script type="application/ld+json">
   {
