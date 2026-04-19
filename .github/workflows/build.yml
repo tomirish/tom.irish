@@ -69,7 +69,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/ -v
+          pytest tests/ -v 2>&1 | tee /tmp/pytest-out.txt; exit ${PIPESTATUS[0]}
 
       - name: Sync files to public directory
         run: |
@@ -92,17 +92,19 @@ jobs:
       - name: Create deployment summary
         if: success()
         run: |
+          TEST_RESULT=$(grep -E '^\d+ passed' /tmp/pytest-out.txt | tail -1 || echo 'unknown')
+          SHA="${{ github.sha }}"
           echo "## 🚀 Build Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Your site is now live at: **https://tom.irish**" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Steps:" >> $GITHUB_STEP_SUMMARY
-          echo "- Tests passed: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Tests passed: ✅ ($TEST_RESULT)" >> $GITHUB_STEP_SUMMARY
           echo "- Resume validated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- PDF and share image generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
-          echo "- Deployed to Cloudflare Pages: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Deployed to Cloudflare Pages: ✅ (\`${SHA:0:7}\`)" >> $GITHUB_STEP_SUMMARY
 
       - name: Create failure summary
         if: failure()
