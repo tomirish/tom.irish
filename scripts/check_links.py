@@ -34,7 +34,7 @@ def check_url(url):
     status is the HTTP status code, or None on connection error.
     error is a string description on failure, or None on success.
     """
-    headers = {'User-Agent': 'Mozilla/5.0'}
+    headers = {'User-Agent': 'tom-irish-link-checker/1.0 (https://github.com/tomirish/tom.irish)'}
     for method in ('HEAD', 'GET'):
         try:
             req = urllib.request.Request(url, method=method, headers=headers)

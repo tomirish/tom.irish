@@ -2,6 +2,7 @@
 """Generate share.jpg — the OG preview image for tom.irish."""
 
 import base64
+import html
 import os
 import sys
 import tempfile
@@ -141,11 +142,11 @@ def main():
     location = data.get('location', '')
     website = data.get('website', {}).get('display', 'tom.irish')
 
-    role_html = f'<div class="role">{role}</div>' if role else ''
-    tagline_html = f'<div class="tagline">{tagline}</div>' if tagline else ''
-    location_html = f'<div class="meta-item">{location}</div>' if location else ''
+    role_html = f'<div class="role">{html.escape(role)}</div>' if role else ''
+    tagline_html = f'<div class="tagline">{html.escape(tagline)}</div>' if tagline else ''
+    location_html = f'<div class="meta-item">{html.escape(location)}</div>' if location else ''
 
-    html = HTML.format(
+    page_html = HTML.format(
         photo_uri=photo_uri,
         name=name,
         role_html=role_html,
@@ -155,7 +156,7 @@ def main():
     )
 
     with tempfile.NamedTemporaryFile(suffix=".html", mode="w", delete=False) as f:
-        f.write(html)
+        f.write(page_html)
         tmp_path = f.name
 
     try:
