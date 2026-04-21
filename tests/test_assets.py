@@ -93,7 +93,7 @@ def test_index_template_has_home_and_resume_sections():
 def test_index_template_javascript_limited_to_theme_toggle():
     tmpl = read('index.template.html')
     # JSON-LD and theme-toggle scripts are permitted; no other JS
-    script_blocks = re.findall(r'<script([^>]*)>(.*?)</script>', tmpl, re.DOTALL)
+    script_blocks = re.findall(r'<script([^>]*)>(.*?)</script>', tmpl, re.DOTALL | re.IGNORECASE)
     for attrs, content in script_blocks:
         if 'application/ld+json' in attrs:
             continue
