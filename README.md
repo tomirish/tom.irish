@@ -32,19 +32,28 @@ pytest tests/           — verifies scripts and templates
        ↓
 Wrangler deploys to Cloudflare Pages → https://tom.irish
 ```
+
+```mermaid
 flowchart TD
-    A[resume.md pushed to main] --> B[GitHub Actions triggers]
+    A([resume.md <br> pushed to main]) --> B[GitHub Actions triggers]
+    click A href "resume.md" "View resume.md" _blank
     B --> C[validate_resume.py]
-    B --> D[convert_resume.py]
-    B --> E[generate_pdf_browser.py]
-    B --> F[generate_share_image.py]
-    B --> G[pytest tests/]
-    C --> H[Wrangler deploys to Cloudflare Pages]
-    D --> H
-    E --> H
-    F --> H
-    G --> H
-    H --> I[https://tom.irish]   
+    C --> D[convert_resume.py]
+    D --> E[generate_pdf_browser.py]
+    D --> F[generate_share_image.py]
+    F --> G[pytest tests/]
+
+    subgraph parallel [Parallel Tasks]
+        direction LR
+        E & F
+    end
+
+    G --> H[Wrangler deploys to Cloudflare Pages]
+    E --> G
+    H --> I[https://tom.irish]
+    style A font-size:9px
+    style B font-size:14px
+```     
     
 ---
 
