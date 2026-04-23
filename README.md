@@ -34,26 +34,24 @@ Wrangler deploys to Cloudflare Pages → https://tom.irish
 ```
 
 ```mermaid
-flowchart TD
-    A([resume.md <br> pushed to main]) --> B[GitHub Actions triggers]
+%%{init: {'themeVariables': {'fontSize': '20px'}, 'flowchart': {'nodeSpacing': 30, 'rankSpacing': 40}}}%%
+flowchart LR
+    A([resume.md]) --> B([GitHub Actions])
     click A href "resume.md" "View resume.md" _blank
-    B --> C[validate_resume.py]
-    C --> D[convert_resume.py]
-    D --> E[generate_pdf_browser.py]
-    D --> F[generate_share_image.py]
-    F --> G[pytest tests/]
+    B --> C([validate_resume.py])
+    C --> D([convert_resume.py])
+    D --> E & F
 
-    subgraph parallel [Parallel Tasks]
-        direction LR
-        E & F
+    subgraph parallel [Parallel]
+        direction TB
+        E([generate_pdf_browser.py])
+        F([generate_share_image.py])
     end
 
-    G --> H[Wrangler deploys to Cloudflare Pages]
-    E --> G
-    H --> I[https://tom.irish]
-    style A font-size:9px
-    style B font-size:14px
-```     
+    E & F --> G([pytest tests/])
+    G --> H([Wrangler → Cloudflare Pages])
+    H --> I([https://tom.irish])
+```   
     
 ---
 
