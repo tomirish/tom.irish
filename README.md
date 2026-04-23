@@ -42,8 +42,8 @@ https://tom.irish
 | `resume.template.html` | PDF layout and structure |
 | `assets/` | CSS and images |
 
-📖 **[EDITING.md](docs/EDITING.md)** — format reference for `resume.md`: required sections, field formats, section-by-section examples  
-📖 **[CUSTOMIZING.md](docs/CUSTOMIZING.md)** — style reference: typography, color, layout, components, and design intent
+**[EDITING.md](docs/EDITING.md)** — format reference for `resume.md`: required sections, field formats, section-by-section examples  
+**[CUSTOMIZING.md](docs/CUSTOMIZING.md)** — style reference: typography, color, layout, components, and design intent
 
 ### Pipeline internals
 
