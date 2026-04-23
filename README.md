@@ -32,7 +32,20 @@ pytest tests/           — verifies scripts and templates
        ↓
 Wrangler deploys to Cloudflare Pages → https://tom.irish
 ```
-
+flowchart TD
+    A[resume.md pushed to main] --> B[GitHub Actions triggers]
+    B --> C[validate_resume.py]
+    B --> D[convert_resume.py]
+    B --> E[generate_pdf_browser.py]
+    B --> F[generate_share_image.py]
+    B --> G[pytest tests/]
+    C --> H[Wrangler deploys to Cloudflare Pages]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    H --> I[https://tom.irish]   
+    
 ---
 
 ## Files
