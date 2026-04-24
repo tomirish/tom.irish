@@ -188,7 +188,7 @@ def render_with_playwright(html: str, out_path: Path) -> None:
     try:
         from playwright.sync_api import sync_playwright
         with sync_playwright() as pw:
-            browser = pw.chromium.launch(channel="msedge")
+            browser = pw.chromium.launch()
             page = browser.new_page(viewport={"width": CANVAS, "height": CANVAS})
             page.goto(f"file://{tmp}")
             page.wait_for_load_state("networkidle")
