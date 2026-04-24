@@ -2,101 +2,150 @@
 """
 Generates assets/images/apple-touch-icon.png from scratch.
 
+Uses Playwright + embedded font for browser-accurate faux-bold rendering.
 Deletes any existing file and rebuilds on every run.
 Tweak the parameters below and rerun to adjust the icon.
 """
 
+import base64
+import os
 import sys
+import tempfile
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
 
 # --- Parameters ---
 CANVAS = 1024
-BG_COLOR = "#9b2335"
+BG_COLOR   = "#9b2335"
 TEXT_COLOR = "#faf9f7"
 
-TI_FONT_SIZE = 720        # pt — increase to make Ti larger
-TI_STROKE = 6             # px — adds weight to the letterforms (0 = none)
+TI_FONT_SIZE = 720    # CSS px
+TI_Y_OFFSET  = 0      # px nudge from center (negative = up)
 
-NUM_FONT_SIZE = 110       # pt — size of the "22"
-NUM_X = 155               # px from left edge
-NUM_Y = 75                # px from top edge
+NUM_FONT_SIZE = 110   # CSS px
+NUM_X         = 155   # px from left edge
+NUM_Y         = 75    # px from top edge
 # ------------------
 
 REPO_ROOT = Path(__file__).parent.parent
 FONT_PATH = REPO_ROOT / "assets" / "fonts" / "DMSerifDisplay-Regular.ttf"
-OUT_PATH = REPO_ROOT / "assets" / "images" / "apple-touch-icon.png"
+OUT_PATH  = REPO_ROOT / "assets" / "images" / "apple-touch-icon.png"
+
+HTML_TEMPLATE = """\
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+@font-face {{
+  font-family: 'DM Serif Display';
+  src: url('data:font/truetype;base64,{font_b64}') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}}
+* {{ margin: 0; padding: 0; box-sizing: border-box; }}
+html, body {{
+  width:  {canvas}px;
+  height: {canvas}px;
+  background: {bg};
+  overflow: hidden;
+}}
+body {{ position: relative; }}
+.ti {{
+  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-size: {ti_fs}px;
+  color: {text};
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY({ti_yo}px);
+  -webkit-font-smoothing: antialiased;
+}}
+.num {{
+  font-family: 'DM Serif Display', serif;
+  font-weight: bold;
+  font-size: {num_fs}px;
+  color: {text};
+  line-height: 1;
+  position: absolute;
+  top:  {num_y}px;
+  left: {num_x}px;
+  -webkit-font-smoothing: antialiased;
+}}
+</style>
+</head>
+<body>
+<div class="ti">Ti</div>
+<div class="num">22</div>
+</body>
+</html>
+"""
 
 
-def hex_to_rgba(hex_color: str) -> tuple:
-    h = hex_color.lstrip("#")
-    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4)) + (255,)
+def render_with_playwright(html: str) -> None:
+    with tempfile.NamedTemporaryFile(
+        suffix=".html", mode="w", delete=False, encoding="utf-8"
+    ) as f:
+        f.write(html)
+        tmp = f.name
+
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(channel="msedge")
+            page = browser.new_page(viewport={"width": CANVAS, "height": CANVAS})
+            page.goto(f"file://{tmp}")
+            page.wait_for_load_state("networkidle")
+            page.screenshot(path=str(OUT_PATH), type="png", full_page=False)
+            browser.close()
+    finally:
+        os.unlink(tmp)
 
 
 def main() -> None:
-    # Validate dependencies upfront
     if not FONT_PATH.exists():
         print(f"ERROR: Font not found: {FONT_PATH}", file=sys.stderr)
         sys.exit(1)
 
-    # Ensure output directory exists
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    # Delete any existing file — always build from scratch
     if OUT_PATH.exists():
         OUT_PATH.unlink()
         print(f"Removed existing {OUT_PATH.name}")
 
-    print(f"Generating {OUT_PATH.name} ({CANVAS}x{CANVAS}px)...")
+    print(f"Generating {OUT_PATH.name} ({CANVAS}x{CANVAS}px) via Playwright…")
+
+    font_b64 = base64.b64encode(FONT_PATH.read_bytes()).decode()
+
+    html = HTML_TEMPLATE.format(
+        font_b64=font_b64,
+        canvas=CANVAS,
+        bg=BG_COLOR,
+        text=TEXT_COLOR,
+        ti_fs=TI_FONT_SIZE,
+        ti_yo=TI_Y_OFFSET,
+        num_fs=NUM_FONT_SIZE,
+        num_x=NUM_X,
+        num_y=NUM_Y,
+    )
 
     try:
-        img = Image.new("RGBA", (CANVAS, CANVAS), hex_to_rgba(BG_COLOR))
-        draw = ImageDraw.Draw(img)
-
-        # Draw centered "Ti"
-        ti_font = ImageFont.truetype(str(FONT_PATH), TI_FONT_SIZE)
-        bbox = draw.textbbox((0, 0), "Ti", font=ti_font, stroke_width=TI_STROKE)
-        tw = bbox[2] - bbox[0]
-        th = bbox[3] - bbox[1]
-        tx = (CANVAS - tw) / 2 - bbox[0]
-        ty = (CANVAS - th) / 2 - bbox[1]
-        draw.text(
-            (tx, ty), "Ti",
-            fill=TEXT_COLOR, font=ti_font,
-            stroke_width=TI_STROKE, stroke_fill=TEXT_COLOR,
-        )
-
-        # Draw "22" in upper-left area
-        num_font = ImageFont.truetype(str(FONT_PATH), NUM_FONT_SIZE)
-        nb = draw.textbbox((0, 0), "22", font=num_font)
-        draw.text((NUM_X - nb[0], NUM_Y - nb[1]), "22", fill=TEXT_COLOR, font=num_font)
-
-        img.save(OUT_PATH, format="PNG", optimize=True)
+        render_with_playwright(html)
+    except ImportError:
+        print("ERROR: playwright not installed. Run: pip install playwright && playwright install chromium",
+              file=sys.stderr)
+        sys.exit(1)
     except Exception as exc:
-        print(f"ERROR: Failed to generate icon: {exc}", file=sys.stderr)
+        print(f"ERROR: {exc}", file=sys.stderr)
         sys.exit(1)
 
-    # Verify the output is valid
     if not OUT_PATH.exists():
         print("ERROR: Output file was not created.", file=sys.stderr)
         sys.exit(1)
 
-    try:
-        with Image.open(OUT_PATH) as verification:
-            actual_size = verification.size
-            actual_format = verification.format
-    except Exception as exc:
-        print(f"ERROR: Output file is not a valid image: {exc}", file=sys.stderr)
-        sys.exit(1)
-
-    if actual_size != (CANVAS, CANVAS):
-        print(f"ERROR: Expected {CANVAS}x{CANVAS}, got {actual_size}", file=sys.stderr)
-        sys.exit(1)
-
     size_kb = OUT_PATH.stat().st_size // 1024
-    print(f"Saved {OUT_PATH} ({actual_format}, {actual_size[0]}x{actual_size[1]}, {size_kb} KB)")
-    print(f"  Ti: {tw}x{th}px, centered")
-    print(f"  22: x={NUM_X}, y={NUM_Y}")
+    print(f"Saved {OUT_PATH} ({CANVAS}x{CANVAS}, {size_kb} KB)")
 
 
 if __name__ == "__main__":
