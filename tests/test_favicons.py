@@ -15,23 +15,17 @@ def favicon_path(name):
 
 
 def test_favicon_is_png():
-    if not os.path.exists(favicon_path("favicon.png")):
-        pytest.skip("favicon.png not found (run generate_favicons.py first)")
     with Image.open(favicon_path("favicon.png")) as img:
         assert img.format == "PNG"
 
 
 def test_favicon_dark_is_png():
-    if not os.path.exists(favicon_path("favicon-dark.png")):
-        pytest.skip("favicon-dark.png not found (run generate_favicons.py first)")
     with Image.open(favicon_path("favicon-dark.png")) as img:
         assert img.format == "PNG"
 
 
 @pytest.mark.parametrize("name", VARIANTS.keys())
 def test_favicon_dimensions(name):
-    if not os.path.exists(favicon_path(name)):
-        pytest.skip(f"{name} not found (run generate_favicons.py first)")
     expected = VARIANTS[name]["size"]
     with Image.open(favicon_path(name)) as img:
         assert img.size == expected, f"Expected {expected}, got {img.size}"
@@ -39,16 +33,12 @@ def test_favicon_dimensions(name):
 
 @pytest.mark.parametrize("name", VARIANTS.keys())
 def test_favicon_is_rgba(name):
-    if not os.path.exists(favicon_path(name)):
-        pytest.skip(f"{name} not found (run generate_favicons.py first)")
     with Image.open(favicon_path(name)) as img:
         assert img.mode in ("RGBA", "RGB"), f"Expected RGB/RGBA mode, got {img.mode}"
 
 
 @pytest.mark.parametrize("name,meta", VARIANTS.items())
 def test_favicon_background_color(name, meta):
-    if not os.path.exists(favicon_path(name)):
-        pytest.skip(f"{name} not found (run generate_favicons.py first)")
     expected_bg = meta["bg"]
     with Image.open(favicon_path(name)) as img:
         r, g, b = img.convert("RGB").getpixel((0, 0))
