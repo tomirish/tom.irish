@@ -36,10 +36,7 @@ The site is intentionally minimal: one crimson accent, a serif-sans pairing, a w
 | Display / headings | Playfair Display | Georgia, serif |
 | Body / UI | DM Sans | -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif |
 
-Both loaded from Google Fonts via `index.template.html`:
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Playfair Display:wght@400;700&display=swap"/>
-```
+Both are self-hosted as woff2 files in `assets/fonts/` and loaded via `@font-face` in `main.css` — no external network dependency.
 
 Playfair Display 700 is used for names and section headings only — nothing else. DM Sans covers all body, UI, labels, and metadata.
 
@@ -140,10 +137,7 @@ Two keyframe animations are used — the photo uses transform-only to stay eligi
 | Easing | `cubic-bezier(0.22, 1, 0.36, 1)` | `cubic-bezier(0.22, 1, 0.36, 1)` |
 | Delay | `0s` | `0.08s` per element: name → role → tagline → location → icon links |
 
-| Property | Value |
-|---|---|
-| Theme swap | `0.2s ease` on background / color / border |
-| Hover | `0.15s` |
+Other transitions: theme swap `0.2s ease` on background / color / border; hover `0.15s`.
 
 ---
 
