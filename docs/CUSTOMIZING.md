@@ -1,7 +1,7 @@
-# Style Guide
+# Style & Customization Guide
 
 Design reference for the web layer (`index.template.html` + `assets/main.css`).
-The PDF layer (`resume.template.html` + `assets/pdf.css`) shares the palette and typefaces but runs on a tighter scale and is not fully covered here.
+The PDF layer (`resume.template.html` + `assets/pdf.css`) shares the palette and typefaces but runs on a tighter scale — see [PDF layer](#pdf-layer) below.
 
 ---
 
@@ -129,7 +129,21 @@ No inner shadows, no colored glows, no drop shadows on content surfaces.
 
 ## Animation
 
-A single entrance motion — `fade-up`: `translateY(20px)` + `opacity: 0` → rest, `0.6s cubic-bezier(0.22, 1, 0.36, 1)`, staggered `0.08s` across photo → name → role → tagline → location → icon links. No bounces, no scroll-driven motion. Theme swaps use `0.2s ease` on background/color/border. Hover transitions are `0.15s`. Always respects `prefers-reduced-motion`.
+A single entrance motion on the landing page. No scroll-driven motion, no bounces. Always respects `prefers-reduced-motion`.
+
+Two keyframe animations are used — the photo uses transform-only to stay eligible as an LCP candidate; text elements use the full fade+translate:
+
+| Property | Photo (`slide-up`) | Text elements (`fade-up`) |
+|---|---|---|
+| Motion | `translateY(20px)` → rest | `translateY(20px)` + `opacity: 0` → rest |
+| Duration | `0.7s` | `0.6s` |
+| Easing | `cubic-bezier(0.22, 1, 0.36, 1)` | `cubic-bezier(0.22, 1, 0.36, 1)` |
+| Delay | `0s` | `0.08s` per element: name → role → tagline → location → icon links |
+
+| Property | Value |
+|---|---|
+| Theme swap | `0.2s ease` on background / color / border |
+| Hover | `0.15s` |
 
 ---
 
@@ -217,3 +231,81 @@ If adding a new brand icon, [Simple Icons](https://simpleicons.org/) matches the
 |---|---|
 | `≤ 767px` | Landing stacks vertically (photo 140px, name 44px, text centered); resume body switches to single column; sidebar loses background, gets top border |
 | `≤ 470px` | Resume photo hidden; resume name 18px; icon links 34px; contact pill padding tightens |
+
+---
+
+## PDF layer
+
+The PDF is rendered by headless Chromium from `resume.template.html` + `assets/pdf.css`. It shares the palette and typefaces with the web layer but runs on a tighter scale. Fonts are self-hosted (woff2 files in `assets/fonts/`) — no network dependency at render time.
+
+### Page setup
+
+| Property | Value |
+|---|---|
+| Format | US Letter (8.5 × 11 in) |
+| Margins | 0.2 in on all sides |
+| Scale | 0.98 |
+| Render | Headless Chromium via Playwright |
+
+To adjust margins or scale, edit the constants at the top of `scripts/generate_pdf_browser.py`:
+
+```python
+PDF_FORMAT = 'Letter'
+PDF_MARGIN_TOP = '0.2in'
+PDF_MARGIN_RIGHT = '0.2in'
+PDF_MARGIN_BOTTOM = '0.2in'
+PDF_MARGIN_LEFT = '0.2in'
+PDF_SCALE = 0.98
+```
+
+If your content overflows to a second page, reduce `PDF_SCALE` (e.g. `0.95`) or tighten margins before editing content.
+
+### Type scale (PDF)
+
+The PDF uses smaller sizes than the web layer to fit a single page.
+
+| Element | Size | Weight |
+|---|---|---|
+| Name | 22px | 700 |
+| Section headings | 13px | 700 |
+| Job title | 12px | 700 |
+| Body (summary, bullets) | 10.5px | 400 |
+| Job company / education items | 10px | 400 |
+| Job dates | 10px | 400 |
+| Contact line | 10px | 400 |
+
+### CSS classes
+
+| Class | Role |
+|---|---|
+| `.pdf-header` | Name + contact row, 3px crimson top border |
+| `.pdf-name` | Playfair Display, 22px |
+| `.pdf-contact` | Flex row of contact fields |
+| `.pdf-section` | Wrapper for each resume section |
+| `.pdf-section-heading` | Playfair Display, 13px, crimson |
+| `.pdf-rule` | 1px rule under section headings |
+| `.pdf-job` | Single job entry, `page-break-inside: avoid` |
+| `.pdf-job-header` | Flex row: title left, dates right |
+| `.pdf-job-title` | 12px, bold |
+| `.pdf-job-company` | 10px, `#555` |
+| `.pdf-job-dates` | 10px, `#767676` |
+| `.pdf-bullets` | `›` bullet list (achievements, job bullets, certifications) |
+| `.pdf-skill-row` | One skill group or flat skill |
+| `.pdf-skill-label` | Category label, bold |
+| `.pdf-edu` | One school entry |
+| `.pdf-edu-item` | Degree line, `#555` |
+
+### Template
+
+`resume.template.html` is a Jinja2 template. The build script populates these variables from `resume.md`:
+
+| Variable | Content |
+|---|---|
+| `{{ name }}` | Name from the `#` heading |
+| `{{ email }}`, `{{ phone }}`, `{{ location }}`, `{{ linkedin }}` | Header contact fields |
+| `{{ summary }}` | List of paragraphs |
+| `{{ achievements }}` | List of bullet strings |
+| `{{ work_experience }}` | List of `{role, company, dates, bullets}` objects |
+| `{{ skills }}` | List of `{type, label, items}` objects |
+| `{{ education }}` | List of `{name, items}` objects |
+| `{{ certifications }}` | List of bullet strings |

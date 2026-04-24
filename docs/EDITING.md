@@ -292,10 +292,14 @@ Brief summary paragraph here.
 
 ## What happens after you push
 
-1. GitHub Actions runs `validate_resume.py` — fails fast if the format is broken
-2. `convert_resume.py` injects content into `index.template.html` → produces `index.html`
-3. `generate_pdf_browser.py` produces `resume.pdf` (headless Chromium, must be exactly one page)
-4. Wrangler deploys both to Cloudflare Pages
-5. Site is live within a few minutes of the push
+GitHub Actions runs the following steps in order. If any step fails, the deploy stops and **the live site is unchanged**.
 
-If any step fails, the deploy stops and the live site is unchanged.
+1. **`pip-audit`** — scans Python dependencies for known vulnerabilities
+2. **`stylelint`** — lints `assets/*.css`
+3. **`validate_resume.py`** — fails fast if `resume.md` is missing a required section or has a formatting error
+4. **`check_links.py`** — verifies all URLs in `resume.md` are reachable
+5. **`convert_resume.py`** — injects content into `index.template.html` → produces `index.html`
+6. **`generate_pdf_browser.py`** + **`generate_share_image.py`** — run in parallel; headless Chromium renders `resume.pdf`, Pillow generates `assets/images/share.jpg` (the OG preview image)
+7. **`pytest tests/`** — verifies the generated files match expected output
+8. **Sync to `public/`** — copies `index.html`, `resume.pdf`, `robots.txt`, `sitemap.xml`, `_headers`, and `assets/` into the deploy directory
+9. **Wrangler** — deploys `public/` to Cloudflare Pages; site is live within a few minutes
