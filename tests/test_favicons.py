@@ -14,21 +14,16 @@ def favicon_path(name):
     return os.path.join(IMAGES_DIR, name)
 
 
-def skipif_missing(name):
-    return pytest.mark.skipif(
-        not os.path.exists(favicon_path(name)),
-        reason=f"{name} not found (run generate_favicons.py first)"
-    )
-
-
-@skipif_missing("favicon.png")
 def test_favicon_is_png():
+    if not os.path.exists(favicon_path("favicon.png")):
+        pytest.skip("favicon.png not found (run generate_favicons.py first)")
     with Image.open(favicon_path("favicon.png")) as img:
         assert img.format == "PNG"
 
 
-@skipif_missing("favicon-dark.png")
 def test_favicon_dark_is_png():
+    if not os.path.exists(favicon_path("favicon-dark.png")):
+        pytest.skip("favicon-dark.png not found (run generate_favicons.py first)")
     with Image.open(favicon_path("favicon-dark.png")) as img:
         assert img.format == "PNG"
 
