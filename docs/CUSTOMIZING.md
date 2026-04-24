@@ -131,13 +131,17 @@ No inner shadows, no colored glows, no drop shadows on content surfaces.
 
 A single entrance motion on the landing page. No scroll-driven motion, no bounces. Always respects `prefers-reduced-motion`.
 
+Two keyframe animations are used — the photo uses transform-only to stay eligible as an LCP candidate; text elements use the full fade+translate:
+
+| Property | Photo (`slide-up`) | Text elements (`fade-up`) |
+|---|---|---|
+| Motion | `translateY(20px)` → rest | `translateY(20px)` + `opacity: 0` → rest |
+| Duration | `0.7s` | `0.6s` |
+| Easing | `cubic-bezier(0.22, 1, 0.36, 1)` | `cubic-bezier(0.22, 1, 0.36, 1)` |
+| Delay | `0s` | `0.08s` per element: name → role → tagline → location → icon links |
+
 | Property | Value |
 |---|---|
-| Name | `fade-up` |
-| Motion | `translateY(20px)` + `opacity: 0` → rest |
-| Duration | `0.6s` |
-| Easing | `cubic-bezier(0.22, 1, 0.36, 1)` |
-| Stagger | `0.08s` per element: photo → name → role → tagline → location → icon links |
 | Theme swap | `0.2s ease` on background / color / border |
 | Hover | `0.15s` |
 

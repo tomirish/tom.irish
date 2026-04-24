@@ -39,7 +39,7 @@ https://tom.irish
 |------|---------|
 | [`resume.md`](resume.md) | Resume content |
 | [`docs/EDITING.md`](docs/EDITING.md) | Format reference for `resume.md`: required sections, field formats, section-by-section examples |
-| [`docs/CUSTOMIZING.md`](docs/CUSTOMIZING.md) | Style reference css and html: typography, color, layout, components, design intent |
+| [`docs/CUSTOMIZING.md`](docs/CUSTOMIZING.md) | Style and customization reference: typography, color, layout, CSS/HTML components, design intent |
 | [`index.template.html`](index.template.html) | Web page layout and structure |
 | [`resume.template.html`](resume.template.html) | PDF layout and structure |
 | `assets/` | fonts, CSS, and images |
