@@ -16,29 +16,29 @@ import tempfile
 from pathlib import Path
 
 # --- Parameters ---
-CANVAS = 1024
+CANVAS = 2048
 
 BG_COLOR     = "#9b2335"   # red — outer rect and inner content
 BORDER_COLOR = "#faf9f7"   # cream — the inset ring
 
 # Outer rounded rectangle
-OUTER_RADIUS = 172
+OUTER_RADIUS = 344
 
 # Cream border ring
-BORDER_INSET = 44          # px from canvas edge to cream ring
-BORDER_WIDTH = 43          # px wide cream ring
+BORDER_INSET = 88          # px from canvas edge to cream ring
+BORDER_WIDTH = 86          # px wide cream ring
 
 # Inner red content area
-INNER_INSET  = BORDER_INSET + BORDER_WIDTH   # 87px
+INNER_INSET  = BORDER_INSET + BORDER_WIDTH   # 174px
 
 # "Ti" text — font-size in CSS px; nudge vertically if needed
-TI_FONT_SIZE = 620         # CSS px
-TI_Y_OFFSET  = -20         # px nudge from flexbox center (negative = up)
+TI_FONT_SIZE = 1240        # CSS px
+TI_Y_OFFSET  = -40         # px nudge from flexbox center (negative = up)
 
 # "22" atomic number — position from top-left of canvas
-NUM_FONT_SIZE = 95         # CSS px
-NUM_X         = 135        # px from left canvas edge
-NUM_Y         = 110        # px from top canvas edge
+NUM_FONT_SIZE = 190        # CSS px
+NUM_X         = 270        # px from left canvas edge
+NUM_Y         = 220        # px from top canvas edge
 # ------------------
 
 REPO_ROOT = Path(__file__).parent.parent
@@ -65,7 +65,7 @@ HTML_TEMPLATE = """\
 body {{
   width:  {canvas}px;
   height: {canvas}px;
-  background: white;
+  background: transparent;
   overflow: hidden;
 }}
 .outer {{
@@ -141,7 +141,7 @@ def render_with_playwright(html: str) -> None:
             page = browser.new_page(viewport={"width": CANVAS, "height": CANVAS})
             page.goto(f"file://{tmp}")
             page.wait_for_load_state("networkidle")
-            page.screenshot(path=str(OUT_PATH), type="png", full_page=False)
+            page.screenshot(path=str(OUT_PATH), type="png", full_page=False, omit_background=True)
             browser.close()
     finally:
         os.unlink(tmp)
