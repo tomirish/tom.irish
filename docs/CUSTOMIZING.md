@@ -9,15 +9,54 @@ The PDF layer (`resume.template.html` + `assets/pdf.css`) shares the palette and
 
 The site is intentionally minimal: one crimson accent, a serif-sans pairing, a warm off-white canvas, and a quiet two-column resume view that feels like stationery. It signals reliability and empathy over flash — the design should mirror that.
 
-**Signature motifs to never break:**
-- **The 4px crimson stripe** — both views open with `border-top: 4px solid #9b2335`. It's the single strongest brand signal. Always flat, never gradient.
-- **The chevron bullet (`›`)** — achievements, job bullets, and certifications all use `›` positioned absolutely at `left: 0`, colored crimson. Never `•`, never `–`, never checkmarks.
+> [!IMPORTANT]
+> **Signature motifs — never break these**
+>
+> - **The 4px crimson stripe** — both views open with `border-top: 4px solid #9b2335`. It's the single strongest brand signal. Always flat, never gradient.
+> - **The chevron bullet (`›`)** — achievements, job bullets, and certifications use `›` positioned absolutely at `left: 0`, colored crimson. Never `•`, never `–`, never checkmarks.
+
+---
+
+## Brand mark
+
+The mark works on two levels: **Ti** are Tom Irish's initials, and Ti is the periodic table symbol for **Titanium — element 22**. Strong, lightweight, corrosion-resistant. One mark, two readings, no explanation required.
+
+<table>
+<tr valign="bottom">
+  <td align="center" style="padding:12px 20px"><img src="../assets/images/ti-element.png" width="96" alt="Ti element mark"/><br/><br/><small>Master mark</small></td>
+  <td align="center" style="padding:12px 20px"><img src="../assets/images/favicon.png" width="56" alt="Favicon light"/><br/><br/><small>Favicon · light</small></td>
+  <td align="center" style="padding:12px 20px"><img src="../assets/images/favicon-dark.png" width="56" alt="Favicon dark"/><br/><br/><small>Favicon · dark</small></td>
+  <td align="center" style="padding:12px 20px"><img src="../assets/images/apple-touch-icon.png" width="56" alt="Apple touch icon"/><br/><br/><small>Apple touch</small></td>
+</tr>
+</table>
+
+**Files:**
+
+| File | Size | Purpose |
+|---|---|---|
+| `assets/images/ti-element.png` | 1024×1024 | Master mark — periodic table element box |
+| `assets/images/favicon.png` | 256×256 | Browser favicon, light mode |
+| `assets/images/favicon-dark.png` | 256×256 | Browser favicon, dark mode (JS-swapped on load) |
+| `assets/images/apple-touch-icon.png` | 1024×1024 | iOS home screen icon |
+
+**Generation:** `scripts/generate_ti_element_icon.py` renders the master mark. `scripts/generate_favicons.py` renders the favicon pair (DM Serif Display "Ti" on solid background, via Playwright).
+
+> [!NOTE]
+> The favicon JS swap is in `index.template.html` — it reads `localStorage` on page load and sets `favicon.png` or `favicon-dark.png` based on the active theme. If you regenerate the favicons, re-run `convert_resume.py` to pick up the new files in the deployed `index.html`.
+
+**Usage rules:**
+- Don't rotate, skew, or recolor the mark
+- The serif "Ti" is load-bearing — don't change the typeface
+- Use crimson mark on light surfaces; dark variant on dark surfaces
+- Don't pair with a second logo or icon — Ti/22 is the only mark
 
 ---
 
 ## Voice and tone
 
-**Numbers over adjectives.** Achievements are stated as metrics ("99.5%+ availability", "$465K savings, a 38.4% reduction"), not adjectives ("significant", "major").
+First-person, plain-spoken, quietly confident. No hype, no superlatives.
+
+**Numbers over adjectives.** Achievements are stated as metrics ("99.5%+ availability", "$465K savings, a 38.4% reduction") — not adjectives ("significant", "major").
 
 **Casing.** Sentence case for section headings ("Key Achievements"). Title case for job titles ("Senior Manager"). All-caps only on micro-labels (`.landing-location`, `.skill-group-label`) with generous letter-spacing.
 
@@ -29,41 +68,67 @@ The site is intentionally minimal: one crimson accent, a serif-sans pairing, a w
 
 ## Typography
 
+Playfair Display 700 for every name and section heading — nothing else. DM Sans covers all body, UI, labels, and metadata. DM Serif Display is self-hosted but only used in generated icons, not the web layer.
+
 ### Typefaces
 
-| Role | Family | Fallback |
-|---|---|---|
-| Display / headings | Playfair Display | Georgia, serif |
-| Body / UI | DM Sans | -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif |
+| Role | Family | Weight | Notes |
+|---|---|---|---|
+| Display / headings | Playfair Display | 700 | Names and section headings only |
+| Body / UI | DM Sans | 400–600 | Everything operational |
+| Icons / favicon | DM Serif Display | 400 | Used by generation scripts only — not in the web layer |
 
-Both are self-hosted as woff2 files in `assets/fonts/` and loaded via `@font-face` in `main.css` — no external network dependency.
+All three are self-hosted in `assets/fonts/` — no external network dependency.
 
-Playfair Display 700 is used for names and section headings only — nothing else. DM Sans covers all body, UI, labels, and metadata.
+### Type specimen
 
-### Type Scale
+<table width="100%">
+<tr>
+<td style="padding:16px 20px;border-bottom:1px solid #eeeeee">
+<div style="font-size:11px;color:#9b2335;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Display · Playfair Display 700</div>
+<div style="font-size:36px;font-weight:700;color:#111111;line-height:1.05;letter-spacing:-1px">Tom Irish</div>
+<div style="font-size:10px;color:#888888;font-family:monospace;margin-top:6px">56px · −2px tracking · line-height 1.05</div>
+</td>
+</tr>
+<tr>
+<td style="padding:16px 20px">
+<div style="font-size:11px;color:#9b2335;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Body scale · DM Sans</div>
+<table width="100%">
+<tr><td style="padding:4px 0;font-size:17px;color:#333333;line-height:1.5">Engineering leader building the systems that keep global freight moving.</td><td align="right" style="padding-left:16px;font-size:10px;color:#888888;white-space:nowrap;vertical-align:bottom">tagline · 17 / 400</td></tr>
+<tr><td style="padding:4px 0;font-size:16px;color:#555555;font-weight:500">Senior Manager, Expeditors</td><td align="right" style="padding-left:16px;font-size:10px;color:#888888;white-space:nowrap;vertical-align:bottom">role · 16 / 500</td></tr>
+<tr><td style="padding:4px 0;font-size:15px;color:#333333">Senior engineering leader with 21 years in global logistics.</td><td align="right" style="padding-left:16px;font-size:10px;color:#888888;white-space:nowrap;vertical-align:bottom">body · 15 / 400</td></tr>
+<tr><td style="padding:4px 0;font-size:15px;color:#111111;font-weight:700">Expeditors — Senior Manager</td><td align="right" style="padding-left:16px;font-size:10px;color:#888888;white-space:nowrap;vertical-align:bottom">title · 15 / 700</td></tr>
+<tr><td style="padding:4px 0;font-size:13px;color:#555555">2003 – Present</td><td align="right" style="padding-left:16px;font-size:10px;color:#888888;white-space:nowrap;vertical-align:bottom">meta · 13 / 400</td></tr>
+<tr><td style="padding:4px 0;font-size:11px;color:#666666;font-weight:600;text-transform:uppercase;letter-spacing:1px">Seattle, Washington</td><td align="right" style="padding-left:16px;font-size:10px;color:#888888;white-space:nowrap;vertical-align:bottom">label · 11 / 600 · caps</td></tr>
+</table>
+</td>
+</tr>
+</table>
+
+### Full type scale
 
 | Element | Font | Size | Weight | Color |
 |---|---|---|---|---|
-| Landing name | Playfair Display | 56px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
-| Resume name (header) | Playfair Display | 22px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
-| Section headings | Playfair Display | 18px | 700 | ![](https://placehold.co/12x12/9b2335/9b2335.png) `#9b2335` |
-| Job title | DM Sans | 15px | 700 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
-| Body text (summary, achievements, bullets) | DM Sans | 15px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
-| Landing tagline | DM Sans | 17px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
-| Landing role | DM Sans | 16px | 500 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
-| Job company | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
-| Job dates | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/767676/767676.png) `#767676` |
-| Education name | DM Sans | 14px | 600 | ![](https://placehold.co/12x12/111111/111111.png) `#111` |
-| Education items | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/555555/555555.png) `#555` |
-| Certifications | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
-| Skill tags | DM Sans | 13px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
-| Skill group labels | DM Sans | 11px | 600 | ![](https://placehold.co/12x12/666666/666666.png) `#666` |
-| Contact pills | DM Sans | 12px | 400 | ![](https://placehold.co/12x12/333333/333333.png) `#333` |
-| Landing location | DM Sans | 11px | 400 | ![](https://placehold.co/12x12/666666/666666.png) `#666` |
+| Landing name | Playfair Display | 56px | 700 | `#111` |
+| Resume name (header) | Playfair Display | 22px | 700 | `#111` |
+| Section headings | Playfair Display | 18px | 700 | `#9b2335` |
+| Job title | DM Sans | 15px | 700 | `#111` |
+| Body text (summary, achievements, bullets) | DM Sans | 15px | 400 | `#333` |
+| Landing tagline | DM Sans | 17px | 400 | `#333` |
+| Landing role | DM Sans | 16px | 500 | `#555` |
+| Job company | DM Sans | 13px | 400 | `#555` |
+| Job dates | DM Sans | 13px | 400 | `#767676` |
+| Education name | DM Sans | 14px | 600 | `#111` |
+| Education items | DM Sans | 13px | 400 | `#555` |
+| Certifications | DM Sans | 13px | 400 | `#333` |
+| Skill tags | DM Sans | 13px | 400 | `#333` |
+| Skill group labels | DM Sans | 11px | 600 | `#666` |
+| Contact pills | DM Sans | 12px | 400 | `#333` |
+| Landing location | DM Sans | 11px | 400 | `#666` |
 
-### Line Heights
+### Line heights
 
-| Context | Line Height |
+| Context | Line height |
 |---|---|
 | Summary / achievements / bullets | 1.6–1.7 |
 | Body default | 1.5 |
@@ -73,54 +138,111 @@ Playfair Display 700 is used for names and section headings only — nothing els
 
 ## Color
 
-### Light mode
+One accent, warm neutrals. No gradients, no second accent, no semantic colors.
 
-| Swatch | Hex | Name | Usage |
+### Foreground
+
+<table>
+<tr valign="top">
+  <td align="center" style="padding:8px 10px"><div style="background-color:#111111;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#111</code><br/><small>ink</small></td>
+  <td align="center" style="padding:8px 10px"><div style="background-color:#333333;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#333</code><br/><small>body</small></td>
+  <td align="center" style="padding:8px 10px"><div style="background-color:#555555;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#555</code><br/><small>secondary</small></td>
+  <td align="center" style="padding:8px 10px"><div style="background-color:#666666;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#666</code><br/><small>muted</small></td>
+  <td align="center" style="padding:8px 10px"><div style="background-color:#767676;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#767676</code><br/><small>dates</small></td>
+  <td align="center" style="padding:8px 10px"><div style="background-color:#9b2335;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#9b2335</code><br/><small>accent</small></td>
+</tr>
+</table>
+
+### Surfaces
+
+<table>
+<tr valign="top">
+  <td align="center" style="padding:8px 10px"><div style="background-color:#faf9f7;border:1px solid #e0e0e0;border-radius:6px;padding:12px 0;font-size:12px;color:#333333;text-align:center;width:88px">Page</div><br/><code>#faf9f7</code><br/><small>bone</small></td>
+  <td align="center" style="padding:8px 10px"><div style="background-color:#edeae5;border-radius:6px;padding:12px 0;font-size:12px;color:#333333;text-align:center;width:88px">Sidebar</div><br/><code>#edeae5</code><br/><small>stone</small></td>
+  <td align="center" style="padding:8px 10px"><div style="background-color:#ffffff;border:1px solid #e0e0e0;border-radius:6px;padding:12px 0;font-size:12px;color:#333333;text-align:center;width:88px">Skill tags</div><br/><code>#ffffff</code><br/><small>white</small></td>
+</tr>
+</table>
+
+### Light / Dark
+
+<table width="100%">
+<tr>
+<td width="50%" style="background-color:#faf9f7;padding:20px 24px;vertical-align:top">
+<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#666666;margin-bottom:14px">Light mode</div>
+<div style="font-size:20px;font-weight:700;color:#111111;margin-bottom:4px">Tom Irish</div>
+<div style="font-size:13px;font-weight:700;color:#9b2335;margin-bottom:8px">Professional Summary</div>
+<div style="font-size:12px;color:#333333;line-height:1.6">Engineering leader building the systems that keep global freight moving.</div>
+</td>
+<td width="50%" style="background-color:#131313;padding:20px 24px;vertical-align:top">
+<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#888888;margin-bottom:14px">Dark mode</div>
+<div style="font-size:20px;font-weight:700;color:#f0ece8;margin-bottom:4px">Tom Irish</div>
+<div style="font-size:13px;font-weight:700;color:#e0506a;margin-bottom:8px">Professional Summary</div>
+<div style="font-size:12px;color:#cccccc;line-height:1.6">Engineering leader building the systems that keep global freight moving.</div>
+</td>
+</tr>
+</table>
+
+Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark"]`. Photos lose their box-shadow and gain `box-shadow: 0 0 0 1px rgba(255,255,255,0.10)` — a subtle ring to lift them off the near-black background. Note that `--accent` and `--accent-text` are different values in dark mode — `--accent` is for fills and borders, `--accent-text` is the brighter value used for text.
+
+### Light mode tokens
+
+| Swatch | Hex | Variable | Usage |
 |:---:|---|---|---|
-| ![](https://placehold.co/12x12/9b2335/9b2335.png) | `#9b2335` | Accent / crimson | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
-| ![](https://placehold.co/12x12/111111/111111.png) | `#111` | Ink | Names, job titles, education names |
-| ![](https://placehold.co/12x12/333333/333333.png) | `#333` | Body text | Summary, bullets, skill tags |
-| ![](https://placehold.co/12x12/444444/444444.png) | `#444` | Contact pill text | Default pill color |
-| ![](https://placehold.co/12x12/555555/555555.png) | `#555` | Secondary text | Job company, landing role, education items |
-| ![](https://placehold.co/12x12/666666/666666.png) | `#666` | Muted | Tagline, landing location, skill group labels |
-| ![](https://placehold.co/12x12/767676/767676.png) | `#767676` | Faint | Job dates |
-| ![](https://placehold.co/12x12/faf9f7/faf9f7.png) | `#faf9f7` | Page background | Warm off-white |
-| ![](https://placehold.co/12x12/edeae5/edeae5.png) | `#edeae5` | Sidebar background | Warm stone — clearly distinct from main column |
-| ![](https://placehold.co/12x12/dedad5/dedad5.png) | `#dedad5` | Sidebar border | Divider between main and sidebar |
-| ![](https://placehold.co/12x12/e4e4e4/e4e4e4.png) | `#e4e4e4` | Section rule | Horizontal rule under section headings |
-| ![](https://placehold.co/12x12/eeeeee/eeeeee.png) | `#eee` | Job rule | Separator between job entries |
-| ![](https://placehold.co/12x12/e0e0e0/e0e0e0.png) | `#e0e0e0` | Border light | Contact pill borders, icon-link rings |
+| ![](https://placehold.co/12x12/9b2335/9b2335.png) | `#9b2335` | `--accent` | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
+| ![](https://placehold.co/12x12/111111/111111.png) | `#111` | `--text-1` | Names, job titles, education names |
+| ![](https://placehold.co/12x12/333333/333333.png) | `#333` | `--text-body` | Summary, bullets, skill tags |
+| ![](https://placehold.co/12x12/555555/555555.png) | `#555` | `--text-2` | Job company, landing role, education items |
+| ![](https://placehold.co/12x12/666666/666666.png) | `#666` | `--text-3` | Tagline, landing location, skill group labels |
+| ![](https://placehold.co/12x12/767676/767676.png) | `#767676` | `--text-dates` | Job dates |
+| ![](https://placehold.co/12x12/faf9f7/faf9f7.png) | `#faf9f7` | `--bg` | Page background — warm off-white |
+| ![](https://placehold.co/12x12/edeae5/edeae5.png) | `#edeae5` | `--bg-sidebar` | Resume sidebar — warm stone |
+| ![](https://placehold.co/12x12/dedad5/dedad5.png) | `#dedad5` | `--border-mid` | Divider between main column and sidebar |
+| ![](https://placehold.co/12x12/eeeeee/eeeeee.png) | `#eee` | `--border-sm` | Section rules, job separators |
+| ![](https://placehold.co/12x12/e0e0e0/e0e0e0.png) | `#e0e0e0` | `--border` | Contact pill borders, icon-link rings |
 
-### Dark mode
-
-Triggered by `prefers-color-scheme: dark` or `html[data-theme="dark"]`.
+### Dark mode tokens
 
 | Swatch | Variable | Value | Notes |
 |:---:|---|---|---|
-| ![](https://placehold.co/12x12/131313/131313.png) | `--bg` | `#131313` | Near-black |
-| ![](https://placehold.co/12x12/1c1b1a/1c1b1a.png) | `--bg-sidebar` | `#1c1b1a` | Slightly warm |
-| ![](https://placehold.co/12x12/c4394e/c4394e.png) | `--accent` | `#c4394e` | Brighter crimson for contrast |
-| ![](https://placehold.co/12x12/e0506a/e0506a.png) | `--accent-text` | `#e0506a` | Even brighter for text readability |
-| ![](https://placehold.co/12x12/f0ece8/f0ece8.png) | `--text-1` | `#f0ece8` | Warm cream |
-| ![](https://placehold.co/12x12/cccccc/cccccc.png) | `--text-body` | `#ccc` | |
+| ![](https://placehold.co/12x12/131313/131313.png) | `--bg` | `#131313` | Near-black page background |
+| ![](https://placehold.co/12x12/1c1b1a/1c1b1a.png) | `--bg-sidebar` | `#1c1b1a` | Slightly warm dark sidebar |
+| ![](https://placehold.co/12x12/222222/222222.png) | `--bg-skill` | `#222222` | Skill tag background |
+| ![](https://placehold.co/12x12/c4394e/c4394e.png) | `--accent` | `#c4394e` | Brighter crimson for fills and borders |
+| ![](https://placehold.co/12x12/e0506a/e0506a.png) | `--accent-text` | `#e0506a` | Even brighter — for text on dark backgrounds |
+| ![](https://placehold.co/12x12/f0ece8/f0ece8.png) | `--text-1` | `#f0ece8` | Warm cream — names, titles |
+| ![](https://placehold.co/12x12/cccccc/cccccc.png) | `--text-body` | `#ccc` | Body text |
+| ![](https://placehold.co/12x12/aaaaaa/aaaaaa.png) | `--text-2` | `#aaa` | Secondary text |
+| ![](https://placehold.co/12x12/888888/888888.png) | `--text-3` | `#888` | Muted text |
+| ![](https://placehold.co/12x12/878787/878787.png) | `--text-dates` | `#878787` | Job dates |
 | ![](https://placehold.co/12x12/484848/484848.png) | `--border` | `#484848` | |
 | ![](https://placehold.co/12x12/363636/363636.png) | `--border-sm` | `#363636` | |
-
-Photos lose the box-shadow and get `box-shadow: 0 0 0 1px rgba(255,255,255,0.10)` instead — a subtle ring to separate them from the dark background.
+| ![](https://placehold.co/12x12/383634/383634.png) | `--border-mid` | `#383634` | |
 
 ---
 
 ## Shadows
 
-Three tiers, all soft black — never colored:
+Three tiers, all soft black — never colored. No inner shadows, no colored glows, no drop shadows on content surfaces.
 
-| Usage | Value |
-|---|---|
-| Landing photo | `0 4px 24px rgba(0,0,0,0.13)` |
-| Resume header photo | `0 2px 8px rgba(0,0,0,0.10)` |
-| Sticky header | `0 2px 8px rgba(0,0,0,0.04)` |
-
-No inner shadows, no colored glows, no drop shadows on content surfaces.
+<table>
+<tr valign="top">
+  <td align="center" style="padding:16px 24px">
+    <div style="background-color:#faf9f7;border-radius:8px;width:96px;height:64px;margin:0 auto 12px;box-shadow:0 4px 24px rgba(0,0,0,0.13)"></div>
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9b2335;margin-bottom:4px">Landing photo</div>
+    <code style="font-size:10px">0 4px 24 rgba(0,0,0,0.13)</code>
+  </td>
+  <td align="center" style="padding:16px 24px">
+    <div style="background-color:#faf9f7;border-radius:8px;width:96px;height:64px;margin:0 auto 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10)"></div>
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9b2335;margin-bottom:4px">Resume photo</div>
+    <code style="font-size:10px">0 2px 8 rgba(0,0,0,0.10)</code>
+  </td>
+  <td align="center" style="padding:16px 24px">
+    <div style="background-color:#faf9f7;border-radius:8px;width:96px;height:64px;margin:0 auto 12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)"></div>
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9b2335;margin-bottom:4px">Sticky header</div>
+    <code style="font-size:10px">0 2px 8 rgba(0,0,0,0.04)</code>
+  </td>
+</tr>
+</table>
 
 ---
 
@@ -128,14 +250,14 @@ No inner shadows, no colored glows, no drop shadows on content surfaces.
 
 A single entrance motion on the landing page. No scroll-driven motion, no bounces. Always respects `prefers-reduced-motion`.
 
-Two keyframe animations are used — the photo uses transform-only to stay eligible as an LCP candidate; text elements use the full fade+translate:
+The photo uses transform-only (`slide-up`) to stay eligible as an LCP candidate — starting at `opacity: 0` would disqualify it. Text elements use the full fade+translate (`fade-up`):
 
 | Property | Photo (`slide-up`) | Text elements (`fade-up`) |
 |---|---|---|
 | Motion | `translateY(20px)` → rest | `translateY(20px)` + `opacity: 0` → rest |
 | Duration | `0.7s` | `0.6s` |
 | Easing | `cubic-bezier(0.22, 1, 0.36, 1)` | `cubic-bezier(0.22, 1, 0.36, 1)` |
-| Delay | `0s` | `0.08s` per element: name → role → tagline → location → icon links |
+| Delay | `0s` | `0.08s` stagger: name → role → tagline → location → icon links |
 
 Other transitions: theme swap `0.2s ease` on background / color / border; hover `0.15s`.
 
