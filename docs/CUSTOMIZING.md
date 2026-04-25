@@ -142,45 +142,21 @@ One accent, warm neutrals. No gradients, no second accent, no semantic colors.
 
 ### Foreground
 
-<table>
-<tr valign="top">
-  <td align="center" style="padding:8px 10px"><div style="background-color:#111111;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#111</code><br/><small>ink</small></td>
-  <td align="center" style="padding:8px 10px"><div style="background-color:#333333;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#333</code><br/><small>body</small></td>
-  <td align="center" style="padding:8px 10px"><div style="background-color:#555555;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#555</code><br/><small>secondary</small></td>
-  <td align="center" style="padding:8px 10px"><div style="background-color:#666666;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#666</code><br/><small>muted</small></td>
-  <td align="center" style="padding:8px 10px"><div style="background-color:#767676;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#767676</code><br/><small>dates</small></td>
-  <td align="center" style="padding:8px 10px"><div style="background-color:#9b2335;color:#ffffff;border-radius:6px;padding:12px 0;font-size:16px;font-weight:600;text-align:center;width:72px">Aa</div><br/><code>#9b2335</code><br/><small>accent</small></td>
-</tr>
-</table>
+| ![](https://placehold.co/72x44/111111/ffffff?text=Aa) | ![](https://placehold.co/72x44/333333/ffffff?text=Aa) | ![](https://placehold.co/72x44/555555/ffffff?text=Aa) | ![](https://placehold.co/72x44/666666/ffffff?text=Aa) | ![](https://placehold.co/72x44/767676/ffffff?text=Aa) | ![](https://placehold.co/72x44/9b2335/ffffff?text=Aa) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `#111` ink | `#333` body | `#555` secondary | `#666` muted | `#767676` dates | `#9b2335` accent |
 
 ### Surfaces
 
-<table>
-<tr valign="top">
-  <td align="center" style="padding:8px 10px"><div style="background-color:#faf9f7;border:1px solid #e0e0e0;border-radius:6px;padding:12px 0;font-size:12px;color:#333333;text-align:center;width:88px">Page</div><br/><code>#faf9f7</code><br/><small>bone</small></td>
-  <td align="center" style="padding:8px 10px"><div style="background-color:#edeae5;border-radius:6px;padding:12px 0;font-size:12px;color:#333333;text-align:center;width:88px">Sidebar</div><br/><code>#edeae5</code><br/><small>stone</small></td>
-  <td align="center" style="padding:8px 10px"><div style="background-color:#ffffff;border:1px solid #e0e0e0;border-radius:6px;padding:12px 0;font-size:12px;color:#333333;text-align:center;width:88px">Skill tags</div><br/><code>#ffffff</code><br/><small>white</small></td>
-</tr>
-</table>
+| ![](https://placehold.co/88x44/faf9f7/555555?text=Page) | ![](https://placehold.co/88x44/edeae5/555555?text=Sidebar) | ![](https://placehold.co/88x44/ffffff/555555?text=Tags) |
+|:---:|:---:|:---:|
+| `#faf9f7` bone | `#edeae5` stone | `#ffffff` white |
 
 ### Light / Dark
 
-<table width="100%">
-<tr>
-<td width="50%" style="background-color:#faf9f7;padding:20px 24px;vertical-align:top">
-<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#666666;margin-bottom:14px">Light mode</div>
-<div style="font-size:20px;font-weight:700;color:#111111;margin-bottom:4px">Tom Irish</div>
-<div style="font-size:13px;font-weight:700;color:#9b2335;margin-bottom:8px">Professional Summary</div>
-<div style="font-size:12px;color:#333333;line-height:1.6">Engineering leader building the systems that keep global freight moving.</div>
-</td>
-<td width="50%" style="background-color:#131313;padding:20px 24px;vertical-align:top">
-<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#888888;margin-bottom:14px">Dark mode</div>
-<div style="font-size:20px;font-weight:700;color:#f0ece8;margin-bottom:4px">Tom Irish</div>
-<div style="font-size:13px;font-weight:700;color:#e0506a;margin-bottom:8px">Professional Summary</div>
-<div style="font-size:12px;color:#cccccc;line-height:1.6">Engineering leader building the systems that keep global freight moving.</div>
-</td>
-</tr>
-</table>
+| ![](https://placehold.co/280x64/faf9f7/9b2335?text=Light+mode) | ![](https://placehold.co/280x64/131313/e0506a?text=Dark+mode) |
+|:---:|:---:|
+| Bone `#faf9f7` · crimson `#9b2335` | Near-black `#131313` · accent `#e0506a` |
 
 Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark"]`. Photos lose their box-shadow and gain `box-shadow: 0 0 0 1px rgba(255,255,255,0.10)` — a subtle ring to lift them off the near-black background. Note that `--accent` and `--accent-text` are different values in dark mode — `--accent` is for fills and borders, `--accent-text` is the brighter value used for text.
 
@@ -224,25 +200,11 @@ Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark
 
 Three tiers, all soft black — never colored. No inner shadows, no colored glows, no drop shadows on content surfaces.
 
-<table>
-<tr valign="top">
-  <td align="center" style="padding:16px 24px">
-    <div style="background-color:#faf9f7;border-radius:8px;width:96px;height:64px;margin:0 auto 12px;box-shadow:0 4px 24px rgba(0,0,0,0.13)"></div>
-    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9b2335;margin-bottom:4px">Landing photo</div>
-    <code style="font-size:10px">0 4px 24 rgba(0,0,0,0.13)</code>
-  </td>
-  <td align="center" style="padding:16px 24px">
-    <div style="background-color:#faf9f7;border-radius:8px;width:96px;height:64px;margin:0 auto 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10)"></div>
-    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9b2335;margin-bottom:4px">Resume photo</div>
-    <code style="font-size:10px">0 2px 8 rgba(0,0,0,0.10)</code>
-  </td>
-  <td align="center" style="padding:16px 24px">
-    <div style="background-color:#faf9f7;border-radius:8px;width:96px;height:64px;margin:0 auto 12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)"></div>
-    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#9b2335;margin-bottom:4px">Sticky header</div>
-    <code style="font-size:10px">0 2px 8 rgba(0,0,0,0.04)</code>
-  </td>
-</tr>
-</table>
+| Usage | Value |
+|---|---|
+| Landing photo | `0 4px 24px rgba(0,0,0,0.13)` |
+| Resume header photo | `0 2px 8px rgba(0,0,0,0.10)` |
+| Sticky header | `0 2px 8px rgba(0,0,0,0.04)` |
 
 ---
 
