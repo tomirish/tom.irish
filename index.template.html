@@ -218,9 +218,9 @@
   </button>
   <script>    
     (function() {
-      var sha = document.querySelector('meta[name="build-sha"]');
-      var time = document.querySelector('meta[name="build-time"]');
-      var build = sha ? 'Build: ' + sha.content + (time ? ' | Time: ' + time.content : '') : '';
+      const sha = document.querySelector('meta[name="build-sha"]');
+      const time = document.querySelector('meta[name="build-time"]');
+      const build = sha ? 'Build: ' + sha.content + (time ? ' | Time: ' + time.content : '') : '';
       console.log(
         '%c' +
         '▄▄▄▄▄▄▄▄▄               ▄▄▄▄▄                 ▄▄    \n' +
@@ -228,7 +228,7 @@
         '   ███ ▄███▄ ███▄███▄    ███  ████▄ ██  ▄█▀▀▀ ████▄ \n' +
         '   ███ ██ ██ ██ ██ ██    ███  ██ ▀▀ ██  ▀███▄ ██ ██ \n' +
         '   ███ ▀███▀ ██ ██ ██   ▄███▄ ██    ██▄ ▄▄▄█▀ ██ ██ \n' +
-        '%c\n' + 'Built by hand → https://github.com/tomirish/tom.irish\n\n' + build,
+        '%c\n' + 'Built by hand → https://github.com/tomirish/tom.irish\n' + build,
         'color: #9b2335', 'color: #faf9f7'
       );
     })();
