@@ -41,7 +41,7 @@ jobs:
           playwright install --with-deps chromium
 
       - name: Audit dependencies for known vulnerabilities
-        run: pip-audit --ignore-vuln CVE-2026-3219  # no fix available as of 2026-04-24
+        run: pip-audit
 
       - name: Lint CSS
         run: npx --yes stylelint "assets/*.css"
@@ -142,7 +142,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Audit dependencies for known vulnerabilities
-        run: pip-audit --ignore-vuln CVE-2026-3219 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}  # no fix available as of 2026-04-24
+        run: pip-audit 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}
 
       - name: Check links in resume
         run: python scripts/check_links.py 2>&1 | tee /tmp/check-links.txt; exit ${PIPESTATUS[0]}
