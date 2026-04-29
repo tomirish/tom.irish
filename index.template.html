@@ -220,7 +220,7 @@
     (function() {
       const sha = document.querySelector('meta[name="build-sha"]');
       const time = document.querySelector('meta[name="build-time"]');
-      const build = sha ? 'Build: ' + sha.content + (time ? ' · Time: ' + time.content : '') : '';
+      const build = sha ? 'Build: ' + sha.content + (time ? ' · Deployed: ' + time.content : '') : '';
       console.log(
         '%c' +
         '▄▄▄▄▄▄▄▄▄               ▄▄▄▄▄                 ▄▄    \n' +
