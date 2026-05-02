@@ -13,6 +13,8 @@ jobs:
     name: Build HTML and PDF
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -44,7 +46,7 @@ jobs:
         run: pip-audit --ignore-vuln CVE-2026-3219  # advisory db has no fix version yet; recheck when pip-audit flags a fix
 
       - name: Lint CSS
-        run: npx --yes stylelint "assets/*.css"
+        run: npx --yes stylelint@16 "assets/*.css"
 
       - name: Validate resume format
         run: |
@@ -122,6 +124,8 @@ jobs:
     name: Nightly Checks
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
