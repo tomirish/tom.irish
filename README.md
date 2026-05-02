@@ -3,6 +3,7 @@
 [![Production Site](https://img.shields.io/badge/Site-tom.irish-green)](https://tom.irish)
 [![Cloudflare](https://img.shields.io/badge/Host-Cloudflare-F38020)](https://cloudflare.com)
 [![Build and Deploy](https://github.com/tomirish/tom.irish/actions/workflows/build.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/build.yml)
+[![CodeQL](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml)
 [![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown)](https://www.markdownguide.org/)
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
