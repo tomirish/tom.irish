@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build, Test and Deploy
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Build HTML and PDF
+    name: Build, Test and Deploy
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     permissions:
