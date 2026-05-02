@@ -1,6 +1,6 @@
 # Tom Irish - Personal Website
 
-[![Production Site](https://img.shields.io/website?url=https%3A%2F%2Ftom.irish&label=tom.irish)](https://tom.irish)
+[![Production Site](https://img.shields.io/website?url=https%3A%2F%2Ftom.irish&label=tom.irish&logo=cloudflare&logoColor=F38020)](https://tom.irish)
 [![Build and Deploy](https://github.com/tomirish/tom.irish/actions/workflows/build.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/build.yml)
 [![CodeQL](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml)
 
