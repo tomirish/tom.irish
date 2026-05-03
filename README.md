@@ -3,6 +3,7 @@
 [![Production Site](https://img.shields.io/website?url=https%3A%2F%2Ftom.irish&label=tom.irish&logo=cloudflare&logoColor=F38020&labelColor=343B42)](https://tom.irish)
 [![Build, Test and Deploy](https://github.com/tomirish/tom.irish/actions/workflows/build.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/build.yml)
 [![CodeQL](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml)
+[![Version](https://img.shields.io/github/v/tag/tomirish/tom.irish?label=version&color=9b2335)](https://github.com/tomirish/tom.irish/tags)
 
 Personal website and resume for [Tom Irish](https://tom.irish) — a clean, single-page design driven entirely by Markdown.
 
