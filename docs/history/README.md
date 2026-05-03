@@ -32,7 +32,7 @@ Moved to Google Sites with a professional focus. Shamrock logo, bold green "TOM 
 
 ## v3 — 2018
 
-![v3](v3-2018a.webp)
+![v3](v3-2018.webp)
 
 Redesign within Google Sites. Shamrock logo dropped, green accent reduced to thin rule lines top and bottom, serif headline type, two-column layout with circular headshot. Cleaner and more restrained than v2.
 
