@@ -79,6 +79,7 @@ jobs:
           cp sitemap.xml public/
           cp _headers public/
           cp -r assets public/
+          cp history.html public/
           echo "✅ Synced files to public/ directory"
 
       - name: Deploy to Cloudflare Pages
