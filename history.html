@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="theme-color" content="#9b2335"/>
+  <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
+  <script>!function(){var t=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme: dark)').matches,dark=t?t==='dark':d;if(t)document.documentElement.setAttribute('data-theme',t);document.querySelector('meta[name="theme-color"]').setAttribute('content',dark?'#c4394e':'#9b2335');document.querySelector('link[rel="icon"]').setAttribute('href',dark?'assets/images/favicon-dark.png':'assets/images/favicon.png')}()</script>
+  <title>Design History — Tom Irish</title>
+  <style>
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: swap;
+      src: url('/assets/fonts/dm-sans-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/assets/fonts/playfair-display-latin.woff2') format('woff2');
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg:           #faf9f7;
+      --text-1:       #111;
+      --text-2:       #555;
+      --text-3:       #999;
+      --accent:       #9b2335;
+      --border-sm:    #eee;
+      --border-mid:   #dedad5;
+      --spine:        rgba(155, 35, 53, 0.18);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:        #131313;
+        --text-1:    #f0ece8;
+        --text-2:    #aaa;
+        --text-3:    #666;
+        --accent:    #c4394e;
+        --border-sm: #2a2a2a;
+        --border-mid:#383634;
+        --spine:     rgba(196, 57, 78, 0.22);
+      }
+      .icon-sun  { display: block !important; }
+      .icon-moon { display: none !important; }
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg:        #131313;
+      --text-1:    #f0ece8;
+      --text-2:    #aaa;
+      --text-3:    #666;
+      --accent:    #c4394e;
+      --border-sm: #2a2a2a;
+      --border-mid:#383634;
+      --spine:     rgba(196, 57, 78, 0.22);
+    }
+    html[data-theme="dark"] .icon-sun  { display: block !important; }
+    html[data-theme="dark"] .icon-moon { display: none !important; }
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg:        #faf9f7;
+      --text-1:    #111;
+      --text-2:    #555;
+      --text-3:    #999;
+      --accent:    #9b2335;
+      --border-sm: #eee;
+      --border-mid:#dedad5;
+      --spine:     rgba(155, 35, 53, 0.18);
+    }
+    html[data-theme="light"] .icon-sun  { display: none !important; }
+    html[data-theme="light"] .icon-moon { display: block !important; }
+
+    html { background: var(--bg); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-1);
+      background: var(--bg);
+      line-height: 1.5;
+      border-top: 4px solid var(--accent);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── THEME TOGGLE ─────────────────────────────────────────── */
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 200;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      padding: 0;
+      transition: color 0.15s, background-color 0.15s;
+    }
+    #theme-toggle:hover { color: var(--text-1); background: var(--border-sm); }
+    #theme-toggle svg { width: 17px; height: 17px; }
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+
+    /* ── PAGE HEADER ──────────────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      padding: 72px 24px 56px;
+    }
+
+    .page-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      color: var(--text-1);
+      margin-bottom: 12px;
+    }
+
+    .page-sub {
+      font-size: 16px;
+      color: var(--text-2);
+    }
+
+    /* ── TIMELINE ─────────────────────────────────────────────── */
+    .timeline {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 24px 96px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-1px);
+      top: 0;
+      bottom: 96px;
+      width: 2px;
+      background: var(--spine);
+    }
+
+    /* ── ENTRY ────────────────────────────────────────────────── */
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    /* dot only — always on the spine */
+    .entry-badge {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* label: version + year on one line, alternates sides */
+    .entry-label {
+      grid-row: 1;
+      align-self: center;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .badge-version {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .badge-year {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-1);
+    }
+
+    /* screenshot — clickable */
+    .entry-screenshot {
+      grid-row: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-mid);
+      line-height: 0;
+      cursor: zoom-in;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    .entry-screenshot:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+    .entry-screenshot img { width: 100%; height: auto; }
+
+    /* odd: image left, label right */
+    .entry:nth-child(odd) .entry-screenshot {
+      grid-column: 1;
+      margin-right: 20px;
+    }
+    .entry:nth-child(odd) .entry-label {
+      grid-column: 3;
+      margin-left: 20px;
+    }
+
+    /* even: label left, image right */
+    .entry:nth-child(even) .entry-screenshot {
+      grid-column: 3;
+      margin-left: 20px;
+    }
+    .entry:nth-child(even) .entry-label {
+      grid-column: 1;
+      margin-right: 20px;
+      justify-content: flex-end;
+    }
+
+    /* ── LIGHTBOX ─────────────────────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(0, 0, 0, 0.75);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #lightbox.open { display: flex; }
+
+    .lb-box {
+      background: var(--bg);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      max-height: 90vh;
+      position: relative;
+    }
+
+    .lb-image {
+      overflow: hidden;
+      line-height: 0;
+      background: #000;
+    }
+    .lb-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      max-height: 90vh;
+    }
+
+    .lb-panel {
+      padding: 32px 28px;
+      overflow-y: auto;
+      border-left: 1px solid var(--border-mid);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lb-version {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .lb-year {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1;
+      color: var(--text-1);
+    }
+
+    .lb-meta {
+      font-size: 12px;
+      color: var(--text-3);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-sm);
+    }
+
+    .lb-desc {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+
+    #lb-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      z-index: 10;
+      transition: background 0.15s;
+    }
+    #lb-close:hover { background: rgba(0,0,0,0.6); }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    .page-footer {
+      text-align: center;
+      padding: 0 24px 56px;
+      border-top: 1px solid var(--border-mid);
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 28px;
+      font-size: 14px;
+      color: var(--text-3);
+      transition: color 0.15s;
+    }
+    .footer-link:hover { color: var(--accent); }
+    .footer-link svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ── MOBILE ───────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .page-title { font-size: 38px; letter-spacing: -1px; }
+
+      .timeline { padding: 24px 20px 72px 52px; }
+      .timeline::before { left: 20px; transform: none; }
+
+      .entry { display: block; position: relative; margin-bottom: 48px; }
+      .entry::before {
+        content: '';
+        position: absolute;
+        left: -38px;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .entry-badge { flex-direction: row; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+      .badge-dot   { display: none; }
+      .badge-meta  { display: none; }
+      .badge-year  { font-size: 28px; }
+
+      .entry-screenshot,
+      .entry:nth-child(odd)  .entry-screenshot,
+      .entry:nth-child(even) .entry-screenshot { margin: 0; }
+
+      .lb-box { grid-template-columns: 1fr; max-height: 92vh; }
+      .lb-image img { max-height: 50vh; }
+      .lb-panel { border-left: none; border-top: 1px solid var(--border-mid); padding: 20px; }
+      .lb-year { font-size: 30px; }
+
+      .page-footer { text-align: left; padding-left: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="theme-toggle" aria-label="Toggle light/dark mode">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+  </button>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Version detail">
+    <div class="lb-box">
+      <button id="lb-close" aria-label="Close">✕</button>
+      <div class="lb-image">
+        <img id="lb-img" src="" alt=""/>
+      </div>
+      <div class="lb-panel">
+        <div id="lb-version" class="lb-version"></div>
+        <div id="lb-year" class="lb-year"></div>
+        <div id="lb-meta" class="lb-meta"></div>
+        <p id="lb-desc" class="lb-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <header class="page-header">
+    <h1 class="page-title">Design History</h1>
+    <p class="page-sub">From WYSIWYG templates to handcrafted single page design. Powered by a custom-built Markdown CMS. A visual record of every major redesign.</p>
+  </header>
+
+  <main>
+    <div class="timeline">
+
+      <article class="entry"
+        data-version="v1" data-year="2013" data-meta="Weebly · tomirish.me"
+        data-desc="Personal/family site built on Weebly. Cursive &ldquo;Tom Irish&rdquo; logo, full-width family photo banner, dark navy navigation bar. Content covered family life: Home, Photos, Blog, Geocaching, About Me. The first iteration of tomirish.me."
+        data-img="docs/history/v1-2013.webp" data-alt="Version 1 — 2013">
+        <div class="entry-badge"><div class="badge-dot"></div></div>
+        <div class="entry-label">
+          <div class="badge-version">v1</div>
+          <div class="badge-year">2013</div>
+        </div>
+        <figure class="entry-screenshot">
+          <img src="docs/history/v1-2013.webp" alt="Version 1 — 2013"/>
+        </figure>
+      </article>
+
+      <article class="entry"
+        data-version="v2" data-year="2015" data-meta="Google Sites · tomirish.me"
+        data-desc="Moved to Google Sites with a professional focus. Shamrock logo, bold green &ldquo;TOM IRISH&rdquo; wordmark, white background, circular headshot, social icon row. Navigation reduced to Home and Resume."
+        data-img="docs/history/v2-2015.webp" data-alt="Version 2 — 2015">
+        <div class="entry-badge"><div class="badge-dot"></div></div>
+        <div class="entry-label">
+          <div class="badge-version">v2</div>
+          <div class="badge-year">2015</div>
+        </div>
+        <figure class="entry-screenshot">
+          <img src="docs/history/v2-2015.webp" alt="Version 2 — 2015"/>
+        </figure>
+      </article>
+
+      <article class="entry"
+        data-version="v3" data-year="2018" data-meta="Google Sites · tomirish.me"
+        data-desc="Redesign within Google Sites. Shamrock logo dropped, green accent reduced to thin rule lines top and bottom, serif headline type, two-column layout with circular headshot. Cleaner and more restrained than v2."
+        data-img="docs/history/v3-2018.webp" data-alt="Version 3 — 2018">
+        <div class="entry-badge"><div class="badge-dot"></div></div>
+        <div class="entry-label">
+          <div class="badge-version">v3</div>
+          <div class="badge-year">2018</div>
+        </div>
+        <figure class="entry-screenshot">
+          <img src="docs/history/v3-2018.webp" alt="Version 3 — 2018"/>
+        </figure>
+      </article>
+
+      <article class="entry"
+        data-version="v4" data-year="2019" data-meta="Carrd.co · tom.irish"
+        data-desc="Moved to Carrd.co and the tom.irish domain. White background, wide-spaced caps typography, steel blue accent, circular headshot centered on the page. Navigation as pill-shaped outline buttons. Minimal and modern."
+        data-img="docs/history/v4-2019.webp" data-alt="Version 4 — 2019">
+        <div class="entry-badge"><div class="badge-dot"></div></div>
+        <div class="entry-label">
+          <div class="badge-version">v4</div>
+          <div class="badge-year">2019</div>
+        </div>
+        <figure class="entry-screenshot">
+          <img src="docs/history/v4-2019.webp" alt="Version 4 — 2019"/>
+        </figure>
+      </article>
+
+      <article class="entry"
+        data-version="v5" data-year="2024" data-meta="Carrd.co · tom.irish"
+        data-desc="Redesigned within Carrd.co. Steel blue card with rounded corners, hexagon social icon row. Moodier and more graphic than v4."
+        data-img="docs/history/v5-2024.webp" data-alt="Version 5 — 2024">
+        <div class="entry-badge"><div class="badge-dot"></div></div>
+        <div class="entry-label">
+          <div class="badge-version">v5</div>
+          <div class="badge-year">2024</div>
+        </div>
+        <figure class="entry-screenshot">
+          <img src="docs/history/v5-2024.webp" alt="Version 5 — 2024"/>
+        </figure>
+      </article>
+
+      <article class="entry"
+        data-version="v6" data-year="2025" data-meta="Carrd.co · tom.irish"
+        data-desc="Second Carrd.co card design. Dark charcoal background, new headshot (suit, red tie), hexagon icons filled with glyphs (resume, email, phone, LinkedIn)."
+        data-img="docs/history/v6-2025.webp" data-alt="Version 6 — 2025">
+        <div class="entry-badge"><div class="badge-dot"></div></div>
+        <div class="entry-label">
+          <div class="badge-version">v6</div>
+          <div class="badge-year">2025</div>
+        </div>
+        <figure class="entry-screenshot">
+          <img src="docs/history/v6-2025.webp" alt="Version 6 — 2025"/>
+        </figure>
+      </article>
+
+      <article class="entry"
+        data-version="v7" data-year="2026" data-meta="Custom (GitHub + Cloudflare Pages) · tom.irish"
+        data-desc="Complete departure from the card format. First fully custom-built version &mdash; Markdown-driven pipeline, deployed via GitHub Actions to Cloudflare Pages. Editorial serif name (Playfair Display), rounded photo left-aligned, crimson accent rule and Resume button, off-white background."
+        data-img="docs/history/v7-2026.webp" data-alt="Version 7 — 2026">
+        <div class="entry-badge"><div class="badge-dot"></div></div>
+        <div class="entry-label">
+          <div class="badge-version">v7</div>
+          <div class="badge-year">2026</div>
+        </div>
+        <figure class="entry-screenshot">
+          <img src="docs/history/v7-2026.webp" alt="Version 7 — 2026"/>
+        </figure>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <a class="footer-link" href="/">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      tom.irish
+    </a>
+  </footer>
+
+  <script>
+    (function() {
+      var root = document.documentElement;
+      document.getElementById('theme-toggle').addEventListener('click', function() {
+        var isDark = root.getAttribute('data-theme') === 'dark' ||
+          (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      });
+    })();
+
+    (function() {
+      var lb        = document.getElementById('lightbox');
+      var lbImg     = document.getElementById('lb-img');
+      var lbVersion = document.getElementById('lb-version');
+      var lbYear    = document.getElementById('lb-year');
+      var lbMeta    = document.getElementById('lb-meta');
+      var lbDesc    = document.getElementById('lb-desc');
+
+      function open(entry) {
+        lbImg.src         = entry.dataset.img;
+        lbImg.alt         = entry.dataset.alt;
+        lbVersion.textContent = entry.dataset.version;
+        lbYear.textContent    = entry.dataset.year;
+        lbMeta.textContent    = entry.dataset.meta;
+        lbDesc.innerHTML      = entry.dataset.desc;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+
+      document.querySelectorAll('.entry-screenshot').forEach(function(fig) {
+        fig.addEventListener('click', function() {
+          open(fig.closest('.entry'));
+        });
+      });
+
+      document.getElementById('lb-close').addEventListener('click', close);
+
+      lb.addEventListener('click', function(e) {
+        if (e.target === lb) close();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lb.classList.contains('open')) close();
+      });
+    })();
+  </script>
+
+</body>
+</html>
