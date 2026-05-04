@@ -105,6 +105,8 @@ All three are self-hosted in `assets/fonts/` — no external network dependency.
 </tr>
 </table>
 
+> Light-mode colors only — dark mode swaps are in the token tables below.
+
 ### Full type scale
 
 | Element | Font | Size | Weight | Color |
@@ -139,18 +141,6 @@ All three are self-hosted in `assets/fonts/` — no external network dependency.
 ## Color
 
 One accent, warm neutrals. No gradients, no second accent, no semantic colors.
-
-### Foreground
-
-| ![](https://placehold.co/72x44/111111/ffffff?text=Aa) | ![](https://placehold.co/72x44/333333/ffffff?text=Aa) | ![](https://placehold.co/72x44/555555/ffffff?text=Aa) | ![](https://placehold.co/72x44/666666/ffffff?text=Aa) | ![](https://placehold.co/72x44/767676/ffffff?text=Aa) | ![](https://placehold.co/72x44/9b2335/ffffff?text=Aa) |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| `#111` ink | `#333` body | `#555` secondary | `#666` muted | `#767676` dates | `#9b2335` accent |
-
-### Surfaces
-
-| ![](https://placehold.co/88x44/faf9f7/555555?text=Page) | ![](https://placehold.co/88x44/edeae5/555555?text=Sidebar) | ![](https://placehold.co/88x44/ffffff/555555?text=Tags) |
-|:---:|:---:|:---:|
-| `#faf9f7` bone | `#edeae5` stone | `#ffffff` white |
 
 ### Light / Dark
 
@@ -256,6 +246,42 @@ Zero JavaScript — pure CSS `:target`:
 
 ---
 
+## Spacing
+
+Key dimensions used across both views.
+
+### Landing
+
+| Property | Value | Notes |
+|---|---|---|
+| Max width | 900px | Flex container |
+| Photo diameter | 240px | 140px on mobile (≤767px) |
+| Photo border-radius | 20px | |
+| Photo / text gap | 56px | |
+| Name size | 56px | 44px on mobile |
+
+### Resume
+
+| Property | Value | Notes |
+|---|---|---|
+| Max width | 1200px | Header and body container |
+| Sidebar width | `clamp(220px, 30%, 360px)` | |
+| Main column padding | `28px 32px` | |
+| Sidebar padding | `28px 16px` | |
+
+### Components
+
+| Element | Value | Notes |
+|---|---|---|
+| Icon link circle | 38×38px | 34×34px on mobile (≤470px) |
+| Icon SVG | 18×18px | |
+| Contact pill border-radius | 12px | |
+| Contact pill padding | `4px 13px` | |
+| Skill tag border-radius | 10px | |
+| Skill tag padding | `4px 11px` | |
+
+---
+
 ## Components
 
 ### Icon Links (landing)
@@ -309,6 +335,24 @@ If adding a new brand icon, [Simple Icons](https://simpleicons.org/) matches the
 |---|---|
 | `≤ 767px` | Landing stacks vertically (photo 140px, name 44px, text centered); resume body switches to single column; sidebar loses background, gets top border |
 | `≤ 470px` | Resume photo hidden; resume name 18px; icon links 34px; contact pill padding tightens |
+
+---
+
+## Accessibility
+
+### Contrast
+
+The palette targets WCAG AA (4.5:1 for normal text, 3:1 for large text). `#767676` on `#faf9f7` is the minimum-contrast pairing in the design — used only for job dates. If you lighten the page background or darken dates further, verify the new pair with a contrast checker. All other foreground/background combinations exceed AA.
+
+In dark mode, `--accent-text` (![](https://placehold.co/16x16/e0506a/e0506a.png) `#e0506a`) is used for text specifically because `--accent` (![](https://placehold.co/16x16/c4394e/c4394e.png) `#c4394e`) doesn't meet AA contrast on the dark background — don't swap them.
+
+### Focus
+
+All interactive elements rely on the browser default `:focus-visible` ring. Don't suppress `outline` without providing a visible custom replacement.
+
+### Motion
+
+All entrance animations respect `prefers-reduced-motion: reduce` — see [Animation](#animation).
 
 ---
 
