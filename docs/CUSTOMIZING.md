@@ -166,35 +166,35 @@ Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark
 
 | Hex | Variable | Usage |
 |---|---|---|
-| ![](https://placehold.co/24x24/9b2335/9b2335.png) `#9b2335` | `--accent` | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
-| ![](https://placehold.co/24x24/111111/111111.png) `#111` | `--text-1` | Names, job titles, education names |
-| ![](https://placehold.co/24x24/333333/333333.png) `#333` | `--text-body` | Summary, bullets, skill tags |
-| ![](https://placehold.co/24x24/555555/555555.png) `#555` | `--text-2` | Job company, landing role, education items |
-| ![](https://placehold.co/24x24/666666/666666.png) `#666` | `--text-3` | Tagline, landing location, skill group labels |
-| ![](https://placehold.co/24x24/767676/767676.png) `#767676` | `--text-dates` | Job dates |
-| ![](https://placehold.co/24x24/faf9f7/faf9f7.png) `#faf9f7` | `--bg` | Page background — warm off-white |
-| ![](https://placehold.co/24x24/edeae5/edeae5.png) `#edeae5` | `--bg-sidebar` | Resume sidebar — warm stone |
-| ![](https://placehold.co/24x24/dedad5/dedad5.png) `#dedad5` | `--border-mid` | Divider between main column and sidebar |
-| ![](https://placehold.co/24x24/eeeeee/eeeeee.png) `#eee` | `--border-sm` | Section rules, job separators |
-| ![](https://placehold.co/24x24/e0e0e0/e0e0e0.png) `#e0e0e0` | `--border` | Contact pill borders, icon-link rings |
+| <img src="https://placehold.co/24x24/9b2335/9b2335.png" style="border:1px solid white"/> `#9b2335` | `--accent` | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
+| <img src="https://placehold.co/24x24/111111/111111.png" style="border:1px solid white"/> `#111` | `--text-1` | Names, job titles, education names |
+| <img src="https://placehold.co/24x24/333333/333333.png" style="border:1px solid white"/> `#333` | `--text-body` | Summary, bullets, skill tags |
+| <img src="https://placehold.co/24x24/555555/555555.png" style="border:1px solid white"/> `#555` | `--text-2` | Job company, landing role, education items |
+| <img src="https://placehold.co/24x24/666666/666666.png" style="border:1px solid white"/> `#666` | `--text-3` | Tagline, landing location, skill group labels |
+| <img src="https://placehold.co/24x24/767676/767676.png" style="border:1px solid white"/> `#767676` | `--text-dates` | Job dates |
+| <img src="https://placehold.co/24x24/faf9f7/faf9f7.png" style="border:1px solid white"/> `#faf9f7` | `--bg` | Page background — warm off-white |
+| <img src="https://placehold.co/24x24/edeae5/edeae5.png" style="border:1px solid white"/> `#edeae5` | `--bg-sidebar` | Resume sidebar — warm stone |
+| <img src="https://placehold.co/24x24/dedad5/dedad5.png" style="border:1px solid white"/> `#dedad5` | `--border-mid` | Divider between main column and sidebar |
+| <img src="https://placehold.co/24x24/eeeeee/eeeeee.png" style="border:1px solid white"/> `#eee` | `--border-sm` | Section rules, job separators |
+| <img src="https://placehold.co/24x24/e0e0e0/e0e0e0.png" style="border:1px solid white"/> `#e0e0e0` | `--border` | Contact pill borders, icon-link rings |
 
 ### Dark mode tokens
 
 | Hex | Variable | Usage |
 |---|---|---|
-| ![](https://placehold.co/24x24/131313/131313.png) `#131313` | `--bg` | Near-black page background |
-| ![](https://placehold.co/24x24/1c1b1a/1c1b1a.png) `#1c1b1a` | `--bg-sidebar` | Slightly warm dark sidebar |
-| ![](https://placehold.co/24x24/222222/222222.png) `#222222` | `--bg-skill` | Skill tag background |
-| ![](https://placehold.co/24x24/c4394e/c4394e.png) `#c4394e` | `--accent` | Brighter crimson for fills and borders |
-| ![](https://placehold.co/24x24/e0506a/e0506a.png) `#e0506a` | `--accent-text` | Even brighter — for text on dark backgrounds |
-| ![](https://placehold.co/24x24/f0ece8/f0ece8.png) `#f0ece8` | `--text-1` | Warm cream — names, titles |
-| ![](https://placehold.co/24x24/cccccc/cccccc.png) `#ccc` | `--text-body` | Body text |
-| ![](https://placehold.co/24x24/aaaaaa/aaaaaa.png) `#aaa` | `--text-2` | Secondary text |
-| ![](https://placehold.co/24x24/888888/888888.png) `#888` | `--text-3` | Muted text |
-| ![](https://placehold.co/24x24/878787/878787.png) `#878787` | `--text-dates` | Job dates |
-| ![](https://placehold.co/24x24/484848/484848.png) `#484848` | `--border` | |
-| ![](https://placehold.co/24x24/363636/363636.png) `#363636` | `--border-sm` | |
-| ![](https://placehold.co/24x24/383634/383634.png) `#383634` | `--border-mid` | |
+| <img src="https://placehold.co/24x24/131313/131313.png" style="border:1px solid white"/> `#131313` | `--bg` | Near-black page background |
+| <img src="https://placehold.co/24x24/1c1b1a/1c1b1a.png" style="border:1px solid white"/> `#1c1b1a` | `--bg-sidebar` | Slightly warm dark sidebar |
+| <img src="https://placehold.co/24x24/222222/222222.png" style="border:1px solid white"/> `#222222` | `--bg-skill` | Skill tag background |
+| <img src="https://placehold.co/24x24/c4394e/c4394e.png" style="border:1px solid white"/> `#c4394e` | `--accent` | Brighter crimson for fills and borders |
+| <img src="https://placehold.co/24x24/e0506a/e0506a.png" style="border:1px solid white"/> `#e0506a` | `--accent-text` | Even brighter — for text on dark backgrounds |
+| <img src="https://placehold.co/24x24/f0ece8/f0ece8.png" style="border:1px solid white"/> `#f0ece8` | `--text-1` | Warm cream — names, titles |
+| <img src="https://placehold.co/24x24/cccccc/cccccc.png" style="border:1px solid white"/> `#ccc` | `--text-body` | Body text |
+| <img src="https://placehold.co/24x24/aaaaaa/aaaaaa.png" style="border:1px solid white"/> `#aaa` | `--text-2` | Secondary text |
+| <img src="https://placehold.co/24x24/888888/888888.png" style="border:1px solid white"/> `#888` | `--text-3` | Muted text |
+| <img src="https://placehold.co/24x24/878787/878787.png" style="border:1px solid white"/> `#878787` | `--text-dates` | Job dates |
+| <img src="https://placehold.co/24x24/484848/484848.png" style="border:1px solid white"/> `#484848` | `--border` | |
+| <img src="https://placehold.co/24x24/363636/363636.png" style="border:1px solid white"/> `#363636` | `--border-sm` | |
+| <img src="https://placehold.co/24x24/383634/383634.png" style="border:1px solid white"/> `#383634` | `--border-mid` | |
 
 ---
 
