@@ -164,35 +164,35 @@ Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark
 
 | Swatch | Hex | Variable | Usage |
 |:---:|---|---|---|
-| ![](https://placehold.co/12x12/9b2335/9b2335.png) | `#9b2335` | `--accent` | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
-| ![](https://placehold.co/12x12/111111/111111.png) | `#111` | `--text-1` | Names, job titles, education names |
-| ![](https://placehold.co/12x12/333333/333333.png) | `#333` | `--text-body` | Summary, bullets, skill tags |
-| ![](https://placehold.co/12x12/555555/555555.png) | `#555` | `--text-2` | Job company, landing role, education items |
-| ![](https://placehold.co/12x12/666666/666666.png) | `#666` | `--text-3` | Tagline, landing location, skill group labels |
-| ![](https://placehold.co/12x12/767676/767676.png) | `#767676` | `--text-dates` | Job dates |
-| ![](https://placehold.co/12x12/faf9f7/faf9f7.png) | `#faf9f7` | `--bg` | Page background — warm off-white |
-| ![](https://placehold.co/12x12/edeae5/edeae5.png) | `#edeae5` | `--bg-sidebar` | Resume sidebar — warm stone |
-| ![](https://placehold.co/12x12/dedad5/dedad5.png) | `#dedad5` | `--border-mid` | Divider between main column and sidebar |
-| ![](https://placehold.co/12x12/eeeeee/eeeeee.png) | `#eee` | `--border-sm` | Section rules, job separators |
-| ![](https://placehold.co/12x12/e0e0e0/e0e0e0.png) | `#e0e0e0` | `--border` | Contact pill borders, icon-link rings |
+| ![](https://placehold.co/24x24/9b2335/9b2335.png) | `#9b2335` | `--accent` | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
+| ![](https://placehold.co/24x24/111111/111111.png) | `#111` | `--text-1` | Names, job titles, education names |
+| ![](https://placehold.co/24x24/333333/333333.png) | `#333` | `--text-body` | Summary, bullets, skill tags |
+| ![](https://placehold.co/24x24/555555/555555.png) | `#555` | `--text-2` | Job company, landing role, education items |
+| ![](https://placehold.co/24x24/666666/666666.png) | `#666` | `--text-3` | Tagline, landing location, skill group labels |
+| ![](https://placehold.co/24x24/767676/767676.png) | `#767676` | `--text-dates` | Job dates |
+| ![](https://placehold.co/24x24/faf9f7/faf9f7.png) | `#faf9f7` | `--bg` | Page background — warm off-white |
+| ![](https://placehold.co/24x24/edeae5/edeae5.png) | `#edeae5` | `--bg-sidebar` | Resume sidebar — warm stone |
+| ![](https://placehold.co/24x24/dedad5/dedad5.png) | `#dedad5` | `--border-mid` | Divider between main column and sidebar |
+| ![](https://placehold.co/24x24/eeeeee/eeeeee.png) | `#eee` | `--border-sm` | Section rules, job separators |
+| ![](https://placehold.co/24x24/e0e0e0/e0e0e0.png) | `#e0e0e0` | `--border` | Contact pill borders, icon-link rings |
 
 ### Dark mode tokens
 
 | Swatch | Variable | Value | Notes |
 |:---:|---|---|---|
-| ![](https://placehold.co/12x12/131313/131313.png) | `--bg` | `#131313` | Near-black page background |
-| ![](https://placehold.co/12x12/1c1b1a/1c1b1a.png) | `--bg-sidebar` | `#1c1b1a` | Slightly warm dark sidebar |
-| ![](https://placehold.co/12x12/222222/222222.png) | `--bg-skill` | `#222222` | Skill tag background |
-| ![](https://placehold.co/12x12/c4394e/c4394e.png) | `--accent` | `#c4394e` | Brighter crimson for fills and borders |
-| ![](https://placehold.co/12x12/e0506a/e0506a.png) | `--accent-text` | `#e0506a` | Even brighter — for text on dark backgrounds |
-| ![](https://placehold.co/12x12/f0ece8/f0ece8.png) | `--text-1` | `#f0ece8` | Warm cream — names, titles |
-| ![](https://placehold.co/12x12/cccccc/cccccc.png) | `--text-body` | `#ccc` | Body text |
-| ![](https://placehold.co/12x12/aaaaaa/aaaaaa.png) | `--text-2` | `#aaa` | Secondary text |
-| ![](https://placehold.co/12x12/888888/888888.png) | `--text-3` | `#888` | Muted text |
-| ![](https://placehold.co/12x12/878787/878787.png) | `--text-dates` | `#878787` | Job dates |
-| ![](https://placehold.co/12x12/484848/484848.png) | `--border` | `#484848` | |
-| ![](https://placehold.co/12x12/363636/363636.png) | `--border-sm` | `#363636` | |
-| ![](https://placehold.co/12x12/383634/383634.png) | `--border-mid` | `#383634` | |
+| ![](https://placehold.co/24x24/131313/131313.png) | `--bg` | `#131313` | Near-black page background |
+| ![](https://placehold.co/24x24/1c1b1a/1c1b1a.png) | `--bg-sidebar` | `#1c1b1a` | Slightly warm dark sidebar |
+| ![](https://placehold.co/24x24/222222/222222.png) | `--bg-skill` | `#222222` | Skill tag background |
+| ![](https://placehold.co/24x24/c4394e/c4394e.png) | `--accent` | `#c4394e` | Brighter crimson for fills and borders |
+| ![](https://placehold.co/24x24/e0506a/e0506a.png) | `--accent-text` | `#e0506a` | Even brighter — for text on dark backgrounds |
+| ![](https://placehold.co/24x24/f0ece8/f0ece8.png) | `--text-1` | `#f0ece8` | Warm cream — names, titles |
+| ![](https://placehold.co/24x24/cccccc/cccccc.png) | `--text-body` | `#ccc` | Body text |
+| ![](https://placehold.co/24x24/aaaaaa/aaaaaa.png) | `--text-2` | `#aaa` | Secondary text |
+| ![](https://placehold.co/24x24/888888/888888.png) | `--text-3` | `#888` | Muted text |
+| ![](https://placehold.co/24x24/878787/878787.png) | `--text-dates` | `#878787` | Job dates |
+| ![](https://placehold.co/24x24/484848/484848.png) | `--border` | `#484848` | |
+| ![](https://placehold.co/24x24/363636/363636.png) | `--border-sm` | `#363636` | |
+| ![](https://placehold.co/24x24/383634/383634.png) | `--border-mid` | `#383634` | |
 
 ---
 
