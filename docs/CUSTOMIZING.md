@@ -109,22 +109,22 @@ All three are self-hosted in `assets/fonts/` — no external network dependency.
 
 | Element | Font | Size | Weight | Color |
 |---|---|---|---|---|
-| Landing name | Playfair Display | 56px | 700 | `#111` |
-| Resume name (header) | Playfair Display | 22px | 700 | `#111` |
-| Section headings | Playfair Display | 18px | 700 | `#9b2335` |
-| Job title | DM Sans | 15px | 700 | `#111` |
-| Body text (summary, achievements, bullets) | DM Sans | 15px | 400 | `#333` |
-| Landing tagline | DM Sans | 17px | 400 | `#333` |
-| Landing role | DM Sans | 16px | 500 | `#555` |
-| Job company | DM Sans | 13px | 400 | `#555` |
-| Job dates | DM Sans | 13px | 400 | `#767676` |
-| Education name | DM Sans | 14px | 600 | `#111` |
-| Education items | DM Sans | 13px | 400 | `#555` |
-| Certifications | DM Sans | 13px | 400 | `#333` |
-| Skill tags | DM Sans | 13px | 400 | `#333` |
-| Skill group labels | DM Sans | 11px | 600 | `#666` |
-| Contact pills | DM Sans | 12px | 400 | `#333` |
-| Landing location | DM Sans | 11px | 400 | `#666` |
+| Landing name | Playfair Display | 56px | 700 | ![](https://placehold.co/16x16/111111/111111.png) `#111` |
+| Resume name (header) | Playfair Display | 22px | 700 | ![](https://placehold.co/16x16/111111/111111.png) `#111` |
+| Section headings | Playfair Display | 18px | 700 | ![](https://placehold.co/16x16/9b2335/9b2335.png) `#9b2335` |
+| Job title | DM Sans | 15px | 700 | ![](https://placehold.co/16x16/111111/111111.png) `#111` |
+| Body text (summary, achievements, bullets) | DM Sans | 15px | 400 | ![](https://placehold.co/16x16/333333/333333.png) `#333` |
+| Landing tagline | DM Sans | 17px | 400 | ![](https://placehold.co/16x16/333333/333333.png) `#333` |
+| Landing role | DM Sans | 16px | 500 | ![](https://placehold.co/16x16/555555/555555.png) `#555` |
+| Job company | DM Sans | 13px | 400 | ![](https://placehold.co/16x16/555555/555555.png) `#555` |
+| Job dates | DM Sans | 13px | 400 | ![](https://placehold.co/16x16/767676/767676.png) `#767676` |
+| Education name | DM Sans | 14px | 600 | ![](https://placehold.co/16x16/111111/111111.png) `#111` |
+| Education items | DM Sans | 13px | 400 | ![](https://placehold.co/16x16/555555/555555.png) `#555` |
+| Certifications | DM Sans | 13px | 400 | ![](https://placehold.co/16x16/333333/333333.png) `#333` |
+| Skill tags | DM Sans | 13px | 400 | ![](https://placehold.co/16x16/333333/333333.png) `#333` |
+| Skill group labels | DM Sans | 11px | 600 | ![](https://placehold.co/16x16/666666/666666.png) `#666` |
+| Contact pills | DM Sans | 12px | 400 | ![](https://placehold.co/16x16/333333/333333.png) `#333` |
+| Landing location | DM Sans | 11px | 400 | ![](https://placehold.co/16x16/666666/666666.png) `#666` |
 
 ### Line heights
 
@@ -156,43 +156,43 @@ One accent, warm neutrals. No gradients, no second accent, no semantic colors.
 
 | ![](https://placehold.co/280x64/faf9f7/9b2335?text=Light+mode) | ![](https://placehold.co/280x64/131313/e0506a?text=Dark+mode) |
 |:---:|:---:|
-| Bone `#faf9f7` · crimson `#9b2335` | Near-black `#131313` · accent `#e0506a` |
+| Bone ![](https://placehold.co/16x16/faf9f7/faf9f7.png) `#faf9f7` · crimson ![](https://placehold.co/16x16/9b2335/9b2335.png) `#9b2335` | Near-black ![](https://placehold.co/16x16/131313/131313.png) `#131313` · accent ![](https://placehold.co/16x16/e0506a/e0506a.png) `#e0506a` |
 
 Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark"]`. Photos lose their box-shadow and gain `box-shadow: 0 0 0 1px rgba(255,255,255,0.10)` — a subtle ring to lift them off the near-black background. Note that `--accent` and `--accent-text` are different values in dark mode — `--accent` is for fills and borders, `--accent-text` is the brighter value used for text.
 
 ### Light mode tokens
 
-| Swatch | Hex | Variable | Usage |
-|:---:|---|---|---|
-| ![](https://placehold.co/24x24/9b2335/9b2335.png) | `#9b2335` | `--accent` | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
-| ![](https://placehold.co/24x24/111111/111111.png) | `#111` | `--text-1` | Names, job titles, education names |
-| ![](https://placehold.co/24x24/333333/333333.png) | `#333` | `--text-body` | Summary, bullets, skill tags |
-| ![](https://placehold.co/24x24/555555/555555.png) | `#555` | `--text-2` | Job company, landing role, education items |
-| ![](https://placehold.co/24x24/666666/666666.png) | `#666` | `--text-3` | Tagline, landing location, skill group labels |
-| ![](https://placehold.co/24x24/767676/767676.png) | `#767676` | `--text-dates` | Job dates |
-| ![](https://placehold.co/24x24/faf9f7/faf9f7.png) | `#faf9f7` | `--bg` | Page background — warm off-white |
-| ![](https://placehold.co/24x24/edeae5/edeae5.png) | `#edeae5` | `--bg-sidebar` | Resume sidebar — warm stone |
-| ![](https://placehold.co/24x24/dedad5/dedad5.png) | `#dedad5` | `--border-mid` | Divider between main column and sidebar |
-| ![](https://placehold.co/24x24/eeeeee/eeeeee.png) | `#eee` | `--border-sm` | Section rules, job separators |
-| ![](https://placehold.co/24x24/e0e0e0/e0e0e0.png) | `#e0e0e0` | `--border` | Contact pill borders, icon-link rings |
+| Hex | Variable | Usage |
+|---|---|---|
+| ![](https://placehold.co/24x24/9b2335/9b2335.png) `#9b2335` | `--accent` | Section headings, bullets, top borders, icon hover, PDF pill, landing separator |
+| ![](https://placehold.co/24x24/111111/111111.png) `#111` | `--text-1` | Names, job titles, education names |
+| ![](https://placehold.co/24x24/333333/333333.png) `#333` | `--text-body` | Summary, bullets, skill tags |
+| ![](https://placehold.co/24x24/555555/555555.png) `#555` | `--text-2` | Job company, landing role, education items |
+| ![](https://placehold.co/24x24/666666/666666.png) `#666` | `--text-3` | Tagline, landing location, skill group labels |
+| ![](https://placehold.co/24x24/767676/767676.png) `#767676` | `--text-dates` | Job dates |
+| ![](https://placehold.co/24x24/faf9f7/faf9f7.png) `#faf9f7` | `--bg` | Page background — warm off-white |
+| ![](https://placehold.co/24x24/edeae5/edeae5.png) `#edeae5` | `--bg-sidebar` | Resume sidebar — warm stone |
+| ![](https://placehold.co/24x24/dedad5/dedad5.png) `#dedad5` | `--border-mid` | Divider between main column and sidebar |
+| ![](https://placehold.co/24x24/eeeeee/eeeeee.png) `#eee` | `--border-sm` | Section rules, job separators |
+| ![](https://placehold.co/24x24/e0e0e0/e0e0e0.png) `#e0e0e0` | `--border` | Contact pill borders, icon-link rings |
 
 ### Dark mode tokens
 
-| Swatch | Variable | Value | Notes |
-|:---:|---|---|---|
-| ![](https://placehold.co/24x24/131313/131313.png) | `--bg` | `#131313` | Near-black page background |
-| ![](https://placehold.co/24x24/1c1b1a/1c1b1a.png) | `--bg-sidebar` | `#1c1b1a` | Slightly warm dark sidebar |
-| ![](https://placehold.co/24x24/222222/222222.png) | `--bg-skill` | `#222222` | Skill tag background |
-| ![](https://placehold.co/24x24/c4394e/c4394e.png) | `--accent` | `#c4394e` | Brighter crimson for fills and borders |
-| ![](https://placehold.co/24x24/e0506a/e0506a.png) | `--accent-text` | `#e0506a` | Even brighter — for text on dark backgrounds |
-| ![](https://placehold.co/24x24/f0ece8/f0ece8.png) | `--text-1` | `#f0ece8` | Warm cream — names, titles |
-| ![](https://placehold.co/24x24/cccccc/cccccc.png) | `--text-body` | `#ccc` | Body text |
-| ![](https://placehold.co/24x24/aaaaaa/aaaaaa.png) | `--text-2` | `#aaa` | Secondary text |
-| ![](https://placehold.co/24x24/888888/888888.png) | `--text-3` | `#888` | Muted text |
-| ![](https://placehold.co/24x24/878787/878787.png) | `--text-dates` | `#878787` | Job dates |
-| ![](https://placehold.co/24x24/484848/484848.png) | `--border` | `#484848` | |
-| ![](https://placehold.co/24x24/363636/363636.png) | `--border-sm` | `#363636` | |
-| ![](https://placehold.co/24x24/383634/383634.png) | `--border-mid` | `#383634` | |
+| Hex | Variable | Usage |
+|---|---|---|
+| ![](https://placehold.co/24x24/131313/131313.png) `#131313` | `--bg` | Near-black page background |
+| ![](https://placehold.co/24x24/1c1b1a/1c1b1a.png) `#1c1b1a` | `--bg-sidebar` | Slightly warm dark sidebar |
+| ![](https://placehold.co/24x24/222222/222222.png) `#222222` | `--bg-skill` | Skill tag background |
+| ![](https://placehold.co/24x24/c4394e/c4394e.png) `#c4394e` | `--accent` | Brighter crimson for fills and borders |
+| ![](https://placehold.co/24x24/e0506a/e0506a.png) `#e0506a` | `--accent-text` | Even brighter — for text on dark backgrounds |
+| ![](https://placehold.co/24x24/f0ece8/f0ece8.png) `#f0ece8` | `--text-1` | Warm cream — names, titles |
+| ![](https://placehold.co/24x24/cccccc/cccccc.png) `#ccc` | `--text-body` | Body text |
+| ![](https://placehold.co/24x24/aaaaaa/aaaaaa.png) `#aaa` | `--text-2` | Secondary text |
+| ![](https://placehold.co/24x24/888888/888888.png) `#888` | `--text-3` | Muted text |
+| ![](https://placehold.co/24x24/878787/878787.png) `#878787` | `--text-dates` | Job dates |
+| ![](https://placehold.co/24x24/484848/484848.png) `#484848` | `--border` | |
+| ![](https://placehold.co/24x24/363636/363636.png) `#363636` | `--border-sm` | |
+| ![](https://placehold.co/24x24/383634/383634.png) `#383634` | `--border-mid` | |
 
 ---
 
@@ -261,21 +261,21 @@ Zero JavaScript — pure CSS `:target`:
 ### Icon Links (landing)
 
 38×38px circles, `1.5px solid #e0e0e0`, 18×18px SVG icons.
-- Default: `#555` icon, `#e0e0e0` border
-- Hover: `#9b2335` icon and border
-- Primary (resume button): `#9b2335` fill, white icon, pill shape
+- Default: ![](https://placehold.co/16x16/555555/555555.png) `#555` icon, ![](https://placehold.co/16x16/e0e0e0/e0e0e0.png) `#e0e0e0` border
+- Hover: ![](https://placehold.co/16x16/9b2335/9b2335.png) `#9b2335` icon and border
+- Primary (resume button): ![](https://placehold.co/16x16/9b2335/9b2335.png) `#9b2335` fill, white icon, pill shape
 
 ### Contact Pills (resume header)
 
 `border-radius: 12px`, `1px solid #e0e0e0`, `4px 13px` padding.
-- Default: `#333` text
-- Hover: `#9b2335` text and border
+- Default: ![](https://placehold.co/16x16/333333/333333.png) `#333` text
+- Hover: ![](https://placehold.co/16x16/9b2335/9b2335.png) `#9b2335` text and border
 - `← Home` pill: `font-weight: 500`
 - `↓ PDF` pill: crimson text and border; hover inverts to white text on crimson fill
 
 ### Section Headings
 
-Playfair Display, 18px, `#9b2335`. Followed by `1px solid #e4e4e4` rule. First heading in each column has no top margin.
+Playfair Display, 18px, ![](https://placehold.co/16x16/9b2335/9b2335.png) `#9b2335`. Followed by `1px solid #e4e4e4` rule. First heading in each column has no top margin.
 
 ### Bullet Markers
 
