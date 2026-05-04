@@ -180,29 +180,21 @@ Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark
 
 ### Dark mode tokens
 
-<table width="100%" style="background:#131313;border-collapse:collapse">
-<thead><tr>
-  <th width="20" style="border-bottom:1px solid #242424"></th>
-  <th align="left" style="padding:10px 14px;color:#484848;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #242424">Hex</th>
-  <th align="left" style="padding:10px 14px;color:#484848;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #242424">Variable</th>
-  <th align="left" style="padding:10px 14px;color:#484848;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #242424">Usage</th>
-</tr></thead>
-<tbody>
-<tr><td style="background:#131313;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#777">#131313</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--bg</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Near-black page background</td></tr>
-<tr><td style="background:#1c1b1a;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#777">#1c1b1a</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--bg-sidebar</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Slightly warm dark sidebar</td></tr>
-<tr><td style="background:#222222;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#777">#222222</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--bg-skill</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Skill tag background</td></tr>
-<tr><td style="background:#c4394e;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#c4394e">#c4394e</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--accent</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Brighter crimson for fills and borders</td></tr>
-<tr><td style="background:#e0506a;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#e0506a">#e0506a</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--accent-text</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Even brighter — for text on dark backgrounds</td></tr>
-<tr><td style="background:#f0ece8;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#f0ece8">#f0ece8</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--text-1</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Warm cream — names, titles</td></tr>
-<tr><td style="background:#cccccc;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#ccc">#ccc</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--text-body</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Body text</td></tr>
-<tr><td style="background:#aaaaaa;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#aaa">#aaa</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--text-2</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Secondary text</td></tr>
-<tr><td style="background:#888888;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#888">#888</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--text-3</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Muted text</td></tr>
-<tr><td style="background:#878787;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#878787">#878787</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--text-dates</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666">Job dates</td></tr>
-<tr><td style="background:#484848;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#777">#484848</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--border</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666"></td></tr>
-<tr><td style="background:#363636;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#777">#363636</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555">--border-sm</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#666"></td></tr>
-<tr><td style="background:#383634;border:1px solid #363636" width="20">&nbsp;</td><td style="padding:8px 14px;font-family:monospace;font-size:13px;color:#777">#383634</td><td style="padding:8px 14px;font-family:monospace;font-size:13px;color:#555">--border-mid</td><td style="padding:8px 14px;font-size:13px;color:#666"></td></tr>
-</tbody>
-</table>
+| Hex | Variable | Usage |
+|---|---|---|
+| ![](https://placehold.co/24x24/131313/131313.png) `#131313` | `--bg` | Near-black page background |
+| ![](https://placehold.co/24x24/1c1b1a/1c1b1a.png) `#1c1b1a` | `--bg-sidebar` | Slightly warm dark sidebar |
+| ![](https://placehold.co/24x24/222222/222222.png) `#222222` | `--bg-skill` | Skill tag background |
+| ![](https://placehold.co/24x24/c4394e/c4394e.png) `#c4394e` | `--accent` | Brighter crimson for fills and borders |
+| ![](https://placehold.co/24x24/e0506a/e0506a.png) `#e0506a` | `--accent-text` | Even brighter — for text on dark backgrounds |
+| ![](https://placehold.co/24x24/f0ece8/f0ece8.png) `#f0ece8` | `--text-1` | Warm cream — names, titles |
+| ![](https://placehold.co/24x24/cccccc/cccccc.png) `#ccc` | `--text-body` | Body text |
+| ![](https://placehold.co/24x24/aaaaaa/aaaaaa.png) `#aaa` | `--text-2` | Secondary text |
+| ![](https://placehold.co/24x24/888888/888888.png) `#888` | `--text-3` | Muted text |
+| ![](https://placehold.co/24x24/878787/878787.png) `#878787` | `--text-dates` | Job dates |
+| ![](https://placehold.co/24x24/484848/484848.png) `#484848` | `--border` | |
+| ![](https://placehold.co/24x24/363636/363636.png) `#363636` | `--border-sm` | |
+| ![](https://placehold.co/24x24/383634/383634.png) `#383634` | `--border-mid` | |
 
 ---
 
