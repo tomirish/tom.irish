@@ -142,6 +142,18 @@ All three are self-hosted in `assets/fonts/` — no external network dependency.
 
 One accent, warm neutrals. No gradients, no second accent, no semantic colors.
 
+### Foreground
+
+| ![](https://placehold.co/72x44/111111/ffffff?text=Aa) | ![](https://placehold.co/72x44/333333/ffffff?text=Aa) | ![](https://placehold.co/72x44/555555/ffffff?text=Aa) | ![](https://placehold.co/72x44/666666/ffffff?text=Aa) | ![](https://placehold.co/72x44/767676/ffffff?text=Aa) | ![](https://placehold.co/72x44/9b2335/ffffff?text=Aa) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `#111` ink | `#333` body | `#555` secondary | `#666` muted | `#767676` dates | `#9b2335` accent |
+
+### Surfaces
+
+| ![](https://placehold.co/88x44/faf9f7/555555?text=Page) | ![](https://placehold.co/88x44/edeae5/555555?text=Sidebar) | ![](https://placehold.co/88x44/ffffff/555555?text=Tags) | ![](https://placehold.co/88x44/dedad5/555555?text=Divider) | ![](https://placehold.co/88x44/eeeeee/555555?text=Rule) | ![](https://placehold.co/88x44/e0e0e0/555555?text=Border) |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| `#faf9f7` bone | `#edeae5` stone | `#ffffff` white | `#dedad5` divider | `#eee` rule | `#e0e0e0` border |
+
 ### Light / Dark
 
 | ![](https://placehold.co/280x64/faf9f7/9b2335?text=Light+mode) | ![](https://placehold.co/280x64/131313/e0506a?text=Dark+mode) |
