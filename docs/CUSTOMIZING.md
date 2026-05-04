@@ -180,21 +180,28 @@ Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark
 
 ### Dark mode tokens
 
-| Hex | Variable | Usage |
-|---|---|---|
-| ![](https://placehold.co/24x24/131313/131313.png) `#131313` | `--bg` | Near-black page background |
-| ![](https://placehold.co/24x24/1c1b1a/1c1b1a.png) `#1c1b1a` | `--bg-sidebar` | Slightly warm dark sidebar |
-| ![](https://placehold.co/24x24/222222/222222.png) `#222222` | `--bg-skill` | Skill tag background |
-| ![](https://placehold.co/24x24/c4394e/c4394e.png) `#c4394e` | `--accent` | Brighter crimson for fills and borders |
-| ![](https://placehold.co/24x24/e0506a/e0506a.png) `#e0506a` | `--accent-text` | Even brighter — for text on dark backgrounds |
-| ![](https://placehold.co/24x24/f0ece8/f0ece8.png) `#f0ece8` | `--text-1` | Warm cream — names, titles |
-| ![](https://placehold.co/24x24/cccccc/cccccc.png) `#ccc` | `--text-body` | Body text |
-| ![](https://placehold.co/24x24/aaaaaa/aaaaaa.png) `#aaa` | `--text-2` | Secondary text |
-| ![](https://placehold.co/24x24/888888/888888.png) `#888` | `--text-3` | Muted text |
-| ![](https://placehold.co/24x24/878787/878787.png) `#878787` | `--text-dates` | Job dates |
-| ![](https://placehold.co/24x24/484848/484848.png) `#484848` | `--border` | |
-| ![](https://placehold.co/24x24/363636/363636.png) `#363636` | `--border-sm` | |
-| ![](https://placehold.co/24x24/383634/383634.png) `#383634` | `--border-mid` | |
+<table width="100%" style="background:#131313;border-collapse:collapse">
+<thead><tr>
+  <th align="left" style="padding:10px 14px;color:#484848;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #242424">Hex</th>
+  <th align="left" style="padding:10px 14px;color:#484848;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #242424">Variable</th>
+  <th align="left" style="padding:10px 14px;color:#484848;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #242424">Usage</th>
+</tr></thead>
+<tbody>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555"><img src="https://placehold.co/20x20/131313/131313.png" valign="middle"/>&ensp;#131313</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--bg</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Near-black page background</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555"><img src="https://placehold.co/20x20/1c1b1a/1c1b1a.png" valign="middle"/>&ensp;#1c1b1a</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--bg-sidebar</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Slightly warm dark sidebar</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#555"><img src="https://placehold.co/20x20/222222/222222.png" valign="middle"/>&ensp;#222222</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--bg-skill</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Skill tag background</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#c4394e"><img src="https://placehold.co/20x20/c4394e/c4394e.png" valign="middle"/>&ensp;#c4394e</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--accent</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Brighter crimson for fills and borders</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#e0506a"><img src="https://placehold.co/20x20/e0506a/e0506a.png" valign="middle"/>&ensp;#e0506a</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--accent-text</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Even brighter — for text on dark backgrounds</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#f0ece8"><img src="https://placehold.co/20x20/f0ece8/f0ece8.png" valign="middle"/>&ensp;#f0ece8</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--text-1</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Warm cream — names, titles</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#ccc"><img src="https://placehold.co/20x20/cccccc/cccccc.png" valign="middle"/>&ensp;#ccc</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--text-body</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Body text</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#aaa"><img src="https://placehold.co/20x20/aaaaaa/aaaaaa.png" valign="middle"/>&ensp;#aaa</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--text-2</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Secondary text</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#888"><img src="https://placehold.co/20x20/888888/888888.png" valign="middle"/>&ensp;#888</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--text-3</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Muted text</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#878787"><img src="https://placehold.co/20x20/878787/878787.png" valign="middle"/>&ensp;#878787</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--text-dates</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555">Job dates</td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#484848"><img src="https://placehold.co/20x20/484848/484848.png" valign="middle"/>&ensp;#484848</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--border</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555"></td></tr>
+<tr><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#484848"><img src="https://placehold.co/20x20/363636/363636.png" valign="middle"/>&ensp;#363636</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-family:monospace;font-size:13px;color:#444">--border-sm</td><td style="padding:8px 14px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#555"></td></tr>
+<tr><td style="padding:8px 14px;font-family:monospace;font-size:13px;color:#484848"><img src="https://placehold.co/20x20/383634/383634.png" valign="middle"/>&ensp;#383634</td><td style="padding:8px 14px;font-family:monospace;font-size:13px;color:#444">--border-mid</td><td style="padding:8px 14px;font-size:13px;color:#555"></td></tr>
+</tbody>
+</table>
 
 ---
 
@@ -202,11 +209,26 @@ Dark mode is triggered by `prefers-color-scheme: dark` or `html[data-theme="dark
 
 Three tiers, all soft black — never colored. No inner shadows, no colored glows, no drop shadows on content surfaces.
 
-| Usage | Value |
-|---|---|
-| Landing photo | `0 4px 24px rgba(0,0,0,0.13)` |
-| Resume header photo | `0 2px 8px rgba(0,0,0,0.10)` |
-| Sticky header | `0 2px 8px rgba(0,0,0,0.04)` |
+<table width="100%"><tr valign="bottom">
+<td align="center" style="padding:28px 16px">
+  <div style="width:80px;height:80px;border-radius:40px;background:#faf9f7;box-shadow:0 4px 24px rgba(0,0,0,0.13);border:1px solid #f0eeeb;margin:0 auto"></div>
+  <div style="margin-top:14px;font-size:12px;font-weight:600;color:#333">Landing photo</div>
+  <div style="margin-top:3px;font-size:11px;color:#999;font-family:monospace">0 4px 24px rgba(0,0,0,0.13)</div>
+</td>
+<td align="center" style="padding:28px 16px">
+  <div style="width:56px;height:56px;border-radius:28px;background:#faf9f7;box-shadow:0 2px 8px rgba(0,0,0,0.10);border:1px solid #f0eeeb;margin:0 auto"></div>
+  <div style="margin-top:14px;font-size:12px;font-weight:600;color:#333">Resume photo</div>
+  <div style="margin-top:3px;font-size:11px;color:#999;font-family:monospace">0 2px 8px rgba(0,0,0,0.10)</div>
+</td>
+<td align="center" style="padding:28px 16px">
+  <div style="box-shadow:0 2px 8px rgba(0,0,0,0.04);border:1px solid #f0eeeb">
+    <div style="height:3px;background:#9b2335"></div>
+    <div style="padding:10px 16px;font-size:12px;color:#555;background:#faf9f7">Tom Irish &nbsp;&nbsp;&nbsp; ← Home &nbsp; ↓ PDF</div>
+  </div>
+  <div style="margin-top:14px;font-size:12px;font-weight:600;color:#333">Sticky header</div>
+  <div style="margin-top:3px;font-size:11px;color:#999;font-family:monospace">0 2px 8px rgba(0,0,0,0.04)</div>
+</td>
+</tr></table>
 
 ---
 
@@ -295,6 +317,22 @@ Key dimensions used across both views.
 ---
 
 ## Components
+
+<table width="100%" style="border:1px solid #eee;border-collapse:collapse">
+<tr><td style="padding:20px 24px;border-bottom:1px solid #eee">
+  <div style="font-family:Georgia,serif;font-size:18px;font-weight:700;color:#9b2335">Work Experience</div>
+  <div style="height:1px;background:#e4e4e4;margin:5px 0 12px"></div>
+  <div style="font-size:14px;color:#333;margin-bottom:6px"><span style="color:#9b2335">›</span>&nbsp;Achieved 99.5% platform availability across 12 global regions.</div>
+  <div style="font-size:14px;color:#333"><span style="color:#9b2335">›</span>&nbsp;Reduced infrastructure cost by $465K, a 38.4% reduction year over year.</div>
+</td></tr>
+<tr><td style="padding:16px 24px">
+  <span style="border:1px solid #e0e0e0;border-radius:12px;padding:4px 13px;font-size:12px;color:#333">← Home</span>
+  &ensp;
+  <span style="border:1px solid #9b2335;border-radius:12px;padding:4px 13px;font-size:12px;color:#9b2335">↓ PDF</span>
+  &emsp;
+  <span style="border:1px solid #eee;border-radius:10px;padding:4px 11px;font-size:13px;color:#333">Python</span>&thinsp;<span style="border:1px solid #eee;border-radius:10px;padding:4px 11px;font-size:13px;color:#333">Kubernetes</span>&thinsp;<span style="border:1px solid #eee;border-radius:10px;padding:4px 11px;font-size:13px;color:#333">Terraform</span>
+</td></tr>
+</table>
 
 ### Icon Links (landing)
 
