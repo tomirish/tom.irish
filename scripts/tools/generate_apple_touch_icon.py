@@ -26,8 +26,8 @@ NUM_X         = 155   # px from left edge
 NUM_Y         = 75    # px from top edge
 # ------------------
 
-REPO_ROOT = Path(__file__).parent.parent
-FONT_PATH = REPO_ROOT / "assets" / "fonts" / "DMSerifDisplay-Regular.ttf"
+REPO_ROOT = Path(__file__).parent.parent.parent
+FONT_PATH = REPO_ROOT / "scripts" / "tools" / "DMSerifDisplay-Regular.ttf"
 OUT_PATH  = REPO_ROOT / "assets" / "images" / "apple-touch-icon.png"
 
 HTML_TEMPLATE = """\

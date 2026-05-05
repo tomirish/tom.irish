@@ -21,7 +21,7 @@ from urllib.parse import urlparse
 from jinja2 import Environment, FileSystemLoader
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 ALLOWED_URL_SCHEMES = {'http', 'https', 'mailto', 'tel'}
 
 
@@ -242,14 +242,14 @@ def _build_info():
 def render_templates(data, index_out='index.html', resume_out='resume.html', dry_run=False):
     """Render both Jinja2 templates with resume data and write output files."""
     from jinja2 import TemplateNotFound, TemplateError
-    env = Environment(loader=FileSystemLoader(REPO_ROOT), autoescape=True)
+    env = Environment(loader=FileSystemLoader(os.path.join(REPO_ROOT, 'src')), autoescape=True)
     sha, build_time = _build_info()
 
     import codecs
     email_href = data.get('email', {}).get('href', '')
     email_rot13 = codecs.encode(email_href, 'rot_13') if email_href else ''
 
-    main_css = read_file(os.path.join(REPO_ROOT, 'assets', 'main.css'))
+    main_css = read_file(os.path.join(REPO_ROOT, 'src', 'main.css'))
 
     context = {**data, 'build_sha': sha, 'build_time': build_time,
                'email_rot13': email_rot13, 'main_css': main_css}
@@ -263,7 +263,7 @@ def render_templates(data, index_out='index.html', resume_out='resume.html', dry
             write_file(out_path, tmpl.render(**context), dry_run=dry_run)
         except TemplateNotFound:
             print(f"❌ ERROR: Template not found: {tmpl_name}")
-            print(f"   Expected at: {os.path.join(REPO_ROOT, tmpl_name)}")
+            print(f"   Expected at: {os.path.join(REPO_ROOT, 'src', tmpl_name)}")
             sys.exit(1)
         except TemplateError as e:
             print(f"❌ ERROR: Template rendering failed for {tmpl_name}: {e}")
@@ -281,7 +281,7 @@ def main():
 
     print("🚀 Starting resume conversion...\n")
 
-    md_content = read_file(os.path.join(REPO_ROOT, 'resume.md'))
+    md_content = read_file(os.path.join(REPO_ROOT, 'src', 'resume.md'))
     print("📊 Parsing resume.md...")
     data = parse_markdown_resume(md_content)
 

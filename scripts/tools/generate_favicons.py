@@ -24,8 +24,8 @@ FONT_SIZE   = 186    # CSS px
 VERT_OFFSET = -3     # px nudge from center (negative = up)
 # ------------------
 
-REPO_ROOT = Path(__file__).parent.parent
-FONT_PATH = REPO_ROOT / "assets" / "fonts" / "DMSerifDisplay-Regular.ttf"
+REPO_ROOT = Path(__file__).parent.parent.parent
+FONT_PATH = REPO_ROOT / "scripts" / "tools" / "DMSerifDisplay-Regular.ttf"
 
 VARIANTS = [
     {"out": "favicon.png",      "bg": LIGHT_BG},

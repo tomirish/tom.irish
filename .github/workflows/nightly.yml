@@ -34,7 +34,7 @@ jobs:
         run: pip-audit --ignore-vuln CVE-2026-3219 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}  # advisory db has no fix version yet; recheck when pip-audit flags a fix
 
       - name: Check links in resume
-        run: python scripts/check_links.py 2>&1 | tee /tmp/check-links.txt; exit ${PIPESTATUS[0]}
+        run: python scripts/build/check_links.py 2>&1 | tee /tmp/check-links.txt; exit ${PIPESTATUS[0]}
 
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18  # v12

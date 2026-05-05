@@ -10,7 +10,7 @@ tests verify that both Jinja2 templates produce correct output.
 import sys
 import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'build'))
 
 from convert_resume import parse_markdown_resume, parse_summary_paragraphs
 

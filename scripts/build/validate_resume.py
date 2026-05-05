@@ -20,7 +20,7 @@ import sys
 import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 
 def read_file(filepath):
     """Read content from a file."""
@@ -117,7 +117,7 @@ def main():
     print()
 
     # Read resume
-    content = read_file(os.path.join(REPO_ROOT, 'resume.md'))
+    content = read_file(os.path.join(REPO_ROOT, 'src', 'resume.md'))
 
     # Validate
     is_valid, warnings, errors = validate_resume(content)

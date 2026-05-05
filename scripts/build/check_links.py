@@ -14,8 +14,8 @@ import urllib.request
 import urllib.error
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
-RESUME_PATH = os.path.join(REPO_ROOT, 'resume.md')
+REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
+RESUME_PATH = os.path.join(REPO_ROOT, 'src', 'resume.md')
 TIMEOUT = 10
 LINK_RE = re.compile(r'\[(?:[^\]]*)\]\((https?://[^)]+)\)')
 

@@ -6,7 +6,7 @@ import sys
 import os
 
 # Allow importing from the scripts/ directory without installing as a package.
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'build'))
 
 from validate_resume import validate_resume
 

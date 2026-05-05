@@ -14,7 +14,7 @@ repos:
     hooks:
       - id: validate-resume
         name: Validate resume.md
-        entry: python3 scripts/validate_resume.py
+        entry: python3 scripts/build/validate_resume.py
         language: system
         files: ^resume\.md$
         pass_filenames: false

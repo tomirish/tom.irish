@@ -8,15 +8,15 @@ import sys
 import tempfile
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).parent.parent
+REPO_ROOT = Path(__file__).parent.parent.parent
 OUT_PATH = REPO_ROOT / "assets" / "images" / "share.jpg"
-PHOTO_PATH = REPO_ROOT / "assets" / "images" / "tom-irish-original.jpg"
+PHOTO_PATH = REPO_ROOT / "scripts" / "tools" / "tom-irish-original.jpg"
 
 
 def load_resume_data():
-    sys.path.insert(0, str(REPO_ROOT / "scripts"))
+    sys.path.insert(0, str(REPO_ROOT / "scripts" / "build"))
     from convert_resume import parse_markdown_resume
-    md = (REPO_ROOT / "resume.md").read_text(encoding="utf-8")
+    md = (REPO_ROOT / "src" / "resume.md").read_text(encoding="utf-8")
     return parse_markdown_resume(md)
 
 

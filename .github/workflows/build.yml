@@ -43,27 +43,27 @@ jobs:
         run: pip-audit --ignore-vuln CVE-2026-3219  # advisory db has no fix version yet; recheck when pip-audit flags a fix
 
       - name: Lint CSS
-        run: npx --yes stylelint@16 "assets/*.css"
+        run: npx --yes stylelint@16 "src/*.css"
 
       - name: Lint Python
-        run: ruff check scripts/ tests/
+        run: ruff check scripts/build/ scripts/tools/ tests/
 
       - name: Validate resume format
         run: |
-          python scripts/validate_resume.py
+          python scripts/build/validate_resume.py
 
       - name: Check links in resume
         run: |
-          python scripts/check_links.py
+          python scripts/build/check_links.py
 
       - name: Convert markdown to HTML
         run: |
-          python scripts/convert_resume.py
+          python scripts/build/convert_resume.py
 
       - name: Generate PDF and share image
         run: |
-          python scripts/generate_pdf_browser.py &
-          python scripts/generate_share_image.py &
+          python scripts/build/generate_pdf_browser.py &
+          python scripts/build/generate_share_image.py &
           wait
 
       - name: Run tests
@@ -79,7 +79,7 @@ jobs:
           cp sitemap.xml public/
           cp _headers public/
           cp -r assets public/
-          cp history.html public/
+          cp src/history.html public/
           echo "✅ Synced files to public/ directory"
 
       - name: Deploy to Cloudflare Pages

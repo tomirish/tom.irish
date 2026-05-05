@@ -41,9 +41,9 @@ NUM_X         = 270        # px from left canvas edge
 NUM_Y         = 220        # px from top canvas edge
 # ------------------
 
-REPO_ROOT = Path(__file__).parent.parent
-OUT_PATH  = REPO_ROOT / "assets" / "images" / "ti-element.png"
-FONT_PATH = REPO_ROOT / "assets" / "fonts" / "DMSerifDisplay-Regular.ttf"
+REPO_ROOT = Path(__file__).parent.parent.parent
+OUT_PATH  = REPO_ROOT / "scripts" / "tools" / "ti-element.png"
+FONT_PATH = REPO_ROOT / "scripts" / "tools" / "DMSerifDisplay-Regular.ttf"
 
 # Computed geometry
 _RING_RADIUS  = OUTER_RADIUS - BORDER_INSET          # 128

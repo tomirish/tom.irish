@@ -37,10 +37,10 @@ NUM_X         = 171     # px from card left edge
 NUM_Y         = 140     # px from card top edge
 # ------------------
 
-REPO_ROOT      = Path(__file__).parent.parent
-FONT_PATH      = REPO_ROOT / "assets" / "fonts" / "DMSerifDisplay-Regular.ttf"
-OUT_BORDER     = REPO_ROOT / "assets" / "images" / "github-profile.png"
-OUT_SIMPLE     = REPO_ROOT / "assets" / "images" / "github-profile-simple.png"
+REPO_ROOT      = Path(__file__).parent.parent.parent
+FONT_PATH      = REPO_ROOT / "scripts" / "tools" / "DMSerifDisplay-Regular.ttf"
+OUT_BORDER     = REPO_ROOT / "scripts" / "tools" / "github-profile.png"
+OUT_SIMPLE     = REPO_ROOT / "scripts" / "tools" / "github-profile-simple.png"
 
 _RING_RADIUS  = OUTER_RADIUS - BORDER_INSET
 _INNER_RADIUS = max(OUTER_RADIUS - INNER_INSET, 30)
@@ -203,7 +203,7 @@ def main() -> None:
         print(f"ERROR: Font not found: {FONT_PATH}", file=sys.stderr)
         sys.exit(1)
 
-    images_dir = REPO_ROOT / "assets" / "images"
+    images_dir = REPO_ROOT / "scripts" / "tools"
     images_dir.mkdir(parents=True, exist_ok=True)
 
     font_b64 = base64.b64encode(FONT_PATH.read_bytes()).decode()
