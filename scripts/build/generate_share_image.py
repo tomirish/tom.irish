@@ -7,20 +7,21 @@ import os
 import sys
 import tempfile
 from pathlib import Path
+from typing import Any
 
 REPO_ROOT = Path(__file__).parent.parent.parent
 OUT_PATH = REPO_ROOT / "assets" / "images" / "share.jpg"
 PHOTO_PATH = REPO_ROOT / "scripts" / "tools" / "tom-irish-original.jpg"
 
 
-def load_resume_data():
+def load_resume_data() -> dict[str, Any]:
     sys.path.insert(0, str(REPO_ROOT / "scripts" / "build"))
     from convert_resume import parse_markdown_resume
     md = (REPO_ROOT / "src" / "resume.md").read_text(encoding="utf-8")
     return parse_markdown_resume(md)
 
 
-def photo_data_uri():
+def photo_data_uri() -> str:
     with open(PHOTO_PATH, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
     return f"data:image/jpeg;base64,{b64}"
@@ -132,7 +133,7 @@ body {{
 </html>"""
 
 
-def main():
+def main() -> None:
     data = load_resume_data()
     photo_uri = photo_data_uri()
 

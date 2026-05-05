@@ -20,7 +20,7 @@ TIMEOUT = 10
 LINK_RE = re.compile(r'\[(?:[^\]]*)\]\((https?://[^)]+)\)')
 
 
-def extract_urls(content):
+def extract_urls(content: str) -> list[str]:
     """Return a list of unique HTTP/HTTPS URLs found in markdown content."""
     seen = set()
     urls = []
@@ -31,7 +31,7 @@ def extract_urls(content):
     return urls
 
 
-def check_url(url):
+def check_url(url: str) -> tuple[int | None, str | None]:
     """
     Return (status, error) for a URL.
     status is the HTTP status code, or None on connection error.
@@ -52,7 +52,7 @@ def check_url(url):
     return None, 'all methods failed'
 
 
-def main():
+def main() -> None:
     with open(RESUME_PATH, encoding='utf-8') as f:
         content = f.read()
 

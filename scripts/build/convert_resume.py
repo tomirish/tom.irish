@@ -16,6 +16,7 @@ import os
 import re
 import sys
 from datetime import datetime, timezone
+from typing import Any
 from urllib.parse import urlparse
 
 from jinja2 import Environment, FileSystemLoader
@@ -25,7 +26,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 ALLOWED_URL_SCHEMES = {'http', 'https', 'mailto', 'tel'}
 
 
-def read_file(filepath):
+def read_file(filepath: str) -> str:
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             return f.read()
@@ -37,7 +38,7 @@ def read_file(filepath):
         sys.exit(1)
 
 
-def write_file(filepath, content, dry_run=False):
+def write_file(filepath: str, content: str, dry_run: bool = False) -> None:
     if dry_run:
         print(f"🔍 DRY RUN: Would write {len(content)} bytes to {filepath} (skipped)")
         return
@@ -50,7 +51,7 @@ def write_file(filepath, content, dry_run=False):
         sys.exit(1)
 
 
-def _parse_link(line):
+def _parse_link(line: str) -> dict[str, str]:
     """Extract display text and href from a markdown link on a line."""
     m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', line)
     if m and urlparse(m.group(2)).scheme in ALLOWED_URL_SCHEMES:
@@ -58,10 +59,10 @@ def _parse_link(line):
     return {'display': '', 'href': ''}
 
 
-def parse_markdown_resume(md_content):
+def parse_markdown_resume(md_content: str) -> dict[str, Any]:
     """Parse resume.md into a structured dict for template rendering."""
     lines = md_content.split('\n')
-    data = {
+    data: dict[str, Any] = {
         'name': '',
         'email': {'display': '', 'href': ''},
         'phone': {'display': '', 'href': ''},
@@ -78,10 +79,10 @@ def parse_markdown_resume(md_content):
         'certifications': [],
     }
 
-    current_section = None
-    current_job = None
-    current_school = None
-    summary_lines = []
+    current_section: str | None = None
+    current_job: dict[str, Any] | None = None
+    current_school: dict[str, Any] | None = None
+    summary_lines: list[str] = []
 
     for line_num, line in enumerate(lines, 1):
         stripped = line.strip()
@@ -211,9 +212,10 @@ def parse_markdown_resume(md_content):
     return data
 
 
-def _parse_paragraphs(lines):
+def _parse_paragraphs(lines: list[str]) -> list[str]:
     """Split summary lines into paragraphs on blank lines."""
-    paragraphs, current = [], []
+    paragraphs: list[str] = []
+    current: list[str] = []
     for line in lines:
         if line == '':
             if current:
@@ -230,7 +232,7 @@ def _parse_paragraphs(lines):
 parse_summary_paragraphs = _parse_paragraphs
 
 
-def _build_info():
+def _build_info() -> tuple[str, str]:
     """Return (sha, build_time) for template injection."""
     sha = os.environ.get('GITHUB_SHA', 'local')
     if sha != 'local':
@@ -239,7 +241,7 @@ def _build_info():
     return sha, build_time
 
 
-def render_templates(data, index_out='index.html', resume_out='resume.html', dry_run=False):
+def render_templates(data: dict[str, Any], index_out: str = 'index.html', resume_out: str = 'resume.html', dry_run: bool = False) -> None:
     """Render both Jinja2 templates with resume data and write output files."""
     from jinja2 import TemplateNotFound, TemplateError
     env = Environment(loader=FileSystemLoader(os.path.join(REPO_ROOT, 'src')), autoescape=True)
@@ -270,7 +272,7 @@ def render_templates(data, index_out='index.html', resume_out='resume.html', dry
             sys.exit(1)
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description='Convert resume.md to HTML.')
     parser.add_argument('--dry-run', action='store_true',
                         help='Parse and validate without writing files.')

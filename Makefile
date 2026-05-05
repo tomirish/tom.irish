@@ -1,6 +1,6 @@
 PYTEST := .venv/bin/pytest
 
-.PHONY: all validate build pdf test serve
+.PHONY: all validate build pdf test lint serve
 
 all: validate build test
 
@@ -15,6 +15,10 @@ pdf:
 
 test:
 	$(PYTEST) tests/ -v
+
+lint:
+	ruff check scripts/build/ scripts/tools/ tests/
+	mypy scripts/build/ scripts/tools/
 
 serve:
 	python3 -m http.server 8000

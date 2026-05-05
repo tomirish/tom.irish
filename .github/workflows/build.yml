@@ -41,6 +41,9 @@ jobs:
       - name: Lint Python
         run: ruff check scripts/build/ scripts/tools/ tests/
 
+      - name: Type-check Python
+        run: mypy scripts/build/ scripts/tools/
+
       - name: Validate resume format
         run: |
           python scripts/build/validate_resume.py

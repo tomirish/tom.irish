@@ -56,7 +56,7 @@ PAGE_RENDER_DELAY = 2
 PAGE_SELECTOR_TIMEOUT_MS = 10_000
 
 
-def start_local_server():
+def start_local_server() -> tuple[socketserver.TCPServer, int]:
     """Start a simple HTTP server on an OS-assigned port.
 
     Binds to port 0 so the OS picks any available port, avoiding conflicts
@@ -85,7 +85,7 @@ def start_local_server():
     return httpd, port
 
 
-def generate_pdf(port):
+def generate_pdf(port: int) -> None:
     """Load the resume page in headless Chromium and save it as a PDF.
 
     Args:
@@ -141,7 +141,7 @@ def generate_pdf(port):
         print('✓ PDF generated using browser print (Chromium)')
 
 
-def main():
+def main() -> None:
     """Entry point: start the HTTP server, generate the PDF, shut down."""
     server = None
     try:

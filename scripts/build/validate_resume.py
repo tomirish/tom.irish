@@ -22,7 +22,7 @@ import re
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 
-def read_file(filepath):
+def read_file(filepath: str) -> str:
     """Read content from a file."""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -35,7 +35,7 @@ def read_file(filepath):
         print(f"❌ ERROR: Could not read {filepath}: {e}")
         sys.exit(1)
 
-def validate_resume(content):
+def validate_resume(content: str) -> tuple[bool, list[str], list[str]]:
     """
     Validate the resume.md structure.
     Returns (is_valid, warnings, errors)
@@ -111,7 +111,7 @@ def validate_resume(content):
 
     return (len(errors) == 0, warnings, errors)
 
-def main():
+def main() -> None:
     """Main validation function"""
     print("🔍 Validating resume.md...")
     print()
