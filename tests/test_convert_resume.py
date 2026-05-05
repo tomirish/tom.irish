@@ -505,7 +505,8 @@ def test_render_index_html_contains_build_meta(tmp_path, monkeypatch):
 
 def test_render_index_html_json_ld_is_valid(tmp_path, monkeypatch):
     """JSON-LD block in rendered index.html must be valid JSON."""
-    import json, re
+    import json
+    import re
     monkeypatch.delenv('GITHUB_SHA', raising=False)
     from convert_resume import render_templates
     data = parse_markdown_resume(MINIMAL_RESUME_V2)

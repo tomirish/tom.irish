@@ -114,7 +114,7 @@ def test_index_template_has_head():
 
 def test_csp_compatible_with_template_stylesheets():
     headers = read('_headers')
-    csp_line = next((l for l in headers.splitlines() if 'Content-Security-Policy' in l), '')
+    csp_line = next((line for line in headers.splitlines() if 'Content-Security-Policy' in line), '')
     style_src = next(
         (d.strip() for d in csp_line.split(';') if d.strip().startswith('style-src')),
         ''

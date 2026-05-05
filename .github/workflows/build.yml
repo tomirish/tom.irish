@@ -45,6 +45,9 @@ jobs:
       - name: Lint CSS
         run: npx --yes stylelint@16 "assets/*.css"
 
+      - name: Lint Python
+        run: ruff check scripts/ tests/
+
       - name: Validate resume format
         run: |
           python scripts/validate_resume.py
