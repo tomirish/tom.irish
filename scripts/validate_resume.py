@@ -15,8 +15,12 @@ Usage:
     python3 scripts/validate_resume.py
 """
 
+import os
 import sys
 import re
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 
 def read_file(filepath):
     """Read content from a file."""
@@ -113,7 +117,7 @@ def main():
     print()
     
     # Read resume
-    content = read_file('resume.md')
+    content = read_file(os.path.join(REPO_ROOT, 'resume.md'))
     
     # Validate
     is_valid, warnings, errors = validate_resume(content)

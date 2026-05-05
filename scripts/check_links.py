@@ -7,12 +7,15 @@ Connection errors are treated as failures. HTTP 4xx responses are warnings
 HTTP 5xx responses are treated as failures.
 """
 
+import os
 import re
 import sys
 import urllib.request
 import urllib.error
 
-RESUME_PATH = 'resume.md'
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+RESUME_PATH = os.path.join(REPO_ROOT, 'resume.md')
 TIMEOUT = 10
 LINK_RE = re.compile(r'\[(?:[^\]]*)\]\((https?://[^)]+)\)')
 
