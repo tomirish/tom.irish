@@ -102,3 +102,42 @@ jobs:
                           out.write(f'| {labels[key]} | {badge(score)} {score:.0f} |\n')
                   out.write(f'\n_Averaged over {len(files)} run(s)_\n')
           EOF
+
+      - name: Update Lighthouse badge
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import json, glob, subprocess
+
+          files = glob.glob('.lighthouseci/lhr-*.json')
+          if not files:
+              message, color = '–', 'lightgrey'
+          else:
+              scores = []
+              for f in files:
+                  with open(f) as fh:
+                      data = json.load(fh)
+                  perf = data.get('categories', {}).get('performance', {}).get('score')
+                  if perf is not None:
+                      scores.append(round(perf * 100))
+              if scores:
+                  avg = round(sum(scores) / len(scores))
+                  message = str(avg)
+                  color = 'brightgreen' if avg >= 90 else 'yellow' if avg >= 50 else 'red'
+              else:
+                  message, color = '–', 'lightgrey'
+
+          payload = json.dumps({
+              'schemaVersion': 1,
+              'label': 'lighthouse',
+              'message': message,
+              'color': color,
+          })
+          subprocess.run([
+              'gh', 'api', '--method', 'PATCH',
+              '/gists/cfcbef4e90b3367512488562c649334e',
+              '--field', f'files[lighthouse.json][content]={payload}',
+          ], check=True)
+          PYEOF
+        env:
+          GH_TOKEN: ${{ secrets.GIST_TOKEN }}
