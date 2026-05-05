@@ -4,6 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="robots" content="noindex"/>
+  <script>!function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}()</script>
   <title>404 — tom.irish</title>
   <style>
     @font-face {
@@ -35,6 +36,20 @@
         --text-2: #aaa;
         --accent: #c4394e;
       }
+    }
+
+    html[data-theme="dark"] {
+      --bg:     #131313;
+      --text-1: #f0ece8;
+      --text-2: #aaa;
+      --accent: #c4394e;
+    }
+
+    html[data-theme="light"] {
+      --bg:     #faf9f7;
+      --text-1: #111;
+      --text-2: #555;
+      --accent: #9b2335;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
