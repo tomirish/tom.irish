@@ -32,8 +32,8 @@ REQUIRED_ASSETS = [
     'assets/images/apple-touch-icon.png',
     'assets/images/tom-irish-280.jpg',
     'assets/images/tom-irish-280.webp',
-    'robots.txt',
-    'sitemap.xml',
+    'src/robots.txt',
+    'src/sitemap.xml',
 ]
 
 def test_required_assets_exist():
@@ -111,7 +111,7 @@ def test_index_template_has_head():
 
 
 def test_csp_compatible_with_template_stylesheets():
-    headers = read('_headers')
+    headers = read('src/_headers')
     csp_line = next((line for line in headers.splitlines() if 'Content-Security-Policy' in line), '')
     style_src = next(
         (d.strip() for d in csp_line.split(';') if d.strip().startswith('style-src')),
