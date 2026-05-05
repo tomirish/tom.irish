@@ -123,7 +123,7 @@ jobs:
               if scores:
                   avg = round(sum(scores) / len(scores))
                   message = str(avg)
-                  color = 'brightgreen' if avg >= 90 else 'yellow' if avg >= 50 else 'red'
+                  color = '#2ea44f' if avg >= 90 else 'yellow' if avg >= 50 else 'red'
               else:
                   message, color = '–', 'lightgrey'
 
