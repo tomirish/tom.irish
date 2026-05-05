@@ -46,7 +46,10 @@ jobs:
 
       - name: Open issue on failure
         if: failure()
-        run: gh issue create --title "Nightly check failed $(date +%Y-%m-%d)" --body "A nightly check failed. See the run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: |
+          gh issue create \
+            --title "Nightly check failed $(date +%Y-%m-%d)" \
+            --body "A nightly check failed. See the run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
