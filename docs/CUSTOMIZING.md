@@ -1,7 +1,7 @@
 # Style & Customization Guide
 
-Design reference for the web layer (`index.template.html` + `assets/main.css`).
-The PDF layer (`resume.template.html` + `assets/pdf.css`) shares the palette and typefaces but runs on a tighter scale — see [PDF layer](#pdf-layer) below.
+Design reference for the web layer (`src/index.template.html` + `src/main.css`).
+The PDF layer (`src/resume.template.html` + `src/pdf.css`) shares the palette and typefaces but runs on a tighter scale — see [PDF layer](#pdf-layer) below.
 
 ---
 
@@ -39,7 +39,7 @@ The mark works on two levels: **Ti** are Tom Irish's initials, and Ti is the per
 | `assets/images/favicon-dark.png` | 256×256 | Browser favicon, dark mode (JS-swapped on load) |
 | `assets/images/apple-touch-icon.png` | 1024×1024 | iOS home screen icon |
 
-**Generation:** `scripts/generate_ti_element_icon.py` renders the master mark. `scripts/generate_favicons.py` renders the favicon pair (DM Serif Display "Ti" on solid background, via Playwright).
+**Generation:** `scripts/tools/generate_ti_element_icon.py` renders the master mark. `scripts/tools/generate_favicons.py` renders the favicon pair (DM Serif Display "Ti" on solid background, via Playwright).
 
 > [!NOTE]
 > The favicon JS swap is in `index.template.html` — it reads `localStorage` on page load and sets `favicon.png` or `favicon-dark.png` based on the active theme. If you regenerate the favicons, re-run `convert_resume.py` to pick up the new files in the deployed `index.html`.
@@ -412,7 +412,7 @@ The PDF is rendered by headless Chromium from `resume.template.html` + `assets/p
 | Scale | 0.98 |
 | Render | Headless Chromium via Playwright |
 
-To adjust margins or scale, edit the constants at the top of `scripts/generate_pdf_browser.py`:
+To adjust margins or scale, edit the constants at the top of `scripts/build/generate_pdf_browser.py`:
 
 ```python
 PDF_FORMAT = 'Letter'
