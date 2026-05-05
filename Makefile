@@ -1,4 +1,4 @@
-PYTEST := /Users/tom/Library/Python/3.9/bin/pytest
+PYTEST := .venv/bin/pytest
 
 .PHONY: all validate build pdf test serve
 
