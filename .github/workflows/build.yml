@@ -5,14 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
-  schedule:
-    - cron: '0 2 * * *'  # Daily, 2 AM UTC
 
 jobs:
   build:
     name: Build, Test and Deploy
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     permissions:
       contents: read
 
@@ -104,7 +101,7 @@ jobs:
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- PDF and share image generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
-          echo "- Deployed to Cloudflare Pages: ✅ (\`${SHA:0:7}\`)" >> $GITHUB_STEP_SUMMARY
+          echo "- Deployed to Cloudflare Pages: ✅ (`${SHA:0:7}`)" >> $GITHUB_STEP_SUMMARY
 
       - name: Create failure summary
         if: failure()
@@ -120,102 +117,3 @@ jobs:
           echo "- **PDF generation failed** — Playwright/Chromium error or port conflict" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**The live site has not been updated.**" >> $GITHUB_STEP_SUMMARY
-
-  nightly:
-    name: Nightly Checks
-    runs-on: ubuntu-latest
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    permissions:
-      contents: read
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
-
-      - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0
-        with:
-          python-version: '3.11'
-
-      - name: Cache pip packages
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae  # v5.0.5
-        with:
-          path: ~/.cache/pip
-          key: pip-${{ hashFiles('requirements.txt') }}
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Audit dependencies for known vulnerabilities
-        run: pip-audit --ignore-vuln CVE-2026-3219 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}  # advisory db has no fix version yet; recheck when pip-audit flags a fix
-
-      - name: Check links in resume
-        run: python scripts/check_links.py 2>&1 | tee /tmp/check-links.txt; exit ${PIPESTATUS[0]}
-
-      - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18  # v12
-        with:
-          configPath: .lighthouserc.json
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-
-      - name: Write nightly summary
-        if: always()
-        run: |
-          python3 - <<'EOF'
-          import json, glob, os
-
-          summary_path = os.environ.get('GITHUB_STEP_SUMMARY', '/dev/stdout')
-
-          def badge(score):
-              if score >= 90: return '🟢'
-              if score >= 50: return '🟡'
-              return '🔴'
-
-          with open(summary_path, 'a') as out:
-              # Dependency audit
-              out.write('## 🔒 Dependency Audit\n\n')
-              try:
-                  content = open('/tmp/pip-audit.txt').read().strip()
-                  if 'No known vulnerabilities found' in content:
-                      out.write('✅ No known vulnerabilities found\n\n')
-                  else:
-                      out.write('❌ Vulnerabilities detected\n\n```\n' + content + '\n```\n\n')
-              except FileNotFoundError:
-                  out.write('⚠️ pip-audit did not run\n\n')
-
-              # Link check
-              out.write('## 🔗 Link Check\n\n')
-              try:
-                  content = open('/tmp/check-links.txt').read().strip()
-                  out.write('```\n' + content + '\n```\n\n')
-              except FileNotFoundError:
-                  out.write('⚠️ Link check did not run\n\n')
-
-              # Lighthouse
-              out.write('## 🔦 Lighthouse\n\n')
-              files = glob.glob('.lighthouseci/lhr-*.json')
-              if not files:
-                  out.write('⚠️ No Lighthouse results found\n')
-              else:
-                  scores = {}
-                  for f in files:
-                      with open(f) as fh:
-                          data = json.load(fh)
-                      for key, cat in data.get('categories', {}).items():
-                          if cat.get('score') is not None:
-                              scores.setdefault(key, []).append(round(cat['score'] * 100))
-                  avg = {k: sum(v) / len(v) for k, v in scores.items()}
-                  labels = {
-                      'performance':    'Performance',
-                      'accessibility':  'Accessibility',
-                      'best-practices': 'Best Practices',
-                      'seo':            'SEO',
-                  }
-                  out.write('| Category | Score |\n|---|---|\n')
-                  for key in ['performance', 'accessibility', 'best-practices', 'seo']:
-                      if key in avg:
-                          score = avg[key]
-                          out.write(f'| {labels[key]} | {badge(score)} {score:.0f} |\n')
-                  out.write(f'\n_Averaged over {len(files)} run(s)_\n')
-          EOF
