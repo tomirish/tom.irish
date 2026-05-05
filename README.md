@@ -7,7 +7,7 @@
 [![CodeQL](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml)
 [![Version](https://img.shields.io/github/v/tag/tomirish/tom.irish?label=version&labelColor=343B42&color=9b2335)](https://tom.irish/history)
 
-Personal website and resume for [Tom Irish](https://tom.irish). Overengineered by design using DevSecOps principles, because if it's worth doing it's worth doing right. The pipeline is the CMS: `resume.md` is the single source of truth for both the site and PDF.
+Personal website and resume for [Tom Irish](https://tom.irish). Overengineered by design using DevSecOps principles, because if it's worth doing it's worth doing right. The pipeline is the CMS: [`resume.md`](src/resume.md) is the single source of truth for both the site and PDF.
 
 ---
 
@@ -43,7 +43,7 @@ https://tom.irish
 
 | Path | Purpose |
 |------|---------|
-| [`src/resume.md`](src/resume.md) | The only file you edit — single source of truth for the site and PDF |
+| `src/resume.md` | The only file you edit — single source of truth for the site and PDF |
 | `src/` | Templates, CSS, and static files (404, robots.txt, sitemap, security.txt) |
 | `assets/` | Fonts and images |
 | `docs/` | Editing and customization guides |
