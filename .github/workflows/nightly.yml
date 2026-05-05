@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      issues: write
 
     steps:
       - name: Checkout repository
@@ -42,6 +43,12 @@ jobs:
           configPath: .lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+
+      - name: Open issue on failure
+        if: failure()
+        run: gh issue create --title "Nightly check failed $(date +%Y-%m-%d)" --body "A nightly check failed. See the run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Write nightly summary
         if: always()

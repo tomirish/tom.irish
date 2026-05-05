@@ -42,8 +42,11 @@ jobs:
       - name: Audit dependencies for known vulnerabilities
         run: pip-audit --ignore-vuln CVE-2026-3219  # advisory db has no fix version yet; recheck when pip-audit flags a fix
 
+      - name: Install Node dependencies
+        run: npm ci
+
       - name: Lint CSS
-        run: npx --yes stylelint@16 "src/*.css"
+        run: npx stylelint "src/*.css"
 
       - name: Lint Python
         run: ruff check scripts/build/ scripts/tools/ tests/

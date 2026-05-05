@@ -9,6 +9,9 @@ index.html
 resume.html
 assets/images/share.jpg
 
+# Node
+node_modules/
+
 # Python
 .venv/
 __pycache__/
