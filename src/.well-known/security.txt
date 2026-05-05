@@ -1,0 +1,4 @@
+Contact: https://github.com/tomirish/tom.irish/security/advisories/new
+Expires: 2027-05-05T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://github.com/tomirish/tom.irish/blob/main/SECURITY.md

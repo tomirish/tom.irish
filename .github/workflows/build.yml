@@ -68,12 +68,14 @@ jobs:
 
       - name: Sync files to public directory
         run: |
-          mkdir -p public
+          mkdir -p public/.well-known
           cp index.html public/
           cp resume.pdf public/
           cp src/robots.txt public/
           cp src/sitemap.xml public/
           cp src/_headers public/
+          cp src/404.html public/
+          cp src/.well-known/security.txt public/.well-known/
           cp -r assets public/
           cp src/history.html public/
           echo "✅ Synced files to public/ directory"
