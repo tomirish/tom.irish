@@ -17,11 +17,19 @@ The pipeline:
 ```
 resume.md pushed to main
         ↓
-┌── GitHub Actions ───────────────────────────────────────────────────┐
-│  validate_resume.py       — checks format and required sections     │
-│  convert_resume.py        — updates index.html from resume.md       │
+┌── Quality gates ────────────────────────────────────────────────────┐
+│  pip-audit                — dependency vulnerability scan           │
+│  ruff + mypy              — Python linting and type checking        │
+│  stylelint                — CSS linting                             │
+│  validate_resume.py       — resume format check                     │
+│  check_links.py           — link validation                         │
+│  pytest                   — test suite                              │
+└─────────────────────────────────────────────────────────────────────┘
+        ↓
+┌── Build & deploy ───────────────────────────────────────────────────┐
+│  convert_resume.py        — generates index.html                    │
 │  generate_pdf_browser.py  — generates resume.pdf                    │
-│  generate_share_image.py  — regenerates OG preview image            │
+│  generate_share_image.py  — generates OG share image               │
 │  Wrangler                 — deploys to Cloudflare Pages             │
 └─────────────────────────────────────────────────────────────────────┘
         ↓
@@ -30,23 +38,15 @@ https://tom.irish
 
 ---
 
-## Files
+## Repo Structure
 
-### Content & style
-
-| File | Purpose |
+| Path | Purpose |
 |------|---------|
-| [`src/resume.md`](src/resume.md) | Resume content |
-| [`docs/EDITING.md`](docs/EDITING.md) | Format reference for `resume.md`: required sections, field formats, section-by-section examples |
-| [`docs/CUSTOMIZING.md`](docs/CUSTOMIZING.md) | Style and customization reference: typography, color, layout, CSS/HTML components, design intent |
-| [`src/index.template.html`](src/index.template.html) | Web page layout and structure |
-| [`src/resume.template.html`](src/resume.template.html) | PDF layout and structure |
-| `assets/` | Fonts, images, and other static assets |
-
-### Pipeline internals
-
-| File | Purpose |
-|------|---------|
-| `scripts/` | Build automation |
+| [`src/resume.md`](src/resume.md) | The only file you edit — single source of truth for the site and PDF |
+| `src/` | Templates, CSS, and static files (404, robots.txt, sitemap, security.txt) |
+| `assets/` | Fonts and images |
+| `docs/` | Editing and customization guides |
+| `scripts/build/` | CI build scripts — validate, convert, generate PDF and share image |
+| `scripts/tools/` | Manual generators — favicons, profile picture |
 | `tests/` | Test suite |
-| `.github/workflows/build.yml` | CI/CD config — build on push, nightly dependency audit + Lighthouse |
+| `.github/workflows/` | CI/CD — build on push, nightly audit + Lighthouse, CodeQL, Dependabot |
