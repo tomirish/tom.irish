@@ -49,4 +49,3 @@ https://tom.irish
 | `scripts/` | Build automation |
 | `tests/` | Test suite |
 | `.github/workflows/build.yml` | CI/CD config — build on push, nightly dependency audit + Lighthouse |
-

@@ -42,7 +42,7 @@ def validate_resume(content):
     """
     warnings = []
     errors = []
-    
+
     # Required sections
     required_sections = [
         "## Professional Summary",
@@ -50,15 +50,15 @@ def validate_resume(content):
         "## Skills",
         "## Education"
     ]
-    
+
     for section in required_sections:
         if section not in content:
             errors.append(f"Missing required section: {section}")
-    
+
     # Check for location
     if "**Location:**" not in content:
         warnings.append("Location not found - resume may not display location properly")
-    
+
     # Check work experience format.
     # Split on "\n## " rather than "##" so that ### job-title headers inside the
     # section are not accidentally treated as section boundaries.
@@ -92,36 +92,36 @@ def validate_resume(content):
         school_count = len(re.findall(r'^### .+', education_content, re.MULTILINE))
         if school_count == 0:
             warnings.append("No schools found in Education section")
-    
+
     # Check for common markdown issues
     lines = content.split('\n')
     for i, line in enumerate(lines, 1):
         # Check for tabs (should use spaces)
         if '\t' in line:
             warnings.append(f"Line {i}: Contains tab character (use spaces instead)")
-        
+
         # Check for trailing whitespace.
         # Allow exactly two trailing spaces, which is valid Markdown hard line break syntax.
         if line.rstrip() != line and line.strip() and not line.endswith('  '):
             warnings.append(f"Line {i}: Has trailing whitespace")
-        
+
         # Check for multiple consecutive blank lines
         if i > 1 and not line.strip() and not lines[i-2].strip():
             warnings.append(f"Line {i}: Multiple consecutive blank lines")
-    
+
     return (len(errors) == 0, warnings, errors)
 
 def main():
     """Main validation function"""
     print("🔍 Validating resume.md...")
     print()
-    
+
     # Read resume
     content = read_file(os.path.join(REPO_ROOT, 'resume.md'))
-    
+
     # Validate
     is_valid, warnings, errors = validate_resume(content)
-    
+
     # Report errors
     if errors:
         print("❌ VALIDATION FAILED")
@@ -131,7 +131,7 @@ def main():
             print(f"  • {error}")
         print()
         sys.exit(1)
-    
+
     # Report warnings
     if warnings:
         print("⚠️  VALIDATION PASSED WITH WARNINGS")
@@ -143,17 +143,17 @@ def main():
     else:
         print("✅ VALIDATION PASSED")
         print()
-    
+
     # Summary
     lines = content.split('\n')
     sections = len(re.findall(r'^## ', content, re.MULTILINE))
-    
+
     print("Resume Summary:")
     print(f"  • Total lines: {len(lines)}")
     print(f"  • Sections: {sections}")
     print(f"  • File size: {len(content)} bytes")
     print()
-    
+
     sys.exit(0)
 
 if __name__ == '__main__':
