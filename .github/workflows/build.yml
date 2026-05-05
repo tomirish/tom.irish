@@ -75,9 +75,9 @@ jobs:
           mkdir -p public
           cp index.html public/
           cp resume.pdf public/
-          cp robots.txt public/
-          cp sitemap.xml public/
-          cp _headers public/
+          cp src/robots.txt public/
+          cp src/sitemap.xml public/
+          cp src/_headers public/
           cp -r assets public/
           cp src/history.html public/
           echo "✅ Synced files to public/ directory"
