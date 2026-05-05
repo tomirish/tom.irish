@@ -6,13 +6,13 @@
 [![CodeQL](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml)
 [![Version](https://img.shields.io/github/v/tag/tomirish/tom.irish?label=version&labelColor=343B42&color=9b2335)](https://tom.irish/history)
 
-Personal website and resume for [Tom Irish](https://tom.irish) — a clean, single-page design driven entirely by Markdown.
+Personal website and resume for [Tom Irish](https://tom.irish). Overengineered by design using DevSecOps principles, because if it's worth doing it's worth doing right. The pipeline is the CMS: `resume.md` is the single source of truth for both the site and PDF.
 
 ---
 
 ## How It Works
 
-Edit [`resume.md`](resume.md) and the site and PDF update automatically:
+The pipeline:
 
 ```
 resume.md pushed to main
@@ -36,12 +36,12 @@ https://tom.irish
 
 | File | Purpose |
 |------|---------|
-| [`resume.md`](resume.md) | Resume content |
+| [`src/resume.md`](src/resume.md) | Resume content |
 | [`docs/EDITING.md`](docs/EDITING.md) | Format reference for `resume.md`: required sections, field formats, section-by-section examples |
 | [`docs/CUSTOMIZING.md`](docs/CUSTOMIZING.md) | Style and customization reference: typography, color, layout, CSS/HTML components, design intent |
-| [`index.template.html`](index.template.html) | Web page layout and structure |
-| [`resume.template.html`](resume.template.html) | PDF layout and structure |
-| `assets/` | fonts, CSS, and images |
+| [`src/index.template.html`](src/index.template.html) | Web page layout and structure |
+| [`src/resume.template.html`](src/resume.template.html) | PDF layout and structure |
+| `assets/` | Fonts, images, and other static assets |
 
 ### Pipeline internals
 
