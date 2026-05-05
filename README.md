@@ -3,7 +3,7 @@
 [![Production Site](https://img.shields.io/website?url=https%3A%2F%2Ftom.irish&label=tom.irish&logo=cloudflare&logoColor=F38020&labelColor=343B42)](https://tom.irish)
 [![Build, Test and Deploy](https://github.com/tomirish/tom.irish/actions/workflows/build.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/build.yml)
 [![Nightly Checks](https://github.com/tomirish/tom.irish/actions/workflows/nightly.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/nightly.yml)
-[![Lighthouse](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/tomirish/cfcbef4e90b3367512488562c649334e/raw/lighthouse.json)](https://github.com/tomirish/tom.irish/actions/workflows/nightly.yml)
+[![Lighthouse](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/tomirish/cfcbef4e90b3367512488562c649334e/raw/lighthouse.json&labelColor=343B42)](https://github.com/tomirish/tom.irish/actions/workflows/nightly.yml)
 [![CodeQL](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml)
 [![Version](https://img.shields.io/github/v/tag/tomirish/tom.irish?label=version&labelColor=343B42&color=9b2335)](https://tom.irish/history)
 
