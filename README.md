@@ -33,6 +33,11 @@ resume.md pushed to main
 └─────────────────────────────────────────────────────────────────────┘
         ↓
 https://tom.irish
+
+┌── Always on ────────────────────────────────────────────────────────┐
+│  CodeQL                    — static analysis on every push + weekly │
+│  Dependabot                — weekly dependency update PRs           │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
