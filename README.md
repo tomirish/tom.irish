@@ -5,7 +5,7 @@
 [![CodeQL](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/codeql.yml)
 [![Nightly Checks](https://github.com/tomirish/tom.irish/actions/workflows/nightly.yml/badge.svg)](https://github.com/tomirish/tom.irish/actions/workflows/nightly.yml)
 [![Lighthouse](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/tomirish/cfcbef4e90b3367512488562c649334e/raw/lighthouse.json)](https://github.com/tomirish/tom.irish/actions/workflows/nightly.yml)
-[![Version](https://img.shields.io/github/v/tag/tomirish/tom.irish?label=version&labelColor=343B42&color=0075D8)](https://tom.irish/history)
+[![Version](https://img.shields.io/github/v/tag/tomirish/tom.irish?label=version&labelColor=343B42&color=0075D8&logo=git&logoColor=white)](https://tom.irish/history)
 
 Personal website and resume for [Tom Irish](https://tom.irish). Overengineered by design using DevSecOps principles, because if it's worth doing it's worth doing right. The pipeline is the CMS: [`resume.md`](src/resume.md) is the single source of truth for both the site and PDF.
 
