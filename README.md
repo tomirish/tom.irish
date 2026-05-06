@@ -23,6 +23,7 @@ resume.md pushed to main
 │  validate_resume.py       — resume format check                     │
 │  check_links.py           — link validation                         │
 │  pytest                   — test suite                              │
+│  CodeQL                   — static analysis (non-blocking)          │
 └─────────────────────────────────────────────────────────────────────┘
         ↓
 ┌── Build & deploy ───────────────────────────────────────────────────┐
@@ -33,11 +34,6 @@ resume.md pushed to main
 └─────────────────────────────────────────────────────────────────────┘
         ↓
 https://tom.irish
-
-┌── Always on ────────────────────────────────────────────────────────┐
-│  CodeQL                    — static analysis on every push + weekly │
-│  Dependabot                — weekly dependency update PRs           │
-└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
