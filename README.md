@@ -46,7 +46,7 @@ https://tom.irish
 | `src/` | Templates, CSS, and static files (404, robots.txt, sitemap, security.txt) |
 | `assets/` | Fonts and images |
 | `docs/` | Editing and customization guides |
-| `scripts/build/` | CI build scripts — validate, convert, generate PDF and share image |
+| `scripts/build/` | CI build scripts — validate, convert, generates HTML, PDF, and share image |
 | `scripts/tools/` | Manual generators — favicons, profile picture |
 | `tests/` | Test suite |
-| `.github/workflows/` | CI/CD — build on push, nightly audit + Lighthouse, CodeQL, Dependabot |
+| `.github/workflows/` | CI/CD — build on push, nightly audit, Lighthouse, CodeQL, Dependabot |
