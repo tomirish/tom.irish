@@ -145,7 +145,7 @@ jobs:
               'message': message,
               'color': color,
               'labelColor': '343B42',
-              'namedLogo': 'githubactions',
+              'namedLogo': 'github',
               'logoColor': 'ffffff',
           })
           subprocess.run([
