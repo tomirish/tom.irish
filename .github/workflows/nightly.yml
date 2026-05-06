@@ -21,7 +21,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Audit dependencies for known vulnerabilities
-        run: pip-audit --ignore-vuln CVE-2026-3219 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}  # fix shipped in pip 26.1 but advisory DB has no fix version yet
+        run: pip-audit 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}
 
       - name: Check links in resume
         run: python scripts/build/check_links.py 2>&1 | tee /tmp/check-links.txt; exit ${PIPESTATUS[0]}
