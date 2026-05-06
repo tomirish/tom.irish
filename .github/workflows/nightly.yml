@@ -146,7 +146,7 @@ jobs:
               'color': color,
               'labelColor': '343B42',
               'namedLogo': 'github',
-              'logoColor': 'ffffff',
+              'logoColor': '959DA5',
           })
           subprocess.run([
               'gh', 'api', '--method', 'PATCH',
