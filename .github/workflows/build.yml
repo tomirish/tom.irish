@@ -83,6 +83,7 @@ jobs:
           echo "✅ Synced files to public/ directory"
 
       - name: Attest build artifacts
+        id: attest
         uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32  # v4.1.0
         with:
           subject-path: |
@@ -113,6 +114,7 @@ jobs:
           echo "- PDF and share image generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Deployed to Cloudflare Pages: ✅ (\`${SHA:0:7}\`)" >> $GITHUB_STEP_SUMMARY
+          echo "- Artifacts attested: ✅ ([provenance](${{ steps.attest.outputs.attestation-url }}))" >> $GITHUB_STEP_SUMMARY
 
       - name: Create failure summary
         if: failure()
