@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <meta name="color-scheme" content="light dark"/>
-  <meta name="theme-color" content="#9b2335"/>
-  <link rel="icon" href="assets/images/favicon.png" type="image/png"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#9b2335">
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <script>!function(){var t=localStorage.getItem('theme'),d=window.matchMedia('(prefers-color-scheme: dark)').matches,dark=t?t==='dark':d;if(t)document.documentElement.setAttribute('data-theme',t);document.querySelector('meta[name="theme-color"]').setAttribute('content',dark?'#c4394e':'#9b2335');document.querySelector('link[rel="icon"]').setAttribute('href',dark?'assets/images/favicon-dark.png':'assets/images/favicon.png')}()</script>
-  <meta name="description" content="{{ tagline if tagline else name }}"/>
-  <meta property="og:title" content="{{ name }}"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="{{ website.href }}"/>
-  <meta property="og:description" content="{{ tagline if tagline else name }}"/>
-  <meta property="og:image" content="{{ website.href }}/assets/images/share.jpg"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="build-sha" content="{{ build_sha }}"/>
-  <meta name="build-time" content="{{ build_time }}"/>
-  <link rel="canonical" href="{{ website.href }}"/>
-  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png?v=2"/>
-  <link rel="preload" href="assets/images/tom-irish-280.webp" as="image" type="image/webp" fetchpriority="high"/>
+  <meta name="description" content="{{ tagline if tagline else name }}">
+  <meta property="og:title" content="{{ name }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ website.href }}">
+  <meta property="og:description" content="{{ tagline if tagline else name }}">
+  <meta property="og:image" content="{{ website.href }}/assets/images/share.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="build-sha" content="{{ build_sha }}">
+  <meta name="build-time" content="{{ build_time }}">
+  <link rel="canonical" href="{{ website.href }}">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png?v=2">
+  <link rel="preload" href="assets/images/tom-irish-280.webp" as="image" type="image/webp" fetchpriority="high">
   <style>{{ main_css | safe }}</style>
   <title>{{ name }}</title>
   <script type="application/ld+json">
@@ -45,13 +45,15 @@
 </head>
 <body>
 
+<main>
+
   <!-- ── LANDING ───────────────────────────────────────────── -->
   <section id="home">
-    <main class="landing-inner">
+    <div class="landing-inner">
       <div class="landing-photo">
         <picture>
-          <source srcset="assets/images/tom-irish-280.webp" type="image/webp"/>
-          <img src="assets/images/tom-irish-280.jpg" alt="{{ name }}" fetchpriority="high"/>
+          <source srcset="assets/images/tom-irish-280.webp" type="image/webp">
+          <img src="assets/images/tom-irish-280.jpg" alt="{{ name }}" fetchpriority="high">
         </picture>
       </div>
       <div class="landing-right">
@@ -85,7 +87,7 @@
         </a>
       </nav>
       </div>
-    </main>
+    </div>
   </section>
 
   <!-- ── RESUME ────────────────────────────────────────────── -->
@@ -94,8 +96,8 @@
       <header class="resume-header">
         <div class="resume-photo">
           <picture>
-            <source srcset="assets/images/tom-irish-280.webp" type="image/webp"/>
-            <img src="assets/images/tom-irish-280.jpg" alt="{{ name }}"/>
+            <source srcset="assets/images/tom-irish-280.webp" type="image/webp">
+            <img src="assets/images/tom-irish-280.jpg" alt="{{ name }}">
           </picture>
         </div>
         <div class="resume-header-text">
@@ -129,11 +131,11 @@
     </div>
 
     <div class="resume-body">
-      <main class="resume-main">
+      <div class="resume-main">
 
         {% if summary %}
         <h3 class="section-heading">Professional Summary</h3>
-        <hr class="section-rule"/>
+        <hr class="section-rule">
         <div class="summary-text">
           {% for para in summary %}
           <p>{{ para }}</p>
@@ -143,7 +145,7 @@
 
         {% if achievements %}
         <h3 class="section-heading">Key Achievements</h3>
-        <hr class="section-rule"/>
+        <hr class="section-rule">
         <ul class="achievements-list">
           {% for item in achievements %}
           <li>{{ item }}</li>
@@ -153,7 +155,7 @@
 
         {% if work_experience %}
         <h3 class="section-heading">Work Experience</h3>
-        <hr class="section-rule"/>
+        <hr class="section-rule">
         {% for job in work_experience %}
         <div class="job">
           <div class="job-header">
@@ -170,13 +172,13 @@
         {% endfor %}
         {% endif %}
 
-      </main>
+      </div>
 
       <aside class="resume-sidebar">
 
         {% if skills %}
         <h3 class="section-heading">Skills</h3>
-        <hr class="section-rule"/>
+        <hr class="section-rule">
         {% for skill in skills %}
           {% if skill.type == 'group' %}
           <div class="skill-group">
@@ -195,7 +197,7 @@
 
         {% if education %}
         <h3 class="section-heading">Education</h3>
-        <hr class="section-rule"/>
+        <hr class="section-rule">
         {% for school in education %}
         <div class="edu-entry">
           <div class="edu-name">{{ school.name }}</div>
@@ -208,7 +210,7 @@
 
         {% if certifications %}
         <h3 class="section-heading">Certifications</h3>
-        <hr class="section-rule"/>
+        <hr class="section-rule">
         {% for cert in certifications %}
         <div class="cert-item">{{ cert }}</div>
         {% endfor %}
@@ -216,7 +218,7 @@
 
         {% if location or phone.href %}
         <h3 class="section-heading">Contact</h3>
-        <hr class="section-rule"/>
+        <hr class="section-rule">
         {% if email.href %}
         <div class="cert-item"><a href="#" data-email="{{ email_rot13 }}"><span data-email-text></span></a></div>
         {% endif %}
@@ -231,6 +233,8 @@
       </aside>
     </div>
   </section>
+
+</main>
 
   <!-- ── THEME TOGGLE ──────────────────────────────────────── -->
   <button id="theme-toggle" aria-label="Toggle light/dark mode">

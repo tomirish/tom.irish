@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="src/pdf.css"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="src/pdf.css">
   <title>{{ name }} — Resume</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
     {% if summary %}
     <section class="pdf-section">
       <h2 class="pdf-section-heading">Professional Summary</h2>
-      <hr class="pdf-rule"/>
+      <hr class="pdf-rule">
       {% for para in summary %}
       <p class="pdf-summary">{{ para }}</p>
       {% endfor %}
@@ -43,7 +43,7 @@
     {% if achievements %}
     <section class="pdf-section">
       <h2 class="pdf-section-heading">Key Achievements</h2>
-      <hr class="pdf-rule"/>
+      <hr class="pdf-rule">
       <ul class="pdf-bullets">
         {% for item in achievements %}
         <li>{{ item }}</li>
@@ -55,7 +55,7 @@
     {% if work_experience %}
     <section class="pdf-section">
       <h2 class="pdf-section-heading">Work Experience</h2>
-      <hr class="pdf-rule"/>
+      <hr class="pdf-rule">
       {% for job in work_experience %}
       <div class="pdf-job">
         <div class="pdf-job-header">
@@ -76,7 +76,7 @@
     {% if skills %}
     <section class="pdf-section">
       <h2 class="pdf-section-heading">Skills</h2>
-      <hr class="pdf-rule"/>
+      <hr class="pdf-rule">
       {% for skill in skills %}
         {% if skill.type == 'group' %}
         <div class="pdf-skill-row">
@@ -93,7 +93,7 @@
     {% if education %}
     <section class="pdf-section">
       <h2 class="pdf-section-heading">Education</h2>
-      <hr class="pdf-rule"/>
+      <hr class="pdf-rule">
       {% for school in education %}
       <div class="pdf-edu">
         <strong>{{ school.name }}</strong>
@@ -108,7 +108,7 @@
     {% if certifications %}
     <section class="pdf-section">
       <h2 class="pdf-section-heading">Certifications</h2>
-      <hr class="pdf-rule"/>
+      <hr class="pdf-rule">
       <ul class="pdf-bullets">
         {% for cert in certifications %}
         <li>{{ cert }}</li>
