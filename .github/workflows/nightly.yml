@@ -141,7 +141,7 @@ jobs:
 
           payload = json.dumps({
               'schemaVersion': 1,
-              'label': 'nightly audit',
+              'label': 'Nightly Audit',
               'message': message,
               'color': color,
               'labelColor': '343B42',
