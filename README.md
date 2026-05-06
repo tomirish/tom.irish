@@ -49,4 +49,4 @@ https://tom.irish
 | `scripts/build/` | CI build scripts — validate, convert, generate PDF and share image |
 | `scripts/tools/` | Manual generators — favicons, profile picture |
 | `tests/` | Test suite |
-| `.github/workflows/` | CI/CD — build on push, nightly audit + Lighthouse, CodeQL, Dependabot |
+| `.github/workflows/` | CI/CD — build on push, nightly audit, Lighthouse, CodeQL, Dependabot |
