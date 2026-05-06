@@ -134,7 +134,7 @@ jobs:
               'color': color,
               'labelColor': '343B42',
               'namedLogo': 'lighthouse',
-              'logoColor': 'white',
+              'logoColor': '959DA5',
           })
           subprocess.run([
               'gh', 'api', '--method', 'PATCH',
