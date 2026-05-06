@@ -111,7 +111,7 @@ jobs:
           echo "- HTML generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- PDF and share image generated: ✅" >> $GITHUB_STEP_SUMMARY
           echo "- Public directory synced: ✅" >> $GITHUB_STEP_SUMMARY
-          echo "- Deployed to Cloudflare Pages: ✅ (`${SHA:0:7}`)" >> $GITHUB_STEP_SUMMARY
+          echo "- Deployed to Cloudflare Pages: ✅ (\`${SHA:0:7}\`)" >> $GITHUB_STEP_SUMMARY
 
       - name: Create failure summary
         if: failure()
