@@ -94,7 +94,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: "3"
+          wranglerVersion: "4"
           command: pages deploy public/ --project-name=tom-irish --commit-dirty=true
 
       - name: Create deployment summary
