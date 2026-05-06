@@ -21,12 +21,15 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Audit dependencies for known vulnerabilities
+        id: pip_audit
         run: pip-audit 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}
 
       - name: Check links in resume
+        id: check_links
         run: python scripts/build/check_links.py 2>&1 | tee /tmp/check-links.txt; exit ${PIPESTATUS[0]}
 
       - name: Run Lighthouse CI
+        id: lighthouse
         uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18  # v12
         with:
           configPath: .lighthouserc.json
@@ -103,16 +106,21 @@ jobs:
                   out.write(f'\n_Averaged over {len(files)} run(s)_\n')
           EOF
 
-      - name: Update Lighthouse badge
+      - name: Update nightly badge
         if: always()
         run: |
           python3 - <<'PYEOF'
-          import json, glob, subprocess
+          import json, glob, subprocess, os
+
+          all_ok = (
+              os.environ.get('PIP_AUDIT_OUTCOME') == 'success' and
+              os.environ.get('CHECK_LINKS_OUTCOME') == 'success' and
+              os.environ.get('LIGHTHOUSE_OUTCOME') == 'success'
+          )
 
           files = glob.glob('.lighthouseci/lhr-*.json')
-          if not files:
-              message, color = '–', 'lightgrey'
-          else:
+          avg: int | None = None
+          if files:
               scores = []
               for f in files:
                   with open(f) as fh:
@@ -122,19 +130,21 @@ jobs:
                       scores.append(round(perf * 100))
               if scores:
                   avg = round(sum(scores) / len(scores))
-                  message = str(avg)
-                  color = '#2EBC4F' if avg >= 90 else 'yellow' if avg >= 50 else 'red'
-              else:
-                  message, color = '–', 'lightgrey'
+
+          status = 'passing' if all_ok else 'failing'
+          if avg is not None:
+              message = f'{status} · {avg}'
+              color = '#2EBC4F' if (all_ok and avg >= 90) else 'yellow' if (all_ok and avg >= 50) else 'red'
+          else:
+              message = status
+              color = '#2EBC4F' if all_ok else 'red'
 
           payload = json.dumps({
               'schemaVersion': 1,
-              'label': 'lighthouse',
+              'label': 'nightly',
               'message': message,
               'color': color,
               'labelColor': '343B42',
-              'namedLogo': 'lighthouse',
-              'logoColor': '959DA5',
           })
           subprocess.run([
               'gh', 'api', '--method', 'PATCH',
@@ -144,3 +154,6 @@ jobs:
           PYEOF
         env:
           GH_TOKEN: ${{ secrets.GIST_TOKEN }}
+          PIP_AUDIT_OUTCOME: ${{ steps.pip_audit.outcome }}
+          CHECK_LINKS_OUTCOME: ${{ steps.check_links.outcome }}
+          LIGHTHOUSE_OUTCOME: ${{ steps.lighthouse.outcome }}
