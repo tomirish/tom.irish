@@ -32,7 +32,7 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Audit dependencies for known vulnerabilities
-        run: pip-audit --no-cache
+        run: pip-audit --cache-dir /tmp/pip-audit-cache
 
       - name: Install Node dependencies
         run: npm ci

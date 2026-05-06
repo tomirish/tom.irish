@@ -22,7 +22,7 @@ jobs:
 
       - name: Audit dependencies for known vulnerabilities
         id: pip_audit
-        run: pip-audit --no-cache 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}
+        run: pip-audit --cache-dir /tmp/pip-audit-cache 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}
 
       - name: Check links in resume
         id: check_links
