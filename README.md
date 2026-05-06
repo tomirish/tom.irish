@@ -30,6 +30,7 @@ resume.md pushed to main
 │  convert_resume.py        — generates index.html                    │
 │  generate_pdf_browser.py  — generates resume.pdf                    │
 │  generate_share_image.py  — generates OG share image                │
+│  attest-build-provenance  — signs SLSA provenance for artifacts     │
 │  Wrangler                 — deploys to Cloudflare Pages             │
 └─────────────────────────────────────────────────────────────────────┘
         ↓
