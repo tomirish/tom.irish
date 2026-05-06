@@ -32,7 +32,7 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Audit dependencies for known vulnerabilities
-        run: pip-audit --ignore-vuln CVE-2026-3219  # fix shipped in pip 26.1 but advisory DB has no fix version yet
+        run: pip-audit
 
       - name: Install Node dependencies
         run: npm ci
