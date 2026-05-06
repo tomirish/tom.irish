@@ -244,7 +244,8 @@ def _build_info() -> tuple[str, str]:
 def render_templates(data: dict[str, Any], index_out: str = 'index.html', resume_out: str = 'resume.html', dry_run: bool = False) -> None:
     """Render both Jinja2 templates with resume data and write output files."""
     from jinja2 import TemplateNotFound, TemplateError
-    env = Environment(loader=FileSystemLoader(os.path.join(REPO_ROOT, 'src')), autoescape=True)
+    env = Environment(loader=FileSystemLoader(os.path.join(REPO_ROOT, 'src')), autoescape=True,
+                      trim_blocks=True, lstrip_blocks=True)
     sha, build_time = _build_info()
 
     import codecs

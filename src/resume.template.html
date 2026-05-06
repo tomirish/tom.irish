@@ -12,10 +12,18 @@
     <div class="pdf-header-text">
       <h1 class="pdf-name">{{ name }}</h1>
       <div class="pdf-contact">
-        {% if email.href %}<span>{{ email.display }}</span>{% endif %}
-        {% if phone.href %}<span>{{ phone.display }}</span>{% endif %}
-        {% if location %}<span>{{ location }}</span>{% endif %}
-        {% if linkedin.href %}<span>{{ linkedin.display }}</span>{% endif %}
+        {% if email.href %}
+        <span>{{ email.display }}</span>
+        {% endif %}
+        {% if phone.href %}
+        <span>{{ phone.display }}</span>
+        {% endif %}
+        {% if location %}
+        <span>{{ location }}</span>
+        {% endif %}
+        {% if linkedin.href %}
+        <span>{{ linkedin.display }}</span>
+        {% endif %}
       </div>
     </div>
   </header>
@@ -26,7 +34,9 @@
     <section class="pdf-section">
       <h2 class="pdf-section-heading">Professional Summary</h2>
       <hr class="pdf-rule"/>
-      {% for para in summary %}<p class="pdf-summary">{{ para }}</p>{% endfor %}
+      {% for para in summary %}
+      <p class="pdf-summary">{{ para }}</p>
+      {% endfor %}
     </section>
     {% endif %}
 
@@ -35,7 +45,9 @@
       <h2 class="pdf-section-heading">Key Achievements</h2>
       <hr class="pdf-rule"/>
       <ul class="pdf-bullets">
-        {% for item in achievements %}<li>{{ item }}</li>{% endfor %}
+        {% for item in achievements %}
+        <li>{{ item }}</li>
+        {% endfor %}
       </ul>
     </section>
     {% endif %}
@@ -52,7 +64,9 @@
         </div>
         <div class="pdf-job-company">{{ job.company }}</div>
         <ul class="pdf-bullets">
-          {% for bullet in job.bullets %}<li>{{ bullet }}</li>{% endfor %}
+          {% for bullet in job.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
         </ul>
       </div>
       {% endfor %}
@@ -83,7 +97,9 @@
       {% for school in education %}
       <div class="pdf-edu">
         <strong>{{ school.name }}</strong>
-        {% for item in school['items'] %}<div class="pdf-edu-item">{{ item }}</div>{% endfor %}
+        {% for item in school['items'] %}
+        <div class="pdf-edu-item">{{ item }}</div>
+        {% endfor %}
       </div>
       {% endfor %}
     </section>
@@ -94,7 +110,9 @@
       <h2 class="pdf-section-heading">Certifications</h2>
       <hr class="pdf-rule"/>
       <ul class="pdf-bullets">
-        {% for cert in certifications %}<li>{{ cert }}</li>{% endfor %}
+        {% for cert in certifications %}
+        <li>{{ cert }}</li>
+        {% endfor %}
       </ul>
     </section>
     {% endif %}
