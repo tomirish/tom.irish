@@ -1,4 +1,4 @@
-name: Nightly Checks
+name: Nightly Audit
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   nightly:
-    name: Nightly Checks
+    name: Nightly Audit
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -141,10 +141,12 @@ jobs:
 
           payload = json.dumps({
               'schemaVersion': 1,
-              'label': 'nightly',
+              'label': 'nightly audit',
               'message': message,
               'color': color,
               'labelColor': '343B42',
+              'namedLogo': 'githubactions',
+              'logoColor': 'ffffff',
           })
           subprocess.run([
               'gh', 'api', '--method', 'PATCH',
