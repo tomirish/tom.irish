@@ -33,19 +33,17 @@ def main() -> None:
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
     img = Image.open(SOURCE).convert("RGB")
-    img = img.resize((SIZE, SIZE), Image.LANCZOS)
+    img = img.resize((SIZE, SIZE), Image.Resampling.LANCZOS)
 
-    outputs = [
-        (OUT_WEBP, {"format": "WEBP", "quality": 90}),
-        (OUT_JPG,  {"format": "JPEG", "quality": 90, "optimize": True}),
-    ]
-
-    for out_path, save_kwargs in outputs:
+    for out_path, label, kwargs in [
+        (OUT_WEBP, "WEBP", {"quality": 90}),
+        (OUT_JPG,  "JPEG", {"quality": 90, "optimize": True}),
+    ]:
         if out_path.exists():
             out_path.unlink()
             print(f"Removed existing {out_path.name}")
 
-        img.save(out_path, **save_kwargs)
+        img.save(out_path, format=label, **kwargs)
         size_kb = out_path.stat().st_size // 1024
         print(f"Saved {out_path.name} ({SIZE}x{SIZE}, {size_kb} KB)")
 
