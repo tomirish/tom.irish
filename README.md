@@ -11,8 +11,6 @@ Personal website and resume for [Tom Irish](https://tom.irish). Overengineered b
 
 ## How It Works
 
-The pipeline:
-
 ```
 resume.md pushed to main
         ↓
