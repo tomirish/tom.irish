@@ -47,7 +47,7 @@ tom.irish/
 |-- docs/                — editing and customization guides
 |-- scripts/
 |   |-- build/           — CI scripts (validate, convert, generate HTML/PDF/OG image)
-|   `-- tools/           — manual generators (favicons, profile picture)
+|   `-- tools/           — manual generators (icons, photo)
 |-- tests/               — test suite
 `-- .github/workflows/   — build, nightly audit, Lighthouse, CodeQL, Dependabot
 ```

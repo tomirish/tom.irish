@@ -39,7 +39,7 @@ The mark works on two levels: **Ti** are Tom Irish's initials, and Ti is the per
 | `assets/images/favicon-dark.png` | 256×256 | Browser favicon, dark mode (JS-swapped on load) |
 | `assets/images/apple-touch-icon.png` | 1024×1024 | iOS home screen icon |
 
-**Generation:** `scripts/tools/generate_ti_element_icon.py` renders the master mark. `scripts/tools/generate_favicons.py` renders the favicon pair (DM Serif Display "Ti" on solid background, via Playwright).
+**Generation:** `scripts/tools/generate_icons.py` renders all three icons (DM Serif Display "Ti" on solid background, via Playwright).
 
 > [!NOTE]
 > The favicon JS swap is in `index.template.html` — it reads `localStorage` on page load and sets `favicon.png` or `favicon-dark.png` based on the active theme. If you regenerate the favicons, re-run `convert_resume.py` to pick up the new files in the deployed `index.html`.
