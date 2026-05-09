@@ -80,7 +80,7 @@ jobs:
 
               # Lighthouse
               out.write('## 🔦 Lighthouse\n\n')
-              files = glob.glob('.lighthouseci/lhr-*.json')
+              files = sorted(glob.glob('.lighthouseci/lhr-*.json'))
               if not files:
                   out.write('⚠️ No Lighthouse results found\n')
               else:
@@ -91,19 +91,25 @@ jobs:
                       for key, cat in data.get('categories', {}).items():
                           if cat.get('score') is not None:
                               scores.setdefault(key, []).append(round(cat['score'] * 100))
-                  avg = {k: sum(v) / len(v) for k, v in scores.items()}
                   labels = {
                       'performance':    'Performance',
                       'accessibility':  'Accessibility',
                       'best-practices': 'Best Practices',
                       'seo':            'SEO',
                   }
-                  out.write('| Category | Score |\n|---|---|\n')
+                  n = len(files)
+                  header = '| Category |' + ''.join(f' Run {i+1} |' for i in range(n)) + ' Avg |\n'
+                  sep = '|---|' + '---|' * n + '---|\n'
+                  out.write(header + sep)
                   for key in ['performance', 'accessibility', 'best-practices', 'seo']:
-                      if key in avg:
-                          score = avg[key]
-                          out.write(f'| {labels[key]} | {badge(score)} {score:.0f} |\n')
-                  out.write(f'\n_Averaged over {len(files)} run(s)_\n')
+                      if key in scores:
+                          vals = scores[key]
+                          avg_score = sum(vals) / len(vals)
+                          row = f'| {labels[key]} |'
+                          for v in vals:
+                              row += f' {badge(v)} {v} |'
+                          row += f' {badge(avg_score)} {avg_score:.0f} |\n'
+                          out.write(row)
           EOF
 
       - name: Update nightly badge
