@@ -41,13 +41,15 @@ https://tom.irish
 
 ## Repo Structure
 
-| Path | Purpose |
-|------|---------|
-| `src/resume.md` | The only file you edit — single source of truth for the site and PDF |
-| `src/` | Templates, CSS, and static files (404, robots.txt, sitemap, security.txt) |
-| `assets/` | Fonts and images |
-| `docs/` | Editing and customization guides |
-| `scripts/build/` | CI build scripts — validate, convert, generates HTML, PDF, and share image |
-| `scripts/tools/` | Manual generators — favicons, profile picture |
-| `tests/` | Test suite |
-| `.github/workflows/` | CI/CD — build on push, nightly audit, Lighthouse, CodeQL, Dependabot |
+```
+tom.irish/
+|-- src/                   — templates, CSS, and static files
+|   `-- resume.md          — the only file you edit (source of truth for site and PDF)
+|-- assets/                — fonts and images
+|-- docs/                  — editing and customization guides
+|-- scripts/
+|   |-- build/             — CI build scripts (validate, convert, generate HTML/PDF/share image)
+|   `-- tools/             — manual generators (favicons, profile picture)
+|-- tests/                 — test suite
+`-- .github/workflows/     — build on push, nightly audit, Lighthouse, CodeQL, Dependabot
+```
