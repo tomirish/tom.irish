@@ -44,12 +44,12 @@ https://tom.irish
 ```
 tom.irish/
 |-- src/                 — templates, CSS, and static files
-|   `-- resume.md        — the only file you edit (source of truth for site and PDF)
+|   `-- resume.md        — the only file you edit
 |-- assets/              — fonts and images
 |-- docs/                — editing and customization guides
 |-- scripts/
-|   |-- build/           — CI build scripts (validate, convert, generate HTML/PDF/share image)
+|   |-- build/           — CI scripts (validate, convert, generate HTML/PDF/OG image)
 |   `-- tools/           — manual generators (favicons, profile picture)
 |-- tests/               — test suite
-`-- .github/workflows/   — build on push, nightly audit, Lighthouse, CodeQL, Dependabot
+`-- .github/workflows/   — build, nightly audit, Lighthouse, CodeQL, Dependabot
 ```
