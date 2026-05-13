@@ -1,12 +1,11 @@
 # CLAUDE.md — Working notes for this repo
 
-This file is gitignored and is just for us. Update it freely as we work together.
+This file is committed to a public repo. Keep it free of credentials, vault names, local paths, and anything that shouldn't be public. Use a `.local.` file (e.g. `notes.local.md`) for machine-specific or private notes — `.gitignore` will keep it out of the repo.
 
 ---
 
 ## Session start
-When working in this repo, the global MEMORY.md is not auto-loaded. Read it manually at the start of each session:
-`~/.claude/projects/-Users-tom-GitHub/memory/MEMORY.md`
+When working in this repo, the global MEMORY.md is not auto-loaded. Read it manually at the start of each session from your Claude project memory directory.
 Then read any topic files referenced in it — they contain important context.
 
 ---
@@ -84,13 +83,6 @@ python3 -m http.server 8000
 # or changes to src/index.template.html won't be visible at localhost.
 # Never open src/index.template.html directly as a preview — it's the build template, not the site.
 ```
-
----
-
-## Command confirmation hooks
-
-Bash command confirmations are controlled by dippy at `~/.dippy/config`.
-Last-match-wins rules. To silence prompts for a command, change `ask` → `allow` for that pattern.
 
 ---
 
@@ -272,7 +264,7 @@ Wrangler deploying successfully = site is live. The SHA in `index.html` reflects
 - Hosted on Cloudflare Pages, deployed via GitHub Actions + Wrangler on every push to main
 - HTTPS handled by Cloudflare
 - `src/.well-known/security.txt` — the `Expires` field must be updated annually (currently set to 2027-05-05)
-- `GIST_TOKEN` secret — classic PAT with `gist` scope, expires 2027-05-05; stored in 1Password `GitHub.local.scripts / API - GitHub GIST_TOKEN`; used by nightly workflow to update the Lighthouse badge Gist (`cfcbef4e90b3367512488562c649334e`)
+- `GIST_TOKEN` secret — classic PAT with `gist` scope, expires 2027-05-05; stored in password vault; used by nightly workflow to update the Lighthouse badge Gist (`cfcbef4e90b3367512488562c649334e`)
 - Secrets: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` stored in GitHub Actions secrets
 
 ---

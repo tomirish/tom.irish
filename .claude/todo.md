@@ -56,4 +56,4 @@
 
 25. **Custom 404 page** — `src/404.html` deployed automatically by CF Pages; matches site design (Playfair/DM Sans, crimson accent, dark mode); respects localStorage theme toggle.
 
-26. **Live Lighthouse performance badge** — nightly workflow writes averaged performance score to a public GitHub Gist after each Lighthouse run; shields.io endpoint badge reads from Gist; score is earned nightly not hardcoded. GIST_TOKEN secret (classic PAT, gist scope, expires 2027-05-05) stored in 1Password: `GitHub.local.scripts / API - GitHub GIST_TOKEN`.
+26. **Live Lighthouse performance badge** — nightly workflow writes averaged performance score to a public GitHub Gist after each Lighthouse run; shields.io endpoint badge reads from Gist; score is earned nightly not hardcoded. GIST_TOKEN secret (classic PAT, gist scope, expires 2027-05-05) stored in password vault.
