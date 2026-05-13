@@ -1,8 +1,5 @@
 .DS_Store
-.superpowers/
-CLAUDE.md
-.claude/
-memory/
+.claude/worktrees/
 public/
 resume.pdf
 index.html
