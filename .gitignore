@@ -1,5 +1,8 @@
 .DS_Store
 .claude/worktrees/
+.claude/*.local.*
+.claude/**/*.local.*
+.claude/.superpowers/
 public/
 resume.pdf
 index.html

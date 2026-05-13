@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(du:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 show:*)",
+      "Bash(curl:*)",
+      "Bash(gh run:*)",
+      "Bash(gh workflow run build.yml *)",
+      "Bash(make:*)",
+      "WebSearch",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:tom.irish)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:storage.googleapis.com)",
+      "WebFetch(domain:developers.cloudflare.com)",
+      "WebFetch(domain:blog.cloudflare.com)",
+      "WebFetch(domain:community.cloudflare.com)",
+      "WebFetch(domain:api.anthropic.com)",
+      "WebFetch(domain:web.archive.org)",
+      "WebFetch(domain:simpleicons.org)",
+      "WebFetch(domain:shields.io)",
+      "Edit(.claude/**)",
+      "Write(.claude/**)",
+      "Read(.claude/**)",
+      "mcp__plugin_playwright_playwright__browser_resize",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "mcp__plugin_playwright_playwright__browser_tabs",
+      "mcp__plugin_playwright_playwright__browser_run_code",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_click"
+    ],
+    "defaultMode": "acceptEdits"
+  }
+}
