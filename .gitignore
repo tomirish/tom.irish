@@ -3,6 +3,7 @@
 .claude/*.local.*
 .claude/**/*.local.*
 .claude/.superpowers/
+.claude/settings.json
 public/
 resume.pdf
 index.html
