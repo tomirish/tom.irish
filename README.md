@@ -41,13 +41,13 @@ https://tom.irish
 
 ```
 tom.irish/
-|-- src/                 — templates, CSS, and static files
-|   `-- resume.md        — the only file you edit
-|-- assets/              — fonts and images
-|-- docs/                — editing and customization guides
+|-- src/                    — templates, CSS, and static files
+|   `-- resume.md           — the only file you edit
+|-- assets/                 — fonts and images
+|-- docs/                   — editing and customization guides
 |-- scripts/
-|   |-- build/           — CI scripts (validate, convert, generate HTML/PDF/OG image)
-|   `-- tools/           — manual generators (icons, photo)
-|-- tests/               — test suite
-`-- .github/workflows/   — build, nightly audit, Lighthouse, CodeQL, Dependabot
+|   |-- build/              — CI scripts (validate, convert, generate HTML/PDF/OG image)
+|   `-- tools/              — manual generators (icons, photo)
+|-- tests/                  — test suite
+`-- .github/workflows/      — build, nightly audit, Lighthouse, CodeQL, Dependabot
 ```
