@@ -182,7 +182,7 @@ pytest is at `.venv/bin/pytest` — run `python3 -m venv .venv && .venv/bin/pip 
 ---
 
 ## Backlog
-- See `.claude/todo.md`
+- See `TODO.md`
 
 ---
 
