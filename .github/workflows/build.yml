@@ -100,6 +100,38 @@ jobs:
         env:
           FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+      - name: Update version badge
+        if: success()
+        run: |
+          git fetch --tags --quiet
+          python3 - <<'PYEOF'
+          import json, subprocess
+
+          result = subprocess.run(
+              ['git', 'tag', '--sort=-version:refname'],
+              capture_output=True, text=True
+          )
+          tags = [t for t in result.stdout.strip().splitlines() if t]
+          version = tags[0] if tags else 'untagged'
+
+          payload = json.dumps({
+              'schemaVersion': 1,
+              'label': 'Version',
+              'message': version,
+              'color': '0075D8',
+              'labelColor': '343B42',
+              'namedLogo': 'git',
+              'logoColor': '959DA5',
+          })
+          subprocess.run([
+              'gh', 'api', '--method', 'PATCH',
+              '/gists/bc255ee73cc388023f3a53becc895a80',
+              '--field', f'files[version.json][content]={payload}',
+          ], check=True)
+          PYEOF
+        env:
+          GH_TOKEN: ${{ secrets.GIST_TOKEN }}
+
       - name: Create deployment summary
         if: success()
         run: |
