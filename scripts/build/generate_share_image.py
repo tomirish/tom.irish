@@ -12,29 +12,40 @@ from typing import Any
 REPO_ROOT = Path(__file__).parent.parent.parent
 OUT_PATH = REPO_ROOT / "assets" / "images" / "share.jpg"
 PHOTO_PATH = REPO_ROOT / "scripts" / "tools" / "tom-irish-original.jpg"
+FONTS_DIR = REPO_ROOT / "assets" / "fonts"
 
 
 def load_resume_data() -> dict[str, Any]:
     sys.path.insert(0, str(REPO_ROOT / "scripts" / "build"))
     from convert_resume import parse_markdown_resume
+
     md = (REPO_ROOT / "src" / "resume.md").read_text(encoding="utf-8")
     return parse_markdown_resume(md)
 
 
-def photo_data_uri() -> str:
-    with open(PHOTO_PATH, "rb") as f:
+def _data_uri(path: Path, mime: str) -> str:
+    with open(path, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
-    return f"data:image/jpeg;base64,{b64}"
+    return f"data:{mime};base64,{b64}"
 
 
 HTML = """<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Playfair+Display:wght@400;700&display=swap"/>
 <style>
+@font-face {{
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  src: url('{dm_sans_uri}') format('woff2');
+}}
+@font-face {{
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 700;
+  src: url('{playfair_uri}') format('woff2');
+}}
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 body {{
   width: 1200px;
@@ -135,20 +146,28 @@ body {{
 
 def main() -> None:
     data = load_resume_data()
-    photo_uri = photo_data_uri()
+    photo_uri = _data_uri(PHOTO_PATH, "image/jpeg")
+    dm_sans_uri = _data_uri(FONTS_DIR / "dm-sans-latin.woff2", "font/woff2")
+    playfair_uri = _data_uri(FONTS_DIR / "playfair-display-latin.woff2", "font/woff2")
 
-    name = data.get('name', 'Tom Irish')
-    role = data['work_experience'][0]['role'] if data.get('work_experience') else ''
-    tagline = data.get('tagline', '')
-    location = data.get('location', '')
-    website = data.get('website', {}).get('display', 'tom.irish')
+    name = data.get("name", "Tom Irish")
+    role = data["work_experience"][0]["role"] if data.get("work_experience") else ""
+    tagline = data.get("tagline", "")
+    location = data.get("location", "")
+    website = data.get("website", {}).get("display", "tom.irish")
 
-    role_html = f'<div class="role">{html.escape(role)}</div>' if role else ''
-    tagline_html = f'<div class="tagline">{html.escape(tagline)}</div>' if tagline else ''
-    location_html = f'<div class="meta-item">{html.escape(location)}</div>' if location else ''
+    role_html = f'<div class="role">{html.escape(role)}</div>' if role else ""
+    tagline_html = (
+        f'<div class="tagline">{html.escape(tagline)}</div>' if tagline else ""
+    )
+    location_html = (
+        f'<div class="meta-item">{html.escape(location)}</div>' if location else ""
+    )
 
     page_html = HTML.format(
         photo_uri=photo_uri,
+        dm_sans_uri=dm_sans_uri,
+        playfair_uri=playfair_uri,
         name=name,
         role_html=role_html,
         tagline_html=tagline_html,
@@ -162,12 +181,15 @@ def main() -> None:
 
     try:
         from playwright.sync_api import sync_playwright
+
         with sync_playwright() as p:
             browser = p.chromium.launch()
             page = browser.new_page(viewport={"width": 1200, "height": 630})
             page.goto(f"file://{tmp_path}")
             page.wait_for_load_state("networkidle")
-            page.screenshot(path=str(OUT_PATH), type="jpeg", quality=92, full_page=False)
+            page.screenshot(
+                path=str(OUT_PATH), type="jpeg", quality=92, full_page=False
+            )
             browser.close()
     finally:
         os.unlink(tmp_path)

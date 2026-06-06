@@ -39,9 +39,14 @@ jobs:
       - name: Open issue on failure
         if: failure()
         run: |
-          gh issue create \
-            --title "Nightly check failed $(date +%Y-%m-%d)" \
-            --body "A nightly check failed. See the run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          gh label create "nightly-failure" --color "e11d48" --description "Nightly audit failure" --force
+          existing=$(gh issue list --label "nightly-failure" --state open --json number --jq 'length')
+          if [ "$existing" = "0" ]; then
+            gh issue create \
+              --title "Nightly check failed $(date +%Y-%m-%d)" \
+              --label "nightly-failure" \
+              --body "A nightly check failed. See the run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
