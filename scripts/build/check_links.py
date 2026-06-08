@@ -10,6 +10,7 @@ HTTP 5xx responses are treated as failures.
 import os
 import re
 import sys
+import time
 import urllib.request
 import urllib.error
 
@@ -17,6 +18,8 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 RESUME_PATH = os.path.join(REPO_ROOT, 'src', 'resume.md')
 TIMEOUT = 10
+RETRIES = 2
+RETRY_DELAY = 3  # seconds between retries
 LINK_RE = re.compile(r'\[(?:[^\]]*)\]\((https?://[^)]+)\)')
 
 
@@ -36,20 +39,28 @@ def check_url(url: str) -> tuple[int | None, str | None]:
     Return (status, error) for a URL.
     status is the HTTP status code, or None on connection error.
     error is a string description on failure, or None on success.
+    Transient errors (timeouts, connection resets) are retried up to RETRIES times.
     """
     headers = {'User-Agent': 'tom-irish-link-checker/1.0 (https://github.com/tomirish/tom.irish)'}
-    for method in ('HEAD', 'GET'):
-        try:
-            req = urllib.request.Request(url, method=method, headers=headers)
-            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
-                return resp.status, None
-        except urllib.error.HTTPError as e:
-            if e.code == 405 and method == 'HEAD':
-                continue  # retry with GET
-            return e.code, None
-        except Exception as e:
-            return None, str(e)
-    return None, 'all methods failed'
+    last_error: str = 'all methods failed'
+    for attempt in range(RETRIES + 1):
+        for method in ('HEAD', 'GET'):
+            try:
+                req = urllib.request.Request(url, method=method, headers=headers)
+                with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                    return resp.status, None
+            except urllib.error.HTTPError as e:
+                if e.code == 405 and method == 'HEAD':
+                    continue  # retry with GET
+                return e.code, None
+            except Exception as e:
+                last_error = str(e)
+                break  # transient error — retry the whole attempt after a delay
+        else:
+            continue
+        if attempt < RETRIES:
+            time.sleep(RETRY_DELAY)
+    return None, last_error
 
 
 def main() -> None:

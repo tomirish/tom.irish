@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: write
 
     steps:
       - name: Checkout repository
@@ -36,20 +35,6 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
 
-      - name: Open issue on failure
-        if: failure()
-        run: |
-          gh label create "nightly-failure" --color "e11d48" --description "Nightly audit failure" --force
-          existing=$(gh issue list --label "nightly-failure" --state open --json number --jq 'length')
-          if [ "$existing" = "0" ]; then
-            gh issue create \
-              --title "Nightly check failed $(date +%Y-%m-%d)" \
-              --label "nightly-failure" \
-              --body "A nightly check failed. See the run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Write nightly summary
         if: always()
         run: |
@@ -59,13 +44,13 @@ jobs:
           summary_path = os.environ.get('GITHUB_STEP_SUMMARY', '/dev/stdout')
 
           def badge(score):
-              if score >= 90: return '🟢'
-              if score >= 50: return '🟡'
-              return '🔴'
+              if score >= 90: return '\U0001f7e2'
+              if score >= 50: return '\U0001f7e1'
+              return '\U0001f534'
 
           with open(summary_path, 'a') as out:
               # Dependency audit
-              out.write('## 🔒 Dependency Audit\n\n')
+              out.write('## \U0001f512 Dependency Audit\n\n')
               try:
                   content = open('/tmp/pip-audit.txt').read().strip()
                   if 'No known vulnerabilities found' in content:
@@ -76,7 +61,7 @@ jobs:
                   out.write('⚠️ pip-audit did not run\n\n')
 
               # Link check
-              out.write('## 🔗 Link Check\n\n')
+              out.write('## \U0001f517 Link Check\n\n')
               try:
                   content = open('/tmp/check-links.txt').read().strip()
                   out.write('```\n' + content + '\n```\n\n')
@@ -84,7 +69,7 @@ jobs:
                   out.write('⚠️ Link check did not run\n\n')
 
               # Lighthouse
-              out.write('## 🔦 Lighthouse\n\n')
+              out.write('## \U0001f526 Lighthouse\n\n')
               files = sorted(glob.glob('.lighthouseci/lhr-*.json'))
               if not files:
                   out.write('⚠️ No Lighthouse results found\n')
