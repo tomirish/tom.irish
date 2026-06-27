@@ -45,7 +45,7 @@ Each step has:
 
 **Step 1 — Get an account**
 - Text: "Message Tom to get set up. He'll send you a username and password."
-- CTA: `Message Tom` button → `sms:` link (Tom's phone number to be added during implementation)
+- CTA: `Message Tom` button → `sms:+12536702623`
 - Phone frame: illustrative "Welcome" screen with a person icon
 
 **Step 2 — Download Spine**
