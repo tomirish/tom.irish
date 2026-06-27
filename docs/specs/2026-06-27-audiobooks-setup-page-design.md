@@ -105,11 +105,11 @@ Add four A records pointing the apex domain to GitHub Pages' IPs, plus a CNAME f
 | A | `@` | `185.199.109.153` |
 | A | `@` | `185.199.110.153` |
 | A | `@` | `185.199.111.153` |
-| CNAME | `www` | `tirish.github.io` |
+| CNAME | `www` | `tomirish.github.io` |
 
 Set **Proxy status to DNS only (grey cloud)** on all records — GitHub Pages requires direct DNS, not proxied.
 
-> **Note:** `tirish` assumed as GitHub username based on email `tirish@gmail.com` — confirm before setup.
+> **GitHub username confirmed:** `tomirish`
 
 ### GitHub Pages settings
 - Repo: `tirish/tom.irish`
