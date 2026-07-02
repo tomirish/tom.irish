@@ -3,7 +3,7 @@ mypy==2.1.0
 Pillow==12.2.0
 pip-audit==2.10.1
 pre-commit==4.6.0
-ruff==0.15.17
+ruff==0.15.20
 playwright==1.60.0
 pypdf==6.14.2
 pytest==9.1.0
