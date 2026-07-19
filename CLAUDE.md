@@ -186,6 +186,14 @@ pytest is at `.venv/bin/pytest` — run `python3 -m venv .venv && .venv/bin/pip 
 
 ---
 
+## Specs and plans
+
+Design specs go in `docs/superpowers/specs/`, implementation plans in `docs/superpowers/plans/`. Committed to the repo, not gitignored. Same convention in every repo.
+
+Specs are the *why* and are kept. Plans are the *how, once* — prune them once implemented; the code plus the commit message is the durable record.
+
+---
+
 ## Pre-commit hook gotcha
 
 The pre-commit hook stashes unstaged changes before running, then restores them after the commit completes. Edits to files that weren't explicitly `git add`-ed will NOT be in the commit — they silently survive in the working tree. Always `git add` every file you've edited before committing, not just files you moved or renamed.
