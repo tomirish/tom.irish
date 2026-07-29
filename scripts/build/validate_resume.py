@@ -16,8 +16,8 @@ Usage:
 """
 
 import os
-import sys
 import re
+import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
@@ -25,7 +25,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 def read_file(filepath: str) -> str:
     """Read content from a file."""
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
         print(f"❌ ERROR: File not found: {filepath}")
@@ -120,7 +120,7 @@ def main() -> None:
     content = read_file(os.path.join(REPO_ROOT, 'src', 'resume.md'))
 
     # Validate
-    is_valid, warnings, errors = validate_resume(content)
+    _is_valid, warnings, errors = validate_resume(content)
 
     # Report errors
     if errors:

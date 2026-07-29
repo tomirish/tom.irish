@@ -12,7 +12,7 @@ REPO_ROOT = os.path.join(os.path.dirname(__file__), '..')
 
 
 def read(path):
-    with open(os.path.join(REPO_ROOT, path), 'r', encoding='utf-8') as f:
+    with open(os.path.join(REPO_ROOT, path), encoding='utf-8') as f:
         return f.read()
 
 

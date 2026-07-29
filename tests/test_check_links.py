@@ -2,8 +2,8 @@
 Unit tests for scripts/check_links.py
 """
 
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'build'))
 

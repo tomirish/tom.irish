@@ -15,7 +15,7 @@ import argparse
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 from urllib.parse import urlparse
 
@@ -28,7 +28,7 @@ ALLOWED_URL_SCHEMES = {'http', 'https', 'mailto', 'tel'}
 
 def read_file(filepath: str) -> str:
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
         print(f"❌ ERROR: File not found: {filepath}")
@@ -175,7 +175,7 @@ def parse_markdown_resume(md_content: str) -> dict[str, Any]:
             current_school = {'name': line[4:].strip(), 'items': []}
 
         # Bullets
-        elif line.startswith('- ') or line.startswith('* '):
+        elif line.startswith(('- ', '* ')):
             bullet = line[2:].strip()
             if current_section == 'work' and current_job:
                 current_job['bullets'].append(bullet)
@@ -237,13 +237,13 @@ def _build_info() -> tuple[str, str]:
     sha = os.environ.get('GITHUB_SHA', 'local')
     if sha != 'local':
         sha = sha[:7]
-    build_time = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    build_time = datetime.now(UTC).strftime('%Y-%m-%dT%H:%M:%SZ')
     return sha, build_time
 
 
 def render_templates(data: dict[str, Any], index_out: str = 'index.html', resume_out: str = 'resume.html', dry_run: bool = False) -> None:
     """Render both Jinja2 templates with resume data and write output files."""
-    from jinja2 import TemplateNotFound, TemplateError
+    from jinja2 import TemplateError, TemplateNotFound
     env = Environment(loader=FileSystemLoader(os.path.join(REPO_ROOT, 'src')), autoescape=True,
                       trim_blocks=True, lstrip_blocks=True)
     sha, build_time = _build_info()

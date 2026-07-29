@@ -7,8 +7,8 @@ grouped skills, Key Achievements, and GitHub field. The rendering
 tests verify that both Jinja2 templates produce correct output.
 """
 
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts', 'build'))
 
@@ -518,7 +518,7 @@ def test_render_index_html_json_ld_is_valid(tmp_path, monkeypatch):
     try:
         json.loads(match.group(1))
     except json.JSONDecodeError as e:
-        raise AssertionError(f'JSON-LD block is not valid JSON: {e}')
+        raise AssertionError(f'JSON-LD block is not valid JSON: {e}') from e
 
 
 def test_render_index_html_og_tags_have_content(tmp_path, monkeypatch):

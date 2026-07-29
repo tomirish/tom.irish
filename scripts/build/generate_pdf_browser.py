@@ -17,12 +17,14 @@ Output:
     resume.pdf  (written to the repository root)
 """
 
-from playwright.sync_api import sync_playwright
+import contextlib
 import http.server
 import socketserver
+import sys
 import threading
 import time
-import sys
+
+from playwright.sync_api import sync_playwright
 
 # ---------------------------------------------------------------------------
 # PDF layout constants — tweak these to adjust the generated PDF appearance.
@@ -157,10 +159,9 @@ def main() -> None:
 
     finally:
         if server:
-            try:
+            # Cleanup errors on exit are non-fatal.
+            with contextlib.suppress(Exception):
                 server.shutdown()
-            except Exception:
-                pass  # Ignore cleanup errors on exit
 
 
 if __name__ == '__main__':
