@@ -2,7 +2,7 @@ name: Nightly Audit
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Daily, 2 AM UTC
+    - cron: '0 6 * * *'  # Daily, 6 AM UTC (11 PM PDT / 10 PM PST)
   workflow_dispatch:
 
 jobs:
