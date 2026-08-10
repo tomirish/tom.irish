@@ -59,11 +59,15 @@ make build      # validate + convert to index.html
 make test       # run pytest
 make pdf        # generate resume.pdf
 make all        # validate + build + test
-make lint       # ruff check + mypy type-check (scripts/build/ and scripts/tools/)
+make lint       # ruff check (scripts/, tests/) + mypy type-check (scripts/)
+                # NOTE: does NOT lint CSS. CI runs `npx stylelint "src/*.css"` separately —
+                # run `npm ci && npx stylelint "src/*.css"` after any CSS change or it will
+                # pass locally and fail in CI.
 make serve      # local HTTP server at localhost:8000
 
 # Individual scripts (build pipeline — in scripts/build/):
 python3 scripts/build/validate_resume.py
+python3 scripts/build/check_links.py             # verifies every URL in resume.md resolves
 python3 scripts/build/convert_resume.py --dry-run
 python3 scripts/build/convert_resume.py
 python3 scripts/build/generate_pdf_browser.py
@@ -149,6 +153,8 @@ The parser supports these optional sections beyond the base format:
 ### PDF layout
 Margins and scale are named constants at the top of `scripts/build/generate_pdf_browser.py`. Adjust those rather than editing the `page.pdf()` call directly.
 
+PDF styling lives in `src/pdf.css`, linked from `src/resume.template.html` — a separate stylesheet from `src/main.css`, and not inlined.
+
 ### Version tagging
 Tags are manual and intentional — they mark significant design milestones (e.g. `v7.0` = current redesign), not individual deploys. The Version badge in the README links to `src/history.html`. Do not automate tagging on deploy.
 
@@ -203,6 +209,8 @@ The pre-commit hook stashes unstaged changes before running, then restores them 
 ## Branching
 
 Normally there are no feature branches — this repo works entirely on `main`.
+
+Exception: an automated triage agent may open a `fix/pip-audit-<date>` PR bumping a pinned dependency after a nightly pip-audit failure. Those are proposals, never auto-merged — review and merge like any other PR.
 
 ---
 
@@ -282,10 +290,12 @@ Wrangler deploying successfully = site is live. The SHA in `index.html` reflects
 ### Automated scanning
 - **CodeQL** (`.github/workflows/codeql.yml`) — static analysis of Python scripts; runs on every push to main and weekly on Saturdays. Results in GitHub Security → Code scanning alerts. Does not block pushes.
 - **Dependabot** (`.github/dependabot.yml`) — opens PRs weekly (Mondays) for outdated GitHub Actions and pip dependencies. Auto-merge is disabled — review and merge manually via `gh pr merge <number> --squash`.
-- **pip-audit** — runs in CI on every build and nightly; catches known CVEs in pinned Python dependencies. Separate from CodeQL (which analyzes your code, not your deps).
+- **pip-audit** — runs in CI on every build and nightly; catches known CVEs in pinned Python dependencies. Separate from CodeQL (which analyzes your code, not your deps). Dependabot security updates are enabled, but GitHub's advisory database can lag the source pip-audit uses — on 2026-08-08 the nightly caught pypdf CVE-2026-71852/71870 and no Dependabot PR was ever opened. Treat a red nightly as the real signal.
 
 ### Vulnerability reporting
 `SECURITY.md` is in the repo root. It directs reporters to GitHub's private vulnerability reporting (already enabled on the repo). Do not add an email address to it.
+
+GitHub Issues are deliberately disabled on this repo — don't try to open one, and don't enable them. Private vulnerability reporting is the intended channel.
 
 ### Branch protection
 - `main` has a GitHub ruleset: force pushes and deletions are blocked.
