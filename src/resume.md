@@ -10,7 +10,7 @@
 
 **GitHub:** [github.com/tomirish](https://github.com/tomirish)
 
-**Location:** Federal Way, Washington
+**Location:** Seattle, Washington
 
 **Tagline:** Engineering leader building the systems that keep global freight moving.
 
