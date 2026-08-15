@@ -283,6 +283,20 @@ Wrangler deploying successfully = site is live. The SHA in `index.html` reflects
 - `GIST_TOKEN` secret — classic PAT with `gist` scope, stored in password vault; used by nightly workflow to update the Lighthouse badge Gist (`cfcbef4e90b3367512488562c649334e`)
 - Secrets: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` stored in GitHub Actions secrets
 
+### "Deployments paused" in the Cloudflare dashboard is expected
+
+The Pages project shows a **Deployments paused** warning badge. This is intentional and does not
+need fixing. It refers to Cloudflare's own Git-integration build system, which is a separate
+pipeline from the one we use — `build.yml` deploys with `wrangler pages deploy public/`, a direct
+upload that bypasses Cloudflare-side builds entirely.
+
+That pipeline should stay paused. `index.html`, `resume.pdf`, and `public/` are all gitignored and
+generated at build time, so a Cloudflare-side build of the repo would deploy a site with no
+`index.html` and could overwrite a good Wrangler deployment.
+
+To confirm deploys are healthy regardless of the badge, compare the `build-sha` meta tag on the
+live site against the latest commit — see the Build verification section above.
+
 ---
 
 ## Security
