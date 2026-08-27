@@ -4,6 +4,16 @@ on:
   push:
     branches:
       - main
+    # Docs-only pushes skip this pipeline. NARROW NAMED PATHS ONLY — this is a
+    # deploy repo and markdown is production content (resume.md must keep
+    # triggering deploys), so a '*.md' glob here would silently skip real
+    # deploys. docs/ verified 2026-08-27: pure documentation, never read by
+    # the build. Skips only when EVERY changed file matches; a skipped
+    # docs-only push deploys nothing and the next code push carries it.
+    paths-ignore:
+      - 'todo.md'
+      - 'CLAUDE.md'
+      - 'docs/**'
   workflow_dispatch:
 
 jobs:
