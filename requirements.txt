@@ -5,5 +5,5 @@ pip-audit==2.10.1
 pre-commit==4.6.2
 ruff==0.16.6
 playwright==1.62.0
-pypdf==6.16.2
+pypdf==6.17.0
 pytest==9.1.1
