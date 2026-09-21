@@ -4,6 +4,6 @@ Pillow==12.3.0
 pip-audit==2.10.1
 pre-commit==4.6.2
 ruff==0.16.8
-playwright==1.62.0
+playwright==1.63.0
 pypdf==6.19.0
 pytest==9.1.1
