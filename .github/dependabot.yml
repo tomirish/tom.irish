@@ -7,6 +7,11 @@ updates:
       interval: weekly
       day: monday
     labels: [dependencies]
+    # init and analyze must move together — CodeQL fails with a configuration
+    # error if the two steps run different versions of the action.
+    groups:
+      codeql-action:
+        patterns: ['github/codeql-action*']
 
   - package-ecosystem: pip
     directory: /
