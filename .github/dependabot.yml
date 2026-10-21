@@ -19,3 +19,13 @@ updates:
       interval: weekly
       day: monday
     labels: [dependencies]
+
+  # stylelint and its tree (package-lock.json) went unwatched until 2026-10-21:
+  # no npm entry here and no npm audit in CI, so three advisories in it
+  # (braces, colord, fast-uri) were never reported anywhere.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels: [dependencies]
