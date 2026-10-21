@@ -126,6 +126,15 @@ Use `Image.Resampling.LANCZOS` not `Image.LANCZOS` — the latter has no type st
 
 `.landing-photo` uses a `slide-up` animation (transform only) instead of `fade-up` (opacity: 0→1) — elements starting at `opacity: 0` are excluded from LCP candidacy.
 
+**Best Practices sits at 82 and that is expected — do not chase it.** The only failing audit is
+`deprecations` (weight 5 of 28, so exactly 18 points), and both warnings come from
+`/cdn-cgi/challenge-platform/scripts/jsd/main.js` — Cloudflare's JS Detection script, injected at
+the edge by Bot Fight Mode. It is absent from `index.html` as built and present in the served HTML,
+so nothing in this repo can affect it. The warnings are `StorageType.persistent` and `Fledge`.
+Reaching 100 would mean disabling Bot Fight Mode (losing real bot protection for a cosmetic score)
+or adding `skipAudits: ["deprecations"]`, which would also blind the audit to deprecated APIs in our
+own code. Leave it; Cloudflare will update the script eventually. Verified unchanged 2026-10-19/20/21.
+
 ### Triggering workflows manually
 ```bash
 gh workflow run nightly.yml --ref main  # nightly checks + Lighthouse only
