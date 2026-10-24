@@ -21,7 +21,13 @@ jobs:
 
       - name: Audit dependencies for known vulnerabilities
         id: pip_audit
-        run: pip-audit --cache-dir /tmp/pip-audit-cache 2>&1 | tee /tmp/pip-audit.txt; exit ${PIPESTATUS[0]}
+        # Findings are re-emitted as ::error annotations: the nightly triage
+        # routine's sandbox cannot download job logs (proxy 403) but can read
+        # annotations through the check-runs API.
+        run: |
+          pip-audit --cache-dir /tmp/pip-audit-cache 2>&1 | tee /tmp/pip-audit.txt; rc=${PIPESTATUS[0]}
+          awk '/^-+ -+/{t=1; next} t && NF>=3 {printf "::error title=pip-audit::%s %s %s -> fixed in %s\n", $1, $2, $3, (NF>=4 ? $4 : "no fix yet")}' /tmp/pip-audit.txt
+          exit "$rc"
 
       - name: Check links in resume
         id: check_links
