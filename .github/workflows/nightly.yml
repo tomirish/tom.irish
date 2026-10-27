@@ -29,6 +29,15 @@ jobs:
           awk '/^-+ -+/{t=1; next} t && NF>=3 {printf "::error title=pip-audit::%s %s %s -> fixed in %s\n", $1, $2, $3, (NF>=4 ? $4 : "no fix yet")}' /tmp/pip-audit.txt
           exit "$rc"
 
+      - name: Audit Node dependencies for known vulnerabilities
+        id: npm_audit
+        # Same ::error re-emission as pip-audit above, for the triage routine.
+        # npm audit reads package-lock.json; no install needed.
+        run: |
+          npm audit 2>&1 | tee /tmp/npm-audit.txt; rc=${PIPESTATUS[0]}
+          npm audit --json | jq -r '.vulnerabilities // {} | to_entries[] | "::error title=npm-audit::\(.key) \(.value.severity) \(.value.range) -> fix available: \(.value.fixAvailable | if type == "object" then "\(.name)@\(.version)" else tostring end)"'
+          exit "$rc"
+
       - name: Check links in resume
         id: check_links
         run: python scripts/build/check_links.py 2>&1 | tee /tmp/check-links.txt; exit ${PIPESTATUS[0]}
@@ -65,6 +74,16 @@ jobs:
                       out.write('❌ Vulnerabilities detected\n\n```\n' + content + '\n```\n\n')
               except FileNotFoundError:
                   out.write('⚠️ pip-audit did not run\n\n')
+
+              out.write('## \U0001f512 Node Dependency Audit\n\n')
+              try:
+                  content = open('/tmp/npm-audit.txt').read().strip()
+                  if content.startswith('found 0 vulnerabilities'):
+                      out.write('✅ No known vulnerabilities found\n\n')
+                  else:
+                      out.write('❌ Vulnerabilities detected\n\n```\n' + content + '\n```\n\n')
+              except FileNotFoundError:
+                  out.write('⚠️ npm audit did not run\n\n')
 
               # Link check
               out.write('## \U0001f517 Link Check\n\n')
@@ -116,6 +135,7 @@ jobs:
 
           all_ok = (
               os.environ.get('PIP_AUDIT_OUTCOME') == 'success' and
+              os.environ.get('NPM_AUDIT_OUTCOME') == 'success' and
               os.environ.get('CHECK_LINKS_OUTCOME') == 'success' and
               os.environ.get('LIGHTHOUSE_OUTCOME') == 'success'
           )
@@ -159,5 +179,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GIST_TOKEN }}
           PIP_AUDIT_OUTCOME: ${{ steps.pip_audit.outcome }}
+          NPM_AUDIT_OUTCOME: ${{ steps.npm_audit.outcome }}
           CHECK_LINKS_OUTCOME: ${{ steps.check_links.outcome }}
           LIGHTHOUSE_OUTCOME: ${{ steps.lighthouse.outcome }}

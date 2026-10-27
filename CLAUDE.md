@@ -314,6 +314,7 @@ live site against the latest commit — see the Build verification section above
 - **CodeQL** (`.github/workflows/codeql.yml`) — static analysis of Python scripts; runs on every push to main and weekly on Saturdays. Results in GitHub Security → Code scanning alerts. Does not block pushes.
 - **Dependabot** (`.github/dependabot.yml`) — opens PRs weekly (Mondays) for outdated GitHub Actions and pip dependencies. Auto-merge is disabled — review and merge manually via `gh pr merge <number> --squash`.
 - **pip-audit** — runs in CI on every build and nightly; catches known CVEs in pinned Python dependencies. Separate from CodeQL (which analyzes your code, not your deps). Dependabot security updates are enabled, but GitHub's advisory database can lag the source pip-audit uses — on 2026-08-08 the nightly caught pypdf CVE-2026-71852/71870 and no Dependabot PR was ever opened. Treat a red nightly as the real signal.
+- **npm audit** — runs in CI on every build and nightly, covering the npm tree (stylelint and its dev dependencies). Added 2026-10-26 once the last open finding (braces GHSA-vfj7-8cjw-p6xm) was withdrawn; nightly findings are re-emitted as `::error` annotations like pip-audit's.
 
 ### Vulnerability reporting
 `SECURITY.md` is in the repo root. It directs reporters to GitHub's private vulnerability reporting (already enabled on the repo). Do not add an email address to it.

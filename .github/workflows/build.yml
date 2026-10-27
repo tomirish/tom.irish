@@ -47,6 +47,9 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Audit Node dependencies for known vulnerabilities
+        run: npm audit
+
       - name: Lint CSS
         run: npx stylelint "src/*.css"
 
