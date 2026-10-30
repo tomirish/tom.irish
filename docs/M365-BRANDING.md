@@ -62,15 +62,18 @@ crimson is about 8:1 contrast, above Microsoft's 4.5:1 recommendation.
 
 | Tab | Setting | Value |
 |---|---|---|
-| Sign-in form | Square logo (light theme) | `assets/images/entra-square-logo.png` |
-| Sign-in form | Square logo (dark theme) | `assets/images/entra-square-logo.png` (the same file — the crimson tile reads on both) |
+| Sign-in form | Square logo (light theme) | `assets/images/entra-square-logo-light.png` |
+| Sign-in form | Square logo (dark theme) | `assets/images/entra-square-logo-dark.png` |
 | Sign-in form | Banner logo | Not set (shows Microsoft's logo) |
 
 Everything else is left at Microsoft's defaults.
 
-The square logo is what Outlook mobile shows as the account icon. Outlook crops it to a circle,
-so it has no ring or border. A ring would read as a clipped edge. Changes can take up to 24
-hours to reach the app.
+The square logo is what Outlook mobile shows as the account icon. Outlook draws it at about 80%
+inside a circle that matches the app's theme and clips it to that circle, so a full square tile
+loses its corners. Each logo is therefore just the "Ti" on transparency, like other
+organizations' icons. Outlook uses the light-theme logo in light mode and the dark-theme logo in
+dark mode, so the light one is crimson and the dark one is cream. Changes can take up to 24 hours
+to reach the app.
 
 Limits: 240×240, PNG or JPG, under 50 KB.
 
@@ -86,7 +89,8 @@ the Microsoft 365 branding with no error anywhere on this site.
 |---|---|---|---|
 | `m365-default-logo.png` | 96×96 | Org theme default logo (uploaded) | The full mark, centered at 87% of a transparent canvas, so its cream ring lands at 80% |
 | `m365-logo.png` | 96×96 | Org theme alternate logo (by URL) | The mark cropped to the outer edge of the cream ring (inset 4% of the mark), masked to the ring's corner radius (13.75% of the crop), centered at 80% |
-| `entra-square-logo.png` | 240×240 | Entra square logo | `favicon.png` resized — solid crimson tile, no ring |
+| `entra-square-logo-light.png` | 240×240 | Entra square logo (light theme) | The "Ti" from `favicon.png` in crimson on transparency, scaled to 70% of the width |
+| `entra-square-logo-dark.png` | 240×240 | Entra square logo (dark theme) | The same glyph in cream |
 
 The default logo keeps the mark's outer crimson band because it sits on the crimson bar, where
 the band disappears into the background and only the ring shows. The alternate logo drops the

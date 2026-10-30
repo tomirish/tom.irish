@@ -38,7 +38,7 @@ The mark works on two levels: **Ti** are Tom Irish's initials, and Ti is the per
 | `assets/images/favicon.png` | 256×256 | Browser favicon, light mode |
 | `assets/images/favicon-dark.png` | 256×256 | Browser favicon, dark mode (JS-swapped on load) |
 | `assets/images/apple-touch-icon.png` | 1024×1024 | iOS home screen icon |
-| `assets/images/m365-default-logo.png`, `m365-logo.png`, `entra-square-logo.png` | — | Microsoft 365 tenant branding — see [M365-BRANDING.md](M365-BRANDING.md) |
+| `assets/images/m365-default-logo.png`, `m365-logo.png`, `entra-square-logo-light.png`, `entra-square-logo-dark.png` | — | Microsoft 365 tenant branding — see [M365-BRANDING.md](M365-BRANDING.md) |
 
 **Generation:** `scripts/tools/generate_icons.py` renders all three icons (DM Serif Display "Ti" on solid background, via Playwright).
 

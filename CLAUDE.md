@@ -172,7 +172,7 @@ Tags are manual and intentional — they mark significant design milestones (e.g
 - `favicon.png` — 256×256, `#9b2335` at (0,0)
 - `favicon-dark.png` — 256×256, `#131313` at (0,0)
 - `apple-touch-icon.png` — 1024×1024, `#9b2335` at (0,0)
-- `m365-logo.png`, `m365-default-logo.png`, `entra-square-logo.png` — Microsoft 365 tenant branding, pinned by `tests/test_m365_logo.py`. The M365 admin center loads `m365-logo.png` by a commit-pinned raw GitHub URL; see `docs/M365-BRANDING.md` before changing any of them
+- `m365-logo.png`, `m365-default-logo.png`, `entra-square-logo-light.png`, `entra-square-logo-dark.png` — Microsoft 365 tenant branding, pinned by `tests/test_m365_logo.py`. The M365 admin center loads `m365-logo.png` by a commit-pinned raw GitHub URL; see `docs/M365-BRANDING.md` before changing any of them
 
 ### Section splitting in validator
 The validator uses `re.split(r'\n## ', ...)` to split sections — not `split("##")` — because `##` is a substring of `###` (job-title headers) and would cause false splits.
