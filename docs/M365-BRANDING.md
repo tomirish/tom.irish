@@ -63,7 +63,7 @@ crimson is about 8:1 contrast, above Microsoft's 4.5:1 recommendation.
 | Tab | Setting | Value |
 |---|---|---|
 | Sign-in form | Square logo (light theme) | `assets/images/entra-square-logo.png` |
-| Sign-in form | Square logo (dark theme) | Not set — the crimson tile reads on both |
+| Sign-in form | Square logo (dark theme) | `assets/images/entra-square-logo.png` (the same file — the crimson tile reads on both) |
 | Sign-in form | Banner logo | Not set (shows Microsoft's logo) |
 
 Everything else is left at Microsoft's defaults.
