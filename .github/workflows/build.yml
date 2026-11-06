@@ -227,6 +227,52 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: true
 
+      # The per-run table on the run page (the old nightly's, brought back
+      # 2026-11-06). The last column is BEST, not the average: it is the number
+      # lhci's assertions judge and the one published to scores.json and the
+      # dashboard, so all three agree.
+      - name: Lighthouse summary
+        if: always()
+        run: |
+          python3 - <<'PYEOF' >> "$GITHUB_STEP_SUMMARY"
+          import glob, json, os
+
+          def badge(score):
+              if score >= 90: return '\U0001f7e2'
+              if score >= 50: return '\U0001f7e1'
+              return '\U0001f534'
+
+          labels = {'performance': 'Performance', 'accessibility': 'Accessibility',
+                    'best-practices': 'Best Practices', 'seo': 'SEO'}
+          print('## \U0001f526 Lighthouse\n')
+          files = sorted(glob.glob('.lighthouseci/lhr-*.json'))
+          if not files:
+              print('\u26a0\ufe0f No Lighthouse results found')
+              raise SystemExit(0)
+          scores = {}
+          for f in files:
+              with open(f) as fh:
+                  for key, cat in json.load(fh).get('categories', {}).items():
+                      if cat.get('score') is not None:
+                          scores.setdefault(key, []).append(round(cat['score'] * 100))
+          n = len(files)
+          print('| Category |' + ''.join(f' Run {i+1} |' for i in range(n)) + ' Best |')
+          print('|---|' + '---|' * n + '---|')
+          for key in labels:
+              vals = scores.get(key)
+              if vals:
+                  cells = ''.join(f' {badge(v)} {v} |' for v in vals)
+                  print(f'| {labels[key]} |{cells} {badge(max(vals))} **{max(vals)}** |')
+          try:
+              links = json.loads(os.environ.get('LH_LINKS') or '{}')
+          except ValueError:
+              links = {}
+          for url, report in links.items():
+              print(f'\n[Full report for {url}]({report})')
+          PYEOF
+        env:
+          LH_LINKS: ${{ steps.lighthouse.outputs.links }}
+
       - name: Publish scores
         if: always()
         run: |
