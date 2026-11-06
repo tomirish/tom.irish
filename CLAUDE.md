@@ -292,7 +292,7 @@ Wrangler deploying successfully = site is live. The SHA in `index.html` reflects
 - Hosted on Cloudflare Pages, deployed via GitHub Actions + Wrangler on every push to main
 - HTTPS handled by Cloudflare
 - `src/.well-known/security.txt` — the `Expires` field must be updated annually (currently set to 2027-05-05)
-- `GIST_TOKEN` secret — classic PAT with `gist` scope, stored in password vault; used by `build.yml` (version badge, and the `lighthouse` job's badge and `scores.json` in the Lighthouse Gist `cfcbef4e90b3367512488562c649334e`)
+- `GIST_TOKEN` secret — classic PAT with `gist` scope, stored in password vault; used by `build.yml` (the version badge, and the `lighthouse` job's `scores.json` in Gist `cfcbef4e90b3367512488562c649334e`, which the RPi reads for the TOM.IRISH dashboard; that gist's old `lighthouse.json` badge file is no longer written)
 - Secrets: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` stored in GitHub Actions secrets
 
 ### "Deployments paused" in the Cloudflare dashboard is expected

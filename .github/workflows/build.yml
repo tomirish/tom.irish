@@ -199,9 +199,10 @@ jobs:
   # regression turns THIS job red and GitHub emails.
   #
   # It measures the LIVE site (https://tom.irish), Cloudflare edge included,
-  # which is what visitors get. Scores go to the badge gist twice: the shields
-  # badge (lighthouse.json) and a machine-readable scores.json that the RPi
-  # reads for the tom.irish dashboard (no token needed: gists are public).
+  # which is what visitors get. Scores go to scores.json in the Lighthouse
+  # gist, which the RPi reads for the tom.irish dashboard (no token needed:
+  # gists are public). No README badge since 2026-11-06: the build badge goes
+  # red when this job fails, and the scores are in the run summary.
   lighthouse:
     name: Lighthouse (live site)
     needs: build
@@ -294,16 +295,6 @@ jobs:
                   scores[c] = round(100 * max(vals))
 
           ok = os.environ.get('LIGHTHOUSE_OUTCOME') == 'success'
-          perf = scores.get('performance')
-          status = 'passing' if ok else 'failing'
-          message = f'{status} · {perf}' if perf is not None else status
-          color = ('#2EBC4F' if ok and (perf or 0) >= 90 else
-                   'yellow' if ok and (perf or 0) >= 50 else 'red')
-          badge = {
-              'schemaVersion': 1, 'label': 'Lighthouse', 'message': message,
-              'color': color, 'labelColor': '343B42',
-              'namedLogo': 'lighthouse', 'logoColor': '959DA5',
-          }
           # Absent categories stay absent: a missing score must never read as 0
           # or as a pass on the dashboard.
           record = {
@@ -318,7 +309,6 @@ jobs:
           subprocess.run([
               'gh', 'api', '--method', 'PATCH',
               '/gists/cfcbef4e90b3367512488562c649334e',
-              '--field', f'files[lighthouse.json][content]={json.dumps(badge)}',
               '--field', f'files[scores.json][content]={json.dumps(record)}',
           ], check=True)
           print(json.dumps(record, indent=2))
