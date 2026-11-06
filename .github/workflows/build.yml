@@ -20,6 +20,9 @@ jobs:
   build:
     name: Build, Test, Deploy
     runs-on: ubuntu-latest
+    # A healthy run is under 2 minutes. Without a cap a stalled step bills up
+    # to GitHub's 6-hour default.
+    timeout-minutes: 15
     permissions:
       contents: read
       id-token: write
@@ -38,8 +41,18 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('requirements.txt') }}
 
+      # --with-deps runs apt for chromium's system libraries on every build, and
+      # a runner's apt mirror can stall: 2026-11-06 this step sat 6+ minutes
+      # (normally ~17s) and nothing stopped it. Each try is cut off at 3
+      # minutes and retried once; the step itself is capped on top.
       - name: Install Playwright browsers
-        run: playwright install --with-deps chromium
+        timeout-minutes: 8
+        run: |
+          for attempt in 1 2; do
+            timeout 180 playwright install --with-deps chromium && exit 0
+            echo "::warning::playwright install attempt $attempt timed out or failed"
+          done
+          exit 1
 
       - name: Audit dependencies for known vulnerabilities
         run: pip-audit --cache-dir /tmp/pip-audit-cache
@@ -193,6 +206,8 @@ jobs:
     name: Lighthouse (live site)
     needs: build
     runs-on: ubuntu-latest
+    # ~1 minute healthy (30s settle + 3 runs).
+    timeout-minutes: 10
     permissions:
       contents: read
     steps:
