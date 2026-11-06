@@ -177,3 +177,87 @@ jobs:
           echo "- **PDF generation failed** — Playwright/Chromium error or port conflict" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**The live site has not been updated.**" >> $GITHUB_STEP_SUMMARY
+
+  # LIGHTHOUSE, AFTER EVERY DEPLOY (2026-11-06; replaced nightly.yml). The
+  # scores only change when the site does, so a nightly re-measured an
+  # unchanged page. A separate job that needs `build`: the deploy is never
+  # delayed, and a Lighthouse failure never blocks or rolls back a deploy. It
+  # reports: accessibility and SEO are `error` in .lighthouserc.json, so a
+  # regression turns THIS job red and GitHub emails.
+  #
+  # It measures the LIVE site (https://tom.irish), Cloudflare edge included,
+  # which is what visitors get. Scores go to the badge gist twice: the shields
+  # badge (lighthouse.json) and a machine-readable scores.json that the RPi
+  # reads for the tom.irish dashboard (no token needed: gists are public).
+  lighthouse:
+    name: Lighthouse (live site)
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+
+      # Pages can serve the previous version for a few seconds after
+      # `wrangler pages deploy` returns.
+      - name: Let the deploy settle
+        run: sleep 30
+
+      - name: Run Lighthouse CI
+        id: lighthouse
+        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18  # v12
+        with:
+          configPath: .lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Publish scores
+        if: always()
+        run: |
+          python3 - <<'PYEOF'
+          import datetime, glob, json, os, subprocess
+
+          cats = ('performance', 'accessibility', 'best-practices', 'seo')
+          runs = []
+          for f in glob.glob('.lighthouseci/lhr-*.json'):
+              with open(f) as fh:
+                  runs.append(json.load(fh).get('categories', {}))
+          scores = {}
+          for c in cats:
+              vals = [r[c]['score'] for r in runs if r.get(c, {}).get('score') is not None]
+              if vals:
+                  scores[c] = round(100 * sum(vals) / len(vals))
+
+          ok = os.environ.get('LIGHTHOUSE_OUTCOME') == 'success'
+          perf = scores.get('performance')
+          status = 'passing' if ok else 'failing'
+          message = f'{status} · {perf}' if perf is not None else status
+          color = ('#2EBC4F' if ok and (perf or 0) >= 90 else
+                   'yellow' if ok and (perf or 0) >= 50 else 'red')
+          badge = {
+              'schemaVersion': 1, 'label': 'Lighthouse', 'message': message,
+              'color': color, 'labelColor': '343B42',
+              'namedLogo': 'lighthouse', 'logoColor': '959DA5',
+          }
+          # Absent categories stay absent: a missing score must never read as 0
+          # or as a pass on the dashboard.
+          record = {
+              'schema': 1,
+              'measured_at': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
+              'commit': os.environ.get('GITHUB_SHA', ''),
+              'runs': len(runs),
+              'assertions_passed': ok,
+              'scores': scores,
+          }
+          subprocess.run([
+              'gh', 'api', '--method', 'PATCH',
+              '/gists/cfcbef4e90b3367512488562c649334e',
+              '--field', f'files[lighthouse.json][content]={json.dumps(badge)}',
+              '--field', f'files[scores.json][content]={json.dumps(record)}',
+          ], check=True)
+          print(json.dumps(record, indent=2))
+          PYEOF
+        env:
+          GH_TOKEN: ${{ secrets.GIST_TOKEN }}
+          LIGHTHOUSE_OUTCOME: ${{ steps.lighthouse.outcome }}

@@ -137,10 +137,9 @@ own code. Leave it; Cloudflare will update the script eventually. Verified uncha
 
 ### Triggering workflows manually
 ```bash
-gh workflow run nightly.yml --ref main  # nightly checks + Lighthouse only
-gh workflow run build.yml --ref main    # full build + deploy
+gh workflow run build.yml --ref main    # full build + deploy, then Lighthouse on the live site
 ```
-Each workflow has its own file and its own `workflow_dispatch` trigger. Inspect Lighthouse results by downloading the artifact:
+Lighthouse runs as the `lighthouse` job in `build.yml`, after the deploy, against the live site. There is no nightly (removed 2026-11-06): dependency advisories come as Dependabot security PRs, the résumé links are checked daily from the RPi (dev.tools observability), and the scores are on the tom.irish dashboard in Grafana. Inspect Lighthouse results by downloading the artifact:
 ```bash
 gh run download <run-id> --repo tomirish/tom.irish --name lighthouse-results --dir /tmp/lh-results
 ```
@@ -220,7 +219,7 @@ The pre-commit hook stashes unstaged changes before running, then restores them 
 
 Normally there are no feature branches — this repo works entirely on `main`.
 
-Exception: an automated triage agent may open a `fix/pip-audit-<date>` PR bumping a pinned dependency after a nightly pip-audit failure. Those are proposals, never auto-merged — review and merge like any other PR.
+Exception: Dependabot opens dependency and security PRs; the weekly PR review routine merges routine bumps once CI is green. Review anything else like any other PR.
 
 ---
 
@@ -290,7 +289,7 @@ Wrangler deploying successfully = site is live. The SHA in `index.html` reflects
 - Hosted on Cloudflare Pages, deployed via GitHub Actions + Wrangler on every push to main
 - HTTPS handled by Cloudflare
 - `src/.well-known/security.txt` — the `Expires` field must be updated annually (currently set to 2027-05-05)
-- `GIST_TOKEN` secret — classic PAT with `gist` scope, stored in password vault; used by nightly workflow to update the Lighthouse badge Gist (`cfcbef4e90b3367512488562c649334e`)
+- `GIST_TOKEN` secret — classic PAT with `gist` scope, stored in password vault; used by `build.yml` (version badge, and the `lighthouse` job's badge and `scores.json` in the Lighthouse Gist `cfcbef4e90b3367512488562c649334e`)
 - Secrets: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` stored in GitHub Actions secrets
 
 ### "Deployments paused" in the Cloudflare dashboard is expected
@@ -314,8 +313,8 @@ live site against the latest commit — see the Build verification section above
 ### Automated scanning
 - **CodeQL** (`.github/workflows/codeql.yml`) — static analysis of Python scripts; runs on every push to main and weekly on Saturdays. Results in GitHub Security → Code scanning alerts. Does not block pushes.
 - **Dependabot** (`.github/dependabot.yml`) — opens PRs weekly (Mondays) for outdated GitHub Actions and pip dependencies. Auto-merge is disabled — review and merge manually via `gh pr merge <number> --squash`.
-- **pip-audit** — runs in CI on every build and nightly; catches known CVEs in pinned Python dependencies. Separate from CodeQL (which analyzes your code, not your deps). Dependabot security updates are enabled, but GitHub's advisory database can lag the source pip-audit uses — on 2026-08-08 the nightly caught pypdf CVE-2026-71852/71870 and no Dependabot PR was ever opened. Treat a red nightly as the real signal.
-- **npm audit** — runs in CI on every build and nightly, covering the npm tree (stylelint and its dev dependencies). Added 2026-10-26 once the last open finding (braces GHSA-vfj7-8cjw-p6xm) was withdrawn; nightly findings are re-emitted as `::error` annotations like pip-audit's.
+- **pip-audit** — runs in CI on every build; catches known CVEs in pinned Python dependencies. Separate from CodeQL (which analyzes your code, not your deps). Dependabot security updates are enabled, but GitHub's advisory database can lag the source pip-audit uses — on 2026-08-08 the nightly caught pypdf CVE-2026-71852/71870 and no Dependabot PR was ever opened. Treat a red nightly as the real signal.
+- **npm audit** — runs in CI on every build, covering the npm tree (stylelint and its dev dependencies). Added 2026-10-26 once the last open finding (braces GHSA-vfj7-8cjw-p6xm) was withdrawn; nightly findings are re-emitted as `::error` annotations like pip-audit's.
 
 ### Vulnerability reporting
 `SECURITY.md` is in the repo root. It directs reporters to GitHub's private vulnerability reporting (already enabled on the repo). Do not add an email address to it.
