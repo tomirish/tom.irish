@@ -223,11 +223,14 @@ jobs:
           for f in glob.glob('.lighthouseci/lhr-*.json'):
               with open(f) as fh:
                   runs.append(json.load(fh).get('categories', {}))
+          # BEST of the runs, not the average: lhci's assertions use its default
+          # "optimistic" aggregation (the best run), so publishing an average let
+          # the dashboard ring go red (perf 91) on a run lhci passed (2026-11-06).
           scores = {}
           for c in cats:
               vals = [r[c]['score'] for r in runs if r.get(c, {}).get('score') is not None]
               if vals:
-                  scores[c] = round(100 * sum(vals) / len(vals))
+                  scores[c] = round(100 * max(vals))
 
           ok = os.environ.get('LIGHTHOUSE_OUTCOME') == 'success'
           perf = scores.get('performance')
@@ -247,6 +250,7 @@ jobs:
               'measured_at': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),
               'commit': os.environ.get('GITHUB_SHA', ''),
               'runs': len(runs),
+              'aggregation': 'best',
               'assertions_passed': ok,
               'scores': scores,
           }
