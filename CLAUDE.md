@@ -134,6 +134,9 @@ so nothing in this repo can affect it. The warnings are `StorageType.persistent`
 Reaching 100 would mean disabling Bot Fight Mode (losing real bot protection for a cosmetic score)
 or adding `skipAudits: ["deprecations"]`, which would also blind the audit to deprecated APIs in our
 own code. Leave it; Cloudflare will update the script eventually. Verified unchanged 2026-10-19/20/21.
+The `.lighthouserc.json` best-practices warning floor is therefore 0.8, not 0.9 (2026-11-06): at 0.9 it
+warned on every deploy for this known cause, and a warning that always fires stops being read.
+0.8 stays quiet at the expected 82 and still warns if our own code costs points.
 
 ### Triggering workflows manually
 ```bash
