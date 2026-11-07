@@ -126,17 +126,15 @@ Use `Image.Resampling.LANCZOS` not `Image.LANCZOS` — the latter has no type st
 
 `.landing-photo` uses a `slide-up` animation (transform only) instead of `fade-up` (opacity: 0→1) — elements starting at `opacity: 0` are excluded from LCP candidacy.
 
-**Best Practices sits at 82 and that is expected — do not chase it.** The only failing audit is
-`deprecations` (weight 5 of 28, so exactly 18 points), and both warnings come from
-`/cdn-cgi/challenge-platform/scripts/jsd/main.js` — Cloudflare's JS Detection script, injected at
-the edge by Bot Fight Mode. It is absent from `index.html` as built and present in the served HTML,
-so nothing in this repo can affect it. The warnings are `StorageType.persistent` and `Fledge`.
-Reaching 100 would mean disabling Bot Fight Mode (losing real bot protection for a cosmetic score)
-or adding `skipAudits: ["deprecations"]`, which would also blind the audit to deprecated APIs in our
-own code. Leave it; Cloudflare will update the script eventually. Verified unchanged 2026-10-19/20/21.
-The `.lighthouserc.json` best-practices warning floor is therefore 0.8, not 0.9 (2026-11-06): at 0.9 it
-warned on every deploy for this known cause, and a warning that always fires stops being read.
-0.8 stays quiet at the expected 82 and still warns if our own code costs points.
+**Lighthouse does not load Cloudflare's injected challenge script** (`blockedUrlPatterns:
+["*/cdn-cgi/challenge-platform/*"]` in `.lighthouserc.json`, 2026-11-06). Bot Fight Mode injects
+`/cdn-cgi/challenge-platform/scripts/jsd/main.js` (JS Detections) at the edge. It is absent from
+`index.html` as built, and its deprecated APIs (`StorageType.persistent`, `Fledge`, `FencedFrame`)
+held Best Practices at 82 with nothing in this repo able to change it. Blocking it audits our own
+page while keeping bot protection. The deprecations audit still runs on our code, which is why this
+was chosen over `skipAudits`. The trade-off: the script's small load is not in the performance score
+either, so Lighthouse reads slightly better than a real first visit. Best practices is back to a
+0.9 warning floor. If the score drops again, the cause is now ours.
 
 ### Triggering workflows manually
 ```bash
