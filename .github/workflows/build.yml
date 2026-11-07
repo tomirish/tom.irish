@@ -41,15 +41,20 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ hashFiles('requirements.txt') }}
 
-      # --with-deps runs apt for chromium's system libraries on every build, and
-      # a runner's apt mirror can stall: 2026-11-06 this step sat 6+ minutes
-      # (normally ~17s) and nothing stopped it. Each try is cut off at 3
-      # minutes and retried once; the step itself is capped on top.
+      # NO --with-deps (2026-11-06). On this runner image it apt-installed only
+      # nine FONT packages (CJK, Thai, unifont, Cyrillic X fonts) -- Chromium's
+      # libraries ship with the image's own Chrome -- and that apt download was
+      # the whole run-time variance: 0s one run, 81s the next (a 270 kB/s
+      # mirror), once a 6+ minute stall. The site and its PDF embed their own
+      # fonts (DM Sans, Playfair Display); the PDF was compared before and after.
+      # If the image ever loses a library Chromium needs, the PDF step fails
+      # loudly and the deploy stops. The browser itself is cached by the step
+      # above; the retry and caps stay as a guard on its download.
       - name: Install Playwright browsers
         timeout-minutes: 8
         run: |
           for attempt in 1 2; do
-            timeout 180 playwright install --with-deps chromium && exit 0
+            timeout 180 playwright install chromium && exit 0
             echo "::warning::playwright install attempt $attempt timed out or failed"
           done
           exit 1
