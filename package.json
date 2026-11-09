@@ -2,6 +2,6 @@
   "name": "tom-irish",
   "private": true,
   "devDependencies": {
-    "stylelint": "17.16.0"
+    "stylelint": "18.0.0"
   }
 }
