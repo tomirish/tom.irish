@@ -2,12 +2,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import {
-  ACCOUNT,
-  ISSUER,
-  ISSUER_REL,
-  respond,
-} from "../functions/.well-known/webfinger.js";
+import { ISSUER, ISSUER_REL, respond } from "../functions/.well-known/webfinger.js";
+
+const ACCOUNT = "acct:tom@tom.irish";
 
 const SAMPLE = "https://example.cloudflareaccess.com/cdn-cgi/access/sso/oidc/abc123";
 
@@ -41,10 +38,36 @@ test("honours rel: an unrelated rel gets no links", async () => {
   assert.deepEqual((await res.json()).links, []);
 });
 
-test("another account is 404, never a borrowed answer", () => {
-  assert.equal(ask("resource=acct:someone@tom.irish").status, 404);
+test("any address on tom.irish gets the domain's issuer, as its own subject", async () => {
+  const res = ask("resource=acct%3Asomeone%40tom.irish");
+  assert.equal(res.status, 200);
+  assert.equal((await res.json()).subject, "acct:someone@tom.irish");
+});
+
+test("the resource forms clients actually send all resolve", async () => {
+  // Tailscale's request (User-Agent Tailscale/1.0) was 404 against an exact
+  // "acct:tom@tom.irish" match on 2026-11-15, so the exact form it sends is
+  // not that one. Each of these is a form seen in WebFinger clients.
+  for (const q of [
+    "resource=acct%3Atom%40tom.irish",
+    "resource=acct%3Atom%2540tom.irish",
+    "resource=mailto%3Atom%40tom.irish",
+    "resource=tom%40tom.irish",
+    "resource=acct:TOM@TOM.IRISH",
+  ]) {
+    const res = ask(q);
+    assert.equal(res.status, 200, q);
+    assert.equal((await res.json()).subject, "acct:tom@tom.irish", q);
+  }
+});
+
+test("another domain, or something that is not an address, is 404", () => {
   assert.equal(ask("resource=acct:tom@tomirish.com").status, 404);
+  assert.equal(ask("resource=acct:tom@evil.tom.irish.example").status, 404);
+  assert.equal(ask("resource=acct:tom@xtom.irish").status, 404);
   assert.equal(ask("resource=https://tom.irish/").status, 404);
+  assert.equal(ask("resource=acct:@tom.irish").status, 404);
+  assert.equal(ask("resource=acct:a@b@tom.irish").status, 404);
 });
 
 test("a missing resource is 400", () => {
