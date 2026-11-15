@@ -17,7 +17,7 @@ pdf:
 
 test:
 	$(PYTEST) tests/ -v
-	node --test tests/
+	node --test tests/*.test.mjs
 
 lint:
 	$(RUFF) check scripts/build/ scripts/tools/ tests/

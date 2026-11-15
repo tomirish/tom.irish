@@ -102,7 +102,7 @@ jobs:
       # The WebFinger Pages Function (functions/), which deploys with the
       # site. Node's built-in runner: no dependency to install or audit.
       - name: Test Pages Functions
-        run: node --test tests/
+        run: node --test tests/*.test.mjs
 
       - name: Sync files to public directory
         run: |
