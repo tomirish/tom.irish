@@ -17,6 +17,7 @@ pdf:
 
 test:
 	$(PYTEST) tests/ -v
+	node --test tests/
 
 lint:
 	$(RUFF) check scripts/build/ scripts/tools/ tests/
