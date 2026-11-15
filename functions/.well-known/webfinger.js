@@ -12,11 +12,12 @@
 //
 // ISSUER is public by design: publishing it is this endpoint's whole job. It
 // must equal the "issuer" in ISSUER/.well-known/openid-configuration exactly.
-// Empty means "not configured yet", and the endpoint answers 404.
+// An empty value would mean "not configured", and the endpoint answers 404.
 
 export const ACCOUNT = "acct:tom@tom.irish";
 export const ISSUER_REL = "http://openid.net/specs/connect/1.0/issuer";
-export const ISSUER = "";
+export const ISSUER =
+  "https://lingering-glade-b425.cloudflareaccess.com/cdn-cgi/access/sso/oidc/d524d666f415e866b7cbe300d1d4f9f8d3cfb1bd416889083ca84719b1f2464c";
 
 const HEADERS = {
   "Content-Type": "application/jrd+json",
